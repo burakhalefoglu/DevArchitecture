@@ -5,9 +5,6 @@ using Microsoft.Extensions.Logging;
 
 namespace WebAPI
 {
-    /// <summary>
-    ///
-    /// </summary>
     public static class Program
     {
         /// <summary>
