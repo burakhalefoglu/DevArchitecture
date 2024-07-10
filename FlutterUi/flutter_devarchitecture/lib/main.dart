@@ -5,7 +5,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:oktoast/oktoast.dart';
 
 import '/core/theme/extensions.dart';
-import 'core/configs/app_config.dart';
 import 'core/dependency_resolvers/get_it/core_initializer.dart';
 import 'core/theme/custom_colors.dart';
 
@@ -18,11 +17,6 @@ import 'routes/app_route_module.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (appConfig.name == 'staging') {
-    //   await Firebase.initializeApp(
-    //     options: DefaultFirebaseOptions.currentPlatform,
-    //   );
-  }
   initializeDateFormatting();
   CoreInitializer();
   BusinessInitializer();
@@ -78,10 +72,6 @@ class App extends StatelessWidget {
                     WidgetStateProperty.all(CustomColors.white.getColor),
               ),
             ),
-            fontFamily: context.fontFamily,
-            textTheme: Theme.of(context)
-                .textTheme
-                .apply(fontFamily: context.fontFamily),
             iconButtonTheme: IconButtonThemeData(
               style: ButtonStyle(
                   iconColor:
@@ -92,13 +82,11 @@ class App extends StatelessWidget {
             listTileTheme: ListTileThemeData(
               leadingAndTrailingTextStyle: TextStyle(
                 color: CustomColors.dark.getColor,
-                fontFamily: context.fontFamily,
                 fontWeight: FontWeight.w800,
                 fontSize: 15,
               ),
               titleTextStyle: TextStyle(
                 color: CustomColors.primary.getColor,
-                fontFamily: context.fontFamily,
                 fontWeight: FontWeight.w800,
                 fontSize: 18,
               ),

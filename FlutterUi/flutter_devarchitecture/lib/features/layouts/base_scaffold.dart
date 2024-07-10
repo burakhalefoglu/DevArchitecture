@@ -19,7 +19,7 @@ buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {
                 color: Theme.of(context).colorScheme.primary),
       ),
       backgroundColor: CustomColors.white.getColor,
-      title: Text("Mazot Takip Sistemi",
+      title: Text("DEVARCHITECTURE",
           style: TextStyle(
               color: Theme.of(context).colorScheme.primary,
               fontWeight: FontWeight.w800,

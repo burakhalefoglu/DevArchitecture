@@ -17,8 +17,6 @@ extension ContextExtension on BuildContext {
   double dynamicHeight(double val) => MediaQuery.of(this).size.height * val;
 
   ThemeData get theme => Theme.of(this);
-  String get fontFamily =>
-      DefaultTextStyle.of(this).style.fontFamily!.toString();
 }
 
 extension ResponsiveExtension on BuildContext {

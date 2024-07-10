@@ -25,8 +25,8 @@ class _NavBarState extends State<NavBar> {
             SidebarConstants.homePageTitle,
             RoutesConstants.homePage,
           ),
-          buildNavWithSubMenuItemElement(
-              context, Icons.add_road_rounded, SidebarConstants.dataAddTitle, [
+          buildNavWithSubMenuItemElement(context, Icons.admin_panel_settings,
+              SidebarConstants.adminPageTitle, [
             // {
             //   "name": DataImportSidebarConstants.fuelInputAddTitle,
             //   "route": RoutesConstants.fuelInputAddPage,
