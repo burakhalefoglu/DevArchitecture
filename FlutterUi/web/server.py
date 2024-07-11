@@ -3,6 +3,7 @@ import socketserver
 import _thread
 import webbrowser
 
+#? pip install -r requirements.txt --no-index --find-links
 #? pyinstaller  --icon=app.ico --onefile server.py
 
 def start_server():
