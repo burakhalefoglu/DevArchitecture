@@ -26,6 +26,7 @@ import { OperationClaimComponent } from '../components/admin/operationclaim/oper
 import { LogDtoComponent } from '../components/admin/log/logDto.component';
 import { MatSortModule } from '@angular/material/sort';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { TranslationService } from '../services/translation.service';
 
 
 // export function layoutHttpLoaderFactory(http: HttpClient) {
@@ -52,6 +53,14 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
         NgbModule,
         NgMultiSelectDropDownModule,
         SweetAlert2Module,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                //useFactory:layoutHttpLoaderFactory,
+                useClass: TranslationService,
+                deps: [HttpClient]
+            }
+        })
     ],
     declarations: [
         DashboardComponent,
