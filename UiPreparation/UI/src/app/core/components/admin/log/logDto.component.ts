@@ -1,5 +1,5 @@
 import { Component, OnInit,AfterViewInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AlertifyService } from 'app/core/services/alertify.service';
 import { LookUpService } from 'app/core/services/lookUp.service';
 import { AuthService } from 'app/core/components/admin/login/services/auth.service';
@@ -29,12 +29,12 @@ export class LogDtoComponent implements AfterViewInit, OnInit {
 	logDtoList: LogDto[];
 	logDto: LogDto = new LogDto();
 
-	logDtoAddForm: FormGroup;
+	logDtoAddForm: UntypedFormGroup;
 
 	logDtoId: number;
 	dtTrigger: Subject<any> = new Subject<any>();
 
-	constructor(private logDtoService: LogDtoService, private lookupService: LookUpService, private alertifyService: AlertifyService, private formBuilder: FormBuilder, private authService: AuthService) { }
+	constructor(private logDtoService: LogDtoService, private lookupService: LookUpService, private alertifyService: AlertifyService, private formBuilder: UntypedFormBuilder, private authService: AuthService) { }
 
 	ngOnInit() {
 
@@ -57,7 +57,7 @@ export class LogDtoComponent implements AfterViewInit, OnInit {
 		this.getLogDtoList();
 	}
 
-	clearFormGroup(group: FormGroup) {
+	clearFormGroup(group: UntypedFormGroup) {
 
 		group.markAsUntouched();
 		group.reset();

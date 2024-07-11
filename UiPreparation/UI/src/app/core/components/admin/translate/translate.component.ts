@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../login/services/auth.service';
 import { Translate } from './Models/Translate';
 import { TranslateService } from './Services/Translate.service';
@@ -26,7 +26,7 @@ export class TranslateComponent implements  AfterViewInit, OnInit {
 	translateList: Translate[] = [];
 	translate: Translate = new Translate();
 
-	translateAddForm: FormGroup;
+	translateAddForm: UntypedFormGroup;
 
 	langugelookUp: LookUp[];
 	displayedColumns: string[] = ['id', 'language', 'code', 'value','update','delete'];
@@ -36,7 +36,7 @@ export class TranslateComponent implements  AfterViewInit, OnInit {
 	translateId: number;
 
 
-	constructor(private translateService: TranslateService, private lookupService: LookUpService, private alertifyService: AlertifyService, private formBuilder: FormBuilder, private authService: AuthService) { }
+	constructor(private translateService: TranslateService, private lookupService: LookUpService, private alertifyService: AlertifyService, private formBuilder: UntypedFormBuilder, private authService: AuthService) { }
 
 	ngAfterViewInit(): void {
 
@@ -141,7 +141,7 @@ export class TranslateComponent implements  AfterViewInit, OnInit {
 	}
 
 
-	clearFormGroup(group: FormGroup) {
+	clearFormGroup(group: UntypedFormGroup) {
 
 		group.markAsUntouched();
 		group.reset();

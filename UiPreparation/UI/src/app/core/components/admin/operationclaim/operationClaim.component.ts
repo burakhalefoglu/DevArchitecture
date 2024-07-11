@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -27,11 +27,11 @@ export class OperationClaimComponent implements AfterViewInit, OnInit {
 	operationClaimList: OperationClaim[];
 	operationClaim: OperationClaim = new OperationClaim();
 
-	operationClaimAddForm: FormGroup;
+	operationClaimAddForm: UntypedFormGroup;
 
 	operationClaimId: number;
 
-	constructor(private operationClaimService: OperationClaimService, private lookupService: LookUpService, private alertifyService: AlertifyService, private formBuilder: FormBuilder, private authService: AuthService) { }
+	constructor(private operationClaimService: OperationClaimService, private lookupService: LookUpService, private alertifyService: AlertifyService, private formBuilder: UntypedFormBuilder, private authService: AuthService) { }
 	ngAfterViewInit(): void {
 		this.getOperationClaimList();
 	}
@@ -88,7 +88,7 @@ export class OperationClaimComponent implements AfterViewInit, OnInit {
 		})
 	}
 
-	clearFormGroup(group: FormGroup) {
+	clearFormGroup(group: UntypedFormGroup) {
 
 		group.markAsUntouched();
 		group.reset();

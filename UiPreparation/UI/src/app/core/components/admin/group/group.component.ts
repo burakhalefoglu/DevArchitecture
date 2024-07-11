@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -38,14 +38,14 @@ export class GroupComponent implements AfterViewInit, OnInit {
   groupList:Group[];
   group:Group=new Group();
 
-  groupAddForm: FormGroup;
+  groupAddForm: UntypedFormGroup;
 
   isUserChange: boolean = false;
   isClaimChange: boolean = false;
 
   groupId:number;
 
-  constructor(private groupService:GroupService, private lookupService:LookUpService,private alertifyService:AlertifyService,private formBuilder: FormBuilder, private authService:AuthService) { }
+  constructor(private groupService:GroupService, private lookupService:LookUpService,private alertifyService:AlertifyService,private formBuilder: UntypedFormBuilder, private authService:AuthService) { }
 
   
   ngAfterViewInit(): void {
@@ -209,7 +209,7 @@ export class GroupComponent implements AfterViewInit, OnInit {
 
   }
 
-  clearFormGroup(group: FormGroup) {
+  clearFormGroup(group: UntypedFormGroup) {
 
     group.markAsUntouched();
     group.reset();

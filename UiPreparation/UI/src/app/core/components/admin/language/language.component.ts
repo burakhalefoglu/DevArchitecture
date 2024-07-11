@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -26,12 +26,12 @@ export class LanguageComponent implements AfterViewInit, OnInit {
 	languageList:Language[];
 	language:Language=new Language();
 
-	languageAddForm: FormGroup;
+	languageAddForm: UntypedFormGroup;
 
 	languageId:number;
 
 
-	constructor(private languageService:LanguageService, private lookupService:LookUpService,private alertifyService:AlertifyService,private formBuilder: FormBuilder, private authService:AuthService) { }
+	constructor(private languageService:LanguageService, private lookupService:LookUpService,private alertifyService:AlertifyService,private formBuilder: UntypedFormBuilder, private authService:AuthService) { }
 	
 	ngAfterViewInit(): void {
 
@@ -117,7 +117,7 @@ export class LanguageComponent implements AfterViewInit, OnInit {
 	}
 
 
-	clearFormGroup(group: FormGroup) {
+	clearFormGroup(group: UntypedFormGroup) {
 
 		group.markAsUntouched();
 		group.reset();

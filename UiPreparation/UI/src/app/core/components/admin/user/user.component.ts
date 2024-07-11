@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { User } from "./models/user";
 import { UserService } from "./services/user.service";
 import { IDropdownSettings } from "ng-multiselect-dropdown";
@@ -62,7 +62,7 @@ export class UserComponent implements AfterViewInit, OnInit {
 
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private alertifyService: AlertifyService,
     private lookUpService: LookUpService,
     private authService: AuthService
@@ -72,8 +72,8 @@ export class UserComponent implements AfterViewInit, OnInit {
     this.getUserList();
   }
 
-  userAddForm: FormGroup;
-  passwordForm: FormGroup;
+  userAddForm: UntypedFormGroup;
+  passwordForm: UntypedFormGroup;
 
   ngOnInit() {
     this.createUserAddForm();
@@ -192,7 +192,7 @@ export class UserComponent implements AfterViewInit, OnInit {
     });
   }
 
-  clearFormGroup(group: FormGroup) {
+  clearFormGroup(group: UntypedFormGroup) {
     group.markAsUntouched();
     group.reset();
 
