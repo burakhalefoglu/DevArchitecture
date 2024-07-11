@@ -17,6 +17,10 @@ extension ContextExtension on BuildContext {
   double dynamicHeight(double val) => MediaQuery.of(this).size.height * val;
 
   ThemeData get theme => Theme.of(this);
+  String get fontFamily => "nunito";
+
+  bool get isDark => theme.brightness == Brightness.dark;
+  bool get isLight => theme.brightness == Brightness.light;
 }
 
 extension ResponsiveExtension on BuildContext {

@@ -72,6 +72,10 @@ class App extends StatelessWidget {
                     WidgetStateProperty.all(CustomColors.white.getColor),
               ),
             ),
+            fontFamily: context.fontFamily,
+            textTheme: Theme.of(context)
+                .textTheme
+                .apply(fontFamily: context.fontFamily),
             iconButtonTheme: IconButtonThemeData(
               style: ButtonStyle(
                   iconColor:
@@ -84,10 +88,12 @@ class App extends StatelessWidget {
                 color: CustomColors.dark.getColor,
                 fontWeight: FontWeight.w800,
                 fontSize: 15,
+                fontFamily: context.fontFamily,
               ),
               titleTextStyle: TextStyle(
                 color: CustomColors.primary.getColor,
                 fontWeight: FontWeight.w800,
+                fontFamily: context.fontFamily,
                 fontSize: 18,
               ),
               iconColor: CustomColors.primary.getColor,
