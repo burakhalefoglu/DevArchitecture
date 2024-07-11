@@ -1,13 +1,13 @@
 import { Component, OnInit,AfterViewInit, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertifyService } from 'app/core/services/alertify.service';
 import { LookUpService } from 'app/core/services/lookUp.service';
 import { AuthService } from 'app/core/components/admin/login/services/auth.service';
 import { LogDto } from './models/LogDto';
 import { LogDtoService } from './services/LogDto.service';
 import { Subject } from 'rxjs/Rx';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 
@@ -29,12 +29,12 @@ export class LogDtoComponent implements AfterViewInit, OnInit {
 	logDtoList: LogDto[];
 	logDto: LogDto = new LogDto();
 
-	logDtoAddForm: UntypedFormGroup;
+	logDtoAddForm: FormGroup;
 
 	logDtoId: number;
 	dtTrigger: Subject<any> = new Subject<any>();
 
-	constructor(private logDtoService: LogDtoService, private lookupService: LookUpService, private alertifyService: AlertifyService, private formBuilder: UntypedFormBuilder, private authService: AuthService) { }
+	constructor(private logDtoService: LogDtoService, private lookupService: LookUpService, private alertifyService: AlertifyService, private formBuilder: FormBuilder, private authService: AuthService) { }
 
 	ngOnInit() {
 
@@ -57,7 +57,7 @@ export class LogDtoComponent implements AfterViewInit, OnInit {
 		this.getLogDtoList();
 	}
 
-	clearFormGroup(group: UntypedFormGroup) {
+	clearFormGroup(group: FormGroup) {
 
 		group.markAsUntouched();
 		group.reset();

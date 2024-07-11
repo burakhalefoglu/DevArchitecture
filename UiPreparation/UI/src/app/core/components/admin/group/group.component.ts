@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTableDataSource } from '@angular/material/table';
 import { LookUp } from 'app/core/models/lookUp';
 import { AlertifyService } from 'app/core/services/alertify.service';
 import { LookUpService } from 'app/core/services/lookUp.service';
@@ -38,14 +38,14 @@ export class GroupComponent implements AfterViewInit, OnInit {
   groupList:Group[];
   group:Group=new Group();
 
-  groupAddForm: UntypedFormGroup;
+  groupAddForm: FormGroup;
 
   isUserChange: boolean = false;
   isClaimChange: boolean = false;
 
   groupId:number;
 
-  constructor(private groupService:GroupService, private lookupService:LookUpService,private alertifyService:AlertifyService,private formBuilder: UntypedFormBuilder, private authService:AuthService) { }
+  constructor(private groupService:GroupService, private lookupService:LookUpService,private alertifyService:AlertifyService,private formBuilder: FormBuilder, private authService:AuthService) { }
 
   
   ngAfterViewInit(): void {
@@ -209,7 +209,7 @@ export class GroupComponent implements AfterViewInit, OnInit {
 
   }
 
-  clearFormGroup(group: UntypedFormGroup) {
+  clearFormGroup(group: FormGroup) {
 
     group.markAsUntouched();
     group.reset();

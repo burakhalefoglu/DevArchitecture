@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "./models/user";
 import { UserService } from "./services/user.service";
 import { IDropdownSettings } from "ng-multiselect-dropdown";
@@ -17,8 +17,8 @@ import { MustMatch } from "app/core/directives/must-match";
 import { PasswordDto } from "./models/passwordDto";
 import { environment } from "environments/environment";
 import { MatSort } from "@angular/material/sort";
-import { MatLegacyPaginator as MatPaginator } from "@angular/material/legacy-paginator";
-import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
 
 declare var jQuery: any;
 
@@ -62,7 +62,7 @@ export class UserComponent implements AfterViewInit, OnInit {
 
   constructor(
     private userService: UserService,
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: FormBuilder,
     private alertifyService: AlertifyService,
     private lookUpService: LookUpService,
     private authService: AuthService
@@ -72,8 +72,8 @@ export class UserComponent implements AfterViewInit, OnInit {
     this.getUserList();
   }
 
-  userAddForm: UntypedFormGroup;
-  passwordForm: UntypedFormGroup;
+  userAddForm: FormGroup;
+  passwordForm: FormGroup;
 
   ngOnInit() {
     this.createUserAddForm();
@@ -192,7 +192,7 @@ export class UserComponent implements AfterViewInit, OnInit {
     });
   }
 
-  clearFormGroup(group: UntypedFormGroup) {
+  clearFormGroup(group: FormGroup) {
     group.markAsUntouched();
     group.reset();
 

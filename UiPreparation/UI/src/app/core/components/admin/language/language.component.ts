@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTableDataSource } from '@angular/material/table';
 import { AlertifyService } from 'app/core/services/alertify.service';
 import { LookUpService } from 'app/core/services/lookUp.service';
 import { AuthService } from '../login/services/auth.service';
@@ -26,12 +26,12 @@ export class LanguageComponent implements AfterViewInit, OnInit {
 	languageList:Language[];
 	language:Language=new Language();
 
-	languageAddForm: UntypedFormGroup;
+	languageAddForm: FormGroup;
 
 	languageId:number;
 
 
-	constructor(private languageService:LanguageService, private lookupService:LookUpService,private alertifyService:AlertifyService,private formBuilder: UntypedFormBuilder, private authService:AuthService) { }
+	constructor(private languageService:LanguageService, private lookupService:LookUpService,private alertifyService:AlertifyService,private formBuilder: FormBuilder, private authService:AuthService) { }
 	
 	ngAfterViewInit(): void {
 
@@ -117,7 +117,7 @@ export class LanguageComponent implements AfterViewInit, OnInit {
 	}
 
 
-	clearFormGroup(group: UntypedFormGroup) {
+	clearFormGroup(group: FormGroup) {
 
 		group.markAsUntouched();
 		group.reset();

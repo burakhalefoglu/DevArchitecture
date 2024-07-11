@@ -1,4 +1,3 @@
-import { HostListener } from "@angular/core";
 import { Component } from "@angular/core";
 import { NavigationStart, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
