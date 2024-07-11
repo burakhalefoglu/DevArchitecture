@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_devarchitecture/core/guard/helper.dart';
+import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../core/theme/custom_colors.dart';
 import '../../core/dependency_resolvers/get_it/core_initializer.dart';
+import '../../routes/routes_constants.dart';
 import 'sidebar/sidebar.dart';
 
 buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {
   return Scaffold(
     backgroundColor: CustomColors.background.getColor,
     appBar: AppBar(
-      actions: [buildLogOutButton(context)],
+      actions: [
+        ModalRoute.of(context)?.settings.name == RoutesConstants.loginPage ||
+                ModalRoute.of(context)?.settings.name ==
+                    RoutesConstants.homePage
+            ? context.emptyWidget
+            : buildLogOutButton(context)
+      ],
       leading: Builder(
         builder: (context) => isDrawer == false
             ? const SizedBox()

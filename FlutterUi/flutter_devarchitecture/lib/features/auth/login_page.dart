@@ -63,7 +63,7 @@ class LoginPage extends StatelessWidget {
           }
           return Center(
             child: SizedBox(
-              height: context.percent50Screen,
+              height: context.percent60Screen,
               width: context.percent50Screen,
               child: Column(
                 children: [
@@ -77,7 +77,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    flex: 5,
+                    flex: context.isMobile ? 8 : 5,
                     child: Form(
                         key: _form,
                         child: Column(
@@ -98,7 +98,7 @@ class LoginPage extends StatelessWidget {
                         )),
                   ),
                   Expanded(
-                    flex: 1,
+                    flex: context.isMobile ? 3 : 2,
                     child: ElevatedButton(
                       onPressed: () async {
                         BlocProvider.of<AuthCubit>(context).emitCheckingState();
