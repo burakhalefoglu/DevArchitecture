@@ -81,21 +81,33 @@
           },
           "defaultConfiguration": ""
         },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "material-dashboard-angular:build"
+            "browserTarget": "material-dashboard-angular:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "material-dashboard-angular:build:production"
+              "browserTarget": "material-dashboard-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "material-dashboard-angular:build"
+            "browserTarget": "material-dashboard-angular:build"
           }
         },
         "test": {
