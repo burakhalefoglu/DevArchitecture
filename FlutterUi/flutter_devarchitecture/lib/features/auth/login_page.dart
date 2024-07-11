@@ -63,17 +63,17 @@ class LoginPage extends StatelessWidget {
           }
           return Center(
             child: SizedBox(
-              height: context.percent70Screen,
-              width: context.percent70Screen,
+              height: context.percent50Screen,
+              width: context.percent50Screen,
               child: Column(
                 children: [
                   const Spacer(),
                   const Expanded(
-                    flex: 5,
+                    flex: 3,
                     child: Text(
                       "Giriş Ekranı",
                       style:
-                          TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Expanded(
@@ -115,7 +115,9 @@ class LoginPage extends StatelessWidget {
                       child: const Text("Giriş Yap"),
                     ),
                   ),
-                  const Spacer(),
+                  const Spacer(
+                    flex: 7,
+                  ),
                 ],
               ),
             ),
