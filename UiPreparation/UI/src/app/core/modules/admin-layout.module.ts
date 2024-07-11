@@ -20,8 +20,6 @@ import { GroupComponent } from 'app/core/components/admin/group/group.component'
 import { UserComponent } from 'app/core/components/admin/user/user.component';
 import { TranslateLoader, TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslationService } from 'app/core/services/translation.service';
 import { LanguageComponent } from '../components/admin/language/language.component';
 import { TranslateComponent } from '../components/admin/translate/translate.component';
 import { OperationClaimComponent } from '../components/admin/operationclaim/operationClaim.component';
@@ -54,14 +52,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
         NgbModule,
         NgMultiSelectDropDownModule,
         SweetAlert2Module,
-        TranslateModule.forChild({
-            loader: {
-                provide: TranslateLoader,
-                //useFactory:layoutHttpLoaderFactory,
-                useClass: TranslationService,
-                deps: [HttpClient]
-            }
-        })
     ],
     declarations: [
         DashboardComponent,
