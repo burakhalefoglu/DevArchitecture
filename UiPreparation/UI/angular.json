@@ -51,7 +51,12 @@
             "allowedCommonJsDependencies": [
               "rxjs/add/operator/filter",
               "jquery",
-              "chartist"
+              "chartist",
+              "rxjs-compat",
+              "rxjs/Rx",
+              "sweetalert2",
+              "url"
+
             ],
             "aot": false,
             "vendorChunk": true,
