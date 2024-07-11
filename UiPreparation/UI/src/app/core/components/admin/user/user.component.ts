@@ -17,8 +17,8 @@ import { MustMatch } from "app/core/directives/must-match";
 import { PasswordDto } from "./models/passwordDto";
 import { environment } from "environments/environment";
 import { MatSort } from "@angular/material/sort";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatLegacyPaginator as MatPaginator } from "@angular/material/legacy-paginator";
+import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
 
 declare var jQuery: any;
 

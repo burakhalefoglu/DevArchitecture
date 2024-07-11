@@ -6,8 +6,8 @@ import { AuthService } from 'app/core/components/admin/login/services/auth.servi
 import { LogDto } from './models/LogDto';
 import { LogDtoService } from './services/LogDto.service';
 import { Subject } from 'rxjs/Rx';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { MatSort } from '@angular/material/sort';
 
 
