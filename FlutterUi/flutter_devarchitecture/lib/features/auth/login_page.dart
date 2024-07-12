@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../core/theme/custom_colors.dart';
+import '../../core/widgets/inputs/dropdown_button.dart';
 import '../../core/widgets/inputs/email_input.dart';
 import '../../core/widgets/inputs/password_input.dart';
 import '/core/theme/extensions.dart';
@@ -38,7 +39,7 @@ class LoginPage extends StatelessWidget {
             CoreInitializer().coreContainer.screenMessage.getInfoMessage(
                   state.result!,
                 );
-            Modular.to.navigate('/');
+            Modular.to.navigate(RoutesConstants.appHomePage + "fsdfdsf");
           }
         }, builder: (context, state) {
           if (state is BlocLoading) {
@@ -69,48 +70,82 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   const Spacer(),
-                  const Expanded(
-                    flex: 5,
-                    child: Text(
-                      "Giriş Ekranı",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  context.isMobile
+                      ? Expanded(
+                          flex: 2,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              const Spacer(
+                                flex: 2,
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: CustomDropdownButton(
+                                  icon: Icons.language_rounded,
+                                  getFirstValue: (p0) {
+                                    print(p0);
+                                  },
+                                  onChanged: (p0) {
+                                    print(p0);
+                                  },
+                                  options: const ["Tr", "En"],
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : const Expanded(
+                          flex: 2,
+                          child: Text(
+                            "Giriş Ekranı",
+                            style: TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.bold),
+                          ),
+                        ),
                   Expanded(
-                    flex: context.isMobile ? 10 : 5,
+                    flex: 5,
                     child: Form(
                         key: _form,
                         child: Column(
                           children: [
                             Expanded(
+                              flex: 2,
                               child: CustomEmailInput(
                                 contentPadding: 2,
                                 labelText: 'E-mail',
                                 controller: _emailController,
                               ),
                             ),
-                            const Spacer(
-                              flex: 2,
-                            ),
                             Expanded(
+                              flex: 2,
                               child: CustomPasswordInput(
                                   passwordController: _passwordController),
                             ),
-                            const Spacer(
-                              flex: 2,
-                            ),
-                            Expanded(
-                              child: ,
-                            ),
-                            const Spacer(
-                              flex: 2,
-                            ),
+                            context.isMobile
+                                ? const SizedBox()
+                                : Expanded(
+                                    flex: 2,
+                                    child: CustomDropdownButton(
+                                      icon: Icons.language_rounded,
+                                      getFirstValue: (p0) {
+                                        print(p0);
+                                      },
+                                      onChanged: (p0) {
+                                        print(p0);
+                                      },
+                                      options: const ["Türkçe", "English"],
+                                    ),
+                                  )
                           ],
                         )),
                   ),
+                  const Spacer(
+                    flex: 1,
+                  ),
                   Expanded(
-                    flex: context.isMobile ? 3 : 2,
+                    flex: 1,
                     child: ElevatedButton(
                       onPressed: () async {
                         BlocProvider.of<AuthCubit>(context).emitCheckingState();

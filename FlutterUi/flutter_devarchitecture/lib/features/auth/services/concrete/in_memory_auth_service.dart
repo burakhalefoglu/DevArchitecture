@@ -14,7 +14,7 @@ class InMemoryAuthService extends InMemoryService<AuthRequestBasic>
         'token': "token",
         'refreshToken': "refreshToken",
         'id': 1,
-        'name': 'Vital Trans Tic San. Ltd. Sti',
+        'name': 'admin@adminmail.com',
       },
     ];
   }
@@ -26,7 +26,7 @@ class InMemoryAuthService extends InMemoryService<AuthRequestBasic>
 
   @override
   Future<IDataResult<AuthResponse>> login(String username, String password) {
-    var data = _authList.firstWhere((element) => element['uid'] == username,
+    var data = _authList.firstWhere((element) => element['name'] == username,
         orElse: () => {});
     if (data.isEmpty) {
       return Future.value(FailureDataResult("Kullanıcı Bulunamadı!"));

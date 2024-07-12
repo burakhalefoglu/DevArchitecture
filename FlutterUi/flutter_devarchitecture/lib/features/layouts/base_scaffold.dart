@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/guard/helper.dart';
 import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -13,9 +12,7 @@ buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {
     backgroundColor: CustomColors.background.getColor,
     appBar: AppBar(
       actions: [
-        ModalRoute.of(context)?.settings.name == RoutesConstants.loginPage ||
-                ModalRoute.of(context)?.settings.name ==
-                    RoutesConstants.homePage
+        ModalRoute.of(context)?.settings.name == RoutesConstants.loginPage
             ? context.emptyWidget
             : buildLogOutButton(context)
       ],
@@ -77,7 +74,6 @@ Widget buildProfileButton(BuildContext context) {
               .coreContainer
               .screenMessage
               .getInfoMessage("Profil Sayfası Henüz Gelmedi.");
-          // TODO: Open it when production is ready
           // Modular.to.navigate('/profile');
         },
         icon: const Icon(Icons.account_circle_outlined),
@@ -93,7 +89,7 @@ Widget buildLogOutButton(BuildContext context) {
           CoreInitializer().coreContainer.storage.delete("inputPersonId");
           CoreInitializer().coreContainer.storage.delete("inputPersonName");
           CoreInitializer().coreContainer.storage.delete("token");
-          Modular.to.navigate('/login');
+          Modular.to.navigate(RoutesConstants.loginPage);
         },
         icon: const Icon(Icons.logout),
         color: Theme.of(context).colorScheme.primary),

@@ -1,3 +1,4 @@
+import 'package:flutter_devarchitecture/core/configs/app_config.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../../../core/bloc/base_cubit.dart';
@@ -22,6 +23,11 @@ class AuthCubit extends BaseCubit<AuthRequestBasic> {
         emit(BlocFailed(result.message));
         return;
       }
+      if (appConfig.name == "dev") {
+        emit(const BlocSuccess('Hoşgeldiniz. Admin'));
+        return;
+      }
+
       Map<String, dynamic> decodedToken = JwtDecoder.decode(result.data!.token);
       await CoreInitializer().coreContainer.storage.save(
           "inputPersonId",

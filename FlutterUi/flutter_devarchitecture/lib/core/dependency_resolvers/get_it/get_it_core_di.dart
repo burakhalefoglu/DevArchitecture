@@ -1,3 +1,5 @@
+import 'package:flutter_devarchitecture/core/widgets/animations/i_animation_asset.dart';
+import 'package:flutter_devarchitecture/core/widgets/animations/lottie_animation_asset.dart';
 import 'package:get_it/get_it.dart';
 import '../../cross_cutting_concerns/screen_message.dart';
 import '../../http/dart_io_http.dart';
@@ -19,6 +21,9 @@ class GetItCoreContainer implements ICoreContainer {
   }
 
   @override
+  late IAnimationAsset animationAsset;
+
+  @override
   late IHttp http;
 
   @override
@@ -32,6 +37,10 @@ class GetItCoreContainer implements ICoreContainer {
 
   @override
   setUp() {
+    checkIfUnRegistered<IAnimationAsset>((() {
+      animationAsset =
+          _getIt.registerSingleton<IAnimationAsset>(LottieAnimationAsset());
+    }));
     checkIfUnRegistered<IScreenMessage>((() {
       screenMessage =
           _getIt.registerSingleton<IScreenMessage>(OkToastScreenMessage());

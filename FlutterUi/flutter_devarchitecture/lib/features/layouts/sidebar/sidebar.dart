@@ -23,20 +23,26 @@ class _NavBarState extends State<NavBar> {
           buildNavElement(
             Icons.home_outlined,
             SidebarConstants.homePageTitle,
-            RoutesConstants.homePage,
+            RoutesConstants.appHomePage,
           ),
-          buildNavWithSubMenuItemElement(context, Icons.admin_panel_settings,
-              SidebarConstants.adminPageTitle, [
-            // {
-            //   "name": DataImportSidebarConstants.fuelInputAddTitle,
-            //   "route": RoutesConstants.fuelInputAddPage,
-            //   "icon": Icons.water_drop_outlined
-            // },
+          buildNavWithSubMenuItemElement(
+              context, Icons.apps, SidebarConstants.adminPanelPageTitle, [
+            {
+              "name": "Anasayfa",
+              "route": RoutesConstants.adminHomePage,
+              "icon": Icons.home_work_rounded
+            },
           ]),
-          // buildNavElement(
-          //     Icons.local_gas_station_outlined,
-          //     SidebarConstants.fuelTankProcessTitle,
-          //     RoutesConstants.pumpProcessPage),
+          buildNavWithSubMenuItemElement(
+              context,
+              Icons.format_list_bulleted_sharp,
+              SidebarConstants.appPanelPageTitle, [
+            {
+              "name": "Anasayfa",
+              "route": RoutesConstants.appHomePage,
+              "icon": Icons.home_work_rounded
+            },
+          ]),
         ],
       ),
     );

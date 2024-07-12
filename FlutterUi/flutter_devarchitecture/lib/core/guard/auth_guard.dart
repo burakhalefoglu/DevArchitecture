@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../routes/routes_constants.dart';
 import '../configs/app_config.dart';
 import '../dependency_resolvers/get_it/core_initializer.dart';
 
 class AuthGuard extends RouteGuard {
-  AuthGuard() : super(redirectTo: '/login');
+  AuthGuard() : super(redirectTo: RoutesConstants.loginPage);
 
   @override
   Future<bool> canActivate(String path, ModularRoute router) {
