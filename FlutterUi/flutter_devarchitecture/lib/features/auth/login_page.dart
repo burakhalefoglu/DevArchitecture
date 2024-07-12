@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../core/theme/custom_colors.dart';
 import '../../core/widgets/inputs/email_input.dart';
 import '../../core/widgets/inputs/password_input.dart';
 import '/core/theme/extensions.dart';
@@ -63,37 +64,48 @@ class LoginPage extends StatelessWidget {
           }
           return Center(
             child: SizedBox(
-              height: context.percent60Screen,
+              height: context.percent70Screen,
               width: context.percent50Screen,
               child: Column(
                 children: [
                   const Spacer(),
                   const Expanded(
-                    flex: 3,
+                    flex: 5,
                     child: Text(
                       "Giriş Ekranı",
                       style:
-                          TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Expanded(
-                    flex: context.isMobile ? 8 : 5,
+                    flex: context.isMobile ? 10 : 5,
                     child: Form(
                         key: _form,
                         child: Column(
                           children: [
                             Expanded(
-                              child: EmailInput(
+                              child: CustomEmailInput(
+                                contentPadding: 2,
                                 labelText: 'E-mail',
                                 controller: _emailController,
                               ),
                             ),
-                            const Spacer(),
+                            const Spacer(
+                              flex: 2,
+                            ),
                             Expanded(
-                              child: PasswordInput(
+                              child: CustomPasswordInput(
                                   passwordController: _passwordController),
                             ),
-                            const Spacer(),
+                            const Spacer(
+                              flex: 2,
+                            ),
+                            Expanded(
+                              child: ,
+                            ),
+                            const Spacer(
+                              flex: 2,
+                            ),
                           ],
                         )),
                   ),
@@ -116,7 +128,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const Spacer(
-                    flex: 7,
+                    flex: 2,
                   ),
                 ],
               ),

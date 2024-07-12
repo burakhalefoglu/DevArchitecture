@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 
 import '../../theme/custom_colors.dart';
 
-class AutoComplete extends StatelessWidget {
+class CustomAutoComplete extends StatelessWidget {
   final List<Map<String, dynamic>> options;
   final String labelText;
   final String hintText;
@@ -14,7 +14,7 @@ class AutoComplete extends StatelessWidget {
   final String valueKey;
   final bool isUpperCase;
   final bool enabled;
-  const AutoComplete(
+  const CustomAutoComplete(
       {super.key,
       required this.options,
       required this.labelText,

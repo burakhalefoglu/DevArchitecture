@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextInput extends TextFormField {
-  TextInput(
+class CustomTextInput extends TextFormField {
+  CustomTextInput(
       {required String labelText,
       required String hintText,
       required int min,

@@ -2,8 +2,8 @@ import 'base/split_input.dart';
 
 /// SERİ - NO
 /// "99 xxxxxx"
-class VtVehicleLicenseInput extends SingleSplitInput {
-  VtVehicleLicenseInput(
+class CustomVehicleLicenseInput extends SingleSplitInput {
+  CustomVehicleLicenseInput(
       {super.key,
       required super.controllers,
       required super.onChange,

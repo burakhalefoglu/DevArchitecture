@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import '../../theme/custom_colors.dart';
 import 'extensions/extensions.dart';
 
-class EmailInput extends TextFormField {
-  EmailInput(
+class CustomEmailInput extends TextFormField {
+  CustomEmailInput(
       {required String labelText,
       super.key,
       super.onChanged,
@@ -31,7 +31,7 @@ class EmailInput extends TextFormField {
                 color: CustomColors.dark.getColor.withAlpha(150),
               ),
               enabled: enabled!,
-              hintText: "örn: vtl@example.com",
+              hintText: "örn: abc@example.com",
               labelText: labelText,
               contentPadding: EdgeInsets.only(bottom: contentPadding)),
         );

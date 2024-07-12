@@ -3,18 +3,18 @@ import 'package:flutter/services.dart';
 import '../../theme/custom_colors.dart';
 import 'extensions/extensions.dart';
 
-class PasswordInput extends StatefulWidget {
+class CustomPasswordInput extends StatefulWidget {
   final TextEditingController passwordController;
   final bool enabled;
 
-  const PasswordInput(
+  const CustomPasswordInput(
       {super.key, required this.passwordController, this.enabled = true});
 
   @override
   PasswordFieldState createState() => PasswordFieldState();
 }
 
-class PasswordFieldState extends State<PasswordInput> {
+class PasswordFieldState extends State<CustomPasswordInput> {
   final _textFieldFocusNode = FocusNode();
   bool _obscured = false;
 

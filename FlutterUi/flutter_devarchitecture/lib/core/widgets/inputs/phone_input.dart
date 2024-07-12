@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'extensions/extensions.dart';
 
-class PhoneInput extends TextFormField {
-  PhoneInput({
+class CustomPhoneInput extends TextFormField {
+  CustomPhoneInput({
     super.key,
     super.onChanged,
     required super.controller,

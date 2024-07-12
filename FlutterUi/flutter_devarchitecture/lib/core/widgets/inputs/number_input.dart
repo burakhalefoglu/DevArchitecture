@@ -2,8 +2,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'extensions/extensions.dart';
 
-class NumberInput extends TextFormField {
-  NumberInput(
+class CustomNumberInput extends TextFormField {
+  CustomNumberInput(
       {super.key,
       super.onChanged,
       super.enabled = true,

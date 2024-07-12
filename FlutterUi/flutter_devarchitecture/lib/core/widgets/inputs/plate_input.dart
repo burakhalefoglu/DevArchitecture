@@ -4,8 +4,8 @@ import 'base/split_input.dart';
 /// "99 X 9999", "99 X 99999"
 /// "99 XX 999", "99 XX 9999"
 /// "99 XXX 99" veya "99 XXX 999"
-class VtPlateInput extends SingleSplitInput {
-  VtPlateInput({
+class CustomPlateInput extends SingleSplitInput {
+  CustomPlateInput({
     super.key,
     required super.controllers,
     required super.onChange,

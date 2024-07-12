@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class DateInput extends StatefulWidget {
+class CustomDateInput extends StatefulWidget {
   final TextEditingController dateController;
   final bool enabled;
   final void Function(DateTime value) onDateChanged;
 
-  const DateInput(
+  const CustomDateInput(
       {super.key,
       required this.dateController,
       required this.onDateChanged,
       this.enabled = true});
 
   @override
-  State<DateInput> createState() => _DateInputState();
+  State<CustomDateInput> createState() => _CustomDateInputState();
 }
 
-class _DateInputState extends State<DateInput> {
+class _CustomDateInputState extends State<CustomDateInput> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
