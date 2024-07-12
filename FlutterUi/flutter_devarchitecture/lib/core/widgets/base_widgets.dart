@@ -209,7 +209,7 @@ Widget buildPageTitle(BuildContext context, String pageTitle,
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        buildSubTitleWidget(context, "Anasayfa > $subDirection$pageTitle"),
+        buildSubTitleWidget(context, "$subDirection$pageTitle"),
       ]);
 }
 

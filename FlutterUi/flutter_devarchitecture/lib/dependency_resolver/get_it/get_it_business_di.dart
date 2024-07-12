@@ -6,9 +6,9 @@ import '../../core/widgets/inputs/address_input/google_autocomplete.dart';
 import '../../core/widgets/inputs/address_input/i_address_input.dart';
 import '../../core/widgets/tables/data_table_2.dart';
 import '../../core/widgets/tables/i_tables.dart';
-import '../../features/auth/services/abstract/i_auth_service.dart';
-import '../../features/auth/services/concrete/api_auth_service.dart';
-import '../../features/auth/services/concrete/in_memory_auth_service.dart';
+import '../../features/public/auth/services/abstract/i_auth_service.dart';
+import '../../features/public/auth/services/concrete/api_auth_service.dart';
+import '../../features/public/auth/services/concrete/in_memory_auth_service.dart';
 import '../business_container.dart';
 
 class GetItBusinessContainer implements IBusinessContainer {

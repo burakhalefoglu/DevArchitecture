@@ -30,15 +30,15 @@ extension SelectedColorExtension on CustomColors {
       case CustomColors.primary:
         return const Color.fromARGB(255, 91, 70, 249);
       case CustomColors.secondary:
-        return const Color.fromARGB(255, 230, 116, 255);
+        return Color.fromARGB(255, 206, 58, 239);
       case CustomColors.success:
-        return const Color.fromARGB(255, 115, 198, 155);
+        return Color.fromARGB(255, 78, 219, 146);
       case CustomColors.info:
         return const Color.fromARGB(255, 142, 151, 254);
       case CustomColors.warning:
-        return const Color.fromARGB(255, 254, 200, 125);
+        return Color.fromARGB(255, 255, 174, 61);
       case CustomColors.danger:
-        return const Color.fromARGB(255, 246, 122, 106);
+        return Color.fromARGB(255, 240, 80, 59);
       case CustomColors.light:
         return const Color.fromARGB(255, 238, 238, 238);
       case CustomColors.dark:

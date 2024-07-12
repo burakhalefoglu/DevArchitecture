@@ -25,14 +25,47 @@ class _NavBarState extends State<NavBar> {
             SidebarConstants.homePageTitle,
             RoutesConstants.appHomePage,
           ),
+          // Admin Panel
           buildNavWithSubMenuItemElement(
               context, Icons.apps, SidebarConstants.adminPanelPageTitle, [
             {
-              "name": "Anasayfa",
+              "name": SidebarConstants.adminPanelHomePageTitle,
               "route": RoutesConstants.adminHomePage,
               "icon": Icons.home_work_rounded
             },
+            {
+              "name": SidebarConstants.adminPanelPageUserTitle,
+              "route": RoutesConstants.adminUserPage,
+              "icon": Icons.person
+            },
+            {
+              "name": SidebarConstants.adminPanelPageGroupTitle,
+              "route": RoutesConstants.adminGroupPage,
+              "icon": Icons.groups
+            },
+            {
+              "name": SidebarConstants.adminPanelPageOperationClaimTitle,
+              "route": RoutesConstants.adminOperationClaimPage,
+              "icon": Icons.security
+            },
+            {
+              "name": SidebarConstants.adminPanelPageLanguageTitle,
+              "route": RoutesConstants.adminLanguagePage,
+              "icon": Icons.language
+            },
+            {
+              "name": SidebarConstants.adminPanelPageTranslateTitle,
+              "route": RoutesConstants.adminTranslatePage,
+              "icon": Icons.translate
+            },
+            {
+              "name": SidebarConstants.adminPanelPageLogTitle,
+              "route": RoutesConstants.adminLogPage,
+              "icon": Icons.history
+            },
           ]),
+
+          // App Panel
           buildNavWithSubMenuItemElement(
               context,
               Icons.format_list_bulleted_sharp,
@@ -40,7 +73,7 @@ class _NavBarState extends State<NavBar> {
             {
               "name": "Anasayfa",
               "route": RoutesConstants.appHomePage,
-              "icon": Icons.home_work_rounded
+              "icon": Icons.home
             },
           ]),
         ],

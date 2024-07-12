@@ -11,11 +11,14 @@ buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {
   return Scaffold(
     backgroundColor: CustomColors.background.getColor,
     appBar: AppBar(
-      actions: [
-        ModalRoute.of(context)?.settings.name == RoutesConstants.loginPage
-            ? context.emptyWidget
-            : buildLogOutButton(context)
-      ],
+      actions:
+          ModalRoute.of(context)?.settings.name == RoutesConstants.loginPage
+              ? []
+              : [
+                  buildNotificationButton(context),
+                  buildProfileButton(context),
+                  buildLogOutButton(context),
+                ],
       leading: Builder(
         builder: (context) => isDrawer == false
             ? const SizedBox()
@@ -25,11 +28,13 @@ buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {
                 color: Theme.of(context).colorScheme.primary),
       ),
       backgroundColor: CustomColors.white.getColor,
-      title: Text("DEVARCHITECTURE",
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.w800,
-              fontSize: 26)),
+      title: context.isMobile
+          ? const SizedBox()
+          : Text("Devarchitecture",
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 26)),
       centerTitle: true,
     ),
     drawer: isDrawer == true ? const NavBar() : null,
