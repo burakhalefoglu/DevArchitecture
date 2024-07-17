@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geekyants_flutter_gauges/geekyants_flutter_gauges.dart';
 
-import '../../theme/custom_colors.dart';
-import 'i_chart.dart';
+import '../../../theme/custom_colors.dart';
+import '../i_chart.dart';
 
 class GeekyantsGaugesChart implements IGaugesChart {
   @override

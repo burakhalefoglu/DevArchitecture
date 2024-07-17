@@ -26,7 +26,7 @@ class AppRouteModule extends Module {
     // ADMIN LAYOUT
     //*? ADMIN HOME PAGE
     r.child(RoutesConstants.adminHomePage,
-        child: (context) => const AdminUserPage(),
+        child: (context) => const HomePage(),
         transition: transition,
         guards: [AuthGuard()]);
 

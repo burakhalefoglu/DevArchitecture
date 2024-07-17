@@ -6,7 +6,7 @@ import '../button_widgets.dart';
 import 'i_tables.dart';
 
 class DataTables implements ITables {
-  List<DataCell> getDataCells(index, Map<String, dynamic> objList) {
+  List<DataCell> _getDataCells(index, Map<String, dynamic> objList) {
     List<DataCell> dataCells = [];
     objList.forEach((_, v) => dataCells.add(DataCell(
         onTap: () {},
@@ -20,7 +20,7 @@ class DataTables implements ITables {
   }
 
   @override
-  Widget getTable(BuildContext context, List<Map<String, dynamic>> headers,
+  Widget getBasicTable(BuildContext context, List<Map<String, dynamic>> headers,
       List<Map<String, dynamic>> cells, Color headerColor,
       {bool isBordered = false}) {
     var dataColumns = <DataColumn2>[];
@@ -74,7 +74,7 @@ class DataTables implements ITables {
             Map<String, dynamic> reformatedCell =
                 reformatCell(headers, cells[index]);
             return DataRow(
-              cells: getDataCells(index, reformatedCell),
+              cells: _getDataCells(index, reformatedCell),
             );
           })),
     );
@@ -123,7 +123,7 @@ class DataTables implements ITables {
           rows: List<DataRow>.generate(cells.length, (index) {
             Map<String, dynamic> reformatedCell =
                 reformatCell(headers, cells[index]);
-            var resultCells = getDataCells(index, reformatedCell);
+            var resultCells = _getDataCells(index, reformatedCell);
             resultCells.add(DataCell(getEditButton(() {
               updateCallback(index);
             })));
@@ -185,7 +185,7 @@ class DataTables implements ITables {
           rows: List<DataRow>.generate(cells.length, (index) {
             Map<String, dynamic> reformatedCell =
                 reformatCell(headers, cells[index]);
-            var resultCells = getDataCells(index, reformatedCell);
+            var resultCells = _getDataCells(index, reformatedCell);
             resultCells.add(DataCell(getDeleteButton(context, () {
               deleteCallback(index);
             })));

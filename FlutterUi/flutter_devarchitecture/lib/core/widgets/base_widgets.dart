@@ -24,7 +24,7 @@ Widget buildInfoCardWithIcon({
             blurRadius: 1,
           )
         ],
-        borderRadius: context.defaultBorderRadius,
+        borderRadius: context.lowestBorderRadius,
         color: CustomColors.white.getColor,
       ),
       alignment: Alignment.center,
@@ -85,7 +85,7 @@ Widget buildInfoCardWithIconAndFooter(
 }) =>
     Container(
       decoration: BoxDecoration(
-        borderRadius: context.defaultBorderRadius,
+        borderRadius: context.lowestBorderRadius,
         color: color ?? CustomColors.white.getColor,
       ),
       alignment: Alignment.center,
@@ -233,7 +233,7 @@ Container buildCardWithTitle({
           blurRadius: 1,
         )
       ],
-      borderRadius: context.defaultBorderRadius,
+      borderRadius: context.lowestBorderRadius,
       color: CustomColors.white.getColor,
     ),
     alignment: Alignment.center,
@@ -306,7 +306,7 @@ Container buildCardWithTitleAndSubTitle(
           blurRadius: 1,
         )
       ],
-      borderRadius: context.defaultBorderRadius,
+      borderRadius: context.lowestBorderRadius,
       color: CustomColors.white.getColor,
     ),
     alignment: Alignment.center,
@@ -370,7 +370,7 @@ Container buildInfoCardWithTitleAndFooter(BuildContext context, Widget body,
           blurRadius: 1,
         )
       ],
-      borderRadius: context.defaultBorderRadius,
+      borderRadius: context.lowestBorderRadius,
       color: CustomColors.white.getColor,
     ),
     alignment: Alignment.center,
@@ -422,7 +422,7 @@ Container buildCardBase(
           blurRadius: 1,
         )
       ],
-      borderRadius: context.defaultBorderRadius,
+      borderRadius: context.lowestBorderRadius,
       color: CustomColors.white.getColor,
     ),
     alignment: Alignment.center,

@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ResponsiveWidget(
+    return ResponsiveWidget(
         mobile: HomePageMobile(),
         tablet: HomePageTablet(),
         desktop: HomePageDesktop());

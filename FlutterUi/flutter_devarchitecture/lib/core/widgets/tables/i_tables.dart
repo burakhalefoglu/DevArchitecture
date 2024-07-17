@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class ITables {
-  Widget getTable(BuildContext context, List<Map<String, dynamic>> headers,
+  Widget getBasicTable(BuildContext context, List<Map<String, dynamic>> headers,
       List<Map<String, dynamic>> cells, Color headerColor,
       {bool isBordered = false});
 
