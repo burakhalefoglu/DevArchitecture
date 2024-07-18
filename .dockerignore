@@ -23,3 +23,6 @@
 **/values.dev.yaml
 LICENSE
 README.md
+/FlutterUi/flutter_devarchitecture/.dart_tool
+/FlutterUi/flutter_devarchitecture/.idea
+/FlutterUi/flutter_devarchitecture/.vscode
