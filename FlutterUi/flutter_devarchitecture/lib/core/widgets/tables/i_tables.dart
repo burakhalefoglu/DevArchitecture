@@ -19,4 +19,13 @@ abstract class ITables {
       List<Map<String, dynamic>> cells,
       Color headerColor,
       ValueSetter<int> deleteCallback);
+
+  Widget getTableWithDataCustomManipulations(
+      BuildContext context,
+      List<Map<String, dynamic>> headers,
+      List<Map<String, dynamic>> cells,
+      Color headerColor,
+      List<Widget Function(BuildContext context, void Function())>
+          customManipulationButton,
+      List<ValueSetter<int>> customManipulationCallback);
 }

@@ -1,9 +1,9 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import '../../theme/extensions.dart';
-import '../../theme/custom_colors.dart';
-import '../button_widgets.dart';
-import 'i_tables.dart';
+import '../../../theme/extensions.dart';
+import '../../../theme/custom_colors.dart';
+import '../../button_widgets.dart';
+import '../i_tables.dart';
 
 class DataTables implements ITables {
   List<DataCell> _getDataCells(index, Map<String, dynamic> objList) {
@@ -189,7 +189,64 @@ class DataTables implements ITables {
             resultCells.add(DataCell(getDeleteButton(context, () {
               deleteCallback(index);
             })));
+            return DataRow(cells: resultCells);
+          })),
+    );
+  }
 
+  @override
+  Widget getTableWithDataCustomManipulations(
+      BuildContext context,
+      List<Map<String, dynamic>> headers,
+      List<Map<String, dynamic>> cells,
+      Color headerColor,
+      List<Widget Function(BuildContext context, void Function())>
+          customManipulationButton,
+      List<ValueSetter<int>> customManipulationCallback) {
+    var dataColumns = <DataColumn2>[];
+    for (int i = 0; i < headers.length; i++) {
+      if (i == 0) {
+        dataColumns.add(
+            DataColumn2(label: Text(headers[i].values.first), fixedWidth: 72));
+        continue;
+      }
+      dataColumns.add(DataColumn2(label: Text(headers[i].values.first)));
+    }
+    for (var i = 0; i < customManipulationButton.length; i++) {
+      dataColumns.add(const DataColumn2(label: Text(""), size: ColumnSize.S));
+    }
+
+    return Padding(
+      padding: context.defaultHorizontalPadding,
+      child: DataTable2(
+          showCheckboxColumn: false,
+          showBottomBorder: false,
+          headingRowDecoration: BoxDecoration(
+            color: headerColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          headingRowColor: WidgetStateProperty.all(headerColor),
+          headingTextStyle: TextStyle(
+            color: CustomColors.dark.getColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          dividerThickness: 0.5,
+          columnSpacing: 5,
+          horizontalMargin: 5,
+          columns: dataColumns,
+          rows: List<DataRow>.generate(cells.length, (index) {
+            Map<String, dynamic> reformatedCell =
+                reformatCell(headers, cells[index]);
+            var resultCells = _getDataCells(index, reformatedCell);
+            for (int index = 0;
+                index < customManipulationButton.length;
+                index++) {
+              resultCells
+                  .add(DataCell(customManipulationButton[index](context, () {
+                customManipulationCallback[index](index);
+              })));
+            }
             return DataRow(cells: resultCells);
           })),
     );

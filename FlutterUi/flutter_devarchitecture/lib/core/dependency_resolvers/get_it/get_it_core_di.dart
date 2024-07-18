@@ -14,7 +14,7 @@ import '../../widgets/charts/geekyants/geekyants_gauges_chart.dart';
 import '../../widgets/charts/i_chart.dart';
 import '../../widgets/inputs/address_input/google_autocomplete.dart';
 import '../../widgets/inputs/address_input/i_address_input.dart';
-import '../../widgets/tables/data_table_2.dart';
+import '../../widgets/tables/data_table/data_table_2.dart';
 import '../../widgets/tables/i_tables.dart';
 import '../core_di.dart';
 
