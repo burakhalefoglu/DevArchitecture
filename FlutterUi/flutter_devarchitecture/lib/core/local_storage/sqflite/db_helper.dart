@@ -5,9 +5,7 @@ import 'package:sqflite/sqflite.dart';
 class DbHelper {
   late Database _db;
   Future<Database> get db async {
-    if (_db == null) {
-      _db = await initializeDb();
-    }
+    _db = await initializeDb();
     return _db;
   }
 

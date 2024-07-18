@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../theme/custom_colors.dart';
 import 'r_u_sure.dart';
 
-Widget getInfoHover(String message) => Tooltip(
+Widget getInfoHover(BuildContext context, String message) => Tooltip(
       message: message,
       child: Icon(
         Icons.info_outline_rounded,
@@ -10,7 +10,7 @@ Widget getInfoHover(String message) => Tooltip(
       ),
     );
 
-Widget getEditButton(VoidCallback onPressed) => Tooltip(
+Widget getEditButton(BuildContext context, VoidCallback onPressed) => Tooltip(
       message: "Veriyi Düzenle",
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
@@ -38,29 +38,32 @@ Widget getDeleteButton(BuildContext context, VoidCallback onPressed) => Tooltip(
           )),
     );
 
-Widget getDownloadButton(VoidCallback onPressed) => Tooltip(
+Widget getDownloadButton(BuildContext context, VoidCallback onPressed) =>
+    Tooltip(
       message: "Veriyi Excel Formatında İndir",
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
           icon: Icon(
-            Icons.file_download_outlined,
+            Icons.download_for_offline_sharp,
             color: CustomColors.primary.getColor,
           )),
     );
 
-Widget getNewRecordAddButton(final VoidCallback? onPressed) => Tooltip(
+Widget getAddButton(BuildContext context, VoidCallback onPressed) => Tooltip(
       message: "Yeni Kayıt Ekle",
       child: IconButton(
           onPressed: onPressed,
           hoverColor: CustomColors.transparent.getColor,
           icon: Icon(
-            Icons.add_to_photos_outlined,
+            Icons.add_box_rounded,
             color: CustomColors.success.getColor,
           )),
     );
 
-Widget getNewPageOpenButton(final VoidCallback? onPressed) => Tooltip(
+Widget getNewPageOpenButton(
+        BuildContext context, final VoidCallback onPressed) =>
+    Tooltip(
       message: "Ayrıntılı Bilgi...",
       child: IconButton(
           onPressed: onPressed,
