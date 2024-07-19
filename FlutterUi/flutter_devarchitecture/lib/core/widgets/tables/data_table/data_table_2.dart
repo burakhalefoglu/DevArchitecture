@@ -15,74 +15,91 @@ class DataTables implements ITables {
       dataColumns.add(DataColumn2(
           size: i == 0 ? ColumnSize.L : ColumnSize.S,
           label: Text(headers[i].values.first,
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 12))));
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                  color: headerColor.computeLuminance() > 0.5
+                      ? Colors.black
+                      : Colors.white))));
     }
     return Padding(
-      padding: context.defaultHorizontalPadding,
-      child: DataTable2(
-          border: isBordered
-              ? TableBorder(
-                  horizontalInside:
-                      BorderSide(color: CustomColors.gray.getColor, width: 0.4),
-                  verticalInside:
-                      BorderSide(color: CustomColors.gray.getColor, width: 0.4),
-                  borderRadius: BorderRadius.circular(5),
-                  bottom: BorderSide(
-                    color: CustomColors.gray.getColor,
-                    width: 0.4,
-                  ),
-                  top:
-                      BorderSide(color: CustomColors.gray.getColor, width: 0.4),
-                  left:
-                      BorderSide(color: CustomColors.gray.getColor, width: 0.4),
-                  right:
-                      BorderSide(color: CustomColors.gray.getColor, width: 0.4),
-                )
-              : null,
-          showCheckboxColumn: false,
-          showBottomBorder: false,
-          headingRowDecoration: BoxDecoration(
-            color: headerColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          headingRowColor: WidgetStateProperty.all(headerColor),
-          headingTextStyle: TextStyle(
-            color: CustomColors.dark.getColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-          ),
-          dividerThickness: 0.5,
-          columnSpacing: 7,
-          horizontalMargin: 10,
-          columns: dataColumns,
-          rows: List<DataRow>.generate(cells.length, (index) {
-            Map<String, dynamic> reformatedCell =
-                _reformatCell(headers, cells[index]);
-            return DataRow(
-              cells: _getDataCells(index, reformatedCell),
-            );
-          })),
+      padding: context.highHorizontalPadding,
+      child: SizedBox(
+        child: DataTable2(
+            isHorizontalScrollBarVisible: true,
+            isVerticalScrollBarVisible: true,
+            columnSpacing: 10,
+            horizontalMargin: 12,
+            bottomMargin: 10,
+            minWidth: 1000,
+            border: isBordered
+                ? TableBorder(
+                    horizontalInside: BorderSide(
+                        color: CustomColors.gray.getColor, width: 0.4),
+                    verticalInside: BorderSide(
+                        color: CustomColors.gray.getColor, width: 0.4),
+                    borderRadius: BorderRadius.circular(5),
+                    bottom: BorderSide(
+                      color: CustomColors.gray.getColor,
+                      width: 0.4,
+                    ),
+                    top: BorderSide(
+                        color: CustomColors.gray.getColor, width: 0.4),
+                    left: BorderSide(
+                        color: CustomColors.gray.getColor, width: 0.4),
+                    right: BorderSide(
+                        color: CustomColors.gray.getColor, width: 0.4),
+                  )
+                : null,
+            showCheckboxColumn: false,
+            showBottomBorder: false,
+            headingRowDecoration: BoxDecoration(
+              color: headerColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            headingRowColor: WidgetStateProperty.all(headerColor),
+            headingTextStyle: TextStyle(
+              color: CustomColors.dark.getColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+            dividerThickness: 0.5,
+            sortAscending: true,
+            sortColumnIndex: 0,
+            columns: dataColumns,
+            rows: List<DataRow>.generate(cells.length, (index) {
+              Map<String, dynamic> reformatedCell =
+                  _reformatCell(headers, cells[index]);
+              return DataRow(
+                cells: _getDataCells(index, reformatedCell),
+              );
+            })),
+      ),
     );
   }
 
   @override
   Widget getTableWithCustomManipulationButtons(
-      BuildContext context,
-      List<Map<String, dynamic>> headers,
-      List<Map<String, dynamic>> cells,
-      Color headerColor,
-      List<Widget Function(BuildContext context, void Function())>
-          customManipulationButton,
-      List<ValueSetter<int>> customManipulationCallback,
-      {bool isBordered = false,
-      Widget? infoHover,
-      Widget? addButton}) {
+    BuildContext context,
+    List<Map<String, dynamic>> headers,
+    List<Map<String, dynamic>> cells,
+    Color headerColor,
+    List<Widget Function(BuildContext context, void Function())>
+        customManipulationButton,
+    List<ValueSetter<int>> customManipulationCallback, {
+    bool isBordered = false,
+    Widget? infoHover,
+    Widget? addButton,
+  }) {
     var dataColumns = <DataColumn2>[];
     for (int i = 0; i < headers.length; i++) {
       if (i == 0) {
         dataColumns.add(DataColumn2(
             label: Text(
+              style: TextStyle(
+                  color: headerColor.computeLuminance() >= 0.5
+                      ? Colors.black
+                      : Colors.white),
               headers[i].values.first.length > 11
                   ? "${headers[i].values.first.toString().substring(0, 8)}..."
                   : headers[i].values.first.toString(),
@@ -92,6 +109,10 @@ class DataTables implements ITables {
       }
       dataColumns.add(DataColumn2(
           label: Text(
+        style: TextStyle(
+            color: headerColor.computeLuminance() > 0.5
+                ? Colors.black
+                : Colors.white),
         headers[i].values.first.length > 11
             ? "${headers[i].values.first.toString().substring(0, 8)}..."
             : headers[i].values.first.toString(),
@@ -123,8 +144,12 @@ class DataTables implements ITables {
     }
 
     return Padding(
-        padding: context.defaultHorizontalPadding,
-        child: PaginatedDataTable2(
+        padding: context.highHorizontalPadding,
+        child: SizedBox(
+            child: PaginatedDataTable2(
+          isHorizontalScrollBarVisible: true,
+          isVerticalScrollBarVisible: true,
+          minWidth: 1000,
           headingRowColor:
               WidgetStateColor.resolveWith((states) => Colors.grey[200]!),
           horizontalMargin: 20,
@@ -170,7 +195,7 @@ class DataTables implements ITables {
           columns: dataColumns,
           source: _buildDataTableSource(context, headers, cells,
               customManipulationButton, customManipulationCallback),
-        ));
+        )));
   }
 
   List<DataCell> _getDataCells(index, Map<String, dynamic> objList) {

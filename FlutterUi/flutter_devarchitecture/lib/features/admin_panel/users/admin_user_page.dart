@@ -227,7 +227,7 @@ class AdminUserPage extends StatelessWidget {
             {"supplyDate": "supplyDate"},
             {"inputOwnerName": "inputOwnerName"},
           ],
-          color: CustomColors.white.getColor,
+          color: CustomColors.primary.getColor,
           customManipulationButton: const [
             getEditButton,
             getDownloadButton,
@@ -254,13 +254,15 @@ class AdminUserPage extends StatelessWidget {
                 }
           ],
           infoHover: getInfoHover(
-              context, "Kullanıcılar bu sayfada listelenmektedir."),
+              context, "Kullanıcılar bu sayfada listelenmektedir.",
+              color: CustomColors.white.getColor),
           addButton: getAddButton(
               context,
               () => CoreInitializer()
                   .coreContainer
                   .screenMessage
-                  .getSuccessMessage("Veri Ekleme")),
+                  .getSuccessMessage("Veri Ekleme"),
+              color: CustomColors.white.getColor),
         ),
       ),
     );

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../theme/custom_colors.dart';
 import 'r_u_sure.dart';
 
-Widget getInfoHover(BuildContext context, String message) => Tooltip(
+Widget getInfoHover(BuildContext context, String message, {Color? color}) =>
+    Tooltip(
       message: message,
       child: Icon(
         Icons.info_outline_rounded,
-        color: CustomColors.gray.getColor,
+        color: color ?? CustomColors.gray.getColor,
       ),
     );
 
@@ -50,14 +51,16 @@ Widget getDownloadButton(BuildContext context, VoidCallback onPressed) =>
           )),
     );
 
-Widget getAddButton(BuildContext context, VoidCallback onPressed) => Tooltip(
+Widget getAddButton(BuildContext context, VoidCallback onPressed,
+        {Color? color}) =>
+    Tooltip(
       message: "Yeni Kayıt Ekle",
       child: IconButton(
           onPressed: onPressed,
           hoverColor: CustomColors.transparent.getColor,
           icon: Icon(
             Icons.add_box_rounded,
-            color: CustomColors.success.getColor,
+            color: color ?? CustomColors.success.getColor,
           )),
     );
 
@@ -78,7 +81,7 @@ IconButton buildScrollDirectionButton(
     bool isLeftDirection, ScrollController sc, int step, double size) {
   return IconButton(
       style: ButtonStyle(
-        overlayColor: MaterialStateProperty.all(Colors.transparent),
+        overlayColor: WidgetStateProperty.all(Colors.transparent),
       ),
       onPressed: () {
         isLeftDirection == true

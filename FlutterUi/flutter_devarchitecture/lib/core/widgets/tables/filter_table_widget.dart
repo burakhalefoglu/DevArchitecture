@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/widgets/inputs/text_input.dart';
 
-import '/core/theme/custom_colors.dart';
+import '/core/widgets/inputs/text_input.dart';
 import '../../dependency_resolvers/get_it/core_initializer.dart';
 
 class FilterTableWidget extends StatefulWidget {
@@ -31,16 +30,19 @@ class FilterTableWidget extends StatefulWidget {
 
 class _FilterTableWidgetState extends State<FilterTableWidget> {
   List<Map<String, dynamic>> filteredData = [];
+  List<String> filterKeys = [];
   final TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
     for (var i = 0; i < widget.datas.length; i++) {
       var key = "";
-      for (var element in widget.datas[i].values) {
+      for (var element
+          in widget.datas[i].values.map((e) => e.toString()).toList()) {
         key = key + element.toString();
-        widget.datas[i]["filter_key"] = key;
       }
+      filterKeys.add(key);
+      key = "";
     }
     filteredData = widget.datas;
     super.initState();
@@ -71,12 +73,14 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
                       filteredData = widget.datas;
                       return;
                     }
-                    filteredData = widget.datas
-                        .where((element) => element["filter_key"]
-                            .toString()
-                            .toLowerCase()
-                            .contains(value.toLowerCase()))
-                        .toList();
+                    filteredData = [];
+                    for (var i = 0; i < widget.datas.length; i++) {
+                      if (filterKeys[i]
+                          .toLowerCase()
+                          .contains(value.toLowerCase())) {
+                        filteredData.add(widget.datas[i]);
+                      }
+                    }
                   });
                 }
               },
@@ -94,11 +98,12 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
                   context,
                   widget.headers,
                   filteredData,
-                  CustomColors.white.getColor,
+                  widget.color,
                   widget.customManipulationButton,
                   widget.customManipulationCallback,
                   infoHover: widget.infoHover,
-                  addButton: widget.addButton))
+                  addButton: widget.addButton)),
+      const Spacer(),
     ]);
   }
 }
