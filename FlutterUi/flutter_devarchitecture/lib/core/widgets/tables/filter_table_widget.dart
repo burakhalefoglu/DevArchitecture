@@ -12,6 +12,7 @@ class FilterTableWidget extends StatefulWidget {
   final List<void Function(int)> customManipulationCallback;
   final Widget? infoHover;
   final Widget? addButton;
+  final Widget? downloadButton;
 
   const FilterTableWidget({
     super.key,
@@ -20,8 +21,9 @@ class FilterTableWidget extends StatefulWidget {
     required this.color,
     required this.customManipulationButton,
     required this.customManipulationCallback,
-    required this.infoHover,
-    required this.addButton,
+    this.infoHover,
+    this.addButton,
+    this.downloadButton,
   });
 
   @override
@@ -102,7 +104,8 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
                   widget.customManipulationButton,
                   widget.customManipulationCallback,
                   infoHover: widget.infoHover,
-                  addButton: widget.addButton)),
+                  addButton: widget.addButton,
+                  downloadButton: widget.downloadButton)),
       const Spacer(),
     ]);
   }

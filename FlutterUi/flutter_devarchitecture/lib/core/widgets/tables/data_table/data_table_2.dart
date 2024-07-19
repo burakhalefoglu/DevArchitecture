@@ -89,6 +89,7 @@ class DataTables implements ITables {
     bool isBordered = false,
     Widget? infoHover,
     Widget? addButton,
+    Widget? downloadButton,
   }) {
     cells.sort((a, b) => a.values.first.compareTo(b.values.first));
     var dataColumns = <DataColumn2>[];
@@ -118,31 +119,36 @@ class DataTables implements ITables {
             : headers[i].values.first.toString(),
       )));
     }
-    if (customManipulationButton.length < 2) {
-      if (infoHover != null) {
-        dataColumns.add(DataColumn2(label: infoHover, fixedWidth: 48));
-      } else {
-        dataColumns.add(const DataColumn2(label: Text(" "), fixedWidth: 48));
-      }
+    var headerButtonCount = infoHover != null ? 1 : 0;
+    headerButtonCount += addButton != null ? 1 : 0;
+    headerButtonCount += downloadButton != null ? 1 : 0;
 
+    var rowButtonCount = customManipulationButton.length;
+
+    if (rowButtonCount == 0) {
+      if (infoHover != null) {
+        dataColumns.add(DataColumn2(label: infoHover, fixedWidth: 32));
+      }
       if (addButton != null) {
-        dataColumns.add(DataColumn2(label: addButton, fixedWidth: 48));
-      } else {
-        dataColumns.add(const DataColumn2(label: Text(" "), fixedWidth: 48));
+        dataColumns.add(DataColumn2(label: addButton, fixedWidth: 32));
+      }
+      if (downloadButton != null) {
+        dataColumns.add(DataColumn2(label: downloadButton, fixedWidth: 32));
       }
     } else {
-      for (var i = 0; i < customManipulationButton.length; i++) {
-        if (i == customManipulationButton.length - 2 && infoHover != null) {
-          dataColumns.add(DataColumn2(label: infoHover, fixedWidth: 48));
-        } else if (i == customManipulationButton.length - 1 &&
-            addButton != null) {
-          dataColumns.add(DataColumn2(label: addButton, fixedWidth: 48));
-        } else {
-          dataColumns.add(const DataColumn2(label: Text(" "), fixedWidth: 48));
-        }
+      for (var i = 0; i < rowButtonCount - headerButtonCount; i++) {
+        dataColumns.add(const DataColumn2(label: Text(" "), fixedWidth: 32));
+      }
+      if (infoHover != null) {
+        dataColumns.add(DataColumn2(label: infoHover, fixedWidth: 32));
+      }
+      if (addButton != null) {
+        dataColumns.add(DataColumn2(label: addButton, fixedWidth: 32));
+      }
+      if (downloadButton != null) {
+        dataColumns.add(DataColumn2(label: downloadButton, fixedWidth: 32));
       }
     }
-
     return Padding(
         padding: context.highHorizontalPadding,
         child: SizedBox(
@@ -193,8 +199,14 @@ class DataTables implements ITables {
           ),
           dividerThickness: 0.5,
           columns: dataColumns,
-          source: _buildDataTableSource(context, headers, cells,
-              customManipulationButton, customManipulationCallback),
+          source: _buildDataTableSource(
+              context,
+              headers,
+              cells,
+              customManipulationButton,
+              customManipulationCallback,
+              rowButtonCount,
+              headerButtonCount),
         )));
   }
 
@@ -227,21 +239,34 @@ class DataTables implements ITables {
     List<Widget Function(BuildContext context, void Function())>
         customManipulationButton,
     List<ValueSetter<int>> customManipulationCallback,
+    int rowButtonCount,
+    int headerButtonCount,
   ) {
     var dataRows = List<DataRow>.generate(cells.length, (index) {
       Map<String, dynamic> reformatedCell =
           _reformatCell(headers, cells[index]);
       var resultCells = _getDataCells(index, reformatedCell);
-      if (customManipulationButton.length < 2) {
-        for (var i = 0; i < 2 - customManipulationButton.length; i++) {
+      if (rowButtonCount == 0) {
+        for (var i = 0; i < headerButtonCount; i++) {
           resultCells.add(const DataCell(Text("")));
         }
+      } else if (rowButtonCount <= 3) {
+        for (var i = 0; i < headerButtonCount - rowButtonCount; i++) {
+          resultCells.add(const DataCell(Text("")));
+        }
+        for (int j = 0; j < customManipulationButton.length; j++) {
+          resultCells.add(DataCell(customManipulationButton[j](context, () {
+            customManipulationCallback[j](index);
+          })));
+        }
+      } else {
+        for (int j = 0; j < customManipulationButton.length; j++) {
+          resultCells.add(DataCell(customManipulationButton[j](context, () {
+            customManipulationCallback[j](index);
+          })));
+        }
       }
-      for (int j = 0; j < customManipulationButton.length; j++) {
-        resultCells.add(DataCell(customManipulationButton[j](context, () {
-          customManipulationCallback[j](index);
-        })));
-      }
+
       return DataRow(cells: resultCells);
     });
     var dataSource = CustomDataTableSource(dataRows);

@@ -2,12 +2,71 @@ import 'package:flutter/material.dart';
 import '../theme/custom_colors.dart';
 import 'r_u_sure.dart';
 
-Widget getInfoHover(BuildContext context, String message, {Color? color}) =>
+Widget updateGroupClaimButton(BuildContext context, VoidCallback onPressed) =>
     Tooltip(
+      message: "Grup İzinleri Yenile",
+      child: IconButton(
+          hoverColor: CustomColors.transparent.getColor,
+          onPressed: onPressed,
+          icon: Icon(
+            Icons.security_rounded,
+            color: CustomColors.primary.getColor,
+          )),
+    );
+
+Widget updateUserGroupButton(BuildContext context, VoidCallback onPressed) =>
+    Tooltip(
+      message: "Kullanıcı Grubunu Yenile",
+      child: IconButton(
+          hoverColor: CustomColors.transparent.getColor,
+          onPressed: onPressed,
+          icon: Icon(
+            Icons.group_rounded,
+            color: CustomColors.secondary.getColor,
+          )),
+    );
+
+Widget getChangePasswordButton(BuildContext context, VoidCallback onPressed) =>
+    Tooltip(
+      message: "Sifreyi Değiştir",
+      child: IconButton(
+          hoverColor: CustomColors.transparent.getColor,
+          onPressed: onPressed,
+          icon: Icon(
+            Icons.password,
+            color: CustomColors.primary.getColor,
+          )),
+    );
+
+Widget getChangePermissionButton(
+        BuildContext context, VoidCallback onPressed) =>
+    Tooltip(
+      message: "İzinleri Değiştir",
+      child: IconButton(
+          hoverColor: CustomColors.transparent.getColor,
+          onPressed: onPressed,
+          icon: Icon(
+            Icons.safety_check_rounded,
+            color: CustomColors.secondary.getColor,
+          )),
+    );
+
+Widget getChangeGroupButton(BuildContext context, VoidCallback onPressed) =>
+    Tooltip(
+        message: "Grubu Değiştir",
+        child: IconButton(
+            hoverColor: CustomColors.transparent.getColor,
+            onPressed: onPressed,
+            icon: Icon(
+              Icons.group,
+              color: CustomColors.success.getColor,
+            )));
+
+Widget getInfoHover(BuildContext context, String message) => Tooltip(
       message: message,
       child: Icon(
-        Icons.info_outline_rounded,
-        color: color ?? CustomColors.gray.getColor,
+        Icons.info,
+        color: CustomColors.gray.getColor.withAlpha(255),
       ),
     );
 
@@ -39,7 +98,8 @@ Widget getDeleteButton(BuildContext context, VoidCallback onPressed) => Tooltip(
           )),
     );
 
-Widget getDownloadButton(BuildContext context, VoidCallback onPressed) =>
+Widget getDownloadButton(BuildContext context, VoidCallback onPressed,
+        {Color? color}) =>
     Tooltip(
       message: "Veriyi Excel Formatında İndir",
       child: IconButton(
@@ -47,7 +107,7 @@ Widget getDownloadButton(BuildContext context, VoidCallback onPressed) =>
           onPressed: onPressed,
           icon: Icon(
             Icons.download_for_offline_sharp,
-            color: CustomColors.primary.getColor,
+            color: color ?? CustomColors.primary.getColor,
           )),
     );
 

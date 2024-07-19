@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/widgets/tables/filter_table_widget.dart';
+
+import '/core/theme/extensions.dart';
+import '/core/widgets/tables/filter_table_widget.dart';
+import '../../../core/widgets/base_widgets.dart';
 import '/core/dependency_resolvers/get_it/core_initializer.dart';
 import '/core/theme/custom_colors.dart';
 import '/core/widgets/button_widgets.dart';
@@ -214,56 +217,78 @@ class AdminUserPage extends StatelessWidget {
     ];
     return buildBaseScaffold(
       context,
-      Center(
-        child: FilterTableWidget(
-          datas: datas,
-          headers: const [
-            {"docNo": "docNo"},
-            {"totalAmount": "totalAmount"},
-            {"fuelPumpName": "fuelPumpName"},
-            {"supplierName": "supplierName"},
-            {"unitPrice": "unitPrice"},
-            {"totalPrice": "totalPrice"},
-            {"supplyDate": "supplyDate"},
-            {"inputOwnerName": "inputOwnerName"},
-          ],
-          color: CustomColors.primary.getColor,
-          customManipulationButton: const [
-            getEditButton,
-            getDownloadButton,
-            getDeleteButton
-          ],
-          customManipulationCallback: [
-            (index) => {
-                  CoreInitializer()
+      Column(
+        children: [
+          Expanded(
+              child: Padding(
+            padding: context.defaultHorizontalPadding,
+            child: buildPageTitle(context, "Kullanıcı Listesi",
+                subDirection: "Admin Panel"),
+          )),
+          Expanded(
+            flex: 9,
+            child: FilterTableWidget(
+              datas: datas,
+              headers: const [
+                {"docNo": "docNo"},
+                {"totalAmount": "totalAmount"},
+                {"fuelPumpName": "fuelPumpName"},
+                {"supplierName": "supplierName"},
+                {"unitPrice": "unitPrice"},
+                {"totalPrice": "totalPrice"},
+                {"supplyDate": "supplyDate"},
+                {"inputOwnerName": "inputOwnerName"},
+              ],
+              color: CustomColors.primary.getColor,
+              customManipulationButton: const [
+                getChangePasswordButton,
+                getChangePermissionButton,
+                getChangeGroupButton,
+                getEditButton,
+                getDeleteButton
+              ],
+              customManipulationCallback: [
+                (index) => {
+                      CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getInfoMessage(index.toString())
+                    },
+                (index) => {
+                      CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getInfoMessage(index.toString())
+                    },
+                (index) => {
+                      CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getInfoMessage(index.toString())
+                    },
+                (index) => {
+                      CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getInfoMessage(index.toString())
+                    },
+                (index) => {
+                      CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getInfoMessage(index.toString())
+                    },
+              ],
+              addButton: getAddButton(
+                  context,
+                  () => CoreInitializer()
                       .coreContainer
                       .screenMessage
-                      .getInfoMessage(index.toString())
-                },
-            (index) => {
-                  CoreInitializer()
-                      .coreContainer
-                      .screenMessage
-                      .getSuccessMessage(index.toString())
-                },
-            (index) => {
-                  CoreInitializer()
-                      .coreContainer
-                      .screenMessage
-                      .getErrorMessage(index.toString())
-                }
-          ],
-          infoHover: getInfoHover(
-              context, "Kullanıcılar bu sayfada listelenmektedir.",
-              color: CustomColors.white.getColor),
-          addButton: getAddButton(
-              context,
-              () => CoreInitializer()
-                  .coreContainer
-                  .screenMessage
-                  .getSuccessMessage("Veri Ekleme"),
-              color: CustomColors.white.getColor),
-        ),
+                      .getSuccessMessage("Veri Ekleme"),
+                  color: CustomColors.white.getColor),
+            ),
+          ),
+        ],
       ),
     );
   }

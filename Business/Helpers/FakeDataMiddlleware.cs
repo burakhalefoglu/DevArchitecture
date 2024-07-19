@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Business.Fakes.Handlers.Languages;
 using Business.Fakes.Handlers.Translates;
+using Business.Handlers.Groups.Commands;
 using Core.Utilities.IoC;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -295,6 +296,10 @@ namespace Business.Helpers
                 { LangId = 1, Code = "DeleteConfirm", Value = "Emin misiniz?" });
             await mediator.Send(new CreateTranslateInternalCommand
                 { LangId = 2, Code = "DeleteConfirm", Value = "Are you sure?" });
+            await mediator.Send(new CreateGroupCommand
+            {
+                GroupName = "Default Group"
+            });
         }
     }
 }

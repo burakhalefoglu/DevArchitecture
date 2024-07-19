@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/dependency_resolvers/get_it/core_initializer.dart';
-import 'package:flutter_devarchitecture/features/layouts/base_scaffold.dart';
 
+import '/core/dependency_resolvers/get_it/core_initializer.dart';
+import '/core/theme/extensions.dart';
+import '/features/layouts/base_scaffold.dart';
 import '../../../core/theme/custom_colors.dart';
+import '../../../core/widgets/base_widgets.dart';
+import '../../../core/widgets/button_widgets.dart';
+import '../../../core/widgets/tables/filter_table_widget.dart';
 
 class AdminGroupPage extends StatelessWidget {
   const AdminGroupPage({super.key});
@@ -212,41 +216,73 @@ class AdminGroupPage extends StatelessWidget {
       },
     ];
     return buildBaseScaffold(
-        context,
-        Row(
-          children: [
-            const Spacer(flex: 2),
-            Expanded(
-              flex: 5,
-              child: Column(
-                children: [
-                  const Spacer(),
-                  Expanded(
-                    child:
-                        CoreInitializer().coreContainer.dataTable.getBasicTable(
-                              context,
-                              const [
-                                {"docNo": "docNo"},
-                                {"totalAmount": "totalAmount"},
-                                {"fuelPumpName": "fuelPumpName"},
-                                {"supplierName": "supplierName"},
-                                {"unitPrice": "unitPrice"},
-                                {"totalPrice": "totalPrice"},
-                                {"supplyDate": "supplyDate"},
-                                {"inputOwnerName": "inputOwnerName"},
-                              ],
-                              datas,
-                              CustomColors.primary.getColor,
-                            ),
-                  ),
-                  const Spacer(),
-                ],
-              ),
+      context,
+      Column(
+        children: [
+          Expanded(
+              child: Padding(
+            padding: context.defaultHorizontalPadding,
+            child: buildPageTitle(context, "Grup Listesi",
+                subDirection: "Admin Panel"),
+          )),
+          Expanded(
+            flex: 9,
+            child: FilterTableWidget(
+              datas: datas,
+              headers: const [
+                {"docNo": "docNo"},
+                {"totalAmount": "totalAmount"},
+                {"fuelPumpName": "fuelPumpName"},
+                {"supplierName": "supplierName"},
+                {"unitPrice": "unitPrice"},
+                {"totalPrice": "totalPrice"},
+                {"supplyDate": "supplyDate"},
+                {"inputOwnerName": "inputOwnerName"},
+              ],
+              color: CustomColors.secondary.getColor,
+              customManipulationButton: const [
+                updateGroupClaimButton,
+                updateUserGroupButton,
+                getEditButton,
+                getDeleteButton
+              ],
+              customManipulationCallback: [
+                (index) => {
+                      CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getInfoMessage(index.toString())
+                    },
+                (index) => {
+                      CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getInfoMessage(index.toString())
+                    },
+                (index) => {
+                      CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getInfoMessage(index.toString())
+                    },
+                (index) => {
+                      CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getInfoMessage(index.toString())
+                    },
+              ],
+              addButton: getAddButton(
+                  context,
+                  () => CoreInitializer()
+                      .coreContainer
+                      .screenMessage
+                      .getSuccessMessage("Veri Ekleme"),
+                  color: CustomColors.white.getColor),
             ),
-            const Spacer(
-              flex: 2,
-            )
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

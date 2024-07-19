@@ -15,5 +15,6 @@ abstract class ITables {
       List<ValueSetter<int>> customManipulationCallback,
       {bool isBordered = false,
       Widget? infoHover,
-      Widget? addButton});
+      Widget? addButton,
+      Widget? downloadButton});
 }
