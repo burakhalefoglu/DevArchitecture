@@ -10,6 +10,7 @@ class DataTables implements ITables {
   Widget getBasicTable(BuildContext context, List<Map<String, dynamic>> headers,
       List<Map<String, dynamic>> cells, Color headerColor,
       {bool isBordered = false}) {
+    cells.sort((a, b) => a.values.first.compareTo(b.values.first));
     var dataColumns = <DataColumn2>[];
     for (int i = 0; i < headers.length; i++) {
       dataColumns.add(DataColumn2(
@@ -64,8 +65,6 @@ class DataTables implements ITables {
               fontSize: 14,
             ),
             dividerThickness: 0.5,
-            sortAscending: true,
-            sortColumnIndex: 0,
             columns: dataColumns,
             rows: List<DataRow>.generate(cells.length, (index) {
               Map<String, dynamic> reformatedCell =
@@ -91,6 +90,7 @@ class DataTables implements ITables {
     Widget? infoHover,
     Widget? addButton,
   }) {
+    cells.sort((a, b) => a.values.first.compareTo(b.values.first));
     var dataColumns = <DataColumn2>[];
     for (int i = 0; i < headers.length; i++) {
       if (i == 0) {
