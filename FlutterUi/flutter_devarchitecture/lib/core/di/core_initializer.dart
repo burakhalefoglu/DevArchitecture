@@ -1,6 +1,6 @@
-import '/core/dependency_resolvers/get_it/get_it_core_di.dart';
+import 'get_it/get_it_core_di.dart';
 
-import '../core_di.dart';
+import 'i_core_container.dart';
 
 class CoreInitializer {
   late ICoreContainer coreContainer;

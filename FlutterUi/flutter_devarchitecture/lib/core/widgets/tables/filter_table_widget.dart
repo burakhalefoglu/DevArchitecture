@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '/core/widgets/inputs/text_input.dart';
-import '../../dependency_resolvers/get_it/core_initializer.dart';
+import '../../di/core_initializer.dart';
 
 class FilterTableWidget extends StatefulWidget {
   final List<Map<String, dynamic>> datas;

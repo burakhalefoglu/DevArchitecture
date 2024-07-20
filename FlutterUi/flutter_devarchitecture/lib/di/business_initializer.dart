@@ -1,4 +1,4 @@
-import 'business_container.dart';
+import 'i_business_container.dart';
 import 'get_it/get_it_business_di.dart';
 
 class BusinessInitializer {

@@ -3,7 +3,7 @@ import '../../../core/configs/app_config.dart';
 import '../../features/public/auth/services/abstract/i_auth_service.dart';
 import '../../features/public/auth/services/concrete/api_auth_service.dart';
 import '../../features/public/auth/services/concrete/in_memory_auth_service.dart';
-import '../business_container.dart';
+import '../i_business_container.dart';
 
 class GetItBusinessContainer implements IBusinessContainer {
   late GetIt _getIt;

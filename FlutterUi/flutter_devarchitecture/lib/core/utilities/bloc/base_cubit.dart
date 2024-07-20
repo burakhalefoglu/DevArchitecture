@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../core/bloc/base_state.dart';
-import '../models/i_entity.dart';
-import '../services/i_service.dart';
+import 'base_state.dart';
+import '../../models/i_entity.dart';
+import '../../services/i_service.dart';
 
 class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
   late IService service;

@@ -1,5 +1,5 @@
-import '../../../../../core/cross_cutting_concerns/results.dart';
-import '../../../../../core/dependency_resolvers/get_it/core_initializer.dart';
+import '../../../../../core/utilities/results.dart';
+import '../../../../../core/di/core_initializer.dart';
 import '../../../../../core/services/base_services/api_service.dart';
 import '../../models/auth.dart';
 import '../abstract/i_auth_service.dart';

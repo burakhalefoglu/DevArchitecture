@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/core/dependency_resolvers/get_it/core_initializer.dart';
+import '../../../core/di/core_initializer.dart';
 import '/core/theme/extensions.dart';
 import '/features/layouts/base_scaffold.dart';
 import '../../../core/theme/custom_colors.dart';

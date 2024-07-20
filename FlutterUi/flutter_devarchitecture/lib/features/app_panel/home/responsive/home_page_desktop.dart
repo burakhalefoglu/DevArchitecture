@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/dependency_resolvers/get_it/core_initializer.dart';
+import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
 import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import '../../../../core/theme/custom_colors.dart';
 import '../../../../core/widgets/base_widgets.dart';

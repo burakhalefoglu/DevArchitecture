@@ -1,7 +1,8 @@
-import '../../core/http/http_interceptor.dart';
-import '../cross_cutting_concerns/screen_message.dart';
+import '../utilities/device_information_management/i_device_information.dart';
+import '../utilities/http/http_interceptor.dart';
+import '../utilities/screen_message.dart';
 import '../local_storage/i_local_storage.dart';
-import '../http/i_http.dart';
+import '../utilities/http/i_http.dart';
 import '../widgets/animations/i_animation_asset.dart';
 import '../widgets/charts/i_chart.dart';
 import '../widgets/inputs/address_input/i_address_input.dart';
@@ -22,6 +23,8 @@ abstract class ICoreContainer {
   late IGaugesChart gaugesChart;
   late IAnalyticsChart analyticsChart;
   late IEventStreamChart eventStreamChart;
+
+  late IDeviceInformation deviceInformation;
 
   setUp();
   void checkIfUnRegistered<T extends Object>(Function register);

@@ -1,4 +1,4 @@
-import '../../core/cross_cutting_concerns/results.dart';
+import '../utilities/results.dart';
 
 abstract class IService {
   Future<IDataResult<Map<String, dynamic>>> getById(int id);

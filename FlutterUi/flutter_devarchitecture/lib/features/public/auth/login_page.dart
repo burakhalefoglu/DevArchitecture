@@ -7,9 +7,9 @@ import '../../../core/widgets/inputs/email_input.dart';
 import '../../../core/widgets/inputs/password_input.dart';
 import '/core/theme/extensions.dart';
 
-import '../../../core/bloc/base_state.dart';
+import '../../../core/utilities/bloc/base_state.dart';
 import '../../../core/constants/messages.dart';
-import '../../../core/dependency_resolvers/get_it/core_initializer.dart';
+import '../../../core/di/core_initializer.dart';
 import 'bloc/auth_cubit.dart';
 import '../../layouts/base_scaffold.dart';
 import 'models/auth.dart';

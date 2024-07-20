@@ -1,4 +1,4 @@
-import '../../../../../core/cross_cutting_concerns/results.dart';
+import '../../../../../core/utilities/results.dart';
 import '../../../../../core/services/i_service.dart';
 import '../../models/auth.dart';
 

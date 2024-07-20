@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../core/cross_cutting_concerns/results.dart';
+import '../../utilities/results.dart';
 import '../i_service.dart';
 
 abstract class FirebaseService implements IService {

@@ -5,21 +5,22 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:oktoast/oktoast.dart';
 
 import '/core/theme/extensions.dart';
-import 'core/dependency_resolvers/get_it/core_initializer.dart';
+import 'core/di/core_initializer.dart';
 import 'core/theme/custom_colors.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'dependency_resolver/business_initializer.dart';
+import 'di/business_initializer.dart';
 import 'routes/app_route_module.dart';
 
 Future<void> main() async {
+  //? Initializers
   WidgetsFlutterBinding.ensureInitialized();
-
   initializeDateFormatting();
   CoreInitializer();
   BusinessInitializer();
+
   runApp(ModularApp(module: AppRouteModule(), child: const App()));
 }
 

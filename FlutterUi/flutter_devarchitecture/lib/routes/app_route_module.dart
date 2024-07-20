@@ -1,5 +1,5 @@
 import 'package:flutter_devarchitecture/features/admin_panel/languages/admin_language_page.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/users/admin_user_page.dart';
+import 'package:flutter_devarchitecture/features/admin_panel/users/pages/admin_user_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../core/guard/auth_guard.dart';

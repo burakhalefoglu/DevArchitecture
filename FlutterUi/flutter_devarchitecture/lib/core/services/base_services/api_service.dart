@@ -1,6 +1,6 @@
 import '../../configs/app_config.dart';
-import '../../cross_cutting_concerns/results.dart';
-import '../../dependency_resolvers/get_it/core_initializer.dart';
+import '../../utilities/results.dart';
+import '../../di/core_initializer.dart';
 import '../i_service.dart';
 
 abstract class APiService<T> implements IService {

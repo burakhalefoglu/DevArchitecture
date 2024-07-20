@@ -1,37 +1,53 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import '../../../core/local_storage/i_local_storage.dart';
 
-//TODO: Fill it
 class SecuredLocalStorage implements ILocalStorage {
+  late FlutterSecureStorage storage;
+  IOSOptions _getIosOptions() =>
+      const IOSOptions(accessibility: KeychainAccessibility.first_unlock);
+
+  AndroidOptions _getAndroidOptions() => const AndroidOptions(
+        encryptedSharedPreferences: true,
+      );
+
   @override
-  Future<bool> containsKey(String key) {
-    return Future.value(true);
+  init() async {
+    storage = FlutterSecureStorage(
+        aOptions: _getAndroidOptions(), iOptions: _getIosOptions());
+  }
+
+  @override
+  Future<bool> containsKey(String key) async {
+    var result = await storage.containsKey(key: key);
+    return result;
   }
 
   @override
   Future<void> delete(String key) async {
-    Future.delayed(Duration.zero);
+    await storage.delete(key: key);
   }
 
   @override
   Future<void> deleteAll() async {
-    Future.delayed(Duration.zero);
+    await storage.deleteAll();
   }
 
   @override
-  Future<String?> read(String key) {
-    return Future.value("");
+  Future<String?> read(String key) async {
+    return await storage.read(key: key);
   }
 
   @override
-  Future<List<Map<String, String>>> readAll() {
-    return Future.value([]);
+  Future<List<Map<String, String>>> readAll() async {
+    Map<String, String> allValues = await storage.readAll();
+    return allValues.entries
+        .map((e) => Map.fromEntries([MapEntry(e.key, e.value.toString())]))
+        .toList();
   }
 
   @override
   Future<void> save(String key, String value) async {
-    Future.delayed(Duration.zero);
+    await storage.write(key: key, value: value);
   }
-
-  @override
-  init() {}
 }

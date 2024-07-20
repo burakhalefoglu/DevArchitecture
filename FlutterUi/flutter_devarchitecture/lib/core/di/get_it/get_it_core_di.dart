@@ -1,22 +1,24 @@
+import 'package:flutter_devarchitecture/core/local_storage/securedStorage/secured_local_storage.dart';
+import 'package:flutter_devarchitecture/core/utilities/device_information_management/device_info_plus.dart';
+import 'package:flutter_devarchitecture/core/utilities/device_information_management/i_device_information.dart';
 import 'package:flutter_devarchitecture/core/widgets/animations/i_animation_asset.dart';
 import 'package:flutter_devarchitecture/core/widgets/animations/lottie_animation_asset.dart';
 import 'package:flutter_devarchitecture/core/widgets/charts/graphic/graphic_analytics_chart.dart';
 import 'package:flutter_devarchitecture/core/widgets/charts/graphic/graphic_basic_chart.dart';
 import 'package:flutter_devarchitecture/core/widgets/charts/graphic/graphic_event_chart.dart';
 import 'package:get_it/get_it.dart';
-import '../../cross_cutting_concerns/screen_message.dart';
-import '../../http/dart_io_http.dart';
-import '../../http/http_interceptor.dart';
-import '../../http/i_http.dart';
+import '../../utilities/screen_message.dart';
+import '../../utilities/http/dart_io_http.dart';
+import '../../utilities/http/http_interceptor.dart';
+import '../../utilities/http/i_http.dart';
 import '../../local_storage/i_local_storage.dart';
-import '../../local_storage/shared_pref/shared_preferences.dart';
 import '../../widgets/charts/geekyants/geekyants_gauges_chart.dart';
 import '../../widgets/charts/i_chart.dart';
 import '../../widgets/inputs/address_input/google_autocomplete.dart';
 import '../../widgets/inputs/address_input/i_address_input.dart';
 import '../../widgets/tables/data_table/data_table_2.dart';
 import '../../widgets/tables/i_tables.dart';
-import '../core_di.dart';
+import '../i_core_container.dart';
 
 class GetItCoreContainer implements ICoreContainer {
   late GetIt _getIt;
@@ -63,6 +65,9 @@ class GetItCoreContainer implements ICoreContainer {
   late IGaugesChart gaugesChart;
 
   @override
+  late IDeviceInformation deviceInformation;
+
+  @override
   setUp() {
     checkIfUnRegistered<ITables>((() {
       dataTable = _getIt.registerSingleton<ITables>(DataTables());
@@ -81,8 +86,7 @@ class GetItCoreContainer implements ICoreContainer {
           _getIt.registerSingleton<IScreenMessage>(OkToastScreenMessage());
     }));
     checkIfUnRegistered<ILocalStorage>((() {
-      storage = _getIt
-          .registerSingleton<ILocalStorage>(SharedPreferencesLocalStorage());
+      storage = _getIt.registerSingleton<ILocalStorage>(SecuredLocalStorage());
     }));
     checkIfUnRegistered<IHttpInterceptor>((() {
       httpInterceptor =
@@ -107,6 +111,11 @@ class GetItCoreContainer implements ICoreContainer {
     checkIfUnRegistered<IGaugesChart>((() {
       gaugesChart =
           _getIt.registerSingleton<IGaugesChart>(GeekyantsGaugesChart());
+    }));
+
+    checkIfUnRegistered<IDeviceInformation>((() {
+      deviceInformation =
+          _getIt.registerSingleton<IDeviceInformation>(DeviceInfoPlus());
     }));
   }
 
