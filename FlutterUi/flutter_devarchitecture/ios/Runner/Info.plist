@@ -3,6 +3,18 @@
 <plist version="1.0">
 
 <dict>
+	<key>UIBackgroundModes</key>
+<array>
+  <string>fetch</string>
+  <string>remote-notification</string>
+</array>
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>We need your location to show notifications</string>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>We need your location to show notifications</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>We need your location to show notifications</string>
+	
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

@@ -1,12 +1,17 @@
+import 'package:dart_amqp/dart_amqp.dart';
 import 'package:flutter_devarchitecture/core/local_storage/securedStorage/secured_local_storage.dart';
 import 'package:flutter_devarchitecture/core/utilities/device_information_management/device_info_plus.dart';
 import 'package:flutter_devarchitecture/core/utilities/device_information_management/i_device_information.dart';
+import 'package:flutter_devarchitecture/core/utilities/message_broker/i_message_broker.dart';
+import 'package:flutter_devarchitecture/core/utilities/notification/i_notification_service.dart';
+import 'package:flutter_devarchitecture/core/utilities/notification/local_notification_service.dart';
 import 'package:flutter_devarchitecture/core/widgets/animations/i_animation_asset.dart';
 import 'package:flutter_devarchitecture/core/widgets/animations/lottie_animation_asset.dart';
 import 'package:flutter_devarchitecture/core/widgets/charts/graphic/graphic_analytics_chart.dart';
 import 'package:flutter_devarchitecture/core/widgets/charts/graphic/graphic_basic_chart.dart';
 import 'package:flutter_devarchitecture/core/widgets/charts/graphic/graphic_event_chart.dart';
 import 'package:get_it/get_it.dart';
+import '../../utilities/message_broker/rabbitmq_broker.dart';
 import '../../utilities/screen_message.dart';
 import '../../utilities/http/dart_io_http.dart';
 import '../../utilities/http/http_interceptor.dart';
@@ -68,6 +73,12 @@ class GetItCoreContainer implements ICoreContainer {
   late IDeviceInformation deviceInformation;
 
   @override
+  late INotificationService notificationService;
+
+  @override
+  late IMessageBroker messageBroker;
+
+  @override
   setUp() {
     checkIfUnRegistered<ITables>((() {
       dataTable = _getIt.registerSingleton<ITables>(DataTables());
@@ -116,6 +127,21 @@ class GetItCoreContainer implements ICoreContainer {
     checkIfUnRegistered<IDeviceInformation>((() {
       deviceInformation =
           _getIt.registerSingleton<IDeviceInformation>(DeviceInfoPlus());
+    }));
+
+    checkIfUnRegistered<INotificationService>((() {
+      notificationService = _getIt
+          .registerSingleton<INotificationService>(LocalNotificationService());
+    }));
+
+    checkIfUnRegistered<IMessageBroker>((() {
+      messageBroker =
+          _getIt.registerSingleton<IMessageBroker>(RabbitMQMessageBroker(
+              "default_queue",
+              ConnectionSettings(
+                host: "localhost",
+                authProvider: PlainAuthenticator("guest", "guest"),
+              )));
     }));
   }
 

@@ -34,5 +34,10 @@
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
+  <script>
+    Notification.requestPermission().then(function(result) {
+      console.log('Notification permission status:', result);
+    });
+  </script>
 </body>
 </html>
