@@ -4,6 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'i_device_information.dart';
 
 class DeviceInfoPlus implements IDeviceInformation {
+  static final DeviceInfoPlus _singleton = DeviceInfoPlus._internal();
+
+  factory DeviceInfoPlus() {
+    return _singleton;
+  }
+
+  DeviceInfoPlus._internal();
+
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
   @override

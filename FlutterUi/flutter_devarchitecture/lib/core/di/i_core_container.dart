@@ -1,3 +1,7 @@
+import 'package:flutter_devarchitecture/core/utilities/permission_handler/i_permission_handler.dart';
+
+import '../utilities/battery_state_management/i_battery_state.dart';
+import '../utilities/internet_connection/i_internet_connection.dart';
 import '../utilities/device_information_management/i_device_information.dart';
 import '../utilities/http/http_interceptor.dart';
 import '../utilities/message_broker/i_message_broker.dart';
@@ -26,9 +30,13 @@ abstract class ICoreContainer {
   late IAnalyticsChart analyticsChart;
   late IEventStreamChart eventStreamChart;
 
+  // utilities
   late IDeviceInformation deviceInformation;
   late INotificationService notificationService;
   late IMessageBroker messageBroker;
+  late IInternetConnection internetConnection;
+  late IBatteryState batteryState;
+  late IPermissionHandler permissionHandler;
 
   setUp();
   void checkIfUnRegistered<T extends Object>(Function register);

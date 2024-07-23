@@ -6,6 +6,14 @@ import 'package:graphic/graphic.dart';
 import '../i_chart.dart';
 
 class GraphicBasicChart extends IBasicChart {
+  static final GraphicBasicChart _singleton = GraphicBasicChart._internal();
+
+  factory GraphicBasicChart() {
+    return _singleton;
+  }
+
+  GraphicBasicChart._internal();
+
   @override
   Widget getBarChart(BuildContext context, List<Map<String, dynamic>> data,
       String xAxisHeader, String yAxisHeader, Color color,

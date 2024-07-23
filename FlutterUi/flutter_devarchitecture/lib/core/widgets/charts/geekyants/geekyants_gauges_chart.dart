@@ -5,6 +5,15 @@ import '../../../theme/custom_colors.dart';
 import '../i_chart.dart';
 
 class GeekyantsGaugesChart implements IGaugesChart {
+  static final GeekyantsGaugesChart _singleton =
+      GeekyantsGaugesChart._internal();
+
+  factory GeekyantsGaugesChart() {
+    return _singleton;
+  }
+
+  GeekyantsGaugesChart._internal();
+
   @override
   Widget getCircleGaugeChart(
       double start, double end, double valid, Color color, Color pointerColor) {

@@ -3,6 +3,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/local_storage/i_local_storage.dart';
 
 class SharedPreferencesLocalStorage implements ILocalStorage {
+  static final SharedPreferencesLocalStorage _singleton =
+      SharedPreferencesLocalStorage._internal();
+
+  factory SharedPreferencesLocalStorage() {
+    return _singleton;
+  }
+  SharedPreferencesLocalStorage._internal();
+
   @override
   Future<void> init() async {}
 

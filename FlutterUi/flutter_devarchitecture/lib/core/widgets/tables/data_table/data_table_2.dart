@@ -6,6 +6,13 @@ import '../i_tables.dart';
 import 'custom_data_table_source.dart';
 
 class DataTables implements ITables {
+  static final DataTables _singleton = DataTables._internal();
+
+  factory DataTables() {
+    return _singleton;
+  }
+  DataTables._internal();
+
   @override
   Widget getBasicTable(BuildContext context, List<Map<String, dynamic>> headers,
       List<Map<String, dynamic>> cells, Color headerColor,

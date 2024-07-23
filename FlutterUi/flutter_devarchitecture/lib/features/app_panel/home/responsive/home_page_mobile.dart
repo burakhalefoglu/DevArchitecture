@@ -1,15 +1,4 @@
-import 'dart:async';
-import 'dart:math';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/theme/extensions.dart';
-import '../../../../core/di/core_initializer.dart';
-import '../../../../core/theme/custom_colors.dart';
-import '../../../../core/widgets/base_widgets.dart';
-import '../../../layouts/base_scaffold.dart';
-import '../../../layouts/sidebar/sidebar_constants.dart';
-import '../widgets/header_cards.dart';
-import 'fake_data.dart';
+part of '../home_page.dart';
 
 class HomePageMobile extends StatefulWidget {
   const HomePageMobile({super.key});

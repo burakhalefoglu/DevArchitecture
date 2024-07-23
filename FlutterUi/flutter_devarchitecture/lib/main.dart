@@ -6,6 +6,8 @@ import 'package:oktoast/oktoast.dart';
 
 import '/core/theme/extensions.dart';
 import 'core/di/core_initializer.dart';
+import 'core/mixins/battery_state_mixin.dart';
+import 'core/mixins/internet_conenction_mixin.dart';
 import 'core/theme/custom_colors.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -21,14 +23,17 @@ Future<void> main() async {
   CoreInitializer();
   BusinessInitializer();
 
-  runApp(ModularApp(module: AppRouteModule(), child: const App()));
+  runApp(ModularApp(module: AppRouteModule(), child: App()));
 }
 
-class App extends StatelessWidget {
-  const App({super.key});
+class App extends StatelessWidget
+    with InternetConnectionCheckerMixin, BatteryStateMixin {
+  App({super.key});
 
   @override
   Widget build(BuildContext context) {
+    //  listenConnection();
+    //  listenBatteryState();
     return OKToast(
         backgroundColor: CustomColors.gray.getColor,
         textPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

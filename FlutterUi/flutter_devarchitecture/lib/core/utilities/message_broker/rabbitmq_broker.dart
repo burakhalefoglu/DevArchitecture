@@ -23,9 +23,7 @@ class RabbitMQMessageBroker implements IMessageBroker {
       Consumer consumer = await _queue.consume();
 
       consumer.listen((AmqpMessage message) {
-        // Mesajın içeriğini burada işleyin
         print("Received message: ${message.payloadAsString}");
-        // Mesajın onaylanması
         message.ack();
       });
     } catch (e) {
@@ -41,9 +39,6 @@ class RabbitMQMessageBroker implements IMessageBroker {
   @override
   Future<void> queueMessageAsync<T>(T messageModel) async {
     try {
-      if (_channel == null || _queue == null) {
-        await _initializeQueue();
-      }
       final jsonString = jsonEncode(messageModel);
       _queue.publish(jsonString);
     } catch (e) {
@@ -54,9 +49,6 @@ class RabbitMQMessageBroker implements IMessageBroker {
   @override
   void queueMessageSync<T>(T messageModel) {
     try {
-      if (_channel == null || _queue == null) {
-        _initializeQueue();
-      }
       final jsonString = jsonEncode(messageModel);
       _queue.publish(jsonString);
     } catch (e) {

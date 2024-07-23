@@ -3,6 +3,14 @@ import 'package:lottie/lottie.dart';
 import 'i_animation_asset.dart';
 
 class LottieAnimationAsset extends IAnimationAsset {
+  static final LottieAnimationAsset _singleton =
+      LottieAnimationAsset._internal();
+
+  factory LottieAnimationAsset() {
+    return _singleton;
+  }
+  LottieAnimationAsset._internal();
+
   @override
   Widget get404AnimationAsset(double width, double height) {
     return Lottie.asset('assets/animations/lottie/404.json',

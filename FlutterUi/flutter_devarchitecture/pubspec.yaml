@@ -53,10 +53,13 @@ dependencies:
   url_launcher: ^6.1.5
   flutter_local_notifications: ^12.0.0
   dart_amqp: ^0.3.1
+  internet_connection_checker: ^1.0.0+1
+  battery_plus: ^6.0.1
   device_info_plus:
     git:
       url: https://github.com/fluttercommunity/plus_plugins.git
       path: packages/device_info_plus/device_info_plus
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:

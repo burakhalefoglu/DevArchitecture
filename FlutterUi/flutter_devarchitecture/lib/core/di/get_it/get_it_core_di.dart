@@ -1,16 +1,22 @@
 import 'package:dart_amqp/dart_amqp.dart';
-import 'package:flutter_devarchitecture/core/local_storage/securedStorage/secured_local_storage.dart';
-import 'package:flutter_devarchitecture/core/utilities/device_information_management/device_info_plus.dart';
-import 'package:flutter_devarchitecture/core/utilities/device_information_management/i_device_information.dart';
-import 'package:flutter_devarchitecture/core/utilities/message_broker/i_message_broker.dart';
-import 'package:flutter_devarchitecture/core/utilities/notification/i_notification_service.dart';
-import 'package:flutter_devarchitecture/core/utilities/notification/local_notification_service.dart';
-import 'package:flutter_devarchitecture/core/widgets/animations/i_animation_asset.dart';
-import 'package:flutter_devarchitecture/core/widgets/animations/lottie_animation_asset.dart';
-import 'package:flutter_devarchitecture/core/widgets/charts/graphic/graphic_analytics_chart.dart';
-import 'package:flutter_devarchitecture/core/widgets/charts/graphic/graphic_basic_chart.dart';
-import 'package:flutter_devarchitecture/core/widgets/charts/graphic/graphic_event_chart.dart';
+import 'package:flutter_devarchitecture/core/utilities/permission_handler/i_permission_handler.dart';
+import 'package:flutter_devarchitecture/core/utilities/permission_handler/permission_handler.dart';
+import '../../utilities/battery_state_management/battery_state_plus.dart';
+import '../../utilities/battery_state_management/i_battery_state.dart';
+import '/core/local_storage/securedStorage/secured_local_storage.dart';
+import '/core/utilities/internet_connection/internet_connection_checker.dart';
+import '/core/utilities/device_information_management/device_info_plus.dart';
+import '/core/utilities/device_information_management/i_device_information.dart';
+import '/core/utilities/message_broker/i_message_broker.dart';
+import '/core/utilities/notification/i_notification_service.dart';
+import '/core/utilities/notification/local_notification_service.dart';
+import '/core/widgets/animations/i_animation_asset.dart';
+import '/core/widgets/animations/lottie_animation_asset.dart';
+import '/core/widgets/charts/graphic/graphic_analytics_chart.dart';
+import '/core/widgets/charts/graphic/graphic_basic_chart.dart';
+import '/core/widgets/charts/graphic/graphic_event_chart.dart';
 import 'package:get_it/get_it.dart';
+import '../../utilities/internet_connection/i_internet_connection.dart';
 import '../../utilities/message_broker/rabbitmq_broker.dart';
 import '../../utilities/screen_message.dart';
 import '../../utilities/http/dart_io_http.dart';
@@ -79,6 +85,15 @@ class GetItCoreContainer implements ICoreContainer {
   late IMessageBroker messageBroker;
 
   @override
+  late IInternetConnection internetConnection;
+
+  @override
+  late IBatteryState batteryState;
+
+  @override
+  late IPermissionHandler permissionHandler;
+
+  @override
   setUp() {
     checkIfUnRegistered<ITables>((() {
       dataTable = _getIt.registerSingleton<ITables>(DataTables());
@@ -130,8 +145,8 @@ class GetItCoreContainer implements ICoreContainer {
     }));
 
     checkIfUnRegistered<INotificationService>((() {
-      notificationService = _getIt
-          .registerSingleton<INotificationService>(LocalNotificationService());
+      notificationService = _getIt.registerSingleton<INotificationService>(
+          LocalNotificationService.init());
     }));
 
     checkIfUnRegistered<IMessageBroker>((() {
@@ -142,6 +157,21 @@ class GetItCoreContainer implements ICoreContainer {
                 host: "localhost",
                 authProvider: PlainAuthenticator("guest", "guest"),
               )));
+    }));
+
+    checkIfUnRegistered<IInternetConnection>((() {
+      internetConnection = _getIt.registerSingleton<IInternetConnection>(
+          InternetConnectionWithChecker());
+    }));
+
+    checkIfUnRegistered<IBatteryState>((() {
+      batteryState =
+          _getIt.registerSingleton<IBatteryState>(BatteryStateBatteryPlus());
+    }));
+
+    checkIfUnRegistered<IPermissionHandler>((() {
+      permissionHandler =
+          _getIt.registerSingleton<IPermissionHandler>(PermissionHandler());
     }));
   }
 
