@@ -3,6 +3,7 @@ import 'package:flutter_devarchitecture/core/widgets/animations/i_page_animation
 import 'package:flutter_devarchitecture/core/widgets/animations/i_interaction_animation_asset.dart';
 import 'package:flutter_devarchitecture/core/widgets/animations/i_status_animation_asset.dart';
 import '../utilities/battery_state_management/i_battery_state.dart';
+import '../utilities/biometric_auth/i_biometric_auth.dart';
 import '../utilities/download_management/i_download.dart';
 import '../utilities/internet_connection/i_internet_connection.dart';
 import '../utilities/device_information_management/i_device_information.dart';
@@ -70,6 +71,9 @@ abstract class ICoreContainer {
   late IImageShare imageShare;
   late IJsonShare jsonShare;
   late IXmlShare xmlShare;
+
+  // utilities -> biometric auth
+  late IBiometricAuth biometricAuth;
 
   // get it
   setUp();

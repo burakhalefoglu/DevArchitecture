@@ -8,6 +8,8 @@ import 'package:flutter_devarchitecture/core/widgets/animations/lottie/lottie_st
 import 'package:flutter_devarchitecture/core/widgets/map/i_map.dart';
 import '../../utilities/battery_state_management/battery_state_plus.dart';
 import '../../utilities/battery_state_management/i_battery_state.dart';
+import '../../utilities/biometric_auth/i_biometric_auth.dart';
+import '../../utilities/biometric_auth/local_auth_service.dart';
 import '../../utilities/download_management/excel_download.dart';
 import '../../utilities/download_management/i_download.dart';
 import '../../utilities/download_management/image_download.dart';
@@ -154,6 +156,10 @@ class GetItCoreContainer implements ICoreContainer {
   late IInteractionAnimationAsset interactionAnimationAsset;
   @override
   late IStatusAnimationAsset statusAnimationAsset;
+
+  // Utilities -> biometric auth
+  @override
+  late IBiometricAuth biometricAuth;
 
   @override
   setUp() {
@@ -314,6 +320,12 @@ class GetItCoreContainer implements ICoreContainer {
     checkIfUnRegistered<IStatusAnimationAsset>((() {
       statusAnimationAsset = _getIt.registerSingleton<IStatusAnimationAsset>(
           LottieStatusAnimationAsset());
+    }));
+
+    //! Biometric auth
+    checkIfUnRegistered<IBiometricAuth>((() {
+      biometricAuth =
+          _getIt.registerSingleton<IBiometricAuth>(LocalAuthService());
     }));
   }
 

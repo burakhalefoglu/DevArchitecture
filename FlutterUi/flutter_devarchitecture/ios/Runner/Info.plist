@@ -4,6 +4,8 @@
 <dict>
 	<key>io.flutter.embedded_views_preview</key>
 <true/>
+<key>NSFaceIDUsageDescription</key>
+<string>Bu uygulama biyometrik kimlik doğrulama için yüz tanımayı kullanır.</string>
 <key>GMSApiKey</key>
 <!--TODO: FİLL  YOUR_API_KEY-->
 <string>YOUR_API_KEY</string>
