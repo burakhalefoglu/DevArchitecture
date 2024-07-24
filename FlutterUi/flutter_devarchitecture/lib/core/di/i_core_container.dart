@@ -1,5 +1,3 @@
-import 'package:flutter_devarchitecture/core/utilities/permission_handler/i_permission_handler.dart';
-
 import '../utilities/battery_state_management/i_battery_state.dart';
 import '../utilities/internet_connection/i_internet_connection.dart';
 import '../utilities/device_information_management/i_device_information.dart';
@@ -7,6 +5,7 @@ import '../utilities/http/http_interceptor.dart';
 import '../utilities/message_broker/i_message_broker.dart';
 import '../utilities/notification/i_notification_service.dart';
 import '../utilities/screen_message.dart';
+import '../utilities/permission_handler/i_permission_handler.dart';
 import '../local_storage/i_local_storage.dart';
 import '../utilities/http/i_http.dart';
 import '../widgets/animations/i_animation_asset.dart';
