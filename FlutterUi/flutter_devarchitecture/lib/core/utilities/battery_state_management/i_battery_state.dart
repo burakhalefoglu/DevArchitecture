@@ -1,4 +1,4 @@
-import '../screen_message.dart';
+import '../screen_message/i_screen_message.dart';
 
 abstract class IBatteryState {
   Future<int> getBatteryLevel();

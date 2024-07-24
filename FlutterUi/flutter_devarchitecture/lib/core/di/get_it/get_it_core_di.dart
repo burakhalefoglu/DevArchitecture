@@ -1,8 +1,32 @@
 import 'package:dart_amqp/dart_amqp.dart';
+import 'package:flutter_devarchitecture/core/utilities/file_share/i_share.dart';
+import 'package:flutter_devarchitecture/core/utilities/logger/i_logger.dart';
 import 'package:flutter_devarchitecture/core/utilities/permission_handler/i_permission_handler.dart';
 import 'package:flutter_devarchitecture/core/utilities/permission_handler/permission_handler.dart';
+import 'package:flutter_devarchitecture/core/widgets/animations/lottie/lottie_interaction_animation_asset.dart';
+import 'package:flutter_devarchitecture/core/widgets/animations/lottie/lottie_status_animation_asset.dart';
+import 'package:flutter_devarchitecture/core/widgets/map/i_map.dart';
 import '../../utilities/battery_state_management/battery_state_plus.dart';
 import '../../utilities/battery_state_management/i_battery_state.dart';
+import '../../utilities/download_management/excel_download.dart';
+import '../../utilities/download_management/i_download.dart';
+import '../../utilities/download_management/image_download.dart';
+import '../../utilities/download_management/json_download.dart';
+import '../../utilities/download_management/pdf_download.dart';
+import '../../utilities/download_management/txt_download.dart';
+import '../../utilities/download_management/xml_download.dart';
+import '../../utilities/file_share/excel_share.dart';
+import '../../utilities/file_share/image_share.dart';
+import '../../utilities/file_share/json_share.dart';
+import '../../utilities/file_share/pdf_share.dart';
+import '../../utilities/file_share/txt_share.dart';
+import '../../utilities/file_share/xml_share.dart';
+import '../../utilities/logger/logger.dart';
+import '../../utilities/screen_message/i_screen_message.dart';
+import '../../widgets/animations/i_page_animation_asset.dart';
+import '../../widgets/animations/i_interaction_animation_asset.dart';
+import '../../widgets/animations/lottie/lottie_page_animation_asset.dart';
+import '../../widgets/map/google_map.dart';
 import '/core/local_storage/securedStorage/secured_local_storage.dart';
 import '/core/utilities/internet_connection/internet_connection_checker.dart';
 import '../../utilities/device_information_management/device_info_plus.dart';
@@ -10,15 +34,14 @@ import '../../utilities/device_information_management/i_device_information.dart'
 import '/core/utilities/message_broker/i_message_broker.dart';
 import '/core/utilities/notification/i_notification_service.dart';
 import '/core/utilities/notification/local_notification_service.dart';
-import '/core/widgets/animations/i_animation_asset.dart';
-import '/core/widgets/animations/lottie_animation_asset.dart';
+import '../../widgets/animations/i_status_animation_asset.dart';
 import '/core/widgets/charts/graphic/graphic_analytics_chart.dart';
 import '/core/widgets/charts/graphic/graphic_basic_chart.dart';
 import '/core/widgets/charts/graphic/graphic_event_chart.dart';
 import 'package:get_it/get_it.dart';
 import '../../utilities/internet_connection/i_internet_connection.dart';
 import '../../utilities/message_broker/rabbitmq_broker.dart';
-import '../../utilities/screen_message.dart';
+import '../../utilities/screen_message/ok_toast_screen_message.dart';
 import '../../utilities/http/dart_io_http.dart';
 import '../../utilities/http/http_interceptor.dart';
 import '../../utilities/http/i_http.dart';
@@ -41,9 +64,6 @@ class GetItCoreContainer implements ICoreContainer {
   GetItCoreContainer() {
     init();
   }
-
-  @override
-  late IAnimationAsset animationAsset;
 
   @override
   late IHttp http;
@@ -94,51 +114,97 @@ class GetItCoreContainer implements ICoreContainer {
   late IPermissionHandler permissionHandler;
 
   @override
+  late ILogger logger;
+
+  @override
+  late IMap map;
+
+  // Downloads
+  @override
+  late IPdfDownload pdfDownload;
+  @override
+  late IExcelDownload excelDownload;
+  @override
+  late ITxtDownload txtDownload;
+  @override
+  late IJsonDownload jsonDownload;
+  @override
+  late IXmlDownload xmlDownload;
+  @override
+  late IImageDownload imageDownload;
+
+  // Shares
+  @override
+  late IPdfShare pdfShare;
+  @override
+  late IExcelShare excelShare;
+  @override
+  late ITxtShare txtShare;
+  @override
+  late IJsonShare jsonShare;
+  @override
+  late IXmlShare xmlShare;
+  @override
+  late IImageShare imageShare;
+
+  // Animations
+  @override
+  late IPageAnimationAsset pageAnimationAsset;
+  @override
+  late IInteractionAnimationAsset interactionAnimationAsset;
+  @override
+  late IStatusAnimationAsset statusAnimationAsset;
+
+  @override
   setUp() {
     checkIfUnRegistered<ITables>((() {
       dataTable = _getIt.registerSingleton<ITables>(DataTables());
     }));
+
     checkIfUnRegistered<IAddressInput>((() {
       addressInput =
           _getIt.registerSingleton<IAddressInput>(GoogleAutoComplete());
     }));
 
-    checkIfUnRegistered<IAnimationAsset>((() {
-      animationAsset =
-          _getIt.registerSingleton<IAnimationAsset>(LottieAnimationAsset());
-    }));
     checkIfUnRegistered<IScreenMessage>((() {
       screenMessage =
           _getIt.registerSingleton<IScreenMessage>(OkToastScreenMessage());
     }));
+
     checkIfUnRegistered<ILocalStorage>((() {
       storage = _getIt.registerSingleton<ILocalStorage>(SecuredLocalStorage());
     }));
+
     checkIfUnRegistered<IHttpInterceptor>((() {
       httpInterceptor =
           _getIt.registerSingleton<IHttpInterceptor>(HttpInterceptor());
     }));
+
     checkIfUnRegistered<IHttp>((() {
       http = _getIt.registerSingleton<IHttp>(HttpDartIo(httpInterceptor));
     }));
 
-    // charts
+    //! charts
     checkIfUnRegistered<IBasicChart>((() {
       basicChart = _getIt.registerSingleton<IBasicChart>(GraphicBasicChart());
     }));
+
     checkIfUnRegistered<IAnalyticsChart>((() {
       analyticsChart =
           _getIt.registerSingleton<IAnalyticsChart>(GraphicAnalyticsChart());
     }));
+
     checkIfUnRegistered<IEventStreamChart>((() {
       eventStreamChart = _getIt
           .registerSingleton<IEventStreamChart>(GraphicEventStreamChart());
     }));
+
     checkIfUnRegistered<IGaugesChart>((() {
       gaugesChart =
           _getIt.registerSingleton<IGaugesChart>(GeekyantsGaugesChart());
     }));
 
+    //! Utilities
     checkIfUnRegistered<IDeviceInformation>((() {
       deviceInformation =
           _getIt.registerSingleton<IDeviceInformation>(DeviceInfoPlus());
@@ -172,6 +238,82 @@ class GetItCoreContainer implements ICoreContainer {
     checkIfUnRegistered<IPermissionHandler>((() {
       permissionHandler =
           _getIt.registerSingleton<IPermissionHandler>(PermissionHandler());
+    }));
+
+    checkIfUnRegistered<ILogger>((() {
+      logger = _getIt.registerSingleton<ILogger>(LoggerImpl());
+    }));
+
+    //! download
+    checkIfUnRegistered<IPdfDownload>(() {
+      pdfDownload = _getIt.registerSingleton<IPdfDownload>(PdfDownload());
+    });
+
+    checkIfUnRegistered<IExcelDownload>(() {
+      excelDownload = _getIt.registerSingleton<IExcelDownload>(ExcelDownload());
+    });
+
+    checkIfUnRegistered<ITxtDownload>(() {
+      txtDownload = _getIt.registerSingleton<ITxtDownload>(TxtDownload());
+    });
+
+    checkIfUnRegistered<IJsonDownload>(() {
+      jsonDownload = _getIt.registerSingleton<IJsonDownload>(JsonDownload());
+    });
+
+    checkIfUnRegistered<IXmlDownload>(() {
+      xmlDownload = _getIt.registerSingleton<IXmlDownload>(XmlDownload());
+    });
+
+    checkIfUnRegistered<IImageDownload>(() {
+      imageDownload = _getIt.registerSingleton<IImageDownload>(ImageDownload());
+    });
+
+    //! map
+    checkIfUnRegistered<IMap>(() {
+      map = _getIt.registerSingleton<IMap>(MapGoogle());
+    });
+
+    //! file share
+    checkIfUnRegistered<IPdfShare>(() {
+      pdfShare = _getIt.registerSingleton<IPdfShare>(PdfShare());
+    });
+
+    checkIfUnRegistered<IExcelShare>(() {
+      excelShare = _getIt.registerSingleton<IExcelShare>(ExcelShare());
+    });
+
+    checkIfUnRegistered<ITxtShare>(() {
+      txtShare = _getIt.registerSingleton<ITxtShare>(TxtShare());
+    });
+
+    checkIfUnRegistered<IJsonShare>(() {
+      jsonShare = _getIt.registerSingleton<IJsonShare>(JsonShare());
+    });
+
+    checkIfUnRegistered<IXmlShare>(() {
+      xmlShare = _getIt.registerSingleton<IXmlShare>(XmlShare());
+    });
+
+    checkIfUnRegistered<IImageShare>(() {
+      imageShare = _getIt.registerSingleton<IImageShare>(ImageShare());
+    });
+
+    //!animation assets
+    checkIfUnRegistered<IPageAnimationAsset>((() {
+      pageAnimationAsset = _getIt
+          .registerSingleton<IPageAnimationAsset>(LottiePageAnimationAsset());
+    }));
+
+    checkIfUnRegistered<IInteractionAnimationAsset>((() {
+      interactionAnimationAsset =
+          _getIt.registerSingleton<IInteractionAnimationAsset>(
+              LottieInteractionAnimationAsset());
+    }));
+
+    checkIfUnRegistered<IStatusAnimationAsset>((() {
+      statusAnimationAsset = _getIt.registerSingleton<IStatusAnimationAsset>(
+          LottieStatusAnimationAsset());
     }));
   }
 

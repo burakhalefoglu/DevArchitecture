@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
-import '../theme/custom_colors.dart';
-
-abstract class IScreenMessage {
-  void getInfoMessage(String message) {}
-  void getSuccessMessage(String message) {}
-  void getErrorMessage(String message) {}
-  void getWarningMessage(String message) {}
-}
+import '../../theme/custom_colors.dart';
+import 'i_screen_message.dart';
 
 class OkToastScreenMessage implements IScreenMessage {
   static final OkToastScreenMessage _singleton =

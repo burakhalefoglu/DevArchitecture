@@ -24,8 +24,8 @@ class NotFoundPage extends StatelessWidget {
                         flex: context.isMobile ? 14 : 17,
                         child: CoreInitializer()
                             .coreContainer
-                            .animationAsset
-                            .get404AnimationAsset(context.percent80Screen,
+                            .pageAnimationAsset
+                            .get404PageAnimationAsset(context.percent80Screen,
                                 context.percent75Screen)),
                     Expanded(
                         child: Text(

@@ -7,7 +7,7 @@ import '../../../core/widgets/inputs/email_input.dart';
 import '../../../core/widgets/inputs/password_input.dart';
 import '/core/theme/extensions.dart';
 
-import '../../../core/utilities/bloc/base_state.dart';
+import '../../../core/bloc/base_state.dart';
 import '../../../core/constants/messages.dart';
 import '../../../core/di/core_initializer.dart';
 import 'bloc/auth_cubit.dart';

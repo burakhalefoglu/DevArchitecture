@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter_devarchitecture/core/utilities/internet_connection/i_internet_connection.dart';
-import 'package:flutter_devarchitecture/core/utilities/screen_message.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+import '../screen_message/i_screen_message.dart';
 
 class InternetConnectionWithChecker implements IInternetConnection {
   late StreamSubscription<InternetConnectionStatus> _listener;

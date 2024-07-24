@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:battery_plus/battery_plus.dart';
-import 'package:flutter_devarchitecture/core/utilities/screen_message.dart';
+import '../screen_message/i_screen_message.dart';
 import 'i_battery_state.dart';
 
 class BatteryStateBatteryPlus implements IBatteryState {

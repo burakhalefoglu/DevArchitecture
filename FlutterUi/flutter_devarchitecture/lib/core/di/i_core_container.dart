@@ -1,27 +1,41 @@
+import 'package:flutter_devarchitecture/core/utilities/file_share/i_share.dart';
+import 'package:flutter_devarchitecture/core/widgets/animations/i_page_animation_asset.dart';
+import 'package:flutter_devarchitecture/core/widgets/animations/i_interaction_animation_asset.dart';
+import 'package:flutter_devarchitecture/core/widgets/animations/i_status_animation_asset.dart';
 import '../utilities/battery_state_management/i_battery_state.dart';
+import '../utilities/download_management/i_download.dart';
 import '../utilities/internet_connection/i_internet_connection.dart';
 import '../utilities/device_information_management/i_device_information.dart';
 import '../utilities/http/http_interceptor.dart';
+import '../utilities/logger/i_logger.dart';
 import '../utilities/message_broker/i_message_broker.dart';
 import '../utilities/notification/i_notification_service.dart';
-import '../utilities/screen_message.dart';
 import '../utilities/permission_handler/i_permission_handler.dart';
 import '../local_storage/i_local_storage.dart';
 import '../utilities/http/i_http.dart';
-import '../widgets/animations/i_animation_asset.dart';
+import '../utilities/screen_message/i_screen_message.dart';
 import '../widgets/charts/i_chart.dart';
 import '../widgets/inputs/address_input/i_address_input.dart';
+import '../widgets/map/i_map.dart';
 import '../widgets/tables/i_tables.dart';
 
 abstract class ICoreContainer {
-  late IHttp http;
+  // Storage
   late ILocalStorage storage;
+
+  // http
+  late IHttp http;
   late IHttpInterceptor httpInterceptor;
 
-  late IAnimationAsset animationAsset;
+  // animations
+  late IPageAnimationAsset pageAnimationAsset;
+  late IInteractionAnimationAsset interactionAnimationAsset;
+  late IStatusAnimationAsset statusAnimationAsset;
+
+  // widgets
   late IAddressInput addressInput;
   late ITables dataTable;
-  late IScreenMessage screenMessage;
+  late IMap map;
 
   // charts
   late IBasicChart basicChart;
@@ -29,7 +43,11 @@ abstract class ICoreContainer {
   late IAnalyticsChart analyticsChart;
   late IEventStreamChart eventStreamChart;
 
+  // debug
+  late ILogger logger;
+
   // utilities
+  late IScreenMessage screenMessage;
   late IDeviceInformation deviceInformation;
   late INotificationService notificationService;
   late IMessageBroker messageBroker;
@@ -37,6 +55,23 @@ abstract class ICoreContainer {
   late IBatteryState batteryState;
   late IPermissionHandler permissionHandler;
 
+  // utilities -> download
+  late IPdfDownload pdfDownload;
+  late IExcelDownload excelDownload;
+  late ITxtDownload txtDownload;
+  late IJsonDownload jsonDownload;
+  late IXmlDownload xmlDownload;
+  late IImageDownload imageDownload;
+
+  // utilities -> file share
+  late IPdfShare pdfShare;
+  late IExcelShare excelShare;
+  late ITxtShare txtShare;
+  late IImageShare imageShare;
+  late IJsonShare jsonShare;
+  late IXmlShare xmlShare;
+
+  // get it
   setUp();
   void checkIfUnRegistered<T extends Object>(Function register);
 }
