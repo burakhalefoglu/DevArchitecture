@@ -6,15 +6,6 @@ import 'i_battery_state.dart';
 class BatteryStateBatteryPlus implements IBatteryState {
   late StreamSubscription<BatteryState> _listener;
 
-  static final BatteryStateBatteryPlus _singleton =
-      BatteryStateBatteryPlus._internal();
-
-  factory BatteryStateBatteryPlus() {
-    return _singleton;
-  }
-
-  BatteryStateBatteryPlus._internal();
-
   @override
   Future<int> getBatteryLevel() async {
     var battery = Battery();

@@ -3,13 +3,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../../core/local_storage/i_local_storage.dart';
 
 class SecuredLocalStorage implements ILocalStorage {
-  static final SecuredLocalStorage _singleton = SecuredLocalStorage._internal();
-
-  factory SecuredLocalStorage() {
-    return _singleton;
-  }
-  SecuredLocalStorage._internal();
-
   late FlutterSecureStorage storage;
   IOSOptions _getIosOptions() =>
       const IOSOptions(accessibility: KeychainAccessibility.first_unlock);

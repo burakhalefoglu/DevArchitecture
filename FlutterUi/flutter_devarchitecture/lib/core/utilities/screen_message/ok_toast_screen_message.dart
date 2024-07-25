@@ -5,15 +5,6 @@ import '../../theme/custom_colors.dart';
 import 'i_screen_message.dart';
 
 class OkToastScreenMessage implements IScreenMessage {
-  static final OkToastScreenMessage _singleton =
-      OkToastScreenMessage._internal();
-
-  factory OkToastScreenMessage() {
-    return _singleton;
-  }
-
-  OkToastScreenMessage._internal();
-
   @override
   void getInfoMessage(String message) {
     showToast(message,

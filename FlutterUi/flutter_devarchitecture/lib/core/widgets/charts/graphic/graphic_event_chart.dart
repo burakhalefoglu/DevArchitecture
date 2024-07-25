@@ -4,15 +4,6 @@ import '/core/widgets/charts/i_chart.dart';
 import 'package:graphic/graphic.dart';
 
 class GraphicEventStreamChart extends IEventStreamChart {
-  static final GraphicEventStreamChart _singleton =
-      GraphicEventStreamChart._internal();
-
-  factory GraphicEventStreamChart() {
-    return _singleton;
-  }
-
-  GraphicEventStreamChart._internal();
-
   @override
   Widget getEventStreamChart(
       BuildContext context,

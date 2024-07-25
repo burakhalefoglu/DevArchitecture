@@ -9,9 +9,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
+
   # firebase
   cloud_firestore: ^5.1.0
+  firebase_core: ^3.2.0
+  firebase_messaging: ^15.0.3
+  firebase_analytics: ^11.2.0
+  firebase_crashlytics: ^4.0.3
+  firebase_remote_config: ^5.0.3
+  firebase_performance: ^0.10.0+3
 
   # data
   collection: ^1.18.0

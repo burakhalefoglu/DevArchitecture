@@ -217,8 +217,8 @@ class GetItCoreContainer implements ICoreContainer {
     }));
 
     checkIfUnRegistered<INotificationService>((() {
-      notificationService = _getIt.registerSingleton<INotificationService>(
-          LocalNotificationService.init());
+      notificationService = _getIt
+          .registerSingleton<INotificationService>(LocalNotificationService());
     }));
 
     checkIfUnRegistered<IMessageBroker>((() {

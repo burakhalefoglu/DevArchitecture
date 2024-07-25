@@ -6,16 +6,6 @@ import '../screen_message/i_screen_message.dart';
 
 class InternetConnectionWithChecker implements IInternetConnection {
   late StreamSubscription<InternetConnectionStatus> _listener;
-
-  static final InternetConnectionWithChecker _singleton =
-      InternetConnectionWithChecker._internal();
-
-  factory InternetConnectionWithChecker() {
-    return _singleton;
-  }
-
-  InternetConnectionWithChecker._internal();
-
   @override
   Future<bool> isConnected() async {
     bool result = await InternetConnectionChecker().hasConnection;

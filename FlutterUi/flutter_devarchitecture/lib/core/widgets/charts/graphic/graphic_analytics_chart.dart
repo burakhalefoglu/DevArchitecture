@@ -4,15 +4,6 @@ import '/core/widgets/charts/i_chart.dart';
 import 'package:graphic/graphic.dart';
 
 class GraphicAnalyticsChart extends IAnalyticsChart {
-  static final GraphicAnalyticsChart _singleton =
-      GraphicAnalyticsChart._internal();
-
-  factory GraphicAnalyticsChart() {
-    return _singleton;
-  }
-
-  GraphicAnalyticsChart._internal();
-
   @override
   Widget getCandleStickChart(
       BuildContext context, List<Map<String, dynamic>> stockData,

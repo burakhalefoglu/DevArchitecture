@@ -3,15 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'i_notification_service.dart';
 
 class LocalNotificationService implements INotificationService {
-  static final LocalNotificationService _singleton =
-      LocalNotificationService._internal();
-
-  factory LocalNotificationService() {
-    return _singleton;
-  }
-  LocalNotificationService._internal();
-
-  LocalNotificationService.init() {
+  LocalNotificationService() {
     _initializeNotifications();
   }
 

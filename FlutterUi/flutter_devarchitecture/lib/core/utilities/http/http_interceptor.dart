@@ -6,13 +6,6 @@ abstract class IHttpInterceptor {
 }
 
 class HttpInterceptor implements IHttpInterceptor {
-  static final HttpInterceptor _singleton = HttpInterceptor._internal();
-
-  factory HttpInterceptor() {
-    return _singleton;
-  }
-  HttpInterceptor._internal();
-
   @override
   Future<Map<String, dynamic>> interceptJson() async {
     return {

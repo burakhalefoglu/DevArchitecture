@@ -5,13 +5,6 @@ import 'package:google_places_flutter/model/prediction.dart';
 import 'i_address_input.dart';
 
 class GoogleAutoComplete implements IAddressInput {
-  static final GoogleAutoComplete _singleton = GoogleAutoComplete._internal();
-
-  factory GoogleAutoComplete() {
-    return _singleton;
-  }
-  GoogleAutoComplete._internal();
-
   @override
   Widget getAddressInput() {
     var controller = TextEditingController();

@@ -3,13 +3,7 @@ import 'dart:async';
 import 'i_logger.dart';
 
 class LoggerImpl implements ILogger {
-  static final LoggerImpl _instance = LoggerImpl._internal();
-
-  factory LoggerImpl() {
-    return _instance;
-  }
-
-  LoggerImpl._internal()
+  LoggerImpl()
       : _logger = Logger(
           printer: PrettyPrinter(
             methodCount: 0,

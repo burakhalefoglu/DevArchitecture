@@ -266,8 +266,32 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.0.6"
-  firebase_core:
+  firebase_analytics:
+    dependency: "direct main"
+    description:
+      name: firebase_analytics
+      sha256: "2017da2cb0745fa912e13aadfc94e49691796cf6b7ed37edbca2a2388713da11"
+      url: "https://pub.dev"
+    source: hosted
+    version: "11.2.0"
+  firebase_analytics_platform_interface:
     dependency: transitive
+    description:
+      name: firebase_analytics_platform_interface
+      sha256: "4ea00fe31ff74c92c613e082193b55bd21f0653b536dd77cc1ba4cf60771d214"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.0"
+  firebase_analytics_web:
+    dependency: transitive
+    description:
+      name: firebase_analytics_web
+      sha256: e5ce84f0c4e6fb8f8ca673d009445938a61845d8fa6b42c11913d5bbdbedf300
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.9"
+  firebase_core:
+    dependency: "direct main"
     description:
       name: firebase_core
       sha256: "5159984ce9b70727473eb388394650677c02c925aaa6c9439905e1f30966a4d5"
@@ -290,6 +314,94 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.17.3"
+  firebase_crashlytics:
+    dependency: "direct main"
+    description:
+      name: firebase_crashlytics
+      sha256: da32da3b441d1bee73ca990085a3ae174b9fb3585229f02a278a2ea42454d784
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.3"
+  firebase_crashlytics_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_crashlytics_platform_interface
+      sha256: b7567106ed57bbadaa0610774cc17a10b82ed04a1aba99790f303385ac4ba78f
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.6.39"
+  firebase_messaging:
+    dependency: "direct main"
+    description:
+      name: firebase_messaging
+      sha256: "156c4292aa63a6a7d508c68ded984cb38730d2823c3265e573cb1e94983e2025"
+      url: "https://pub.dev"
+    source: hosted
+    version: "15.0.3"
+  firebase_messaging_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_messaging_platform_interface
+      sha256: "10408c5ca242b7fc632dd5eab4caf8fdf18ebe88db6052980fa71a18d88bd200"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.5.41"
+  firebase_messaging_web:
+    dependency: transitive
+    description:
+      name: firebase_messaging_web
+      sha256: c7a756e3750679407948de665735e69a368cb902940466e5d68a00ea7aba1aaa
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.8.11"
+  firebase_performance:
+    dependency: "direct main"
+    description:
+      name: firebase_performance
+      sha256: e5d35af7e4434d43da77fe5ed1c9ab4037876b59a4c7caaaefe1ffb34e51c6ff
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.0+3"
+  firebase_performance_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_performance_platform_interface
+      sha256: b763a6b71135fcce792b8a2b3793679a73e2af336c630c6336425adf5efe1c44
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4+39"
+  firebase_performance_web:
+    dependency: transitive
+    description:
+      name: firebase_performance_web
+      sha256: "1d3712f5445eceb4ab961ea7eabcefdc460cc7569be71223380c7ea4c2fa3ce2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.6+11"
+  firebase_remote_config:
+    dependency: "direct main"
+    description:
+      name: firebase_remote_config
+      sha256: aa150fcbaa1fe5afcb912ccf6a059f1a8ef8566dceccaa45ff72c8498ca2103e
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.3"
+  firebase_remote_config_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_remote_config_platform_interface
+      sha256: "0c4f4b473074ab37b069360629998dbc7175c334afc249051d8ad590521741a8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.39"
+  firebase_remote_config_web:
+    dependency: transitive
+    description:
+      name: firebase_remote_config_web
+      sha256: "45fcb61f5bd46eada6dc11d7167512e3441db50cfadd05394272fc1fdce4a999"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.11"
   fixnum:
     dependency: transitive
     description:

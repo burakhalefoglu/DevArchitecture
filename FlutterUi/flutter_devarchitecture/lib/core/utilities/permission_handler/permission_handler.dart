@@ -2,14 +2,6 @@ import 'i_permission_handler.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionHandler implements IPermissionHandler {
-  static final PermissionHandler _singleton = PermissionHandler._internal();
-
-  factory PermissionHandler() {
-    return _singleton;
-  }
-
-  PermissionHandler._internal();
-
   @override
   Future<bool> requestCameraPermission() async {
     return await _requestPermission(Permission.camera);
