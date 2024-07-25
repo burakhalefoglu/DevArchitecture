@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/core/theme/extensions.dart';
+import '../../../theme/extensions.dart';
 import '/core/widgets/charts/i_chart.dart';
 import 'package:graphic/graphic.dart';
 

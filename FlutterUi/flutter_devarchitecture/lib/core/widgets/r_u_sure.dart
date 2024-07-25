@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import '/core/theme/custom_colors.dart';
+import '../theme/custom_colors.dart';
 
 showAreYouSure(BuildContext context, void Function() onPressed) {
   return showDialog(

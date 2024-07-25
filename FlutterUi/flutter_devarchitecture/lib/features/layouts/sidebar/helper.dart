@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '/core/theme/extensions.dart';
+import '../../../core/theme/extensions.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../../../core/theme/custom_colors.dart';
+import '../../../core/theme/custom_colors.dart';
 
 ListTile buildNavElement(IconData icon, String text, String route,
     {bool isClickable = true}) {

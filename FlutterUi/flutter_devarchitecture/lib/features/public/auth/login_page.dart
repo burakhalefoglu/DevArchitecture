@@ -5,7 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../../core/widgets/inputs/dropdown_button.dart';
 import '../../../core/widgets/inputs/email_input.dart';
 import '../../../core/widgets/inputs/password_input.dart';
-import '/core/theme/extensions.dart';
+import '../../../core/theme/extensions.dart';
 
 import '../../../core/bloc/base_state.dart';
 import '../../../core/constants/messages.dart';

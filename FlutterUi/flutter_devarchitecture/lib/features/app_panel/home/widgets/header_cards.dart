@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/custom_colors.dart';
 import '../../../../core/widgets/base_widgets.dart';
-import '/core/theme/extensions.dart';
+import '../../../../core/theme/extensions.dart';
 
 Padding buildUsedSpaceCardWidget(BuildContext context) {
   return Padding(

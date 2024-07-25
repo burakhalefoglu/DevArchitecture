@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/di/core_initializer.dart';
-import '/core/theme/extensions.dart';
+import '../../../core/theme/extensions.dart';
 import '/features/layouts/base_scaffold.dart';
 import '../../../core/theme/custom_colors.dart';
 import '../../../core/widgets/base_widgets.dart';

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '/core/theme/extensions.dart';
+import '../../../../core/theme/extensions.dart';
 import '/core/widgets/tables/filter_table_widget.dart';
 import '../../../../core/widgets/base_widgets.dart';
 import '../../../../core/di/core_initializer.dart';
-import '/core/theme/custom_colors.dart';
+import '../../../../core/theme/custom_colors.dart';
 import '/core/widgets/button_widgets.dart';
 import '/features/layouts/base_scaffold.dart';
 

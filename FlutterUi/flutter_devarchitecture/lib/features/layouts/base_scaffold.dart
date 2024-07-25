@@ -3,7 +3,7 @@ import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/theme/custom_colors.dart';
+import '../../core/theme/custom_colors.dart';
 import '../../core/di/core_initializer.dart';
 import '../../core/theme/theme_provider.dart';
 import '../../routes/routes_constants.dart';
