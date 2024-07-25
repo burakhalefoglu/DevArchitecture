@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
 
-mixin InternetConnectionCheckerMixin {
+mixin InternetConnectionCheckerMixin<T extends StatefulWidget> on State<T> {
   Future<void> listenConnection() async {
     var _internetConnection =
         CoreInitializer().coreContainer.internetConnection;

@@ -75,8 +75,6 @@ abstract class ICoreContainer {
   // utilities -> biometric auth
   late IBiometricAuth biometricAuth;
 
-  // firebase
-
   // get it
   setUp();
   void checkIfUnRegistered<T extends Object>(Function register);

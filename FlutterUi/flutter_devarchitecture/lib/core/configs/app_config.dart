@@ -13,6 +13,8 @@ abstract class AppConfig {
 //? flutter run --dart-define ENV=staging --release
 //? flutter run --dart-define ENV=prod --release
 
+//? flutter run --dart-define ENV=prod --dart-define=FIREBASE=true
+
 AppConfig getConfig() {
   const environmentParameter = String.fromEnvironment('ENV');
   switch (environmentParameter) {
