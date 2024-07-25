@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../routes/routes_constants.dart';
 import 'helper.dart';
 import 'sidebar_constants.dart';
-import '../../../../core/theme/custom_colors.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -15,8 +14,6 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      surfaceTintColor: CustomColors.white.getColor,
-      backgroundColor: CustomColors.white.getColor,
       child: ListView(
         children: [
           buildLogoWidget(),

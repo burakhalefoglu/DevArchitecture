@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/theme/custom_colors.dart';
 import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import 'package:graphic/graphic.dart';
 
+import '../../../theme/custom_colors.dart';
 import '../i_chart.dart';
 
 class GraphicBasicChart extends IBasicChart {
@@ -106,7 +106,6 @@ class GraphicBasicChart extends IBasicChart {
                 },
               )
             ],
-            coord: RectCoord(color: CustomColors.white.getColor),
             axes: [
               Defaults.horizontalAxis,
               Defaults.verticalAxis,

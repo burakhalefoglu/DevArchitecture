@@ -11,6 +11,10 @@ class SecuredLocalStorage implements ILocalStorage {
         encryptedSharedPreferences: true,
       );
 
+  SecuredLocalStorage() {
+    init();
+  }
+
   @override
   init() async {
     storage = FlutterSecureStorage(

@@ -40,7 +40,7 @@ dependencies:
   flutter_modular: ^6.3.4
   get_it: ^7.7.0
   provider: ^6.1.2
-  
+
   # google places
   google_places_flutter: ^2.0.8
 
