@@ -40,9 +40,9 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App>
     with
+        OKToastMixin<App>,
         InternetConnectionCheckerMixin,
         BatteryStateMixin,
-        OKToastMixin<App>,
         ModularMixin {
   @override
   Widget buildChild(BuildContext context) {

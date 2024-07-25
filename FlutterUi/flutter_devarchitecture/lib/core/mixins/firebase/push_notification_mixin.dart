@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../di/firebase/firebase_initializer.dart';
+import '../../di/firebase/firebase_initializer.dart';
 
 mixin PushNotificationMixin<T extends StatefulWidget> on State<T> {
   final _pushNotificationService =

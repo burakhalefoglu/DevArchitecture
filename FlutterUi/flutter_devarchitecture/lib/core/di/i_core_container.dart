@@ -10,7 +10,7 @@ import '../utilities/device_information_management/i_device_information.dart';
 import '../utilities/http/http_interceptor.dart';
 import '../utilities/logger/i_logger.dart';
 import '../utilities/message_broker/i_message_broker.dart';
-import '../utilities/notification/i_notification_service.dart';
+import '../utilities/local_notification/i_notification_service.dart';
 import '../utilities/permission_handler/i_permission_handler.dart';
 import '../local_storage/i_local_storage.dart';
 import '../utilities/http/i_http.dart';
