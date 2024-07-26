@@ -24,6 +24,8 @@ import '../../utilities/file_share/pdf_share.dart';
 import '../../utilities/file_share/txt_share.dart';
 import '../../utilities/file_share/xml_share.dart';
 import '../../utilities/logger/logger.dart';
+import '../../utilities/qr_code/i_qr_code_scanner_service.dart';
+import '../../utilities/qr_code/qr_code_scanner_service_impl.dart';
 import '../../utilities/screen_message/i_screen_message.dart';
 import '../../widgets/animations/i_page_animation_asset.dart';
 import '../../widgets/animations/i_interaction_animation_asset.dart';
@@ -156,6 +158,10 @@ class GetItCoreContainer implements ICoreContainer {
   late IInteractionAnimationAsset interactionAnimationAsset;
   @override
   late IStatusAnimationAsset statusAnimationAsset;
+
+  // Utilities -> qr code
+  @override
+  late IQRCodeScannerService qrCodeScannerService;
 
   // Utilities -> biometric auth
   @override
@@ -320,6 +326,12 @@ class GetItCoreContainer implements ICoreContainer {
     checkIfUnRegistered<IStatusAnimationAsset>((() {
       statusAnimationAsset = _getIt.registerSingleton<IStatusAnimationAsset>(
           LottieStatusAnimationAsset());
+    }));
+
+    //! qrCode Scanner
+    checkIfUnRegistered<IQRCodeScannerService>((() {
+      qrCodeScannerService = _getIt
+          .registerSingleton<IQRCodeScannerService>(QRCodeScannerService());
     }));
 
     //! Biometric auth

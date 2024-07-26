@@ -14,6 +14,7 @@ import '../utilities/local_notification/i_notification_service.dart';
 import '../utilities/permission_handler/i_permission_handler.dart';
 import '../local_storage/i_local_storage.dart';
 import '../utilities/http/i_http.dart';
+import '../utilities/qr_code/i_qr_code_scanner_service.dart';
 import '../utilities/screen_message/i_screen_message.dart';
 import '../widgets/charts/i_chart.dart';
 import '../widgets/inputs/address_input/i_address_input.dart';
@@ -71,6 +72,9 @@ abstract class ICoreContainer {
   late IImageShare imageShare;
   late IJsonShare jsonShare;
   late IXmlShare xmlShare;
+
+  // utilities -> qr code
+  late IQRCodeScannerService qrCodeScannerService;
 
   // utilities -> biometric auth
   late IBiometricAuth biometricAuth;
