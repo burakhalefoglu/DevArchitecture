@@ -27,3 +27,5 @@ Build succeeded.
 # Run Api Project with Any Terminal
 
 ``> dotnet run -p WebAPI``
+## or
+``> dotnet watch run --project ./WebAPI/WebAPI.csproj``
