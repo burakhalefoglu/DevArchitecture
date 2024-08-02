@@ -4,6 +4,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+
+void refreshPage(BuildContext context) {
+    Navigator.pop(context);
+    Navigator.pushNamed(
+        context, Navigator.of(context).widget.pages.last.name ?? "");
+}
+
 Future<String> readResponse(HttpClientResponse response) async {
   final contents = StringBuffer();
   await for (var data in response.transform(utf8.decoder)) {
