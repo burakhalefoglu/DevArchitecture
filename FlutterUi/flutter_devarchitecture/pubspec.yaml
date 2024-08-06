@@ -96,7 +96,7 @@ flutter:
     - assets/images/logo.png
     - assets/animations/lottie/403.json
     - assets/animations/lottie/404.json
-    - assets/animations/lottie/loading.json
+    - assets/animations/lottie/loading.json 
     - assets/animations/lottie/success.json
     - assets/animations/lottie/error.json
     - assets/animations/lottie/checking.json
