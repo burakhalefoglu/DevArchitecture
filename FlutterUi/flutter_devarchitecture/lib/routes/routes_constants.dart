@@ -38,4 +38,10 @@ class RoutesConstants {
   static String internetConnectionPage = '/internet-connection-page';
   static String localNotificationPage = '/local-notification-page';
   static String screenMessagePage = '/screen-message-page';
+
+  // theme
+  static String colorPalettePage = '/color-palette-page';
+
+  // widgets
+  static String inputFieldPage = '/input-field-page';
 }

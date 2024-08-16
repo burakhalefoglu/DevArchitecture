@@ -186,6 +186,22 @@ class _NavBarState extends State<NavBar> {
               "icon": Icons.code
             },
           ]),
+          buildNavWithSubMenuItemElement(context, Icons.pages_outlined,
+              SidebarConstants.templatesPageTitle, [
+            {
+              "name": SidebarConstants.colorPalettePageTitle,
+              "route": RoutesConstants.colorPalettePage,
+              "icon": Icons.color_lens_outlined
+            },
+          ]),
+          buildNavWithSubMenuItemElement(
+              context, Icons.widgets, SidebarConstants.widgetsPageTitle, [
+            {
+              "name": SidebarConstants.inputExamplesPageTitle,
+              "route": RoutesConstants.inputFieldPage,
+              "icon": Icons.input_outlined
+            },
+          ]),
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:flutter_devarchitecture/features/theme/color_palette_page.dart';
 import 'package:flutter_devarchitecture/features/utilities/screen_message_page.dart';
 
 import '../features/utilities/Share/csv_share_button_page.dart';
@@ -9,6 +10,7 @@ import '../features/utilities/Share/txt_share_button_page.dart';
 import '../features/utilities/Share/xml_share_button_page.dart';
 import '../features/utilities/internet_connection_page.dart';
 import '../features/utilities/local_notification_page.dart';
+import '../features/widgets/input_examples_page.dart';
 import '/features/admin_panel/languages/admin_language_page.dart';
 import '/features/admin_panel/users/pages/admin_user_page.dart';
 import '/features/utilities/Download/csv_download_button_page.dart';
@@ -209,6 +211,18 @@ class AppRouteModule extends Module {
 
     r.child(RoutesConstants.screenMessagePage,
         child: (context) => ScreenMessagePage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    //*? theme pages
+    r.child(RoutesConstants.colorPalettePage,
+        child: (context) => ColorPalettePage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    //*? widgets
+    r.child(RoutesConstants.inputFieldPage,
+        child: (context) => InputExamplesPage(),
         transition: transition,
         guards: [AuthGuard()]);
   }
