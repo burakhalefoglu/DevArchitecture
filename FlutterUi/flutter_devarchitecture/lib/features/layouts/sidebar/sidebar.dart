@@ -133,6 +133,44 @@ class _NavBarState extends State<NavBar> {
               "icon": Icons.code
             },
           ]),
+          buildNavWithSubMenuItemElement(
+              context, Icons.share_outlined, SidebarConstants.sharePageTitle, [
+            {
+              "name": SidebarConstants.excelSharePageTitle,
+              "route": RoutesConstants.excelSharePage,
+              "icon": Icons.table_chart
+            },
+            {
+              "name": SidebarConstants.pdfSharePageTitle,
+              "route": RoutesConstants.pdfSharePage,
+              "icon": Icons.picture_as_pdf
+            },
+            {
+              "name": SidebarConstants.imageSharePageTitle,
+              "route": RoutesConstants.imageSharePage,
+              "icon": Icons.image
+            },
+            {
+              "name": SidebarConstants.csvSharePageTitle,
+              "route": RoutesConstants.csvSharePage,
+              "icon": Icons.table_chart
+            },
+            {
+              "name": SidebarConstants.xmlSharePageTitle,
+              "route": RoutesConstants.xmlSharePage,
+              "icon": Icons.code
+            },
+            {
+              "name": SidebarConstants.txtSharePageTitle,
+              "route": RoutesConstants.txtSharePage,
+              "icon": Icons.description
+            },
+            {
+              "name": SidebarConstants.jsonSharePageTitle,
+              "route": RoutesConstants.jsonSharePage,
+              "icon": Icons.code
+            },
+          ]),
         ],
       ),
     );

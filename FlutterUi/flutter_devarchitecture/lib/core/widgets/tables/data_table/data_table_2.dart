@@ -89,7 +89,7 @@ class DataTables implements ITables {
     bool isBordered = false,
     Widget? infoHover,
     Widget? addButton,
-    Widget? downloadButton,
+    Widget? utilityButton,
   }) {
     cells.sort((a, b) => a.values.first.compareTo(b.values.first));
     var dataColumns = <DataColumn2>[];
@@ -121,7 +121,7 @@ class DataTables implements ITables {
     }
     var headerButtonCount = infoHover != null ? 1 : 0;
     headerButtonCount += addButton != null ? 1 : 0;
-    headerButtonCount += downloadButton != null ? 1 : 0;
+    headerButtonCount += utilityButton != null ? 1 : 0;
 
     var rowButtonCount = customManipulationButton.length;
 
@@ -132,8 +132,8 @@ class DataTables implements ITables {
       if (addButton != null) {
         dataColumns.add(DataColumn2(label: addButton, fixedWidth: 32));
       }
-      if (downloadButton != null) {
-        dataColumns.add(DataColumn2(label: downloadButton, fixedWidth: 32));
+      if (utilityButton != null) {
+        dataColumns.add(DataColumn2(label: utilityButton, fixedWidth: 32));
       }
     } else {
       for (var i = 0; i < rowButtonCount - headerButtonCount; i++) {
@@ -145,8 +145,8 @@ class DataTables implements ITables {
       if (addButton != null) {
         dataColumns.add(DataColumn2(label: addButton, fixedWidth: 32));
       }
-      if (downloadButton != null) {
-        dataColumns.add(DataColumn2(label: downloadButton, fixedWidth: 32));
+      if (utilityButton != null) {
+        dataColumns.add(DataColumn2(label: utilityButton, fixedWidth: 32));
       }
     }
     return Padding(

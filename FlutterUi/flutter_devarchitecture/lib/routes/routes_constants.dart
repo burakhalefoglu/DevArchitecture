@@ -26,4 +26,12 @@ class RoutesConstants {
   static String imageDownloadPage = '/image-download-page';
   static String txtDownloadPage = '/txt-download-page';
   static String jsonDownloadPage = '/json-download-page';
+
+  static String excelSharePage = '/excel-share-page';
+  static String pdfSharePage = '/pdf-share-page';
+  static String csvSharePage = '/csv-share-page';
+  static String xmlSharePage = '/xml-share-page';
+  static String imageSharePage = '/image-share-page';
+  static String txtSharePage = '/txt-share-page';
+  static String jsonSharePage = '/json-share-page';
 }

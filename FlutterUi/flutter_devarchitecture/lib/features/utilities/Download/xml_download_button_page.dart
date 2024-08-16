@@ -37,7 +37,7 @@ class XmlDownloadPage extends StatelessWidget {
               color: CustomColors.white.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              downloadButton: downloadButtons.xmlButton(context),
+              utilityButton: downloadButtons.xmlButton(context),
             ),
           ),
           const Spacer(flex: 5),

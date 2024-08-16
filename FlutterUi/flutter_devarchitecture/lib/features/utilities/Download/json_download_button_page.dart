@@ -37,7 +37,7 @@ class JsonDownloadPage extends StatelessWidget {
               color: CustomColors.white.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              downloadButton: downloadButtons.jsonButton(context),
+              utilityButton: downloadButtons.jsonButton(context),
             ),
           ),
           const Spacer(flex: 5),

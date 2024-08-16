@@ -38,7 +38,7 @@ class CsvDownloadPage extends StatelessWidget {
               color: CustomColors.white.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              downloadButton: downloadButtons.csvButton(context),
+              utilityButton: downloadButtons.csvButton(context),
             ),
           ),
           const Spacer(flex: 5),

@@ -37,7 +37,7 @@ class PdfDownloadPage extends StatelessWidget {
               color: CustomColors.white.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              downloadButton: downloadButtons.pdfButton(context),
+              utilityButton: downloadButtons.pdfButton(context),
             ),
           ),
           const Spacer(flex: 5),

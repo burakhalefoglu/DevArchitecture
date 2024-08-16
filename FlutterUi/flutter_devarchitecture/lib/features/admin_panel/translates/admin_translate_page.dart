@@ -266,7 +266,7 @@ class AdminTranslatePage extends StatelessWidget {
                       .screenMessage
                       .getSuccessMessage("Veri Ekleme"),
                   color: CustomColors.dark.getColor),
-              downloadButton: getDownloadButton(
+              utilityButton: getDownloadButton(
                   context,
                   () => CoreInitializer()
                       .coreContainer

@@ -12,7 +12,7 @@ class FilterTableWidget extends StatefulWidget {
   final List<void Function(int)> customManipulationCallback;
   final Widget? infoHover;
   final Widget? addButton;
-  final Widget? downloadButton;
+  final Widget? utilityButton;
 
   const FilterTableWidget({
     super.key,
@@ -23,7 +23,7 @@ class FilterTableWidget extends StatefulWidget {
     required this.customManipulationCallback,
     this.infoHover,
     this.addButton,
-    this.downloadButton,
+    this.utilityButton,
   });
 
   @override
@@ -62,7 +62,7 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
           Expanded(
             flex: 2,
             child: CustomTextInput(
-              labelText: "Search",
+              labelText: " Search",
               hintText: "",
               min: 3,
               max: 15,
@@ -105,7 +105,7 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
                   widget.customManipulationCallback,
                   infoHover: widget.infoHover,
                   addButton: widget.addButton,
-                  downloadButton: widget.downloadButton)),
+                  utilityButton: widget.utilityButton)),
       const Spacer(),
     ]);
   }

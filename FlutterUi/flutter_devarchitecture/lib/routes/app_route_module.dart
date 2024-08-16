@@ -1,3 +1,10 @@
+import '../features/utilities/Share/csv_share_button_page.dart';
+import '../features/utilities/Share/excel_share_button_page.dart';
+import '../features/utilities/Share/image_share_button_page.dart';
+import '../features/utilities/Share/json_share_button_page.dart';
+import '../features/utilities/Share/pdf_share_button_page.dart';
+import '../features/utilities/Share/txt_share_button_page.dart';
+import '../features/utilities/Share/xml_share_button_page.dart';
 import '/features/admin_panel/languages/admin_language_page.dart';
 import '/features/admin_panel/users/pages/admin_user_page.dart';
 import '/features/utilities/Download/csv_download_button_page.dart';
@@ -114,7 +121,7 @@ class AppRouteModule extends Module {
         transition: transition,
         guards: [AuthGuard()]);
 
-    //*? DOWNLOAD BUTTONS
+    //*? DOWNLOAD PAGES
     r.child(RoutesConstants.excelDownloadPage,
         child: (context) => ExcelDownloadPage(),
         transition: transition,
@@ -147,6 +154,42 @@ class AppRouteModule extends Module {
 
     r.child(RoutesConstants.xmlDownloadPage,
         child: (context) => XmlDownloadPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    //*? SHARE PAGES
+    r.child(RoutesConstants.xmlSharePage,
+        child: (context) => XmlSharePage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.pdfSharePage,
+        child: (context) => PdfSharePage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.excelSharePage,
+        child: (context) => ExcelSharePage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.csvSharePage,
+        child: (context) => CsvSharePage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.imageSharePage,
+        child: (context) => ImageSharePage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.txtSharePage,
+        child: (context) => TxtSharePage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.jsonSharePage,
+        child: (context) => JsonSharePage(),
         transition: transition,
         guards: [AuthGuard()]);
   }

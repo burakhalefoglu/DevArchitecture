@@ -37,7 +37,7 @@ class ExcelDownloadPage extends StatelessWidget {
               color: CustomColors.white.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              downloadButton: downloadButtons.excelButton(context),
+              utilityButton: downloadButtons.excelButton(context),
             ),
           ),
           const Spacer(flex: 5),

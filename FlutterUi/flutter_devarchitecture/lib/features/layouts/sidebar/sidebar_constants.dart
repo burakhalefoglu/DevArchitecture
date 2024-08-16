@@ -26,4 +26,13 @@ class SidebarConstants {
   static const String xmlDownloadPageTitle = "XML";
   static const String imageDownloadPageTitle = "Resim";
   static const String txtDownloadPageTitle = "TXT";
+
+  static const String sharePageTitle = "Paylaşım İşlemleri";
+  static const String excelSharePageTitle = "Excel";
+  static const String pdfSharePageTitle = "PDF";
+  static const String csvSharePageTitle = "CSV";
+  static const String jsonSharePageTitle = "JSON";
+  static const String xmlSharePageTitle = "XML";
+  static const String imageSharePageTitle = "Resim";
+  static const String txtSharePageTitle = "TXT";
 }

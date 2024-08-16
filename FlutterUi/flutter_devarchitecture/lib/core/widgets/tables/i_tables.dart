@@ -16,5 +16,5 @@ abstract class ITables {
       {bool isBordered = false,
       Widget? infoHover,
       Widget? addButton,
-      Widget? downloadButton});
+      Widget? utilityButton});
 }

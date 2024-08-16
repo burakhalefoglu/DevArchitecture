@@ -37,7 +37,7 @@ class TxtDownloadPage extends StatelessWidget {
               color: CustomColors.white.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              downloadButton: downloadButtons.txtButton(context),
+              utilityButton: downloadButtons.txtButton(context),
             ),
           ),
           const Spacer(flex: 5),
