@@ -35,4 +35,8 @@ class SidebarConstants {
   static const String xmlSharePageTitle = "XML";
   static const String imageSharePageTitle = "Resim";
   static const String txtSharePageTitle = "TXT";
+
+  static const String internetConnectionPageTitle = "İnternet Bağlantısı";
+  static const String localNotificationPageTitle = "Yerel Bildirimler";
+  static const String screenMessagePageTitle = "Ekran Mesajı";
 }

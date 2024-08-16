@@ -1,4 +1,4 @@
-import '../../di/core_initializer.dart';
+import '../di/core_initializer.dart';
 
 abstract class IHttpInterceptor {
   Future<Map<String, dynamic>> interceptJson();

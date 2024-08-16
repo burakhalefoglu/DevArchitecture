@@ -1,3 +1,5 @@
+import 'package:flutter_devarchitecture/features/utilities/screen_message_page.dart';
+
 import '../features/utilities/Share/csv_share_button_page.dart';
 import '../features/utilities/Share/excel_share_button_page.dart';
 import '../features/utilities/Share/image_share_button_page.dart';
@@ -5,6 +7,8 @@ import '../features/utilities/Share/json_share_button_page.dart';
 import '../features/utilities/Share/pdf_share_button_page.dart';
 import '../features/utilities/Share/txt_share_button_page.dart';
 import '../features/utilities/Share/xml_share_button_page.dart';
+import '../features/utilities/internet_connection_page.dart';
+import '../features/utilities/local_notification_page.dart';
 import '/features/admin_panel/languages/admin_language_page.dart';
 import '/features/admin_panel/users/pages/admin_user_page.dart';
 import '/features/utilities/Download/csv_download_button_page.dart';
@@ -190,6 +194,21 @@ class AppRouteModule extends Module {
 
     r.child(RoutesConstants.jsonSharePage,
         child: (context) => JsonSharePage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.internetConnectionPage,
+        child: (context) => InternetConnectionPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.localNotificationPage,
+        child: (context) => LocalNotificationPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.screenMessagePage,
+        child: (context) => ScreenMessagePage(),
         transition: transition,
         guards: [AuthGuard()]);
   }

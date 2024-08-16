@@ -92,6 +92,21 @@ class _NavBarState extends State<NavBar> {
               "route": RoutesConstants.deviceInfoPage,
               "icon": Icons.devices
             },
+            {
+              "name": SidebarConstants.internetConnectionPageTitle,
+              "route": RoutesConstants.internetConnectionPage,
+              "icon": Icons.network_check_outlined
+            },
+            {
+              "name": SidebarConstants.localNotificationPageTitle,
+              "route": RoutesConstants.localNotificationPage,
+              "icon": Icons.notifications_active_outlined
+            },
+            {
+              "name": SidebarConstants.screenMessagePageTitle,
+              "route": RoutesConstants.screenMessagePage,
+              "icon": Icons.message
+            },
           ]),
           buildNavWithSubMenuItemElement(
               context,

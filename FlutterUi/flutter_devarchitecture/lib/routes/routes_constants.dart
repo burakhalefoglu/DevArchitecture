@@ -34,4 +34,8 @@ class RoutesConstants {
   static String imageSharePage = '/image-share-page';
   static String txtSharePage = '/txt-share-page';
   static String jsonSharePage = '/json-share-page';
+
+  static String internetConnectionPage = '/internet-connection-page';
+  static String localNotificationPage = '/local-notification-page';
+  static String screenMessagePage = '/screen-message-page';
 }
