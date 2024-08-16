@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/di/core_initializer.dart';
+import '../layouts/base_scaffold.dart';
 
 class BatteryStatusPage extends StatefulWidget {
   @override
@@ -45,9 +46,9 @@ class _BatteryStatusPageState extends State<BatteryStatusPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Battery Status')),
-      body: Padding(
+    return buildBaseScaffold(
+      context,
+      Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(

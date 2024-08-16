@@ -1,4 +1,5 @@
 import 'package:dart_amqp/dart_amqp.dart';
+import 'package:flutter_devarchitecture/core/local_storage/shared_pref/shared_preferences.dart';
 import 'package:flutter_devarchitecture/core/utilities/file_share/i_share.dart';
 import 'package:flutter_devarchitecture/core/utilities/logger/i_logger.dart';
 import 'package:flutter_devarchitecture/core/utilities/permission_handler/i_permission_handler.dart';
@@ -10,6 +11,7 @@ import '../../utilities/battery_state_management/battery_state_plus.dart';
 import '../../utilities/battery_state_management/i_battery_state.dart';
 import '../../utilities/biometric_auth/i_biometric_auth.dart';
 import '../../utilities/biometric_auth/local_auth_service.dart';
+import '../../utilities/download_management/csv_download.dart';
 import '../../utilities/download_management/excel_download.dart';
 import '../../utilities/download_management/i_download.dart';
 import '../../utilities/download_management/image_download.dart';
@@ -17,6 +19,7 @@ import '../../utilities/download_management/json_download.dart';
 import '../../utilities/download_management/pdf_download.dart';
 import '../../utilities/download_management/txt_download.dart';
 import '../../utilities/download_management/xml_download.dart';
+import '../../utilities/file_share/csv_share.dart';
 import '../../utilities/file_share/excel_share.dart';
 import '../../utilities/file_share/image_share.dart';
 import '../../utilities/file_share/json_share.dart';
@@ -31,7 +34,6 @@ import '../../widgets/animations/i_page_animation_asset.dart';
 import '../../widgets/animations/i_interaction_animation_asset.dart';
 import '../../widgets/animations/lottie/lottie_page_animation_asset.dart';
 import '../../widgets/map/google_map.dart';
-import '/core/local_storage/securedStorage/secured_local_storage.dart';
 import '/core/utilities/internet_connection/internet_connection_checker.dart';
 import '../../utilities/device_information_management/device_info_plus.dart';
 import '../../utilities/device_information_management/i_device_information.dart';
@@ -136,6 +138,8 @@ class GetItCoreContainer implements ICoreContainer {
   late IXmlDownload xmlDownload;
   @override
   late IImageDownload imageDownload;
+  @override
+  late ICsvDownload csvDownload;
 
   // Shares
   @override
@@ -150,6 +154,8 @@ class GetItCoreContainer implements ICoreContainer {
   late IXmlShare xmlShare;
   @override
   late IImageShare imageShare;
+  @override
+  late ICsvShare csvShare;
 
   // Animations
   @override
@@ -184,7 +190,8 @@ class GetItCoreContainer implements ICoreContainer {
     }));
 
     checkIfUnRegistered<ILocalStorage>((() {
-      storage = _getIt.registerSingleton<ILocalStorage>(SecuredLocalStorage());
+      storage = _getIt
+          .registerSingleton<ILocalStorage>(SharedPreferencesLocalStorage());
     }));
 
     checkIfUnRegistered<IHttpInterceptor>((() {
@@ -280,6 +287,9 @@ class GetItCoreContainer implements ICoreContainer {
     checkIfUnRegistered<IImageDownload>(() {
       imageDownload = _getIt.registerSingleton<IImageDownload>(ImageDownload());
     });
+    checkIfUnRegistered<ICsvDownload>(() {
+      csvDownload = _getIt.registerSingleton<ICsvDownload>(CsvDownload());
+    });
 
     //! map
     checkIfUnRegistered<IMap>(() {
@@ -309,6 +319,10 @@ class GetItCoreContainer implements ICoreContainer {
 
     checkIfUnRegistered<IImageShare>(() {
       imageShare = _getIt.registerSingleton<IImageShare>(ImageShare());
+    });
+
+    checkIfUnRegistered<ICsvShare>(() {
+      csvShare = _getIt.registerSingleton<ICsvShare>(CsvShare());
     });
 
     //!animation assets

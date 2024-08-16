@@ -1,5 +1,5 @@
-import 'package:flutter_devarchitecture/core/utilities/biometric_auth/i_biometric_auth.dart';
 import 'package:local_auth/local_auth.dart';
+import '/core/utilities/biometric_auth/i_biometric_auth.dart';
 
 class LocalAuthService implements IBiometricAuth {
   final LocalAuthentication _localAuthentication = LocalAuthentication();
@@ -51,6 +51,38 @@ class LocalAuthService implements IBiometricAuth {
         ),
       );
     } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> requestFingerprintPermission() async {
+    return await _requestBiometricPermission(CustomBiometricType.fingerprint);
+  }
+
+  @override
+  Future<bool> requestFacePermission() async {
+    return await _requestBiometricPermission(CustomBiometricType.face);
+  }
+
+  @override
+  Future<bool> requestIrisPermission() async {
+    return await _requestBiometricPermission(CustomBiometricType.iris);
+  }
+
+  Future<bool> _requestBiometricPermission(
+      CustomBiometricType biometricType) async {
+    try {
+      final availableBiometrics = await getAvailableBiometrics();
+      if (availableBiometrics.contains(biometricType)) {
+        // Biometrik doğrulama türü cihazda mevcut
+        return true;
+      } else {
+        // Biometrik doğrulama türü cihazda mevcut değil
+        return false;
+      }
+    } catch (e) {
+      // Hata yönetimi
       return false;
     }
   }

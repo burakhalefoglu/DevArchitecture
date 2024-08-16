@@ -16,4 +16,14 @@ class RoutesConstants {
 
   // This is utility pages
   static String batteryStatusPage = '/battery-status';
+  static String biometricAuthPage = '/biometric-authentication';
+  static String deviceInfoPage = '/device-info';
+
+  static String excelDownloadPage = '/excel-download-page';
+  static String pdfDownloadPage = '/pdf-download-page';
+  static String csvDownloadPage = '/csv-download-page';
+  static String xmlDownloadPage = '/xml-download-page';
+  static String imageDownloadPage = '/image-download-page';
+  static String txtDownloadPage = '/txt-download-page';
+  static String jsonDownloadPage = '/json-download-page';
 }

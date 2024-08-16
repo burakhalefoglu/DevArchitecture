@@ -13,3 +13,5 @@ abstract class IJsonDownload extends IDownload {}
 abstract class IXmlDownload extends IDownload {}
 
 abstract class IImageDownload extends IDownload {}
+
+abstract class ICsvDownload extends IDownload {}

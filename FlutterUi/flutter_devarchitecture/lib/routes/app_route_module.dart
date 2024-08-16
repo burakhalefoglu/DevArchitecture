@@ -1,5 +1,10 @@
-import 'package:flutter_devarchitecture/features/admin_panel/languages/admin_language_page.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/users/pages/admin_user_page.dart';
+import '/features/admin_panel/languages/admin_language_page.dart';
+import '/features/admin_panel/users/pages/admin_user_page.dart';
+import '/features/utilities/Download/csv_download_button_page.dart';
+import '/features/utilities/Download/excel_download_button_page.dart';
+import '/features/utilities/Download/image_download_button_page.dart';
+import '/features/utilities/Download/json_download_button_page.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../core/guard/auth_guard.dart';
@@ -10,7 +15,12 @@ import '../features/admin_panel/translates/admin_translate_page.dart';
 import '../features/app_panel/home/home_page.dart';
 import '../features/public/auth/login_page.dart';
 import '../features/public/not_found/not_found_page.dart';
+import '../features/utilities/Download/pdf_download_button_page.dart';
+import '../features/utilities/Download/txt_download_button_page.dart';
+import '../features/utilities/Download/xml_download_button_page.dart';
 import '../features/utilities/battery_status_page.dart';
+import '../features/utilities/biometric_auth_page.dart';
+import '../features/utilities/device_info_page.dart';
 import 'routes_constants.dart';
 
 class AppRouteModule extends Module {
@@ -89,6 +99,54 @@ class AppRouteModule extends Module {
     //*? Battery Status Page
     r.child(RoutesConstants.batteryStatusPage,
         child: (context) => BatteryStatusPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    //*? Biometric Auth Page
+    r.child(RoutesConstants.biometricAuthPage,
+        child: (context) => BiometricAuthPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    //*? Device Info Page
+    r.child(RoutesConstants.deviceInfoPage,
+        child: (context) => DeviceInfoPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    //*? DOWNLOAD BUTTONS
+    r.child(RoutesConstants.excelDownloadPage,
+        child: (context) => ExcelDownloadPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.csvDownloadPage,
+        child: (context) => CsvDownloadPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.imageDownloadPage,
+        child: (context) => ImageDownloadPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.jsonDownloadPage,
+        child: (context) => JsonDownloadPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.pdfDownloadPage,
+        child: (context) => PdfDownloadPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.txtDownloadPage,
+        child: (context) => TxtDownloadPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.xmlDownloadPage,
+        child: (context) => XmlDownloadPage(),
         transition: transition,
         guards: [AuthGuard()]);
   }

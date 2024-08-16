@@ -20,7 +20,7 @@ dependencies:
   firebase_performance: ^0.10.0+3
 
   # data
-  collection: ^1.18.0
+  collection: ^1.19.0
   data_table_2: ^2.5.15
   intl: ^0.19.0
 
@@ -77,6 +77,8 @@ dependencies:
   share_plus: ^9.0.0
   local_auth: ^2.2.0
   qr_code_scanner: ^1.0.1
+  csv: ^6.0.0
+
 
 dev_dependencies:
   flutter_test:
@@ -89,7 +91,7 @@ dependency_overrides:
       url: https://github.com/flutter/flutter.git
       path: packages/flutter_web_plugins
   material_color_utilities: ^0.8.0
-
+  collection: ^1.19.0
 flutter:
   uses-material-design: true
   assets:
@@ -108,3 +110,7 @@ flutter:
         - asset: assets/fonts/nunito.ttf
         - asset: assets/fonts/nunito-italic.ttf
           style: italic
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
+        - asset: assets/fonts/NotoSans-Bold.ttf

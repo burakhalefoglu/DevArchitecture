@@ -82,6 +82,56 @@ class _NavBarState extends State<NavBar> {
               "route": RoutesConstants.batteryStatusPage,
               "icon": Icons.battery_unknown
             },
+            {
+              "name": SidebarConstants.biometricAuthPageTitle,
+              "route": RoutesConstants.biometricAuthPage,
+              "icon": Icons.fingerprint
+            },
+            {
+              "name": SidebarConstants.deviceInfoPageTitle,
+              "route": RoutesConstants.deviceInfoPage,
+              "icon": Icons.devices
+            },
+          ]),
+          buildNavWithSubMenuItemElement(
+              context,
+              Icons.download_for_offline_outlined,
+              SidebarConstants.downloadPageTitle, [
+            {
+              "name": SidebarConstants.excelDownloadPageTitle,
+              "route": RoutesConstants.excelDownloadPage,
+              "icon": Icons.table_chart
+            },
+            {
+              "name": SidebarConstants.pdfDownloadPageTitle,
+              "route": RoutesConstants.pdfDownloadPage,
+              "icon": Icons.picture_as_pdf
+            },
+            {
+              "name": SidebarConstants.imageDownloadPageTitle,
+              "route": RoutesConstants.imageDownloadPage,
+              "icon": Icons.image
+            },
+            {
+              "name": SidebarConstants.csvDownloadPageTitle,
+              "route": RoutesConstants.csvDownloadPage,
+              "icon": Icons.table_chart
+            },
+            {
+              "name": SidebarConstants.xmlDownloadPageTitle,
+              "route": RoutesConstants.xmlDownloadPage,
+              "icon": Icons.code
+            },
+            {
+              "name": SidebarConstants.txtDownloadPageTitle,
+              "route": RoutesConstants.txtDownloadPage,
+              "icon": Icons.description
+            },
+            {
+              "name": SidebarConstants.jsonDownloadPageTitle,
+              "route": RoutesConstants.jsonDownloadPage,
+              "icon": Icons.code
+            },
           ]),
         ],
       ),

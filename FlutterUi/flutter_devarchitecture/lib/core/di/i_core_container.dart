@@ -64,6 +64,7 @@ abstract class ICoreContainer {
   late IJsonDownload jsonDownload;
   late IXmlDownload xmlDownload;
   late IImageDownload imageDownload;
+  late ICsvDownload csvDownload;
 
   // utilities -> file share
   late IPdfShare pdfShare;
@@ -72,6 +73,7 @@ abstract class ICoreContainer {
   late IImageShare imageShare;
   late IJsonShare jsonShare;
   late IXmlShare xmlShare;
+  late ICsvShare csvShare;
 
   // utilities -> qr code
   late IQRCodeScannerService qrCodeScannerService;
