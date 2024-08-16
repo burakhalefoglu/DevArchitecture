@@ -73,6 +73,16 @@ class _NavBarState extends State<NavBar> {
               "icon": Icons.home
             },
           ]),
+
+          // Utility Panel
+          buildNavWithSubMenuItemElement(context, Icons.architecture_outlined,
+              SidebarConstants.utilitiesPageTitle, [
+            {
+              "name": SidebarConstants.batteryStatusPageTitle,
+              "route": RoutesConstants.batteryStatusPage,
+              "icon": Icons.battery_unknown
+            },
+          ]),
         ],
       ),
     );

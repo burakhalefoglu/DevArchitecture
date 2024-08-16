@@ -13,4 +13,7 @@ class RoutesConstants {
   static const String adminTranslatePage = '/admin/translates';
   static const String adminLogPage = '/admin/logs';
   static const String adminHomePage = '/admin';
+
+  // This is utility pages
+  static String batteryStatusPage = '/battery-status';
 }

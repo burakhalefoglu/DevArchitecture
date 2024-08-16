@@ -11,4 +11,8 @@ class SidebarConstants {
   static const String adminPanelPageLogTitle = "Log Kayıtları";
 
   static const String appPanelPageTitle = "Uygulama";
+
+  // Utilities
+  static const String utilitiesPageTitle = "Yardımcı İşlemler(ÖRNEKLER)";
+  static const String batteryStatusPageTitle = "Batarya Durumu";
 }

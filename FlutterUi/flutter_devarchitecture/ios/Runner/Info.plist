@@ -9,12 +9,13 @@
 <key>GMSApiKey</key>
 <!--TODO: FİLL  YOUR_API_KEY-->
 <string>YOUR_API_KEY</string>
-
 	<key>UIBackgroundModes</key>
 <array>
   <string>fetch</string>
   <string>remote-notification</string>
 </array>
+<key>NSBatteryUsageDescription</key>
+<string>This app needs access to battery information.</string>
 <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 <string>We need your location to show notifications</string>
 <key>NSLocationWhenInUseUsageDescription</key>

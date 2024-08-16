@@ -10,6 +10,7 @@ import '../features/admin_panel/translates/admin_translate_page.dart';
 import '../features/app_panel/home/home_page.dart';
 import '../features/public/auth/login_page.dart';
 import '../features/public/not_found/not_found_page.dart';
+import '../features/utilities/battery_status_page.dart';
 import 'routes_constants.dart';
 
 class AppRouteModule extends Module {
@@ -83,5 +84,12 @@ class AppRouteModule extends Module {
       child: (context) => const NotFoundPage(),
       transition: transition,
     );
+
+    //UTILITIES
+    //*? Battery Status Page
+    r.child(RoutesConstants.batteryStatusPage,
+        child: (context) => BatteryStatusPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
   }
 }

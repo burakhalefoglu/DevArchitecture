@@ -19,12 +19,6 @@ class BatteryStateBatteryPlus implements IBatteryState {
   }
 
   @override
-  Future<bool> isInBatterySaveMode() async {
-    var battery = Battery();
-    return await battery.isInBatterySaveMode;
-  }
-
-  @override
   Future<void> listenBatteryState(IScreenMessage screenMessage) async {
     var battery = Battery();
     _listener = battery.onBatteryStateChanged.listen((BatteryState state) {
