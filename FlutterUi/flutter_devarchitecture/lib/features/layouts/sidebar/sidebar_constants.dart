@@ -13,7 +13,7 @@ class SidebarConstants {
   static const String appPanelPageTitle = "Uygulama";
 
   // Utilities
-  static const String utilitiesPageTitle = "Yardımcı İşlemler(ÖRNEKLER)";
+  static const String utilitiesPageTitle = "Utilities";
   static const String batteryStatusPageTitle = "Batarya Durumu";
   static const String biometricAuthPageTitle = "Biyometrik Kimlik Dogrulama";
   static const String deviceInfoPageTitle = "Cihaz Bilgileri";

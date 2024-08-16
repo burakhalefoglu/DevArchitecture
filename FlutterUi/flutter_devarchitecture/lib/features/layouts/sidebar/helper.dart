@@ -43,6 +43,10 @@ PopupMenuButton buildNavWithSubMenuItemElement(BuildContext context,
     },
     child: AbsorbPointer(
       child: ListTile(
+        trailing: Icon(
+          Icons.chevron_right,
+          size: 24,
+        ),
         contentPadding: const EdgeInsets.only(left: 36.0, right: 24.0),
         leading: Icon(
           icon,

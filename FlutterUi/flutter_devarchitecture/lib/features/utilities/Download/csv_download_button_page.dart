@@ -4,6 +4,7 @@ import '../../../core/theme/custom_colors.dart';
 import '../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../core/widgets/base_widgets.dart';
 import '../../../core/widgets/tables/filter_table_widget.dart';
+import '../../layouts/base_scaffold.dart';
 import '../data/users.dart';
 
 class CsvDownloadPage extends StatelessWidget {
@@ -13,9 +14,9 @@ class CsvDownloadPage extends StatelessWidget {
     final downloadButtons =
         DownloadButtons(data: users.map((e) => e.toMap()).toList());
 
-    return Scaffold(
-      appBar: AppBar(title: Text('Download Csv')),
-      body: Column(
+    return buildBaseScaffold(
+      context,
+      Column(
         children: [
           Expanded(
             child: Padding(
