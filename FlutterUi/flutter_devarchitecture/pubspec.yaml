@@ -94,14 +94,14 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logo.png
-    - assets/animations/lottie/403.json
-    - assets/animations/lottie/404.json
-    - assets/animations/lottie/loading.json
-    - assets/animations/lottie/success.json
-    - assets/animations/lottie/error.json
-    - assets/animations/lottie/checking.json
-    - assets/animations/lottie/sending.json
-    - assets/animations/lottie/feedback.json
+    - assets/animations/403.json
+    - assets/animations/404.json
+    - assets/animations/loading.json
+    - assets/animations/success.json
+    - assets/animations/error.json
+    - assets/animations/checking.json
+    - assets/animations/sending.json
+    - assets/animations/feedback.json
   fonts:
     - family: nunito
       fonts:
