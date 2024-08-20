@@ -1,4 +1,7 @@
 import 'package:flutter_devarchitecture/features/theme/color_palette_page.dart';
+import 'package:flutter_devarchitecture/features/utilities/logger_page.dart';
+import 'package:flutter_devarchitecture/features/utilities/permission_page.dart';
+import 'package:flutter_devarchitecture/features/utilities/qr_code_scanner.dart';
 import 'package:flutter_devarchitecture/features/utilities/screen_message_page.dart';
 
 import '../features/utilities/Share/csv_share_button_page.dart';
@@ -211,6 +214,21 @@ class AppRouteModule extends Module {
 
     r.child(RoutesConstants.screenMessagePage,
         child: (context) => ScreenMessagePage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.loggerPage,
+        child: (context) => LoggerPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.permissionPage,
+        child: (context) => PermissionPage(),
+        transition: transition,
+        guards: [AuthGuard()]);
+
+    r.child(RoutesConstants.qrCodePage,
+        child: (context) => QRCodeScannerPage(),
         transition: transition,
         guards: [AuthGuard()]);
 

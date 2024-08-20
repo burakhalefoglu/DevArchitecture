@@ -45,8 +45,6 @@ class _InputExamplesPageState extends State<InputExamplesPage> {
   ];
   final List<FocusNode> _vehicleLicenseFocusNodes = [FocusNode(), FocusNode()];
 
-  String _selectedDropdownValue = '';
-
   @override
   Widget build(BuildContext context) {
     return buildBaseScaffold(
@@ -85,11 +83,8 @@ class _InputExamplesPageState extends State<InputExamplesPage> {
                         icon: Icons.arrow_drop_down,
                         onChanged: (value) {
                           print('Selected dropdown value: $value');
-                          _selectedDropdownValue = value!;
                         },
-                        getFirstValue: (value) {
-                          _selectedDropdownValue = value!;
-                        },
+                        getFirstValue: (value) {},
                       ),
                     ),
                     const Spacer(),

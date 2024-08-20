@@ -39,7 +39,11 @@ class SidebarConstants {
   static const String internetConnectionPageTitle = "İnternet Bağlantısı";
   static const String localNotificationPageTitle = "Yerel Bildirimler";
   static const String screenMessagePageTitle = "Ekran Mesajı";
+  static const String loggerPageTitle = "Log İşlemleri";
+  static const String permissionPageTitle = "İzinler";
+  static const String qrCodeScannerPageTitle = "QR Kod Okuma";
 
+  // templates
   static const String templatesPageTitle = "Tema";
   static const String colorPalettePageTitle = "Renk Paleti";
 

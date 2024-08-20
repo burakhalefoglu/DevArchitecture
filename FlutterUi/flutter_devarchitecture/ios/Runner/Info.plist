@@ -14,11 +14,21 @@
   <string>fetch</string>
   <string>remote-notification</string>
 </array>
+<key>NSCameraUsageDescription</key>
+<string>Kameraya erişim izni gerekiyor.</string>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Konuma erişim izni gerekiyor.</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>Mikrofona erişim izni gerekiyor.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Fotoğraflara erişim izni gerekiyor.</string>
+<key>NSContactsUsageDescription</key>
+<string>Kişilere erişim izni gerekiyor.</string>
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>Bluetooth'a erişim izni gerekiyor.</string>
 <key>NSBatteryUsageDescription</key>
 <string>This app needs access to battery information.</string>
 <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-<string>We need your location to show notifications</string>
-<key>NSLocationWhenInUseUsageDescription</key>
 <string>We need your location to show notifications</string>
 <key>NSLocationAlwaysUsageDescription</key>
 <string>We need your location to show notifications</string>

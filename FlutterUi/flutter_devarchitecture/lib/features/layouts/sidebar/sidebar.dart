@@ -107,46 +107,62 @@ class _NavBarState extends State<NavBar> {
               "route": RoutesConstants.screenMessagePage,
               "icon": Icons.message
             },
-          ]),
-          buildNavWithSubMenuItemElement(
-              context,
+            {
+              "name": SidebarConstants.loggerPageTitle,
+              "route": RoutesConstants.loggerPage,
+              "icon": Icons.monitor
+            },
+            {
+              "name": SidebarConstants.permissionPageTitle,
+              "route": RoutesConstants.permissionPage,
+              "icon": Icons.security_outlined
+            },
+            {
+              "name": SidebarConstants.qrCodeScannerPageTitle,
+              "route": RoutesConstants.qrCodePage,
+              "icon": Icons.qr_code
+            },
+            {
               Icons.download_for_offline_outlined,
-              SidebarConstants.downloadPageTitle, [
-            {
-              "name": SidebarConstants.excelDownloadPageTitle,
-              "route": RoutesConstants.excelDownloadPage,
-              "icon": Icons.table_chart
-            },
-            {
-              "name": SidebarConstants.pdfDownloadPageTitle,
-              "route": RoutesConstants.pdfDownloadPage,
-              "icon": Icons.picture_as_pdf
-            },
-            {
-              "name": SidebarConstants.imageDownloadPageTitle,
-              "route": RoutesConstants.imageDownloadPage,
-              "icon": Icons.image
-            },
-            {
-              "name": SidebarConstants.csvDownloadPageTitle,
-              "route": RoutesConstants.csvDownloadPage,
-              "icon": Icons.table_chart
-            },
-            {
-              "name": SidebarConstants.xmlDownloadPageTitle,
-              "route": RoutesConstants.xmlDownloadPage,
-              "icon": Icons.code
-            },
-            {
-              "name": SidebarConstants.txtDownloadPageTitle,
-              "route": RoutesConstants.txtDownloadPage,
-              "icon": Icons.description
-            },
-            {
-              "name": SidebarConstants.jsonDownloadPageTitle,
-              "route": RoutesConstants.jsonDownloadPage,
-              "icon": Icons.code
-            },
+              SidebarConstants.downloadPageTitle,
+              [
+                {
+                  "name": SidebarConstants.excelDownloadPageTitle,
+                  "route": RoutesConstants.excelDownloadPage,
+                  "icon": Icons.table_chart
+                },
+                {
+                  "name": SidebarConstants.pdfDownloadPageTitle,
+                  "route": RoutesConstants.pdfDownloadPage,
+                  "icon": Icons.picture_as_pdf
+                },
+                {
+                  "name": SidebarConstants.imageDownloadPageTitle,
+                  "route": RoutesConstants.imageDownloadPage,
+                  "icon": Icons.image
+                },
+                {
+                  "name": SidebarConstants.csvDownloadPageTitle,
+                  "route": RoutesConstants.csvDownloadPage,
+                  "icon": Icons.table_chart
+                },
+                {
+                  "name": SidebarConstants.xmlDownloadPageTitle,
+                  "route": RoutesConstants.xmlDownloadPage,
+                  "icon": Icons.code
+                },
+                {
+                  "name": SidebarConstants.txtDownloadPageTitle,
+                  "route": RoutesConstants.txtDownloadPage,
+                  "icon": Icons.description
+                },
+                {
+                  "name": SidebarConstants.jsonDownloadPageTitle,
+                  "route": RoutesConstants.jsonDownloadPage,
+                  "icon": Icons.code
+                },
+              ]
+            }
           ]),
           buildNavWithSubMenuItemElement(
               context, Icons.share_outlined, SidebarConstants.sharePageTitle, [

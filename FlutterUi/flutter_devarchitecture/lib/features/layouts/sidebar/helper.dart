@@ -26,9 +26,23 @@ PopupMenuButton buildNavWithSubMenuItemElement(BuildContext context,
     offset: !context.isMobile ? const Offset(200, 0) : const Offset(0, 0),
     itemBuilder: (context) {
       return List.generate(options.length, (index) {
-        return PopupMenuItem(
-          value: Text(options[index]["name"]),
-          child: GestureDetector(
+        // Eğer alt menü varsa, aynı fonksiyon tekrar çağrılır.
+        if (options[index].containsKey('subMenu') &&
+            options[index]['subMenu'] != null) {
+          return PopupMenuItem(
+            value: Text(options[index]["name"]),
+            child: buildNavWithSubMenuItemElement(
+              context,
+              options[index]["icon"],
+              options[index]["name"],
+              List<Map<String, dynamic>>.from(options[index]['subMenu']),
+            ),
+          );
+        } else {
+          // Eğer alt menü yoksa, basit bir ListTile oluşturulur.
+          return PopupMenuItem(
+            value: Text(options[index]["name"]),
+            child: GestureDetector(
               onTap: () => Modular.to.navigate(options[index]["route"]),
               child: ListTile(
                 contentPadding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -37,8 +51,10 @@ PopupMenuButton buildNavWithSubMenuItemElement(BuildContext context,
                   size: 24,
                 ),
                 title: Text(options[index]["name"]),
-              )),
-        );
+              ),
+            ),
+          );
+        }
       });
     },
     child: AbsorbPointer(
