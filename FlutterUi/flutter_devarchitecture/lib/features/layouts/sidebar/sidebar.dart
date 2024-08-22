@@ -123,6 +123,7 @@ class _NavBarState extends State<NavBar> {
               "icon": Icons.qr_code
             },
             {
+              "submenu":
               Icons.download_for_offline_outlined,
               SidebarConstants.downloadPageTitle,
               [
