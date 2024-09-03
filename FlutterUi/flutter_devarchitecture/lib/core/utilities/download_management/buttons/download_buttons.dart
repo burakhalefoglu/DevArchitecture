@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 
 import '../../../di/core_initializer.dart';
+import '../../../theme/custom_colors.dart';
 
 class DownloadButtons {
   final List<Map<String, dynamic>> data;
+  Color? color; // Nullable color
 
-  DownloadButtons({required this.data});
+  DownloadButtons({
+    this.color, // Color now nullable
+    required this.data,
+  }) {
+    color ??= CustomColors.white.getColor; // Set default color if null
+  }
 
   IconButton pdfButton(BuildContext context) {
     return IconButton(
+      color: color,
       icon: Icon(Icons.picture_as_pdf),
       tooltip: 'Download PDF',
       onPressed: () {
@@ -19,6 +27,7 @@ class DownloadButtons {
 
   IconButton excelButton(BuildContext context) {
     return IconButton(
+      color: color,
       icon: Icon(Icons.table_chart),
       tooltip: 'Download Excel',
       onPressed: () {
@@ -29,6 +38,7 @@ class DownloadButtons {
 
   IconButton txtButton(BuildContext context) {
     return IconButton(
+      color: color,
       icon: Icon(Icons.description),
       tooltip: 'Download TXT',
       onPressed: () {
@@ -39,6 +49,7 @@ class DownloadButtons {
 
   IconButton jsonButton(BuildContext context) {
     return IconButton(
+      color: color,
       icon: Icon(Icons.code),
       tooltip: 'Download JSON',
       onPressed: () {
@@ -49,6 +60,7 @@ class DownloadButtons {
 
   IconButton xmlButton(BuildContext context) {
     return IconButton(
+      color: color,
       icon: Icon(Icons.code),
       tooltip: 'Download XML',
       onPressed: () {
@@ -59,6 +71,7 @@ class DownloadButtons {
 
   IconButton imageButton(BuildContext context) {
     return IconButton(
+      color: color,
       icon: Icon(Icons.image),
       tooltip: 'Download Image',
       onPressed: () {
@@ -69,6 +82,7 @@ class DownloadButtons {
 
   IconButton csvButton(BuildContext context) {
     return IconButton(
+      color: color,
       icon: Icon(Icons.table_chart),
       tooltip: 'Download CSV',
       onPressed: () {

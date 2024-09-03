@@ -1,9 +1,12 @@
 import 'package:excel/excel.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
+import 'dart:typed_data'; // Uint8List için gerekli
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:html' as html; // Web için gerekli
 
 import 'i_download.dart';
-import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
+import '/core/di/core_initializer.dart';
 
 class ExcelDownload implements IExcelDownload {
   @override
@@ -12,7 +15,7 @@ class ExcelDownload implements IExcelDownload {
       var excel = Excel.createExcel();
       Sheet sheetObject = excel['Sheet1'];
 
-      // Sütun başlıkları ekleyin
+      // Sütun başlıklarını ekleyin
       if (data.isNotEmpty) {
         List<CellValue?> headerRow =
             data.first.keys.map((key) => TextCellValue(key)).toList();
@@ -36,27 +39,45 @@ class ExcelDownload implements IExcelDownload {
         }
       }
 
-      // Kullanıcıdan dosya indirme yolunu al
-      String? outputFilePath = await _getSavePath();
-      if (outputFilePath != null) {
-        final file = File(outputFilePath);
-        await file.writeAsBytes(excel.encode()!);
-
-        // Başarı mesajı
-        CoreInitializer()
-            .coreContainer
-            .screenMessage
-            .getSuccessMessage("Excel dosyası başarıyla indirildi.");
+      // Platforma göre dosya kaydetme yöntemi
+      if (kIsWeb) {
+        // Web için dosya kaydetme
+        Uint8List bytes = Uint8List.fromList(excel.encode()!);
+        saveExcelWeb(bytes, 'example.xlsx');
+      } else if (Platform.isAndroid || Platform.isIOS) {
+        // Android ve iOS için dosya kaydetme
+        String? outputFilePath = await _getSavePath();
+        if (outputFilePath != null) {
+          final file = File(outputFilePath);
+          await file.writeAsBytes(excel.encode()!);
+          _showSuccessMessage("Excel dosyası başarıyla indirildi.");
+        }
+      } else if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
+        // macOS, Linux ve Windows için dosya kaydetme
+        String? outputFilePath = await _getSavePathForDesktop();
+        if (outputFilePath != null) {
+          final file = File(outputFilePath);
+          await file.writeAsBytes(excel.encode()!);
+          _showSuccessMessage("Excel dosyası başarıyla indirildi.");
+        }
       }
     } catch (e) {
       // Hata mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage("Excel dosyası indirilirken bir hata oluştu: $e");
+      _showErrorMessage("Excel dosyası indirilirken bir hata oluştu: $e");
     }
   }
 
+  // Web için dosya kaydetme yöntemi
+  void saveExcelWeb(Uint8List bytes, String fileName) {
+    final blob = html.Blob([bytes]);
+    final url = html.Url.createObjectUrlFromBlob(blob);
+    html.AnchorElement(href: url)
+      ..setAttribute("download", fileName)
+      ..click();
+    html.Url.revokeObjectUrl(url);
+  }
+
+  // Android ve iOS için dosya yolu seçimi
   Future<String?> _getSavePath() async {
     try {
       String? outputFilePath = await FilePicker.platform.saveFile(
@@ -67,12 +88,32 @@ class ExcelDownload implements IExcelDownload {
       );
       return outputFilePath;
     } catch (e) {
-      // Hata mesajı (eğer dosya yolu seçimi sırasında hata olursa)
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage("Dosya yolu seçimi sırasında bir hata oluştu: $e");
+      _showErrorMessage("Dosya yolu seçimi sırasında bir hata oluştu: $e");
       return null;
     }
+  }
+
+  // macOS, Linux ve Windows için dosya yolu seçimi
+  Future<String?> _getSavePathForDesktop() async {
+    try {
+      String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+      if (selectedDirectory != null) {
+        return "$selectedDirectory/example.xlsx";
+      }
+      return null;
+    } catch (e) {
+      _showErrorMessage("Dosya yolu seçimi sırasında bir hata oluştu: $e");
+      return null;
+    }
+  }
+
+  // Başarı mesajı gösterme yöntemi
+  void _showSuccessMessage(String message) {
+    CoreInitializer().coreContainer.screenMessage.getSuccessMessage(message);
+  }
+
+  // Hata mesajı gösterme yöntemi
+  void _showErrorMessage(String message) {
+    CoreInitializer().coreContainer.screenMessage.getErrorMessage(message);
   }
 }

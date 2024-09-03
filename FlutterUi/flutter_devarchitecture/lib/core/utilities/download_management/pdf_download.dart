@@ -3,6 +3,8 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:html' as html; // Web için gerekli
 
 import '../../di/core_initializer.dart';
 import 'i_download.dart';
@@ -73,27 +75,44 @@ class PdfDownload implements IPdfDownload {
 
       final output = await pdf.save();
 
-      // Kullanıcıdan dosya indirme yolunu al
-      String? outputFilePath = await _getSavePath();
-      if (outputFilePath != null) {
-        final file = File(outputFilePath);
-        await file.writeAsBytes(output);
-
-        // Başarı mesajı
-        CoreInitializer()
-            .coreContainer
-            .screenMessage
-            .getSuccessMessage("PDF dosyası başarıyla indirildi.");
+      // Platforma göre dosya kaydetme yöntemi
+      if (kIsWeb) {
+        // Web için dosya kaydetme
+        savePdfWeb(output, 'example.pdf');
+      } else if (Platform.isAndroid || Platform.isIOS) {
+        // Android ve iOS için dosya kaydetme
+        String? outputFilePath = await _getSavePath();
+        if (outputFilePath != null) {
+          final file = File(outputFilePath);
+          await file.writeAsBytes(output);
+          _showSuccessMessage("PDF dosyası başarıyla indirildi.");
+        }
+      } else if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
+        // macOS, Linux ve Windows için dosya kaydetme
+        String? outputFilePath = await _getSavePathForDesktop();
+        if (outputFilePath != null) {
+          final file = File(outputFilePath);
+          await file.writeAsBytes(output);
+          _showSuccessMessage("PDF dosyası başarıyla indirildi.");
+        }
       }
     } catch (e) {
       // Hata mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage("PDF dosyası indirilirken bir hata oluştu: $e");
+      _showErrorMessage("PDF dosyası indirilirken bir hata oluştu: $e");
     }
   }
 
+  // Web için dosya kaydetme yöntemi
+  void savePdfWeb(Uint8List bytes, String fileName) {
+    final blob = html.Blob([bytes]);
+    final url = html.Url.createObjectUrlFromBlob(blob);
+    html.AnchorElement(href: url)
+      ..setAttribute("download", fileName)
+      ..click();
+    html.Url.revokeObjectUrl(url);
+  }
+
+  // Android ve iOS için dosya yolu seçimi
   Future<String?> _getSavePath() async {
     try {
       String? outputFilePath = await FilePicker.platform.saveFile(
@@ -104,12 +123,32 @@ class PdfDownload implements IPdfDownload {
       );
       return outputFilePath;
     } catch (e) {
-      // Hata mesajı (eğer dosya yolu seçimi sırasında hata olursa)
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage("Dosya yolu seçimi sırasında bir hata oluştu: $e");
+      _showErrorMessage("Dosya yolu seçimi sırasında bir hata oluştu: $e");
       return null;
     }
+  }
+
+  // macOS, Linux ve Windows için dosya yolu seçimi
+  Future<String?> _getSavePathForDesktop() async {
+    try {
+      String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+      if (selectedDirectory != null) {
+        return "$selectedDirectory/example.pdf";
+      }
+      return null;
+    } catch (e) {
+      _showErrorMessage("Dosya yolu seçimi sırasında bir hata oluştu: $e");
+      return null;
+    }
+  }
+
+  // Başarı mesajı gösterme yöntemi
+  void _showSuccessMessage(String message) {
+    CoreInitializer().coreContainer.screenMessage.getSuccessMessage(message);
+  }
+
+  // Hata mesajı gösterme yöntemi
+  void _showErrorMessage(String message) {
+    CoreInitializer().coreContainer.screenMessage.getErrorMessage(message);
   }
 }
