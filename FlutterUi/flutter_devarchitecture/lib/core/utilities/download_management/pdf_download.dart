@@ -4,7 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'dart:html' as html; // Web için gerekli
+import "package:universal_html/html.dart" as html; // Web için gerekli
 
 import '../../di/core_initializer.dart';
 import 'i_download.dart';
