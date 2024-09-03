@@ -32,20 +32,10 @@ class FilterTableWidget extends StatefulWidget {
 
 class _FilterTableWidgetState extends State<FilterTableWidget> {
   List<Map<String, dynamic>> filteredData = [];
-  List<String> filterKeys = [];
   final TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
-    for (var i = 0; i < widget.datas.length; i++) {
-      var key = "";
-      for (var element
-          in widget.datas[i].values.map((e) => e.toString()).toList()) {
-        key = key + element.toString();
-      }
-      filterKeys.add(key);
-      key = "";
-    }
     filteredData = widget.datas;
     super.initState();
   }
@@ -71,15 +61,20 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
               onChanged: (value) {
                 if (mounted) {
                   setState(() {
+                    filteredData = [];
                     if (value == "" || value.isEmpty) {
                       filteredData = widget.datas;
                       return;
                     }
-                    filteredData = [];
                     for (var i = 0; i < widget.datas.length; i++) {
-                      if (filterKeys[i]
-                          .toLowerCase()
-                          .contains(value.toLowerCase())) {
+                      var key = "";
+                      for (var element in widget.datas[i].values
+                          .map((e) => e.toString())
+                          .toList()) {
+                        key = key + element.toString().toLowerCase() + " ";
+                      }
+                      if (key.contains(value.toLowerCase())) {
+                        print(widget.datas[i]);
                         filteredData.add(widget.datas[i]);
                       }
                     }
