@@ -3,14 +3,14 @@ import '../../utilities/results.dart';
 import '../../di/core_initializer.dart';
 import '../i_service.dart';
 
-abstract class APiService<T> implements IService {
+abstract class ApiService<T> implements IService {
   late String url;
 
   init(String method) {
     url = appConfig.apiUrl + method;
   }
 
-  APiService({required String method}) {
+  ApiService({required String method}) {
     init(method);
   }
 

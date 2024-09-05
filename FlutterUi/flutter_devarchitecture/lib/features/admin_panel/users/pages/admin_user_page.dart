@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/bloc/base_state.dart';
 import '../../../../core/theme/extensions.dart';
+import '../bloc/user_cubit.dart';
+import '../models/user.dart';
 import '/core/widgets/tables/filter_table_widget.dart';
 import '../../../../core/widgets/base_widgets.dart';
 import '../../../../core/di/core_initializer.dart';
@@ -13,92 +17,116 @@ class AdminUserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> datas = [
-      {
-        "docNo": "XXX-17690",
-        "totalAmount": 9701.47,
-        "fuelPumpName": "Merkez",
-        "supplierName": "Fuel Corp",
-        "unitPrice": 21.85,
-        "totalPrice": 211977.12,
-        "supplyDate": "2024-02-07T13:23:58.796955",
-        "inputOwnerName": "Vital Trans"
-      },
-    ];
-    return buildBaseScaffold(
-      context,
-      Column(
-        children: [
-          Expanded(
-              child: Padding(
-            padding: context.defaultHorizontalPadding,
-            child: buildPageTitle(context, "Kullanıcı Listesi",
-                subDirection: "Admin Panel"),
-          )),
-          Expanded(
-            flex: 9,
-            child: FilterTableWidget(
-              datas: datas,
-              headers: const [
-                {"docNo": "docNo"},
-                {"totalAmount": "totalAmount"},
-                {"fuelPumpName": "fuelPumpName"},
-                {"supplierName": "supplierName"},
-                {"unitPrice": "unitPrice"},
-                {"totalPrice": "totalPrice"},
-                {"supplyDate": "supplyDate"},
-                {"inputOwnerName": "inputOwnerName"},
+    return BlocProvider(
+      create: (context) => UserCubit(),
+      child: BlocConsumer<UserCubit, BaseState>(
+        listener: (context, state) {
+          if (state is BlocFailed) {
+            CoreInitializer()
+                .coreContainer
+                .screenMessage
+                .getErrorMessage(state.message);
+          }
+        },
+        builder: (context, state) {
+          // İlk yükleme ve yükleme durumları için göstergesi
+          if (state is BlocInitial || state is BlocLoading) {
+            if (state is BlocInitial) {
+              BlocProvider.of<UserCubit>(context).getAllUsers();
+            }
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          // Tablo verisi durumu
+          List<Map<String, dynamic>> tableData = [];
+          if (state is BlocSuccess<List<User>>) {
+            tableData = state.result!.isNotEmpty
+                ? state.result!.map((user) => user.toMap()).toList()
+                : [];
+          }
+
+          // Tek bir Scaffold yapısı kullan
+          return buildBaseScaffold(
+            context,
+            Column(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: context.defaultHorizontalPadding,
+                    child: buildPageTitle(
+                      context,
+                      "Kullanıcı Listesi",
+                      subDirection: "Admin Panel",
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 9,
+                  child: FilterTableWidget(
+                    datas: tableData, // Duruma göre dolu veya boş tablo verisi
+                    headers: const [
+                      {"userId": "Kullanıcı ID"},
+                      {"email": "E-posta"},
+                      {"fullName": "Ad Soyad"},
+                      {"status": "Durum"},
+                      {"mobilePhones": "Telefon Numaraları"},
+                      {"address": "Adres"},
+                      {"notes": "Notlar"},
+                    ],
+                    color: CustomColors.primary.getColor,
+                    customManipulationButton: const [
+                      getChangePasswordButton,
+                      getChangePermissionButton,
+                      getChangeGroupButton,
+                      getEditButton,
+                      getDeleteButton
+                    ],
+                    customManipulationCallback: [
+                      (index) => {
+                            CoreInitializer()
+                                .coreContainer
+                                .screenMessage
+                                .getInfoMessage(index.toString())
+                          },
+                      (index) => {
+                            CoreInitializer()
+                                .coreContainer
+                                .screenMessage
+                                .getInfoMessage(index.toString())
+                          },
+                      (index) => {
+                            CoreInitializer()
+                                .coreContainer
+                                .screenMessage
+                                .getInfoMessage(index.toString())
+                          },
+                      (index) => {
+                            CoreInitializer()
+                                .coreContainer
+                                .screenMessage
+                                .getInfoMessage(index.toString())
+                          },
+                      (index) => {
+                            CoreInitializer()
+                                .coreContainer
+                                .screenMessage
+                                .getInfoMessage(index.toString())
+                          },
+                    ],
+                    addButton: getAddButton(
+                      context,
+                      () => CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getSuccessMessage("Veri Ekleme"),
+                      color: CustomColors.white.getColor,
+                    ),
+                  ),
+                ),
               ],
-              color: CustomColors.primary.getColor,
-              customManipulationButton: const [
-                getChangePasswordButton,
-                getChangePermissionButton,
-                getChangeGroupButton,
-                getEditButton,
-                getDeleteButton
-              ],
-              customManipulationCallback: [
-                (index) => {
-                      CoreInitializer()
-                          .coreContainer
-                          .screenMessage
-                          .getInfoMessage(index.toString())
-                    },
-                (index) => {
-                      CoreInitializer()
-                          .coreContainer
-                          .screenMessage
-                          .getInfoMessage(index.toString())
-                    },
-                (index) => {
-                      CoreInitializer()
-                          .coreContainer
-                          .screenMessage
-                          .getInfoMessage(index.toString())
-                    },
-                (index) => {
-                      CoreInitializer()
-                          .coreContainer
-                          .screenMessage
-                          .getInfoMessage(index.toString())
-                    },
-                (index) => {
-                      CoreInitializer()
-                          .coreContainer
-                          .screenMessage
-                          .getInfoMessage(index.toString())
-                    },
-              ],
-              addButton: getAddButton(
-                  context,
-                  () => CoreInitializer()
-                      .coreContainer
-                      .screenMessage
-                      .getSuccessMessage("Veri Ekleme"),
-                  color: CustomColors.white.getColor),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

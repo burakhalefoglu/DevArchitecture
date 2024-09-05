@@ -123,10 +123,50 @@ class _NavBarState extends State<NavBar> {
               "icon": Icons.qr_code
             },
             {
-              "submenu":
-              Icons.download_for_offline_outlined,
-              SidebarConstants.downloadPageTitle,
-              [
+              "icon": Icons.share_outlined,
+              "name": SidebarConstants.sharePageTitle,
+              "subMenu": [
+                {
+                  "name": SidebarConstants.excelSharePageTitle,
+                  "route": RoutesConstants.excelSharePage,
+                  "icon": Icons.table_chart
+                },
+                {
+                  "name": SidebarConstants.pdfSharePageTitle,
+                  "route": RoutesConstants.pdfSharePage,
+                  "icon": Icons.picture_as_pdf
+                },
+                {
+                  "name": SidebarConstants.imageSharePageTitle,
+                  "route": RoutesConstants.imageSharePage,
+                  "icon": Icons.image
+                },
+                {
+                  "name": SidebarConstants.csvSharePageTitle,
+                  "route": RoutesConstants.csvSharePage,
+                  "icon": Icons.table_chart
+                },
+                {
+                  "name": SidebarConstants.xmlSharePageTitle,
+                  "route": RoutesConstants.xmlSharePage,
+                  "icon": Icons.code
+                },
+                {
+                  "name": SidebarConstants.txtSharePageTitle,
+                  "route": RoutesConstants.txtSharePage,
+                  "icon": Icons.description
+                },
+                {
+                  "name": SidebarConstants.jsonSharePageTitle,
+                  "route": RoutesConstants.jsonSharePage,
+                  "icon": Icons.code
+                },
+              ]
+            },
+            {
+              "icon": Icons.download_for_offline_outlined,
+              "name": SidebarConstants.downloadPageTitle,
+              "subMenu": [
                 {
                   "name": SidebarConstants.excelDownloadPageTitle,
                   "route": RoutesConstants.excelDownloadPage,
@@ -164,44 +204,6 @@ class _NavBarState extends State<NavBar> {
                 },
               ]
             }
-          ]),
-          buildNavWithSubMenuItemElement(
-              context, Icons.share_outlined, SidebarConstants.sharePageTitle, [
-            {
-              "name": SidebarConstants.excelSharePageTitle,
-              "route": RoutesConstants.excelSharePage,
-              "icon": Icons.table_chart
-            },
-            {
-              "name": SidebarConstants.pdfSharePageTitle,
-              "route": RoutesConstants.pdfSharePage,
-              "icon": Icons.picture_as_pdf
-            },
-            {
-              "name": SidebarConstants.imageSharePageTitle,
-              "route": RoutesConstants.imageSharePage,
-              "icon": Icons.image
-            },
-            {
-              "name": SidebarConstants.csvSharePageTitle,
-              "route": RoutesConstants.csvSharePage,
-              "icon": Icons.table_chart
-            },
-            {
-              "name": SidebarConstants.xmlSharePageTitle,
-              "route": RoutesConstants.xmlSharePage,
-              "icon": Icons.code
-            },
-            {
-              "name": SidebarConstants.txtSharePageTitle,
-              "route": RoutesConstants.txtSharePage,
-              "icon": Icons.description
-            },
-            {
-              "name": SidebarConstants.jsonSharePageTitle,
-              "route": RoutesConstants.jsonSharePage,
-              "icon": Icons.code
-            },
           ]),
           buildNavWithSubMenuItemElement(context, Icons.pages_outlined,
               SidebarConstants.templatesPageTitle, [

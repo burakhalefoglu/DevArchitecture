@@ -70,7 +70,7 @@ class DataTables implements ITables {
               Map<String, dynamic> reformatedCell =
                   _reformatCell(headers, cells[index]);
               return DataRow(
-                cells: _getDataCells(index, reformatedCell),
+                cells: _getDataCells(index, reformatedCell, headers.length),
               );
             })),
       ),
@@ -101,7 +101,7 @@ class DataTables implements ITables {
                   color: headerColor.computeLuminance() >= 0.5
                       ? Colors.black
                       : Colors.white),
-              headers[i].values.first.length > 11
+              headers[i].values.first.length > 11 && headers.length > 5
                   ? "${headers[i].values.first.toString().substring(0, 8)}..."
                   : headers[i].values.first.toString(),
             ),
@@ -114,7 +114,7 @@ class DataTables implements ITables {
             color: headerColor.computeLuminance() > 0.5
                 ? Colors.black
                 : Colors.white),
-        headers[i].values.first.length > 11
+        headers[i].values.first.length > 11 && headers.length > 5
             ? "${headers[i].values.first.toString().substring(0, 8)}..."
             : headers[i].values.first.toString(),
       )));
@@ -210,12 +210,13 @@ class DataTables implements ITables {
         )));
   }
 
-  List<DataCell> _getDataCells(index, Map<String, dynamic> objList) {
+  List<DataCell> _getDataCells(
+      index, Map<String, dynamic> objList, int headerCount) {
     List<DataCell> dataCells = [];
     objList.forEach((_, v) => dataCells.add(DataCell(
         onTap: () {},
         Text(
-            v.toString().length > 11
+            v.toString().length > 11 && headerCount > 5
                 ? "${v.toString().substring(0, 11)}..."
                 : v.toString(),
             style:
@@ -245,7 +246,7 @@ class DataTables implements ITables {
     var dataRows = List<DataRow>.generate(cells.length, (index) {
       Map<String, dynamic> reformatedCell =
           _reformatCell(headers, cells[index]);
-      var resultCells = _getDataCells(index, reformatedCell);
+      var resultCells = _getDataCells(index, reformatedCell, headers.length);
       if (rowButtonCount == 0) {
         for (var i = 0; i < headerButtonCount; i++) {
           resultCells.add(const DataCell(Text("")));
@@ -256,13 +257,13 @@ class DataTables implements ITables {
         }
         for (int j = 0; j < customManipulationButton.length; j++) {
           resultCells.add(DataCell(customManipulationButton[j](context, () {
-            customManipulationCallback[j](index);
+            customManipulationCallback[j](cells[index]["id"]);
           })));
         }
       } else {
         for (int j = 0; j < customManipulationButton.length; j++) {
           resultCells.add(DataCell(customManipulationButton[j](context, () {
-            customManipulationCallback[j](index);
+            customManipulationCallback[j](cells[index]["id"]);
           })));
         }
       }

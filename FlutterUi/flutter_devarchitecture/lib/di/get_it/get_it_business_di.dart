@@ -1,5 +1,8 @@
+import 'package:flutter_devarchitecture/features/admin_panel/users/services/i_user_service.dart';
 import 'package:get_it/get_it.dart';
 import '../../../core/configs/app_config.dart';
+import '../../features/admin_panel/users/services/api_user_service.dart';
+import '../../features/admin_panel/users/services/in_memory_user_service.dart';
 import '../../features/public/auth/services/abstract/i_auth_service.dart';
 import '../../features/public/auth/services/concrete/api_auth_service.dart';
 import '../../features/public/auth/services/concrete/in_memory_auth_service.dart';
@@ -18,6 +21,10 @@ class GetItBusinessContainer implements IBusinessContainer {
 
   @override
   late IAuthService authService;
+
+  @override
+  late IUserService userService;
+
   @override
   void setup() {
     //*? Services Binding For DEVELOPMENT
@@ -25,6 +32,11 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<IAuthService>((() {
         authService =
             _getIt.registerSingleton<IAuthService>(InMemoryAuthService());
+      }));
+
+      checkIfUnRegistered<IUserService>((() {
+        userService =
+            _getIt.registerSingleton<IUserService>(InMemoryUserService());
       }));
     }
 
@@ -34,6 +46,11 @@ class GetItBusinessContainer implements IBusinessContainer {
         authService = _getIt
             .registerSingleton<IAuthService>(ApiAuthService(method: "/Auth"));
       }));
+
+      checkIfUnRegistered<IUserService>((() {
+        userService = _getIt
+            .registerSingleton<IUserService>(ApiUserService(method: "/Users"));
+      }));
     }
 
     //*? Services Binding For PRODUCTION
@@ -41,6 +58,11 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<IAuthService>((() {
         authService = _getIt
             .registerSingleton<IAuthService>(ApiAuthService(method: "/Auth"));
+      }));
+
+      checkIfUnRegistered<IUserService>((() {
+        userService = _getIt
+            .registerSingleton<IUserService>(ApiUserService(method: "/Users"));
       }));
     }
   }

@@ -4,7 +4,7 @@ import '../../../../../core/services/base_services/api_service.dart';
 import '../../models/auth.dart';
 import '../abstract/i_auth_service.dart';
 
-class ApiAuthService extends APiService<AuthRequestBasic>
+class ApiAuthService extends ApiService<AuthRequestBasic>
     implements IAuthService {
   ApiAuthService({required super.method});
 
