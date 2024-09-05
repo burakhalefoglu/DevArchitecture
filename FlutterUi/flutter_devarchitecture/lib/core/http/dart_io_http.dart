@@ -101,13 +101,22 @@ class HttpDartIo implements IHttp {
     }
 
     String reply = await response.transform(utf8.decoder).join();
+    var decodedJson = jsonDecode(reply);
     httpClient.close();
-    Map<String, dynamic> map = jsonDecode(reply);
-    return map;
+    if (decodedJson is Map<String, dynamic>) {
+      Map<String, dynamic> map = decodedJson;
+      return map;
+    } else if (decodedJson is List) {
+      List<Map<String, dynamic>> list =
+          decodedJson.map((e) => e as Map<String, dynamic>).toList();
+      return {"data": list};
+    } else {
+      return {"response": decodedJson};
+    }
   }
 
   @override
-  Future<Map<String, dynamic>> delete(String url) async {
+  Future<void> delete(String url) async {
     HttpClient httpClient = HttpClient();
     httpClient.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -139,16 +148,10 @@ class HttpDartIo implements IHttp {
       httpClient.close();
       throw Exception("500 Internal Server Error");
     }
-
-    String reply = await response.transform(utf8.decoder).join();
-    httpClient.close();
-    Map<String, dynamic> map = jsonDecode(reply) as Map<String, dynamic>;
-    return map;
   }
 
   @override
-  Future<Map<String, dynamic>> put(
-      String url, Map<String, dynamic> body) async {
+  Future<void> put(String url, Map<String, dynamic> body) async {
     HttpClient httpClient = HttpClient();
     httpClient.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -181,10 +184,6 @@ class HttpDartIo implements IHttp {
       httpClient.close();
       throw Exception("500 Internal Server Error");
     }
-
-    String reply = await response.transform(utf8.decoder).join();
     httpClient.close();
-    Map<String, dynamic> map = jsonDecode(reply) as Map<String, dynamic>;
-    return map;
   }
 }

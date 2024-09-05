@@ -1,6 +1,7 @@
-import '../../../../../core/utilities/results.dart';
-import '../../../../../core/services/base_services/in_memory_service.dart';
+import '../../../../core/utilities/results.dart';
+import '../../../../core/services/base_services/in_memory_service.dart';
 import '../../models/auth.dart';
+import '../../models/password_dto.dart';
 import '../abstract/i_auth_service.dart';
 
 class InMemoryAuthService extends InMemoryService<AuthRequestBasic>
@@ -15,6 +16,7 @@ class InMemoryAuthService extends InMemoryService<AuthRequestBasic>
         'refreshToken': "refreshToken",
         'id': 1,
         'name': 'admin@adminmail.com',
+        'password': 'admin',
       },
     ];
   }
@@ -38,5 +40,10 @@ class InMemoryAuthService extends InMemoryService<AuthRequestBasic>
             token: "token",
             refreshToken: "refreshToken"),
         ""));
+  }
+
+  @override
+  Future<void> saveUserPassword(PasswordDto passwordDto) async {
+    _authList[0]['password'] = passwordDto.password;
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../../routes/routes_constants.dart';
-import '../../layouts/base_scaffold.dart';
-import '../../../core/theme/extensions.dart';
+import '../../routes/routes_constants.dart';
+import '../layouts/base_scaffold.dart';
+import '../../core/theme/extensions.dart';
 
 class NotFoundPage extends StatelessWidget {
   const NotFoundPage({super.key});

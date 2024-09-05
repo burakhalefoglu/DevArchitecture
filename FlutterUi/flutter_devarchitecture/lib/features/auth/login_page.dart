@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../../core/widgets/inputs/dropdown_button.dart';
-import '../../../core/widgets/inputs/email_input.dart';
-import '../../../core/widgets/inputs/password_input.dart';
-import '../../../core/theme/extensions.dart';
+import '../../core/widgets/inputs/dropdown_button.dart';
+import '../../core/widgets/inputs/email_input.dart';
+import '../../core/widgets/inputs/password_input.dart';
+import '../../core/theme/extensions.dart';
 
-import '../../../core/bloc/base_state.dart';
-import '../../../core/constants/messages.dart';
-import '../../../core/di/core_initializer.dart';
+import '../../core/bloc/base_state.dart';
+import '../../core/constants/messages.dart';
+import '../../core/di/core_initializer.dart';
 import 'bloc/auth_cubit.dart';
-import '../../layouts/base_scaffold.dart';
+import '../layouts/base_scaffold.dart';
 import 'models/auth.dart';
 
 class LoginPage extends StatelessWidget {

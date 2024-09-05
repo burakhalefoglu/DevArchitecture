@@ -25,23 +25,7 @@ class InMemoryUserService extends InMemoryService<User>
     ),
   ];
 
-  Future<List<User>> getAllUsers() async {
-    return _users;
-  }
-
-  Future<void> cre(User user) async {
-    _users.add(user);
-  }
-
-  Future<void> updateUser(User updatedUser) async {
-    final index =
-        _users.indexWhere((user) => user.userId == updatedUser.userId);
-    if (index != -1) {
-      _users[index] = updatedUser;
-    }
-  }
-
-  Future<void> deleteUser(int userId) async {
-    _users.removeWhere((user) => user.userId == userId);
+  InMemoryUserService() {
+    super.datas = _users.map((e) => e.toMap()).toList();
   }
 }

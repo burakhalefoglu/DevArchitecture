@@ -37,6 +37,7 @@ class User implements IEntity {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'userId': userId,
       'fullName': fullName,
       'email': email,

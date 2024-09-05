@@ -15,16 +15,15 @@ abstract class ApiService<T> implements IService {
   }
 
   @override
-  Future<IDataResult<Map<String, dynamic>>> create(
-      Map<String, dynamic> body) async {
-    var result = await CoreInitializer().coreContainer.http.post(url, body);
-    return Future.value(SuccessDataResult(result, "Tüm Veriler Eklendi!"));
+  Future<IResult> create(Map<String, dynamic> body) async {
+    await CoreInitializer().coreContainer.http.post(url, body);
+    return Future.value(SuccessResult("Tüm Veriler Eklendi!"));
   }
 
   @override
   Future<IResult> delete(int id) async {
-    var result = await CoreInitializer().coreContainer.http.delete("$url/$id");
-    return Future.value(SuccessResult("Veri Silindi !$result"));
+    await CoreInitializer().coreContainer.http.delete("$url/$id");
+    return Future.value(SuccessResult("Veri Silindi"));
   }
 
   @override

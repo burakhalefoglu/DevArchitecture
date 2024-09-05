@@ -1,10 +1,10 @@
 import 'package:flutter_devarchitecture/core/configs/app_config.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-import '../../../../core/bloc/base_cubit.dart';
-import '../../../../core/bloc/base_state.dart';
-import '../../../../core/di/core_initializer.dart';
-import '../../../../di/business_initializer.dart';
+import '../../../core/bloc/base_cubit.dart';
+import '../../../core/bloc/base_state.dart';
+import '../../../core/di/core_initializer.dart';
+import '../../../di/business_initializer.dart';
 import '../models/auth.dart';
 
 class AuthCubit extends BaseCubit<AuthRequestBasic> {

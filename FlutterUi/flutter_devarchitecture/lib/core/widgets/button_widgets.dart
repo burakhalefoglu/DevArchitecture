@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../theme/custom_colors.dart';
-import 'r_u_sure.dart';
 
 Widget updateGroupClaimButton(BuildContext context, VoidCallback onPressed) =>
     Tooltip(
@@ -86,11 +85,7 @@ Widget getDeleteButton(BuildContext context, VoidCallback onPressed) => Tooltip(
       message: "Veriyi Sil",
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
-          onPressed: () {
-            showAreYouSure(context, () {
-              onPressed();
-            });
-          },
+          onPressed: onPressed,
           icon: Icon(
             size: 24,
             Icons.delete_rounded,

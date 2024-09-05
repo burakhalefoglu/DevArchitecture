@@ -104,7 +104,7 @@ final lightTheme = ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
       foregroundColor: CustomColors.primary.getColor,
-      backgroundColor: CustomColors.primary.getColor,
+      backgroundColor: CustomColors.white.getColor,
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
