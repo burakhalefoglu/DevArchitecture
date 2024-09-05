@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/theme/extensions.dart';
+import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
 import '../bloc/user_cubit.dart';
 import '../models/user.dart';
@@ -107,11 +108,18 @@ class AdminUserPage extends StatelessWidget {
                           )),
                       (userId) => _confirmDelete(context, userId)
                     ],
+                    infoHover:
+                        getInfoHover(context, "Kullanıcı bilgilerini düzenle"),
                     addButton: getAddButton(
                       context,
                       () => _addUser(context),
                       color: CustomColors.white.getColor,
                     ),
+                    utilityButton: DownloadButtons(
+                            data: state is BlocSuccess<List<User>>
+                                ? state.result!.map((nv) => nv.toMap()).toList()
+                                : [])
+                        .excelButton(context),
                   ),
                 ),
               ],

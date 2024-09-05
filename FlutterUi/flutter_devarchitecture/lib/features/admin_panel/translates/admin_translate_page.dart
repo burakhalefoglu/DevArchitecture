@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/bloc/base_state.dart';
 import '../../../core/theme/extensions.dart';
+import '../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '/features/layouts/base_scaffold.dart';
 import '../../../core/di/core_initializer.dart';
 import '../../../core/theme/custom_colors.dart';
@@ -266,13 +268,14 @@ class AdminTranslatePage extends StatelessWidget {
                       .screenMessage
                       .getSuccessMessage("Veri Ekleme"),
                   color: CustomColors.dark.getColor),
-              utilityButton: getDownloadButton(
-                  context,
-                  () => CoreInitializer()
-                      .coreContainer
-                      .screenMessage
-                      .getSuccessMessage("Veri İndirme"),
-                  color: CustomColors.dark.getColor),
+              // utilityButton: DownloadButtons(
+              //                           data:
+              //                               state is BlocSuccess<List<Vehicle>>
+              //                                   ? state.result!
+              //                                       .map((nv) => nv.toMap())
+              //                                       .toList()
+              //                                   : [])
+              // .excelButton(context),
             ),
           ),
         ],

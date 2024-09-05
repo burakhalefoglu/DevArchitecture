@@ -18,7 +18,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.picture_as_pdf),
-      tooltip: 'Download PDF',
+      tooltip: 'PDF İndir',
       onPressed: () {
         CoreInitializer().coreContainer.pdfDownload.download(data);
       },
@@ -29,7 +29,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.table_chart),
-      tooltip: 'Download Excel',
+      tooltip: 'Excel  İndir',
       onPressed: () {
         CoreInitializer().coreContainer.excelDownload.download(data);
       },
@@ -40,7 +40,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.description),
-      tooltip: 'Download TXT',
+      tooltip: 'TXT  İndir',
       onPressed: () {
         CoreInitializer().coreContainer.txtDownload.download(data);
       },
@@ -51,7 +51,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.code),
-      tooltip: 'Download JSON',
+      tooltip: 'JSON  İndir',
       onPressed: () {
         CoreInitializer().coreContainer.jsonDownload.download(data);
       },
@@ -62,7 +62,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.code),
-      tooltip: 'Download XML',
+      tooltip: 'XML  İndir',
       onPressed: () {
         CoreInitializer().coreContainer.xmlDownload.download(data);
       },
@@ -73,7 +73,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.image),
-      tooltip: 'Download Image',
+      tooltip: 'Image  İndir',
       onPressed: () {
         CoreInitializer().coreContainer.imageDownload.download(data);
       },
@@ -84,7 +84,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.table_chart),
-      tooltip: 'Download CSV',
+      tooltip: 'CSV  İndir',
       onPressed: () {
         CoreInitializer().coreContainer.csvDownload.download(data);
       },

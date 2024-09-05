@@ -65,7 +65,7 @@ Widget getInfoHover(BuildContext context, String message) => Tooltip(
       message: message,
       child: Icon(
         Icons.info,
-        color: CustomColors.gray.getColor.withAlpha(255),
+        color: CustomColors.light.getColor.withAlpha(255),
       ),
     );
 
