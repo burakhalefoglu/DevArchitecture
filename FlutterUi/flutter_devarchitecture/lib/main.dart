@@ -1,4 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
 import 'core/di/core_initializer.dart';
 import 'core/di/firebase/firebase_initializer.dart';
 import 'core/mixins/battery_state_mixin.dart';
@@ -7,7 +10,8 @@ import 'features/mixin/modular_mixin.dart';
 import 'core/mixins/ok_toast_mixin.dart';
 import 'di/business_initializer.dart';
 
-import 'package:intl/date_symbol_data_local.dart';
+//? Firebase Options will be used in FirebaseInitializer
+// import 'firebase_options.dart';
 
 Future<void> main() async {
   //? Initializers
@@ -17,10 +21,15 @@ Future<void> main() async {
   BusinessInitializer();
 
   if (String.fromEnvironment('FIREBASE') == 'true') {
-    // ? Firebase Initializer. if close  don't use -> 'FirebaseInitializer().firebaseContainer'
+    //! IF Firebase Initializer  is FALSE  don't use -> 'FirebaseInitializer().firebaseContainer'
+    //! The exception will be thrown not implemented
+
+    //? Firebase Options will be used in FirebaseInitializer
+    await Firebase.initializeApp(
+        // options: DefaultFirebaseOptions.currentPlatform,
+        );
     FirebaseInitializer();
   }
-
   runApp(MyApp());
 }
 
