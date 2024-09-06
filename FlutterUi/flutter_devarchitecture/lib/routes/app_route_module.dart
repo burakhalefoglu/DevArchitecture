@@ -14,7 +14,7 @@ import '../features/utilities/Share/xml_share_button_page.dart';
 import '../features/utilities/internet_connection_page.dart';
 import '../features/utilities/local_notification_page.dart';
 import '../features/widgets/input_examples_page.dart';
-import '/features/admin_panel/languages/admin_language_page.dart';
+import '../features/admin_panel/languages/pages/admin_language_page.dart';
 import '../features/admin_panel/users/pages/user_page.dart';
 import '/features/utilities/Download/csv_download_button_page.dart';
 import '/features/utilities/Download/excel_download_button_page.dart';
@@ -25,7 +25,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../core/guard/auth_guard.dart';
 import '../features/admin_panel/groups/admin_group_page.dart';
-import '../features/admin_panel/logs/logs.dart';
+import '../features/admin_panel/logs/pages/log_page.dart';
 import '../features/admin_panel/operation_claims/admin_operation_claim_page.dart';
 import '../features/admin_panel/translates/admin_translate_page.dart';
 import '../features/app_panel/home/home_page.dart';

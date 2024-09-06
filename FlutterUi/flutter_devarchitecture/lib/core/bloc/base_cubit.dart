@@ -25,6 +25,7 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
         emit(BlocFailed(result.message));
         return;
       }
+      print(result.data);
       emit(BlocSuccess<List<Map<String, dynamic>>>(result.data!));
     } catch (e) {
       if (kDebugMode) {

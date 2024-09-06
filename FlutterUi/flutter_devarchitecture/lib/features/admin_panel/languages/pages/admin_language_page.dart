@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../core/bloc/base_state.dart';
-import '../../../core/theme/extensions.dart';
-import '../../../core/utilities/download_management/buttons/download_buttons.dart';
-import '/features/layouts/base_scaffold.dart';
-import '../../../core/di/core_initializer.dart';
-import '../../../core/theme/custom_colors.dart';
-import '../../../core/widgets/base_widgets.dart';
-import '../../../core/widgets/button_widgets.dart';
-import '../../../core/widgets/tables/filter_table_widget.dart';
-import 'bloc/translate_cubit.dart';
-import 'models/translate_dto.dart';
 
-class AdminTranslatePage extends StatelessWidget {
-  const AdminTranslatePage({super.key});
+import '../../../../core/bloc/base_state.dart';
+import '../../../../core/theme/extensions.dart';
+import '../bloc/language_cubit.dart';
+import '/features/layouts/base_scaffold.dart';
+import '../../../../core/di/core_initializer.dart';
+import '../../../../core/theme/custom_colors.dart';
+import '../../../../core/widgets/base_widgets.dart';
+import '../../../../core/widgets/button_widgets.dart';
+import '../../../../core/widgets/tables/filter_table_widget.dart';
+
+class AdminLanguagePage extends StatelessWidget {
+  const AdminLanguagePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TranslateCubit(),
-      child: BlocConsumer<TranslateCubit, BaseState>(
+      create: (context) => LanguageCubit(),
+      child: BlocConsumer<LanguageCubit, BaseState>(
         listener: (context, state) {
           if (state is BlocFailed) {
             CoreInitializer()
@@ -30,19 +29,15 @@ class AdminTranslatePage extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is BlocInitial) {
-            BlocProvider.of<TranslateCubit>(context).getTranslates();
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is BlocLoading) {
+            // İlk dil verilerini yükle
+            BlocProvider.of<LanguageCubit>(context).getAll();
             return const Center(child: CircularProgressIndicator());
           }
 
-          // Çeviri verilerini işleme
           List<Map<String, dynamic>> tableData = [];
-          if (state is BlocSuccess<List<TranslateDto>>) {
+          if (state is BlocSuccess<List<Map<String, dynamic>>>) {
             tableData = state.result!.isNotEmpty
-                ? state.result!
-                    .map((translation) => translation.toMap())
-                    .toList()
+                ? state.result!.map((language) => language).toList()
                 : [];
           }
 
@@ -55,7 +50,7 @@ class AdminTranslatePage extends StatelessWidget {
                     padding: context.defaultHorizontalPadding,
                     child: buildPageTitle(
                       context,
-                      "Dil Çeviri Listesi",
+                      "Diller Listesi",
                       subDirection: "Admin Panel",
                     ),
                   ),
@@ -67,16 +62,9 @@ class AdminTranslatePage extends StatelessWidget {
                     headers: const [
                       {"id": "ID"},
                       {"code": "Kod"},
-                      {"language": "Dil"},
-                      {"value": "Değer"},
+                      {"name": "Dil Adı"},
                     ],
-                    color: CustomColors.light.getColor,
-                    utilityButton: DownloadButtons(
-                            color: CustomColors.dark.getColor,
-                            data: state is BlocSuccess<List<TranslateDto>>
-                                ? state.result!.map((nv) => nv.toMap()).toList()
-                                : [])
-                        .excelButton(context),
+                    color: CustomColors.danger.getColor,
                     customManipulationButton: const [
                       getEditButton,
                       getDeleteButton
@@ -95,18 +83,14 @@ class AdminTranslatePage extends StatelessWidget {
                                 .getErrorMessage(index.toString())
                           }
                     ],
-                    infoHover: getInfoHover(
-                      context,
-                      "Dil çevirileri bu sayfada listelenmektedir.",
-                      color: CustomColors.gray.getColor,
-                    ),
                     addButton: getAddButton(
-                        context,
-                        () => CoreInitializer()
-                            .coreContainer
-                            .screenMessage
-                            .getSuccessMessage("Veri Ekleme"),
-                        color: CustomColors.dark.getColor),
+                      context,
+                      () => CoreInitializer()
+                          .coreContainer
+                          .screenMessage
+                          .getSuccessMessage("Veri Ekleme"),
+                      color: CustomColors.white.getColor,
+                    ),
                   ),
                 ),
               ],

@@ -61,11 +61,12 @@ Widget getChangeGroupButton(BuildContext context, VoidCallback onPressed) =>
               color: CustomColors.success.getColor,
             )));
 
-Widget getInfoHover(BuildContext context, String message) => Tooltip(
+Widget getInfoHover(BuildContext context, String message, {Color? color}) =>
+    Tooltip(
       message: message,
       child: Icon(
         Icons.info,
-        color: CustomColors.light.getColor.withAlpha(255),
+        color: color ?? CustomColors.light.getColor.withAlpha(255),
       ),
     );
 

@@ -1,7 +1,16 @@
+import 'package:flutter_devarchitecture/features/admin_panel/languages/services/i_language_service.dart';
+import 'package:flutter_devarchitecture/features/admin_panel/logs/services/i_service.dart';
 import 'package:flutter_devarchitecture/features/admin_panel/user-claims/services/i_user_claim_service.dart';
 import 'package:flutter_devarchitecture/features/admin_panel/users/services/i_user_service.dart';
 import 'package:get_it/get_it.dart';
 import '../../../core/configs/app_config.dart';
+import '../../features/admin_panel/languages/services/api_language_service.dart';
+import '../../features/admin_panel/languages/services/in_memory_language_service.dart';
+import '../../features/admin_panel/logs/services/api_log_service.dart';
+import '../../features/admin_panel/logs/services/in_memory_log_service.dart';
+import '../../features/admin_panel/translates/services/api_in_memory_service.dart';
+import '../../features/admin_panel/translates/services/i_translate_service.dart';
+import '../../features/admin_panel/translates/services/in_memory_service.dart';
 import '../../features/admin_panel/user-group/services/api_user_group_service.dart';
 import '../../features/admin_panel/user-group/services/i_user_group_service.dart';
 import '../../features/admin_panel/user-group/services/in_memory_user_group_Service.dart';
@@ -38,6 +47,15 @@ class GetItBusinessContainer implements IBusinessContainer {
   late IUserGroupService userGroupService;
 
   @override
+  late ILogService logService;
+
+  @override
+  late ITranslateService translateService;
+
+  @override
+  late ILanguageService languageService;
+
+  @override
   void setup() {
     //*? Services Binding For DEVELOPMENT
     if (appConfig.name == 'dev' || appConfig.name == '') {
@@ -59,6 +77,21 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<IUserGroupService>((() {
         userGroupService = _getIt
             .registerSingleton<IUserGroupService>(InMemoryUserGroupService());
+      }));
+
+      checkIfUnRegistered<ILogService>((() {
+        logService =
+            _getIt.registerSingleton<ILogService>(InMemoryLogService());
+      }));
+
+      checkIfUnRegistered<ITranslateService>((() {
+        translateService = _getIt
+            .registerSingleton<ITranslateService>(InMemoryTranslateService());
+      }));
+
+      checkIfUnRegistered<ILanguageService>((() {
+        languageService = _getIt
+            .registerSingleton<ILanguageService>(InMemoryLanguageService());
       }));
     }
 
@@ -83,6 +116,21 @@ class GetItBusinessContainer implements IBusinessContainer {
         userGroupService = _getIt.registerSingleton<IUserGroupService>(
             ApiUserGroupService(method: "/user-groups"));
       }));
+
+      checkIfUnRegistered<ILogService>((() {
+        logService = _getIt
+            .registerSingleton<ILogService>(ApiLogService(method: "/Logs"));
+      }));
+
+      checkIfUnRegistered<ITranslateService>((() {
+        translateService = _getIt.registerSingleton<ITranslateService>(
+            ApiTranslateService(method: "/Translates"));
+      }));
+
+      checkIfUnRegistered<ILanguageService>((() {
+        languageService = _getIt.registerSingleton<ILanguageService>(
+            ApiLanguageService(method: "/Languages"));
+      }));
     }
 
     //*? Services Binding For PRODUCTION
@@ -105,6 +153,21 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<IUserGroupService>((() {
         userGroupService = _getIt.registerSingleton<IUserGroupService>(
             ApiUserGroupService(method: "/user-groups"));
+      }));
+
+      checkIfUnRegistered<ILogService>((() {
+        logService = _getIt
+            .registerSingleton<ILogService>(ApiLogService(method: "/Logs"));
+      }));
+
+      checkIfUnRegistered<ITranslateService>((() {
+        translateService = _getIt.registerSingleton<ITranslateService>(
+            ApiTranslateService(method: "/Translates"));
+      }));
+
+      checkIfUnRegistered<ILanguageService>((() {
+        languageService = _getIt.registerSingleton<ILanguageService>(
+            ApiLanguageService(method: "/Languages"));
       }));
     }
   }
