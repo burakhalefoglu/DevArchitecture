@@ -4,22 +4,22 @@ import 'package:flutter_devarchitecture/features/utilities/permission_page.dart'
 import 'package:flutter_devarchitecture/features/utilities/qr_code_scanner.dart';
 import 'package:flutter_devarchitecture/features/utilities/screen_message_page.dart';
 
-import '../features/utilities/Share/csv_share_button_page.dart';
-import '../features/utilities/Share/excel_share_button_page.dart';
-import '../features/utilities/Share/image_share_button_page.dart';
-import '../features/utilities/Share/json_share_button_page.dart';
-import '../features/utilities/Share/pdf_share_button_page.dart';
-import '../features/utilities/Share/txt_share_button_page.dart';
-import '../features/utilities/Share/xml_share_button_page.dart';
+import '../features/utilities/share/csv_share_button_page.dart';
+import '../features/utilities/share/excel_share_button_page.dart';
+import '../features/utilities/share/image_share_button_page.dart';
+import '../features/utilities/share/json_share_button_page.dart';
+import '../features/utilities/share/pdf_share_button_page.dart';
+import '../features/utilities/share/txt_share_button_page.dart';
+import '../features/utilities/share/xml_share_button_page.dart';
 import '../features/utilities/internet_connection_page.dart';
 import '../features/utilities/local_notification_page.dart';
 import '../features/widgets/input_examples_page.dart';
 import '../features/admin_panel/languages/pages/admin_language_page.dart';
 import '../features/admin_panel/users/pages/user_page.dart';
-import '/features/utilities/Download/csv_download_button_page.dart';
-import '/features/utilities/Download/excel_download_button_page.dart';
-import '/features/utilities/Download/image_download_button_page.dart';
-import '/features/utilities/Download/json_download_button_page.dart';
+import '../features/utilities/download/csv_download_button_page.dart';
+import '../features/utilities/download/excel_download_button_page.dart';
+import '../features/utilities/download/image_download_button_page.dart';
+import '../features/utilities/download/json_download_button_page.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -31,9 +31,9 @@ import '../features/admin_panel/translates/admin_translate_page.dart';
 import '../features/app_panel/home/home_page.dart';
 import '../features/auth/login_page.dart';
 import '../features/not_found/not_found_page.dart';
-import '../features/utilities/Download/pdf_download_button_page.dart';
-import '../features/utilities/Download/txt_download_button_page.dart';
-import '../features/utilities/Download/xml_download_button_page.dart';
+import '../features/utilities/download/pdf_download_button_page.dart';
+import '../features/utilities/download/txt_download_button_page.dart';
+import '../features/utilities/download/xml_download_button_page.dart';
 import '../features/utilities/battery_status_page.dart';
 import '../features/utilities/biometric_auth_page.dart';
 import '../features/utilities/device_info_page.dart';

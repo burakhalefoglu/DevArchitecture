@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../core/widgets/inputs/dropdown_button.dart';
 import '../../core/widgets/inputs/email_input.dart';
 import '../../core/widgets/inputs/password_input.dart';
 import '../../core/theme/extensions.dart';
@@ -20,6 +19,8 @@ class LoginPage extends StatelessWidget {
   final GlobalKey<FormState> _form = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  final TextEditingController _languageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -83,15 +84,16 @@ class LoginPage extends StatelessWidget {
                               ),
                               Expanded(
                                 flex: 1,
-                                child: CustomDropdownButton(
-                                  icon: Icons.language_rounded,
-                                  getFirstValue: (p0) {
-                                    print(p0);
+                                child: LanguageDropdownButton(
+                                  isShort: true,
+                                  getInitialValue: (selectedLanguage) {
+                                    _languageController.text =
+                                        selectedLanguage.id;
                                   },
-                                  onChanged: (p0) {
-                                    print(p0);
+                                  onChanged: (selectedLanguage) {
+                                    _languageController.text =
+                                        selectedLanguage.id;
                                   },
-                                  options: const ["Tr", "En"],
                                 ),
                               ),
                             ],
@@ -129,7 +131,15 @@ class LoginPage extends StatelessWidget {
                                 : Expanded(
                                     flex: 2,
                                     child: LanguageDropdownButton(
-                                      onChanged: (selectedLanguage) {},
+                                      isShort: false,
+                                      getInitialValue: (selectedLanguage) {
+                                        _languageController.text =
+                                            selectedLanguage.id;
+                                      },
+                                      onChanged: (selectedLanguage) {
+                                        _languageController.text =
+                                            selectedLanguage.id;
+                                      },
                                     ),
                                   )
                           ],
@@ -148,10 +158,12 @@ class LoginPage extends StatelessWidget {
                               Messages.formValidationErrorMessage);
                           return;
                         }
-                        await BlocProvider.of<AuthCubit>(context).login(
-                            AuthRequestBasic(
-                                email: _emailController.text,
-                                password: _passwordController.text));
+                        await BlocProvider.of<AuthCubit>(context)
+                            .login(AuthRequestBasic(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                          lang: _languageController.text,
+                        ));
                       },
                       child: const Text("Giriş Yap"),
                     ),

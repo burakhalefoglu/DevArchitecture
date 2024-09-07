@@ -151,12 +151,9 @@ class AdminUserPage extends StatelessWidget {
   }
 
   void _confirmDelete(BuildContext context, int userId) {
-    showDialog(
-      context: context,
-      builder: (c) => showConfirmationDialog(c, () {
-        BlocProvider.of<UserCubit>(context).deleteUser(userId);
-      }),
-    );
+    showConfirmationDialog(context, () {
+      BlocProvider.of<UserCubit>(context).deleteUser(userId);
+    });
   }
 
   void _changePassword(BuildContext context, int userId) async {

@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../theme/custom_colors.dart';
 
-showConfirmationDialog(BuildContext context, void Function() onPressed) {
+showConfirmationDialog(BuildContext c, void Function() onPressed) {
   return showDialog(
-    context: context,
+    context: c,
     builder: (BuildContext context) {
       return BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),

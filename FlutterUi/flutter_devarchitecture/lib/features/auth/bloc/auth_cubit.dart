@@ -29,6 +29,8 @@ class AuthCubit extends BaseCubit<AuthRequestBasic> {
       }
 
       Map<String, dynamic> decodedToken = JwtDecoder.decode(result.data!.token);
+      await CoreInitializer().coreContainer.storage.save("lang", body.lang);
+
       await CoreInitializer().coreContainer.storage.save(
           "inputPersonId",
           decodedToken[

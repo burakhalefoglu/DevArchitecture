@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/theme/extensions.dart';
+import '../../../../core/widgets/confirmation_dialog.dart';
 import '../bloc/language_cubit.dart';
+import '../models/language.dart';
+import '../widgets/add_language_dialog.dart';
+import '../widgets/update_language_dialog.dart';
 import '/features/layouts/base_scaffold.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../../../core/theme/custom_colors.dart';
@@ -36,9 +39,7 @@ class AdminLanguagePage extends StatelessWidget {
 
           List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
-            tableData = state.result!.isNotEmpty
-                ? state.result!.map((language) => language).toList()
-                : [];
+            tableData = state.result!.map((language) => language).toList();
           }
 
           return buildBaseScaffold(
@@ -70,25 +71,16 @@ class AdminLanguagePage extends StatelessWidget {
                       getDeleteButton
                     ],
                     customManipulationCallback: [
-                      (index) => {
-                            CoreInitializer()
-                                .coreContainer
-                                .screenMessage
-                                .getInfoMessage(index.toString())
-                          },
-                      (index) => {
-                            CoreInitializer()
-                                .coreContainer
-                                .screenMessage
-                                .getErrorMessage(index.toString())
-                          }
+                      (id) => _editLanguage(
+                          context,
+                          tableData.firstWhere(
+                            (element) => element['id'] == id,
+                          )),
+                      (id) => _confirmDelete(context, id)
                     ],
                     addButton: getAddButton(
                       context,
-                      () => CoreInitializer()
-                          .coreContainer
-                          .screenMessage
-                          .getSuccessMessage("Veri Ekleme"),
+                      () => _addLanguage(context),
                       color: CustomColors.white.getColor,
                     ),
                   ),
@@ -99,5 +91,33 @@ class AdminLanguagePage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void _addLanguage(BuildContext context) async {
+    final newLanguage = await showDialog<Language>(
+      context: context,
+      builder: (c) => const AddLanguageDialog(),
+    );
+    if (newLanguage != null) {
+      BlocProvider.of<LanguageCubit>(context).add(newLanguage);
+    }
+  }
+
+  void _editLanguage(
+      BuildContext context, Map<String, dynamic> languageData) async {
+    final updatedLanguage = await showDialog<Language>(
+      context: context,
+      builder: (c) =>
+          UpdateLanguageDialog(language: Language.fromMap(languageData)),
+    );
+    if (updatedLanguage != null) {
+      BlocProvider.of<LanguageCubit>(context).update(updatedLanguage);
+    }
+  }
+
+  void _confirmDelete(BuildContext context, int languageId) {
+    showConfirmationDialog(context, () {
+      BlocProvider.of<LanguageCubit>(context).delete(languageId);
+    });
   }
 }

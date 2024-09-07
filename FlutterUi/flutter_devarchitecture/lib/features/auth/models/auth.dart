@@ -34,18 +34,21 @@ class AuthResponse {
 class AuthRequestBasic implements IEntity {
   late String email;
   late String password;
+  late String lang;
 
-  AuthRequestBasic({required this.email, required this.password});
+  AuthRequestBasic(
+      {required this.email, required this.password, required this.lang});
 
   @override
   Map<String, dynamic> toMap() {
-    return {'email': email, 'password': password};
+    return {'email': email, 'password': password, 'lang': lang};
   }
 
   factory AuthRequestBasic.fromMap(Map<String, dynamic> map) {
     return AuthRequestBasic(
       email: map['email'],
       password: map['password'],
+      lang: map['lang'],
     );
   }
 

@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_devarchitecture/features/admin_panel/user-claims/models/lookup.dart';
 
 import '../bloc/language_cubit.dart';
-import '../models/language.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/widgets/inputs/dropdown_button.dart'; // Custom dropdown button
 
 class LanguageDropdownButton extends StatefulWidget {
-  final void Function(Language selectedLanguage) onChanged;
-  final Key? key; // Key parametresi
+  final void Function(LookUp selectedLanguage) onChanged;
+  final void Function(LookUp selectedLanguage) getInitialValue;
+  final bool isShort;
+  final Key? key;
 
   const LanguageDropdownButton({
     this.key,
     required this.onChanged,
+    required this.getInitialValue,
+    this.isShort = false,
   }) : super(key: key);
 
   @override
@@ -20,12 +24,12 @@ class LanguageDropdownButton extends StatefulWidget {
 }
 
 class _LanguageDropdownButtonState extends State<LanguageDropdownButton> {
-  Language? _selectedLanguage;
+  LookUp? _selectedLanguage;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LanguageCubit()..getAll(),
+      create: (context) => LanguageCubit(),
       child: BlocConsumer<LanguageCubit, BaseState>(
         listener: (context, state) {
           if (state is BlocFailed) {
@@ -36,23 +40,36 @@ class _LanguageDropdownButtonState extends State<LanguageDropdownButton> {
         },
         builder: (context, state) {
           if (state is BlocInitial || state is BlocLoading) {
+            BlocProvider.of<LanguageCubit>(context).getLanguageCodes();
             return const CircularProgressIndicator();
-          } else if (state is BlocSuccess<List<Language>>) {
-            List<Language> languages = state.result!;
+          } else if (state is BlocSuccess<List<LookUp>>) {
+            List<LookUp> languages = state.result!;
+
+            // Dropdown'da gösterilecek seçenekler
+            List<String> options = widget.isShort
+                ? languages.map((lang) => lang.id.toString()).toList()
+                : languages.map((lang) => lang.label).toList();
 
             return CustomDropdownButton(
-              key: widget.key, // Key parametresinin kullanımı
+              key: widget.key,
               icon: Icons.language,
               getFirstValue: (value) {
-                _selectedLanguage = languages.firstWhere(
-                    (lang) => lang.code == value,
-                    orElse: () => languages.first);
+                _selectedLanguage = widget.isShort
+                    ? languages.firstWhere(
+                        (lang) => lang.id.toString() == value,
+                        orElse: () => languages.first)
+                    : languages.firstWhere((lang) => lang.label == value,
+                        orElse: () => languages.first);
+                widget.getInitialValue(_selectedLanguage!);
               },
-              options: languages.map((lang) => lang.code).toList(),
-              onChanged: (String? selectedCode) {
-                if (selectedCode != null) {
-                  _selectedLanguage =
-                      languages.firstWhere((lang) => lang.code == selectedCode);
+              options: options,
+              onChanged: (String? selectedValue) {
+                if (selectedValue != null) {
+                  _selectedLanguage = widget.isShort
+                      ? languages.firstWhere(
+                          (lang) => lang.id.toString() == selectedValue)
+                      : languages
+                          .firstWhere((lang) => lang.label == selectedValue);
                   widget.onChanged(_selectedLanguage!);
                 }
               },

@@ -1,13 +1,9 @@
-import '../../../../core/models/i_entity.dart';
-
-class LookUp implements IEntity {
-  @override
-  int id;
+class LookUp {
+  dynamic id;
   String label;
 
   LookUp({required this.id, required this.label});
 
-  @override
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -18,7 +14,7 @@ class LookUp implements IEntity {
   @override
   factory LookUp.fromMap(Map<String, dynamic> map) {
     return LookUp(
-      id: int.parse(map['id']),
+      id: map['id'],
       label: map['label'],
     );
   }
