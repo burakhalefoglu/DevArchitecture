@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../core/widgets/inputs/custom_multi_select_auto_complete.dart';
-import '../../user-claims/models/lookup.dart';
+import '../../../../core/models/lookup.dart';
 import '../bloc/user_group_cubit.dart';
 
 class UserGroupAutocomplete extends StatefulWidget {

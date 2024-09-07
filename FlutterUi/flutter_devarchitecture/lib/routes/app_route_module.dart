@@ -27,7 +27,7 @@ import '../core/guard/auth_guard.dart';
 import '../features/admin_panel/groups/admin_group_page.dart';
 import '../features/admin_panel/logs/pages/log_page.dart';
 import '../features/admin_panel/operation_claims/admin_operation_claim_page.dart';
-import '../features/admin_panel/translates/admin_translate_page.dart';
+import '../features/admin_panel/translates/pages/admin_translate_page.dart';
 import '../features/app_panel/home/home_page.dart';
 import '../features/auth/login_page.dart';
 import '../features/not_found/not_found_page.dart';

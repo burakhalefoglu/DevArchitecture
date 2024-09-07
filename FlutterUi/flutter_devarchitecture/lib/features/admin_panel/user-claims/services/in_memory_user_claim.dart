@@ -1,6 +1,6 @@
 import '../../../../core/services/base_services/in_memory_service.dart';
 import '../../../../core/utilities/results.dart';
-import '../models/lookup.dart';
+import '../../../../core/models/lookup.dart';
 import '../models/user_claim.dart';
 import 'i_user_claim_service.dart';
 

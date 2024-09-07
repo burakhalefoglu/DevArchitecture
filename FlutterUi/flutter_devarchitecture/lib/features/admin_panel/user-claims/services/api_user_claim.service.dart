@@ -1,4 +1,4 @@
-import 'package:flutter_devarchitecture/features/admin_panel/user-claims/models/lookup.dart';
+import 'package:flutter_devarchitecture/core/models/lookup.dart';
 
 import '../../../../core/di/core_initializer.dart';
 import '../../../../core/services/base_services/api_service.dart';

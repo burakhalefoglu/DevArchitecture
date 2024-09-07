@@ -1,4 +1,4 @@
-import '../../user-claims/models/lookup.dart';
+import '../../../../core/models/lookup.dart';
 import '../models/user_group.dart';
 import '../../../../core/bloc/base_cubit.dart';
 import '../../../../core/bloc/base_state.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter_devarchitecture/features/admin_panel/user-claims/models/lookup.dart';
+import 'package:flutter_devarchitecture/core/models/lookup.dart';
 
 import '../../../../core/bloc/base_state.dart';
 import '../models/language.dart';
@@ -17,7 +17,21 @@ class LanguageCubit extends BaseCubit<Language> {
       final languages = await BusinessInitializer()
           .businessContainer
           .languageService
-          .getLanguages();
+          .getLanguageCodes();
+      emit(BlocSuccess<List<LookUp>>(languages.data!));
+    } catch (e) {
+      emit(BlocFailed("Diller getirilemedi: ${e.toString()}"));
+    }
+  }
+
+  Future<void> getLanguageLookups() async {
+    emit(BlocLoading("Diller getiriliyor..."));
+    try {
+      // Diller getiriliyor
+      final languages = await BusinessInitializer()
+          .businessContainer
+          .languageService
+          .getLanguageLookups();
       emit(BlocSuccess<List<LookUp>>(languages.data!));
     } catch (e) {
       emit(BlocFailed("Diller getirilemedi: ${e.toString()}"));

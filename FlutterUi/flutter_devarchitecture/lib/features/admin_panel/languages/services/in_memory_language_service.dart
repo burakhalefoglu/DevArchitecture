@@ -1,6 +1,6 @@
 import '../../../../core/services/base_services/in_memory_service.dart';
 import '../../../../core/utilities/results.dart';
-import '../../user-claims/models/lookup.dart';
+import '../../../../core/models/lookup.dart';
 import '../models/language.dart';
 import 'i_language_service.dart';
 
@@ -11,9 +11,14 @@ class InMemoryLanguageService extends InMemoryService<Language>
     Language(id: 2, code: "en-EN", name: "English"),
   ];
 
-  List<LookUp> _lookUps = [
+  List<LookUp> _languageCodes = [
     LookUp(id: "tr-TR", label: "Türkçe"),
     LookUp(id: "en-EN", label: "English"),
+  ];
+
+  List<LookUp> _languageLookups = [
+    LookUp(id: 1, label: "Türkçe"),
+    LookUp(id: 2, label: "English"),
   ];
 
   InMemoryLanguageService() {
@@ -21,8 +26,14 @@ class InMemoryLanguageService extends InMemoryService<Language>
   }
 
   @override
-  Future<IDataResult<List<LookUp>>> getLanguages() async {
+  Future<IDataResult<List<LookUp>>> getLanguageCodes() async {
     return SuccessDataResult(
-        _lookUps.map((e) => LookUp.fromMap(e.toMap())).toList(), "");
+        _languageCodes.map((e) => LookUp.fromMap(e.toMap())).toList(), "");
+  }
+
+  @override
+  Future<IDataResult<List<LookUp>>> getLanguageLookups() async {
+    return SuccessDataResult(
+        _languageLookups.map((e) => LookUp.fromMap(e.toMap())).toList(), "");
   }
 }

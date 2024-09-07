@@ -9,7 +9,7 @@ import '../../core/theme/extensions.dart';
 import '../../core/bloc/base_state.dart';
 import '../../core/constants/messages.dart';
 import '../../core/di/core_initializer.dart';
-import '../admin_panel/languages/widgets/language_Dropdown_button.dart';
+import '../admin_panel/languages/widgets/language_code_dropdown_button.dart';
 import 'bloc/auth_cubit.dart';
 import '../layouts/base_scaffold.dart';
 import 'models/auth.dart';
@@ -84,7 +84,7 @@ class LoginPage extends StatelessWidget {
                               ),
                               Expanded(
                                 flex: 1,
-                                child: LanguageDropdownButton(
+                                child: LanguageCodeDropdownButton(
                                   isShort: true,
                                   getInitialValue: (selectedLanguage) {
                                     _languageController.text =
@@ -130,7 +130,7 @@ class LoginPage extends StatelessWidget {
                                 ? const SizedBox()
                                 : Expanded(
                                     flex: 2,
-                                    child: LanguageDropdownButton(
+                                    child: LanguageCodeDropdownButton(
                                       isShort: false,
                                       getInitialValue: (selectedLanguage) {
                                         _languageController.text =

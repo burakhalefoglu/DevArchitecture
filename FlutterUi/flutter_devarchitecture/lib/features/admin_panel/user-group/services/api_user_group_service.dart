@@ -1,7 +1,7 @@
 import '../../../../core/di/core_initializer.dart';
 import '../../../../core/services/base_services/api_service.dart';
 import '../../../../core/utilities/results.dart';
-import '../../user-claims/models/lookup.dart';
+import '../../../../core/models/lookup.dart';
 import '../models/user_group.dart';
 import 'i_user_group_service.dart';
 

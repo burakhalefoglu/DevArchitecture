@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../core/widgets/inputs/custom_multi_select_auto_complete.dart';
 import '../bloc/user_claim_cubit.dart';
-import '../models/lookup.dart';
+import '../../../../core/models/lookup.dart';
 
 class UserClaimAutocomplete extends StatefulWidget {
   final int userId;
