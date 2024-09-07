@@ -22,8 +22,8 @@ class UserGroup implements IEntity {
   @override
   factory UserGroup.fromMap(Map<String, dynamic> map) {
     return UserGroup(
-      groupId: map['groupId'],
-      userId: map['userId'],
+      groupId: map['groupId'] ?? 0,
+      userId: map['userId'] ?? 0,
     );
   }
 }

@@ -66,7 +66,6 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               final newLanguage = Language(
-                id: 0,
                 code: _codeController.text,
                 name: _nameController.text,
               );

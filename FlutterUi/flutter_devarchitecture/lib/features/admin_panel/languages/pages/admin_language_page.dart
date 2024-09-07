@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/theme/extensions.dart';
+import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
 import '../bloc/language_cubit.dart';
 import '../models/language.dart';
@@ -65,6 +66,15 @@ class AdminLanguagePage extends StatelessWidget {
                       {"code": "Kod"},
                       {"name": "Dil Adı"},
                     ],
+                    infoHover:
+                        getInfoHover(context, "Diller bu sayfada listelenir."),
+                    utilityButton: DownloadButtons(
+                            color: CustomColors.dark.getColor,
+                            data:
+                                state is BlocSuccess<List<Map<String, dynamic>>>
+                                    ? state.result!
+                                    : [])
+                        .excelButton(context),
                     color: CustomColors.danger.getColor,
                     customManipulationButton: const [
                       getEditButton,

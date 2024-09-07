@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import '../models/language.dart';
 
 class UpdateLanguageDialog extends StatefulWidget {
@@ -36,30 +37,41 @@ class _UpdateLanguageDialogState extends State<UpdateLanguageDialog> {
       title: const Text('Dili Güncelle'),
       content: Form(
         key: _formKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextFormField(
-              controller: _codeController,
-              decoration: const InputDecoration(labelText: 'Kod'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Kod boş bırakılamaz';
-                }
-                return null;
-              },
-            ),
-            TextFormField(
-              controller: _nameController,
-              decoration: const InputDecoration(labelText: 'Dil Adı'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Dil adı boş bırakılamaz';
-                }
-                return null;
-              },
-            ),
-          ],
+        child: Container(
+          width: context.percent40Screen,
+          height: context.percent15Screen,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                flex: 5,
+                child: TextFormField(
+                  controller: _codeController,
+                  decoration: const InputDecoration(labelText: 'Kod'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Kod boş bırakılamaz';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const Spacer(),
+              Expanded(
+                flex: 5,
+                child: TextFormField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(labelText: 'Dil Adı'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Dil adı boş bırakılamaz';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       actions: [

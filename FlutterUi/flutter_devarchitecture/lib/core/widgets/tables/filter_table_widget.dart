@@ -36,8 +36,21 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
 
   @override
   void initState() {
+    // Null değerleri "" ile değiştir
+    _reformatNullToEmptyString();
     filteredData = widget.datas;
     super.initState();
+  }
+
+  void _reformatNullToEmptyString() {
+    for (var data in widget.datas) {
+      for (var header in widget.headers) {
+        final key = header.keys.first;
+        if (!data.containsKey(key) || data[key] == null) {
+          data[key] = "";
+        }
+      }
+    }
   }
 
   @override

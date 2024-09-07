@@ -1,22 +1,25 @@
-import 'package:flutter_devarchitecture/features/admin_panel/languages/services/i_language_service.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/logs/services/i_service.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/user-claims/services/i_user_claim_service.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/users/services/i_user_service.dart';
 import 'package:get_it/get_it.dart';
 import '../../../core/configs/app_config.dart';
 import '../../features/admin_panel/languages/services/api_language_service.dart';
+import '../../features/admin_panel/languages/services/i_language_service.dart';
 import '../../features/admin_panel/languages/services/in_memory_language_service.dart';
 import '../../features/admin_panel/logs/services/api_log_service.dart';
+import '../../features/admin_panel/logs/services/i_service.dart';
 import '../../features/admin_panel/logs/services/in_memory_log_service.dart';
+import '../../features/admin_panel/operation_claims/services/api_operation_claim_service.dart';
+import '../../features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
+import '../../features/admin_panel/operation_claims/services/in_memory_operation_claim_service.dart';
 import '../../features/admin_panel/translates/services/api_in_memory_service.dart';
 import '../../features/admin_panel/translates/services/i_translate_service.dart';
 import '../../features/admin_panel/translates/services/in_memory_service.dart';
+import '../../features/admin_panel/user-claims/services/i_user_claim_service.dart';
 import '../../features/admin_panel/user-group/services/api_user_group_service.dart';
 import '../../features/admin_panel/user-group/services/i_user_group_service.dart';
 import '../../features/admin_panel/user-group/services/in_memory_user_group_Service.dart';
 import '../../features/admin_panel/user-claims/services/api_user_claim.service.dart';
 import '../../features/admin_panel/user-claims/services/in_memory_user_claim.dart';
 import '../../features/admin_panel/users/services/api_user_service.dart';
+import '../../features/admin_panel/users/services/i_user_service.dart';
 import '../../features/admin_panel/users/services/in_memory_user_service.dart';
 import '../../features/auth/services/abstract/i_auth_service.dart';
 import '../../features/auth/services/concrete/api_auth_service.dart';
@@ -56,6 +59,9 @@ class GetItBusinessContainer implements IBusinessContainer {
   late ILanguageService languageService;
 
   @override
+  late IOperationClaimService operationClaimService;
+
+  @override
   void setup() {
     //*? Services Binding For DEVELOPMENT
     if (appConfig.name == 'dev' || appConfig.name == '') {
@@ -92,6 +98,12 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<ILanguageService>((() {
         languageService = _getIt
             .registerSingleton<ILanguageService>(InMemoryLanguageService());
+      }));
+
+      checkIfUnRegistered<IOperationClaimService>((() {
+        operationClaimService =
+            _getIt.registerSingleton<IOperationClaimService>(
+                InMemoryOperationClaimService());
       }));
     }
 
@@ -131,6 +143,12 @@ class GetItBusinessContainer implements IBusinessContainer {
         languageService = _getIt.registerSingleton<ILanguageService>(
             ApiLanguageService(method: "/Languages"));
       }));
+
+      checkIfUnRegistered<IOperationClaimService>((() {
+        operationClaimService =
+            _getIt.registerSingleton<IOperationClaimService>(
+                ApiOperationClaimService(method: "/operation-claims"));
+      }));
     }
 
     //*? Services Binding For PRODUCTION
@@ -168,6 +186,12 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<ILanguageService>((() {
         languageService = _getIt.registerSingleton<ILanguageService>(
             ApiLanguageService(method: "/Languages"));
+      }));
+
+      checkIfUnRegistered<IOperationClaimService>((() {
+        operationClaimService =
+            _getIt.registerSingleton<IOperationClaimService>(
+                ApiOperationClaimService(method: "/operation-claims"));
       }));
     }
   }

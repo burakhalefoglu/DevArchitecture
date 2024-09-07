@@ -9,52 +9,6 @@ class UserCubit extends BaseCubit<User> {
     super.service = BusinessInitializer().businessContainer.userService;
   }
 
-  Future<void> getAllUsers() async {
-    emit(BlocLoading("Kullanıcılar getiriliyor..."));
-    try {
-      // Veritabanından kullanıcıları al
-      final users = await service.getAll();
-      emit(BlocSuccess<List<User>>(
-        users.data!.map((e) => User.fromMap(e)).toList(),
-      ));
-    } catch (e) {
-      emit(BlocFailed("Kullanıcılar getirilemedi: ${e.toString()}"));
-    }
-  }
-
-  Future<void> addUser(User user) async {
-    emit(BlocLoading("Kullanıcı ekleniyor..."));
-    try {
-      // Kullanıcıyı veritabanına ekle
-      await service.create(user.toMap());
-      await getAllUsers(); // Kullanıcıları tekrar yükleyin
-    } catch (e) {
-      emit(BlocFailed("Kullanıcı eklenemedi: ${e.toString()}"));
-    }
-  }
-
-  Future<void> updateUser(User updatedUser) async {
-    emit(BlocLoading("Kullanıcı güncelleniyor..."));
-    try {
-      // Kullanıcıyı veritabanında güncelle
-      await service.update(updatedUser.id, updatedUser.toMap());
-      await getAllUsers(); // Kullanıcıları tekrar yükleyin
-    } catch (e) {
-      emit(BlocFailed("Kullanıcı güncellenemedi: ${e.toString()}"));
-    }
-  }
-
-  Future<void> deleteUser(int userId) async {
-    emit(BlocLoading("Kullanıcı siliniyor..."));
-    try {
-      // Kullanıcıyı veritabanından sil
-      await service.delete(userId);
-      await getAllUsers(); // Kullanıcıları tekrar yükleyin
-    } catch (e) {
-      emit(BlocFailed("Kullanıcı silinemedi: ${e.toString()}"));
-    }
-  }
-
   Future<void> saveUserPassword(int userId, String password) async {
     emit(BlocLoading("Kullanıcı sifresi kaydediliyor..."));
     try {
@@ -62,7 +16,7 @@ class UserCubit extends BaseCubit<User> {
       var authService = BusinessInitializer().businessContainer.authService;
       await authService
           .saveUserPassword(PasswordDto(password: password, userId: userId));
-      await getAllUsers(); // Kullanıcıları tekrar yükleyin
+      await getAll(); // Kullanıcıları tekrar yükleyin
     } catch (e) {
       emit(BlocFailed("Kullanıcı sifresi kaydedilemedi: ${e.toString()}"));
     }
@@ -76,7 +30,7 @@ class UserCubit extends BaseCubit<User> {
           .businessContainer
           .userClaimService
           .update(userId, {"UserId": userId, "ClaimIds": claims});
-      await getAllUsers(); // Kullanıcıları tekrar yükleyin
+      await getAll(); // Kullanıcıları tekrar yükleyin
     } catch (e) {
       emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
     }
@@ -90,7 +44,7 @@ class UserCubit extends BaseCubit<User> {
           .businessContainer
           .userGroupService
           .update(userId, {"UserId": userId, "GroupId": groups});
-      await getAllUsers(); // Kullanıcıları tekrar yükleyin
+      await getAll(); // Kullanıcıları tekrar yükleyin
     } catch (e) {
       emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
     }

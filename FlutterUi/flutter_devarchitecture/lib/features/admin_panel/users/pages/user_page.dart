@@ -38,16 +38,14 @@ class AdminUserPage extends StatelessWidget {
         builder: (context, state) {
           // İlk kullanıcı yüklemesi ve yükleme durumları için göstergesi
           if (state is BlocInitial || state is BlocLoading) {
-            BlocProvider.of<UserCubit>(context).getAllUsers();
+            BlocProvider.of<UserCubit>(context).getAll();
             return const Center(child: CircularProgressIndicator());
           }
 
           // Kullanıcı verilerini işleme
           List<Map<String, dynamic>> tableData = [];
-          if (state is BlocSuccess<List<User>>) {
-            tableData = state.result!.isNotEmpty
-                ? state.result!.map((user) => user.toMap()).toList()
-                : [];
+          if (state is BlocSuccess<List<Map<String, dynamic>>>) {
+            tableData = state.result!.isNotEmpty ? state.result! : [];
           }
 
           return buildBaseScaffold(
@@ -136,7 +134,7 @@ class AdminUserPage extends StatelessWidget {
       builder: (c) => const AddUserDialog(),
     );
     if (newUser != null) {
-      BlocProvider.of<UserCubit>(context).addUser(newUser);
+      BlocProvider.of<UserCubit>(context).add(newUser);
     }
   }
 
@@ -146,13 +144,13 @@ class AdminUserPage extends StatelessWidget {
       builder: (c) => UpdateUserDialog(user: User.fromMap(userData)),
     );
     if (updatedUser != null) {
-      BlocProvider.of<UserCubit>(context).updateUser(updatedUser);
+      BlocProvider.of<UserCubit>(context).update(updatedUser);
     }
   }
 
   void _confirmDelete(BuildContext context, int userId) {
     showConfirmationDialog(context, () {
-      BlocProvider.of<UserCubit>(context).deleteUser(userId);
+      BlocProvider.of<UserCubit>(context).delete(userId);
     });
   }
 

@@ -2,12 +2,12 @@ import '../../../../core/models/i_entity.dart';
 
 class Language implements IEntity {
   @override
-  int id;
+  late int id;
   String code;
   String name;
 
   Language({
-    required this.id,
+    this.id = 0,
     required this.code,
     required this.name,
   });
@@ -15,8 +15,8 @@ class Language implements IEntity {
   factory Language.fromMap(Map<String, dynamic> map) {
     return Language(
       id: map['id'],
-      code: map['code'],
-      name: map['name'],
+      code: map['code'] ?? "",
+      name: map['name'] ?? "",
     );
   }
 

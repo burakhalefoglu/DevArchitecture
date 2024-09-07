@@ -24,9 +24,9 @@ class Translate implements IEntity {
 
   factory Translate.fromMap(Map<String, dynamic> map) {
     return Translate(
-      langId: map['langId'],
-      code: map['code'],
-      value: map['value'],
+      langId: map['langId'] ?? 0,
+      code: map['code'] ?? "",
+      value: map['value'] ?? "",
     );
   }
 }

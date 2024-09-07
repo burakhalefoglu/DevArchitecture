@@ -1,5 +1,6 @@
 import 'package:flutter_devarchitecture/features/admin_panel/languages/services/i_language_service.dart';
 import 'package:flutter_devarchitecture/features/admin_panel/logs/services/i_service.dart';
+import 'package:flutter_devarchitecture/features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
 import 'package:flutter_devarchitecture/features/admin_panel/translates/services/i_translate_service.dart';
 
 import '../features/admin_panel/user-group/services/i_user_group_service.dart';
@@ -22,6 +23,8 @@ abstract class IBusinessContainer {
   late ITranslateService translateService;
 
   late ILanguageService languageService;
+
+  late IOperationClaimService operationClaimService;
 
   void setup();
   void checkIfUnRegistered<T extends Object>(Function register);

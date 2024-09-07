@@ -14,8 +14,8 @@ class UserClaim implements IEntity {
 
   factory UserClaim.fromMap(Map<String, dynamic> json) {
     return UserClaim(
-      userId: json['userId'],
-      claimId: json['claimId'],
+      userId: json['userId'] ?? 0,
+      claimId: json['claimId'] ?? 0,
     );
   }
   @override
