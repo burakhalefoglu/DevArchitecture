@@ -9,8 +9,8 @@ import 'i_user_group_service.dart';
 class InMemoryUserGroupService extends InMemoryService<UserGroup>
     implements IUserGroupService {
   List<UserGroup> _groups = [
-    UserGroup(groupId: 1, userId: 1),
-    UserGroup(groupId: 2, userId: 1),
+    UserGroup(id: 1, groupId: 1, userId: 1),
+    UserGroup(id: 1, groupId: 2, userId: 1),
   ];
 
   InMemoryUserGroupService() {

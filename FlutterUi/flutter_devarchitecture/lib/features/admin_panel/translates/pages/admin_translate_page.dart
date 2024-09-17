@@ -34,7 +34,7 @@ class AdminTranslatePage extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is BlocInitial) {
-            BlocProvider.of<TranslateCubit>(context).getTranslates();
+            BlocProvider.of<TranslateCubit>(context).getAll();
             return const Center(child: CircularProgressIndicator());
           } else if (state is BlocLoading) {
             return const Center(child: CircularProgressIndicator());
@@ -42,12 +42,8 @@ class AdminTranslatePage extends StatelessWidget {
 
           // Çeviri verilerini işleme
           List<Map<String, dynamic>> tableData = [];
-          if (state is BlocSuccess<List<TranslateDto>>) {
-            tableData = state.result!.isNotEmpty
-                ? state.result!
-                    .map((translation) => translation.toMap())
-                    .toList()
-                : [];
+          if (state is BlocSuccess<List<Map<String, dynamic>>>) {
+            tableData = state.result!.isNotEmpty ? state.result! : [];
           }
 
           return buildBaseScaffold(
@@ -125,6 +121,7 @@ class AdminTranslatePage extends StatelessWidget {
   void _editTranslate(
       BuildContext context, Map<String, dynamic> translateData) async {
     var translate = Translate(
+        id: 0,
         code: translateData["code"],
         langId: translateData["id"],
         value: translateData["value"]);

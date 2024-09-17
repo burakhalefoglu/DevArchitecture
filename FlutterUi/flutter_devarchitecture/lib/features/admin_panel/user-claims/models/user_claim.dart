@@ -6,6 +6,7 @@ class UserClaim implements IEntity {
   final int userId, claimId;
 
   UserClaim({
+    required this.id,
     required this.userId,
     required this.claimId,
   }) {
@@ -14,6 +15,7 @@ class UserClaim implements IEntity {
 
   factory UserClaim.fromMap(Map<String, dynamic> json) {
     return UserClaim(
+      id: json['id'] ?? 0,
       userId: json['userId'] ?? 0,
       claimId: json['claimId'] ?? 0,
     );

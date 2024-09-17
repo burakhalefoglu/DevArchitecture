@@ -149,6 +149,7 @@ class _UpdateUserDialogState extends State<UpdateUserDialog> {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               final updatedUser = User(
+                id: widget.user.id,
                 userId: widget.user.id,
                 email: _emailController.text,
                 fullName: _fullNameController.text,

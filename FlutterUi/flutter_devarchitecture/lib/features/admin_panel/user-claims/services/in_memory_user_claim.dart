@@ -7,7 +7,7 @@ import 'i_user_claim_service.dart';
 class InMemoryUserClaimService extends InMemoryService<UserClaim>
     implements IUserClaimService {
   List<UserClaim> _userClaims = [
-    UserClaim(userId: 1, claimId: 1),
+    UserClaim(id: 1, userId: 1, claimId: 1),
   ];
   InMemoryUserClaimService() {
     super.datas = _userClaims.map((e) => e.toMap()).toList();

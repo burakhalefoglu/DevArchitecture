@@ -7,7 +7,7 @@ class Language implements IEntity {
   String name;
 
   Language({
-    this.id = 0,
+    required this.id,
     required this.code,
     required this.name,
   });

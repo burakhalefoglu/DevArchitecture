@@ -6,6 +6,7 @@ class InMemoryUserService extends InMemoryService<User>
     implements IUserService {
   List<User> _users = [
     User(
+      id: 1,
       userId: 1,
       fullName: 'John Doe',
       email: 'john.doe@example.com',
@@ -15,6 +16,7 @@ class InMemoryUserService extends InMemoryService<User>
       mobilePhones: '555-1234',
     ),
     User(
+      id: 2,
       userId: 2,
       fullName: 'Jane Smith',
       email: 'jane.smith@example.com',

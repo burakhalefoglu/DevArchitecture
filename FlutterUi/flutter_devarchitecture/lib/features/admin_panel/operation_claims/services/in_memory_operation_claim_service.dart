@@ -6,10 +6,12 @@ class InMemoryOperationClaimService extends InMemoryService<OperationClaim>
     implements IOperationClaimService {
   List<OperationClaim> _operationClaim = [
     OperationClaim(
+        id: 1,
         name: "GetUserLookupQuery",
         alias: "GetUserLookupQuery",
         description: "GetUserLookupQuery"),
     OperationClaim(
+        id: 1,
         name: "GetUserQuery",
         alias: "GetUserQuery",
         description: "GetUserQuery"),

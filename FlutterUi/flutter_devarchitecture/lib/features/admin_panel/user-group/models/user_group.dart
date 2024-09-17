@@ -6,9 +6,7 @@ class UserGroup implements IEntity {
   final int groupId;
   final int userId;
 
-  UserGroup({required this.groupId, required this.userId}) {
-    this.id = userId;
-  }
+  UserGroup({required this.id, required this.groupId, required this.userId});
 
   @override
   Map<String, dynamic> toMap() {
@@ -22,6 +20,7 @@ class UserGroup implements IEntity {
   @override
   factory UserGroup.fromMap(Map<String, dynamic> map) {
     return UserGroup(
+      id: map['id'] ?? 0,
       groupId: map['groupId'] ?? 0,
       userId: map['userId'] ?? 0,
     );

@@ -8,7 +8,7 @@ import 'i_translate_service.dart';
 class InMemoryTranslateService extends InMemoryService<Translate>
     implements ITranslateService {
   List<Translate> _translates = [
-    Translate(langId: 1, code: "test", value: "test"),
+    Translate(id: 1, langId: 1, code: "test", value: "test"),
   ];
 
   InMemoryTranslateService() {

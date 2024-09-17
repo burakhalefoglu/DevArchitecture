@@ -38,14 +38,16 @@ class AdminUserPage extends StatelessWidget {
         builder: (context, state) {
           // İlk kullanıcı yüklemesi ve yükleme durumları için göstergesi
           if (state is BlocInitial || state is BlocLoading) {
-            BlocProvider.of<UserCubit>(context).getAll();
+            BlocProvider.of<UserCubit>(context).getAllUser();
             return const Center(child: CircularProgressIndicator());
           }
 
           // Kullanıcı verilerini işleme
           List<Map<String, dynamic>> tableData = [];
-          if (state is BlocSuccess<List<Map<String, dynamic>>>) {
-            tableData = state.result!.isNotEmpty ? state.result! : [];
+          if (state is BlocSuccess<List<User>>) {
+            tableData = state.result!.isNotEmpty
+                ? state.result!.map((e) => e.toMap()).toList()
+                : [];
           }
 
           return buildBaseScaffold(

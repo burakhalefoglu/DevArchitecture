@@ -9,7 +9,10 @@ class OperationClaim implements IEntity {
   String description;
 
   OperationClaim(
-      {required this.name, required this.alias, required this.description});
+      {required this.id,
+      required this.name,
+      required this.alias,
+      required this.description});
 
   @override
   Map<String, dynamic> toMap() {
@@ -18,6 +21,7 @@ class OperationClaim implements IEntity {
 
   factory OperationClaim.fromMap(Map<String, dynamic> map) {
     return OperationClaim(
+        id: map["id"] ?? 0,
         name: map["name"] ?? "",
         alias: map["alias"] ?? "",
         description: map["description"] ?? "");

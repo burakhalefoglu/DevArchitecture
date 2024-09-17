@@ -2,7 +2,7 @@ import 'package:flutter_devarchitecture/core/models/i_entity.dart';
 
 class User implements IEntity {
   @override
-  late int id = 0;
+  late int id;
   late int userId;
   String fullName;
   String email;
@@ -12,19 +12,19 @@ class User implements IEntity {
   String mobilePhones; // nullable
 
   User({
-    this.userId = 0,
+    required this.id,
+    required this.userId,
     required this.fullName,
     required this.email,
     this.address = '',
     this.notes = '',
     required this.status,
     this.mobilePhones = '',
-  }) {
-    id = userId;
-  }
+  });
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
+      id: map['userId'] ?? 0,
       userId: map['userId'] ?? 0,
       fullName: map['fullName'] ?? '',
       email: map['email'] ?? '',

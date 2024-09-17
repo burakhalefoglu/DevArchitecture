@@ -90,9 +90,10 @@ class _UpdateOperationClaimDialogState
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               final updatedOperationClaim = OperationClaimDto(
+                id: widget.operationClaim.id,
                 alias: _aliasController.text,
                 description: _descriptionController.text,
-              )..id = widget.operationClaim.id;
+              );
               Navigator.of(context).pop(updatedOperationClaim);
             }
           },

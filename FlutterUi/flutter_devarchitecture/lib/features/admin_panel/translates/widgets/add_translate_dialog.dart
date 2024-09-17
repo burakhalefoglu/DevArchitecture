@@ -93,6 +93,7 @@ class _AddTranslateDialogState extends State<AddTranslateDialog> {
             if (_formKey.currentState!.validate() &&
                 _selectedLanguage != null) {
               final newTranslate = Translate(
+                id: _selectedLanguage!.id,
                 langId: _selectedLanguage!.id,
                 code: _codeController.text,
                 value: _valueController.text,

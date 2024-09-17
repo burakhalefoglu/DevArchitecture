@@ -7,7 +7,8 @@ class OperationClaimDto implements IEntity {
   String alias;
   String description;
 
-  OperationClaimDto({required this.alias, required this.description});
+  OperationClaimDto(
+      {required this.id, required this.alias, required this.description});
 
   @override
   Map<String, dynamic> toMap() {
@@ -16,6 +17,8 @@ class OperationClaimDto implements IEntity {
 
   factory OperationClaimDto.fromMap(Map<String, dynamic> map) {
     return OperationClaimDto(
-        alias: map["alias"] ?? "", description: map["description"] ?? "");
+        id: map["id"] ?? 0,
+        alias: map["alias"] ?? "",
+        description: map["description"] ?? "");
   }
 }

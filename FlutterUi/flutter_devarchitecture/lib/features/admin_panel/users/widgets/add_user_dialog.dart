@@ -146,6 +146,8 @@ class _AddUserDialogState extends State<AddUserDialog> {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               final newUser = User(
+                id: 0,
+                userId: 0,
                 email: _emailController.text,
                 fullName: _fullNameController.text,
                 status: _statusController.text == 'Active' ? true : false,

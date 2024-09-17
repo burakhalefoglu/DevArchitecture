@@ -14,7 +14,7 @@ class TranslateDto implements IDto {
 
   factory TranslateDto.fromMap(Map<String, dynamic> map) {
     return TranslateDto(
-      id: map['id'],
+      id: map['id'] ?? 0,
       code: map['code'] ?? "",
       language: map['language'] ?? "",
       value: map['value'] ?? "",

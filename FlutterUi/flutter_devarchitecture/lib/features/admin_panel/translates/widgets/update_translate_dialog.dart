@@ -100,7 +100,8 @@ class _UpdateTranslateDialogState extends State<UpdateTranslateDialog> {
             if (_formKey.currentState!.validate() &&
                 _selectedLanguage != null) {
               final updatedTranslate = Translate(
-                langId: _selectedLanguage!.id,
+                id: int.parse(_selectedLanguage!.id.toString()),
+                langId: int.parse(_selectedLanguage!.id.toString()),
                 code: _codeController.text,
                 value: _valueController.text,
               );

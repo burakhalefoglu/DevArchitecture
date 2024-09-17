@@ -8,7 +8,11 @@ class Translate implements IEntity {
   @override
   late int id;
 
-  Translate({required this.langId, required this.code, required this.value}) {
+  Translate(
+      {required this.id,
+      required this.langId,
+      required this.code,
+      required this.value}) {
     id = langId;
   }
 
@@ -24,6 +28,7 @@ class Translate implements IEntity {
 
   factory Translate.fromMap(Map<String, dynamic> map) {
     return Translate(
+      id: map['id'] ?? 0,
       langId: map['langId'] ?? 0,
       code: map['code'] ?? "",
       value: map['value'] ?? "",

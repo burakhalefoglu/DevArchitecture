@@ -9,6 +9,19 @@ class UserCubit extends BaseCubit<User> {
     super.service = BusinessInitializer().businessContainer.userService;
   }
 
+  Future<void> getAllUser() async {
+    emit(BlocLoading("Kullanıcılar getiriliyor..."));
+    try {
+      // Veritabanından kullanıcıları al
+      final users =
+          await BusinessInitializer().businessContainer.userService.getAll();
+      emit(BlocSuccess<List<User>>(
+          users.data!.map((e) => User.fromMap(e)).toList()));
+    } catch (e) {
+      emit(BlocFailed("Kullanıcılar getirilemedi: ${e.toString()}"));
+    }
+  }
+
   Future<void> saveUserPassword(int userId, String password) async {
     emit(BlocLoading("Kullanıcı sifresi kaydediliyor..."));
     try {
@@ -16,7 +29,7 @@ class UserCubit extends BaseCubit<User> {
       var authService = BusinessInitializer().businessContainer.authService;
       await authService
           .saveUserPassword(PasswordDto(password: password, userId: userId));
-      await getAll(); // Kullanıcıları tekrar yükleyin
+      await getAllUser(); // Kullanıcıları tekrar yükleyin
     } catch (e) {
       emit(BlocFailed("Kullanıcı sifresi kaydedilemedi: ${e.toString()}"));
     }
@@ -30,7 +43,7 @@ class UserCubit extends BaseCubit<User> {
           .businessContainer
           .userClaimService
           .update(userId, {"UserId": userId, "ClaimIds": claims});
-      await getAll(); // Kullanıcıları tekrar yükleyin
+      await getAllUser(); // Kullanıcıları tekrar yükleyin
     } catch (e) {
       emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
     }
@@ -44,7 +57,7 @@ class UserCubit extends BaseCubit<User> {
           .businessContainer
           .userGroupService
           .update(userId, {"UserId": userId, "GroupId": groups});
-      await getAll(); // Kullanıcıları tekrar yükleyin
+      await getAllUser(); // Kullanıcıları tekrar yükleyin
     } catch (e) {
       emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
     }
