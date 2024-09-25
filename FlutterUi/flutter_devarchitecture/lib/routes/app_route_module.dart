@@ -24,7 +24,7 @@ import '../features/utilities/download/json_download_button_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../core/guard/auth_guard.dart';
-import '../features/admin_panel/groups/admin_group_page.dart';
+import '../features/admin_panel/groups/pages/admin_group_page.dart';
 import '../features/admin_panel/logs/pages/log_page.dart';
 import '../features/admin_panel/operation_claims/pages/admin_operation_claim_page.dart';
 import '../features/admin_panel/translates/pages/admin_translate_page.dart';

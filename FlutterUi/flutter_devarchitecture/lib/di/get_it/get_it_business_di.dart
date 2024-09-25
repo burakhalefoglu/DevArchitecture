@@ -1,5 +1,8 @@
 import 'package:get_it/get_it.dart';
+import '../../features/admin_panel/groups/services/i_group.dart';
+import '../../features/admin_panel/groups/services/in_memory_group_service.dart';
 import '../../../core/configs/app_config.dart';
+import '../../features/admin_panel/groups/services/api_group_service.dart';
 import '../../features/admin_panel/languages/services/api_language_service.dart';
 import '../../features/admin_panel/languages/services/i_language_service.dart';
 import '../../features/admin_panel/languages/services/in_memory_language_service.dart';
@@ -62,6 +65,9 @@ class GetItBusinessContainer implements IBusinessContainer {
   late IOperationClaimService operationClaimService;
 
   @override
+  late IGroupService groupService;
+
+  @override
   void setup() {
     //*? Services Binding For DEVELOPMENT
     if (appConfig.name == 'dev' || appConfig.name == '') {
@@ -104,6 +110,11 @@ class GetItBusinessContainer implements IBusinessContainer {
         operationClaimService =
             _getIt.registerSingleton<IOperationClaimService>(
                 InMemoryOperationClaimService());
+      }));
+
+      checkIfUnRegistered<IGroupService>((() {
+        groupService =
+            _getIt.registerSingleton<IGroupService>(InMemoryGroupService());
       }));
     }
 
@@ -149,6 +160,11 @@ class GetItBusinessContainer implements IBusinessContainer {
             _getIt.registerSingleton<IOperationClaimService>(
                 ApiOperationClaimService(method: "/operation-claims"));
       }));
+
+      checkIfUnRegistered<IGroupService>((() {
+        groupService = _getIt.registerSingleton<IGroupService>(
+            ApiGroupService(method: "/Groups"));
+      }));
     }
 
     //*? Services Binding For PRODUCTION
@@ -192,6 +208,11 @@ class GetItBusinessContainer implements IBusinessContainer {
         operationClaimService =
             _getIt.registerSingleton<IOperationClaimService>(
                 ApiOperationClaimService(method: "/operation-claims"));
+      }));
+
+      checkIfUnRegistered<IGroupService>((() {
+        groupService = _getIt.registerSingleton<IGroupService>(
+            ApiGroupService(method: "/Groups"));
       }));
     }
   }
