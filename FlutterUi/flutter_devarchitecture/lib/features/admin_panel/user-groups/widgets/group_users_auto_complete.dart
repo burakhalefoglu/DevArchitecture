@@ -40,7 +40,7 @@ class _GroupUsersAutocompleteState extends State<GroupUsersAutocomplete> {
         builder: (context, state) {
           if (state is BlocInitial) {
             BlocProvider.of<UserGroupCubit>(context)
-                .getSelectedGroupUsers(widget.groupId);
+                .getGroupUsers(widget.groupId);
             return const Center(child: CircularProgressIndicator());
           } else if (state is BlocLoading) {
             return const Center(child: CircularProgressIndicator());

@@ -11,21 +11,23 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
     super.service = BusinessInitializer().businessContainer.userGroupService;
   }
 
-  Future<void> getSelectedUserGroupsByUserId(int userId) async {
+  Future<void> getUserGroupPermissions(int userId) async {
     emit(BlocLoading("Kullanıcı grupları getiriliyor..."));
     try {
       final groups = await BusinessInitializer()
           .businessContainer
           .lookupService
           .getGroupLookUp();
-
+      print(groups.map((e) => e.toMap()).toList());
       var selectedGroups = await BusinessInitializer()
           .businessContainer
           .userGroupService
-          .getUserGroupsByUserId(userId);
+          .getUserGroupPermissions(userId);
+      print(selectedGroups.data!.map((e) => e.toMap()).toList());
 
       var selectedGroupIds =
           selectedGroups.data!.map((group) => group.id).toSet();
+      print(selectedGroupIds.toList());
 
       List<LookUp> updatedGroups = groups.map((group) {
         return LookUp(
@@ -34,14 +36,28 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
           isSelected: selectedGroupIds.contains(group.id),
         );
       }).toList();
-
       emit(BlocSuccess<List<LookUp>>(updatedGroups));
+      print(updatedGroups.map((e) => e.toMap()).toList());
     } catch (e) {
       emit(BlocFailed("Kullanıcı grupları getirilemedi: ${e.toString()}"));
     }
   }
 
-  Future<void> getSelectedGroupUsers(int groupId) async {
+  Future<void> saveUserGroupPermissions(int userId, List<int> groups) async {
+    emit(BlocLoading("Kullanıcı grupları kaydediliyor..."));
+    try {
+      // yetkileri güncelle
+      await BusinessInitializer()
+          .businessContainer
+          .userGroupService
+          .saveUserGroupPermissions(userId, groups);
+      await getUserGroupPermissions(userId); // Verileri tekrar yükleyin
+    } catch (e) {
+      emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
+    }
+  }
+
+  Future<void> getGroupUsers(int groupId) async {
     try {
       final users = await BusinessInitializer()
           .businessContainer
@@ -76,7 +92,7 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
           .businessContainer
           .userGroupService
           .saveGroupUsers(groupId, userIds);
-      getAll();
+      await getGroupUsers(groupId);
     } catch (e) {
       if (kDebugMode) {
         print(e);

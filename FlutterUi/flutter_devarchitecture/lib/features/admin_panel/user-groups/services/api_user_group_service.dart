@@ -10,12 +10,23 @@ class ApiUserGroupService extends ApiService<UserGroup>
   ApiUserGroupService({required super.method});
 
   @override
-  Future<IDataResult<List<LookUp>>> getUserGroupsByUserId(int userId) async {
-    var result =
-        await CoreInitializer().coreContainer.http.get("$url/users/$userId");
+  Future<IDataResult<List<LookUp>>> getUserGroupPermissions(int userId) async {
+    var result = await CoreInitializer()
+        .coreContainer
+        .http
+        .get("$url/users/$userId/groups");
     var data = result["data"] as List<Map<String, dynamic>>;
     return Future.value(
         SuccessDataResult(data.map((e) => LookUp.fromMap(e)).toList(), ""));
+  }
+
+  @override
+  Future<void> saveUserGroupPermissions(int userId, List<int> groups) async {
+    await CoreInitializer()
+        .coreContainer
+        .http
+        .put("$url", {"UserId": userId, "GroupId": groups});
+    return Future.value(SuccessResult("Veri Güncellendi !"));
   }
 
   @override
@@ -34,7 +45,7 @@ class ApiUserGroupService extends ApiService<UserGroup>
     await CoreInitializer()
         .coreContainer
         .http
-        .put(url, {"GroupId": groupId, "UserIds": userIds});
+        .put("$url/groups/", {"GroupId": groupId, "UserIds": userIds});
     return Future.value(SuccessResult("Veri Güncellendi !"));
   }
 }

@@ -18,7 +18,7 @@ class InMemoryUserGroupService extends InMemoryService<UserGroup>
   }
 
   @override
-  Future<IDataResult<List<LookUp>>> getUserGroupsByUserId(int userId) async {
+  Future<IDataResult<List<LookUp>>> getUserGroupPermissions(int userId) async {
     return SuccessDataResult(
       _groups
           .where((element) => element.userId == userId)
@@ -48,5 +48,10 @@ class InMemoryUserGroupService extends InMemoryService<UserGroup>
         group.groupId = groupId;
       }
     }
+  }
+
+  @override
+  Future<void> saveUserGroupPermissions(int userId, List<int> groups) async {
+    Future.value();
   }
 }

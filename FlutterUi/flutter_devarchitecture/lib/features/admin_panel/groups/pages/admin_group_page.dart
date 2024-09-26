@@ -4,7 +4,7 @@ import '../../../../../core/bloc/base_state.dart';
 import '../../../../../core/theme/extensions.dart';
 import '../widgets/add_group_dialog_widget.dart';
 import '../widgets/update_group_dialog_widget.dart';
-import '../widgets/update_group_users_dialog.dart';
+import '../widgets/change_group_users_dialog.dart';
 import '/core/widgets/tables/filter_table_widget.dart';
 import '../../../../../core/widgets/base_widgets.dart';
 import '../../../../../core/di/core_initializer.dart';
@@ -126,7 +126,7 @@ class AdminGroupPage extends StatelessWidget {
       BuildContext context, Map<String, dynamic> groupData) async {
     await showDialog(
       context: context,
-      builder: (c) => UpdateGroupUsersDialog(groupId: groupData['id']),
+      builder: (c) => ChangeGroupUsersDialog(groupId: groupData['id']),
     );
   }
 

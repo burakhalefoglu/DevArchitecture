@@ -41,7 +41,7 @@ class _UserGroupAutocompleteState extends State<UserGroupAutocomplete> {
           if (state is BlocInitial) {
             // BlocInitial durumunda kullanıcı gruplarını yükleyin
             BlocProvider.of<UserGroupCubit>(context)
-                .getSelectedUserGroupsByUserId(widget.userId);
+                .getUserGroupPermissions(widget.userId);
             return const Center(child: CircularProgressIndicator());
           } else if (state is BlocLoading) {
             return const Center(child: CircularProgressIndicator());

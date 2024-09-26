@@ -48,18 +48,4 @@ class UserCubit extends BaseCubit<User> {
       emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
     }
   }
-
-  Future<void> saveUserGroupPermissions(int userId, List<int> groups) async {
-    emit(BlocLoading("Kullanıcı grupları kaydediliyor..."));
-    try {
-      // yetkileri güncelle
-      await BusinessInitializer()
-          .businessContainer
-          .userGroupService
-          .update(userId, {"UserId": userId, "GroupId": groups});
-      await getAllUser(); // Kullanıcıları tekrar yükleyin
-    } catch (e) {
-      emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
-    }
-  }
 }

@@ -177,7 +177,7 @@ class AdminUserPage extends StatelessWidget {
   void _changeUserGroups(BuildContext context, int userId) async {
     await showDialog(
       context: context,
-      builder: (c) => ChangeUserGroupsDialog(c: context, userId: userId),
+      builder: (c) => ChangeUserGroupsDialog(userId: userId),
     );
   }
 }
