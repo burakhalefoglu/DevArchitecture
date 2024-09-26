@@ -1,7 +1,7 @@
 import '../../../../core/di/core_initializer.dart';
 import '../../../../core/services/base_services/api_service.dart';
 import '../../../../core/utilities/results.dart';
-import '../../../../core/models/lookup.dart';
+import '../../lookups/models/lookup.dart';
 import '../models/language.dart';
 import 'i_language_service.dart';
 

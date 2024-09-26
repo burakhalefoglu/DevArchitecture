@@ -1,4 +1,4 @@
-import '../../../../core/models/lookup.dart';
+import '../../lookups/models/lookup.dart';
 import '/features/admin_panel/user-claims/models/user_claim.dart';
 import '../../../../core/bloc/base_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
@@ -9,19 +9,33 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
     super.service = BusinessInitializer().businessContainer.userClaimService;
   }
 
-  Future<void> getUserClaimsByUserId(int userId) async {
-    emit(BlocLoading("Kullanıcılar getiriliyor..."));
+  Future<void> getSelectedUserClaimsByUserId(int userId) async {
+    emit(BlocLoading("Kullanıcı yetkileri getiriliyor..."));
     try {
-      // Veritabanından kullanıcıları al
-      final users = await BusinessInitializer()
+      final userClaims = await BusinessInitializer()
+          .businessContainer
+          .lookupService
+          .getOperationClaimLookUp();
+
+      final selectedUserClaims = await BusinessInitializer()
           .businessContainer
           .userClaimService
           .getUserClaimsByUserId(userId);
-      emit(BlocSuccess<List<LookUp>>(
-        users.data!,
-      ));
+
+      var selectedClaimIds =
+          selectedUserClaims.data!.map((claim) => claim.id).toSet();
+
+      List<LookUp> updatedClaims = userClaims.map((claim) {
+        return LookUp(
+          id: claim.id,
+          label: claim.label,
+          isSelected: selectedClaimIds.contains(claim.id),
+        );
+      }).toList();
+
+      emit(BlocSuccess<List<LookUp>>(updatedClaims));
     } catch (e) {
-      emit(BlocFailed("Kullanıcılar getirilemedi: ${e.toString()}"));
+      emit(BlocFailed("Kullanıcı yetkileri getirilemedi: ${e.toString()}"));
     }
   }
 }

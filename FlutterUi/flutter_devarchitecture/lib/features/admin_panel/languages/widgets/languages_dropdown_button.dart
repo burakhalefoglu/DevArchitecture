@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_devarchitecture/core/models/lookup.dart';
+import 'package:flutter_devarchitecture/features/admin_panel/lookups/models/lookup.dart';
 
 import '../../../../core/di/core_initializer.dart';
 import '../bloc/language_cubit.dart';

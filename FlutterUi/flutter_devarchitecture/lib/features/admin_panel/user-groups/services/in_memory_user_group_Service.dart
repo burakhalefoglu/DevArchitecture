@@ -1,6 +1,6 @@
 import 'package:flutter_devarchitecture/core/utilities/results.dart';
 
-import 'package:flutter_devarchitecture/core/models/lookup.dart';
+import 'package:flutter_devarchitecture/features/admin_panel/lookups/models/lookup.dart';
 
 import '../../../../core/services/base_services/in_memory_service.dart';
 import '../models/user_group.dart';
@@ -26,5 +26,27 @@ class InMemoryUserGroupService extends InMemoryService<UserGroup>
           .toList(),
       "",
     );
+  }
+
+  @override
+  Future<IDataResult<List<LookUp>>> getGroupUsers(int groupId) async {
+    return SuccessDataResult(
+      _groups
+          .where((element) => element.groupId == groupId)
+          .map((e) => LookUp.fromMap(e.toMap()))
+          .toList(),
+      "",
+    );
+  }
+
+  @override
+  Future<void> saveGroupUsers(int groupId, List<int> userIds) async {
+    for (var userId in userIds) {
+      List<UserGroup> userGroups =
+          _groups.where((element) => element.userId == userId).toList();
+      for (var group in userGroups) {
+        group.groupId = groupId;
+      }
+    }
   }
 }

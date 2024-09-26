@@ -5,7 +5,7 @@ import '../../user-claims/widgets/user_claim_auto_complete.dart';
 import '../bloc/user_cubit.dart';
 
 class ChangeUserClaimsDialog extends StatefulWidget {
-  final int userId; // Kullanıcı ID'si
+  final int userId;
   final BuildContext c;
 
   const ChangeUserClaimsDialog(
@@ -21,7 +21,6 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
 
   @override
   Widget build(BuildContext context) {
-    // Parent cubit'i al
     final userCubit = BlocProvider.of<UserCubit>(widget.c);
 
     return AlertDialog(

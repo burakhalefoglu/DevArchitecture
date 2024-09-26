@@ -3,8 +3,8 @@ import '../../../../core/models/i_entity.dart';
 class UserGroup implements IEntity {
   @override
   late int id;
-  final int groupId;
-  final int userId;
+  late int groupId;
+  late int userId;
 
   UserGroup({required this.id, required this.groupId, required this.userId});
 

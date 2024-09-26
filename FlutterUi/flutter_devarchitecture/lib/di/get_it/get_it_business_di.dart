@@ -1,3 +1,4 @@
+import 'package:flutter_devarchitecture/features/admin_panel/lookups/services/api_in_memory_service.dart';
 import 'package:get_it/get_it.dart';
 import '../../features/admin_panel/groups/services/i_group.dart';
 import '../../features/admin_panel/groups/services/in_memory_group_service.dart';
@@ -9,6 +10,8 @@ import '../../features/admin_panel/languages/services/in_memory_language_service
 import '../../features/admin_panel/logs/services/api_log_service.dart';
 import '../../features/admin_panel/logs/services/i_service.dart';
 import '../../features/admin_panel/logs/services/in_memory_log_service.dart';
+import '../../features/admin_panel/lookups/services/i_lookup_service.dart';
+import '../../features/admin_panel/lookups/services/in_memory_lookup_service.dart';
 import '../../features/admin_panel/operation_claims/services/api_operation_claim_service.dart';
 import '../../features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
 import '../../features/admin_panel/operation_claims/services/in_memory_operation_claim_service.dart';
@@ -16,9 +19,9 @@ import '../../features/admin_panel/translates/services/api_in_memory_service.dar
 import '../../features/admin_panel/translates/services/i_translate_service.dart';
 import '../../features/admin_panel/translates/services/in_memory_service.dart';
 import '../../features/admin_panel/user-claims/services/i_user_claim_service.dart';
-import '../../features/admin_panel/user-group/services/api_user_group_service.dart';
-import '../../features/admin_panel/user-group/services/i_user_group_service.dart';
-import '../../features/admin_panel/user-group/services/in_memory_user_group_Service.dart';
+import '../../features/admin_panel/user-groups/services/api_user_group_service.dart';
+import '../../features/admin_panel/user-groups/services/i_user_group_service.dart';
+import '../../features/admin_panel/user-groups/services/in_memory_user_group_Service.dart';
 import '../../features/admin_panel/user-claims/services/api_user_claim.service.dart';
 import '../../features/admin_panel/user-claims/services/in_memory_user_claim.dart';
 import '../../features/admin_panel/users/services/api_user_service.dart';
@@ -66,6 +69,9 @@ class GetItBusinessContainer implements IBusinessContainer {
 
   @override
   late IGroupService groupService;
+
+  @override
+  late ILookupService lookupService;
 
   @override
   void setup() {
@@ -116,6 +122,11 @@ class GetItBusinessContainer implements IBusinessContainer {
         groupService =
             _getIt.registerSingleton<IGroupService>(InMemoryGroupService());
       }));
+
+      checkIfUnRegistered<ILookupService>((() {
+        lookupService =
+            _getIt.registerSingleton<ILookupService>(InMemoryLookupService());
+      }));
     }
 
     //*? Services Binding For STAGING
@@ -165,6 +176,11 @@ class GetItBusinessContainer implements IBusinessContainer {
         groupService = _getIt.registerSingleton<IGroupService>(
             ApiGroupService(method: "/Groups"));
       }));
+
+      checkIfUnRegistered<ILookupService>((() {
+        lookupService =
+            _getIt.registerSingleton<ILookupService>(ApiLookupService());
+      }));
     }
 
     //*? Services Binding For PRODUCTION
@@ -213,6 +229,11 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<IGroupService>((() {
         groupService = _getIt.registerSingleton<IGroupService>(
             ApiGroupService(method: "/Groups"));
+      }));
+
+      checkIfUnRegistered<ILookupService>((() {
+        lookupService =
+            _getIt.registerSingleton<ILookupService>(ApiLookupService());
       }));
     }
   }

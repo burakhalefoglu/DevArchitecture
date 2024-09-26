@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../user-group/widgets/user_group_auto_complete.dart';
+import '../../user-groups/widgets/user_group_auto_complete.dart';
 import '../bloc/user_cubit.dart';
 
 class ChangeUserGroupsDialog extends StatefulWidget {

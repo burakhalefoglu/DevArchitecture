@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/theme/extensions.dart';
-import '../../../../core/models/lookup.dart';
+import '../../lookups/models/lookup.dart';
 import '../../languages/widgets/languages_dropdown_button.dart';
 import '../models/translate.dart';
 import '../../../../core/widgets/inputs/text_input.dart';

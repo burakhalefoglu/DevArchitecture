@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bloc/base_state.dart';
-import '../../../../core/widgets/inputs/custom_multi_select_auto_complete.dart';
-import '../../../../core/models/lookup.dart';
+import '../../lookups/widgets/lookup_multi_select_auto_complete.dart';
+import '../../lookups/models/lookup.dart';
 import '../bloc/user_group_cubit.dart';
 
-class UserGroupAutocomplete extends StatefulWidget {
-  final int userId;
+class GroupUsersAutocomplete extends StatefulWidget {
+  final int groupId;
   final Function(List<int>) onChanged;
   final bool isAllSelected;
 
-  const UserGroupAutocomplete({
+  const GroupUsersAutocomplete({
     Key? key,
-    required this.userId,
+    required this.groupId,
     required this.onChanged,
     this.isAllSelected = false,
   }) : super(key: key);
 
   @override
-  _UserGroupAutocompleteState createState() => _UserGroupAutocompleteState();
+  _GroupUsersAutocompleteState createState() => _GroupUsersAutocompleteState();
 }
 
-class _UserGroupAutocompleteState extends State<UserGroupAutocomplete> {
+class _GroupUsersAutocompleteState extends State<GroupUsersAutocomplete> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
@@ -39,22 +39,27 @@ class _UserGroupAutocompleteState extends State<UserGroupAutocomplete> {
         },
         builder: (context, state) {
           if (state is BlocInitial) {
-            // BlocInitial durumunda kullanıcı gruplarını yükleyin
             BlocProvider.of<UserGroupCubit>(context)
-                .getUserGroupsByUserId(widget.userId);
+                .getSelectedGroupUsers(widget.groupId);
             return const Center(child: CircularProgressIndicator());
           } else if (state is BlocLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is BlocSuccess<List<LookUp>>) {
             final options = state.result!
-                .map((group) => {'id': group.id, 'label': group.label})
+                .map((user) => {'id': user.id, 'label': user.label})
                 .toList();
-            return CustomMultiSelectAutocomplete(
+            final List<int> selectedIds = state.result!
+                .where((e) => e.isSelected == true)
+                .toList()
+                .map((e) => int.parse(e.id))
+                .toList();
+            return LookupMultiSelectAutocomplete(
               isAllSelected: widget.isAllSelected,
+              selectedIds: selectedIds,
               valueKey: "label",
               options: options,
-              labelText: "Kullanıcı Grupları",
-              hintText: "Grup seçin",
+              labelText: "Kullanıcılar",
+              hintText: "Kullanıcı seçin",
               onChanged: widget.onChanged,
               controller: _controller,
               focusNode: _focusNode,
