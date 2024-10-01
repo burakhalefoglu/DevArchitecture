@@ -34,18 +34,4 @@ class UserCubit extends BaseCubit<User> {
       emit(BlocFailed("Kullanıcı sifresi kaydedilemedi: ${e.toString()}"));
     }
   }
-
-  Future<void> saveUserClaims(int userId, List<int> claims) async {
-    emit(BlocLoading("Kullanıcı yetkileri kaydediliyor..."));
-    try {
-      // yetkileri güncelle
-      await BusinessInitializer()
-          .businessContainer
-          .userClaimService
-          .update(userId, {"UserId": userId, "ClaimIds": claims});
-      await getAllUser(); // Kullanıcıları tekrar yükleyin
-    } catch (e) {
-      emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
-    }
-  }
 }

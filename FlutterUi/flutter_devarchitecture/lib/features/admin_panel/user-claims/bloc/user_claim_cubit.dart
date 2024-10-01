@@ -9,7 +9,7 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
     super.service = BusinessInitializer().businessContainer.userClaimService;
   }
 
-  Future<void> getSelectedUserClaimsByUserId(int userId) async {
+  Future<void> getUserClaimsByUserId(int userId) async {
     emit(BlocLoading("Kullanıcı yetkileri getiriliyor..."));
     try {
       final userClaims = await BusinessInitializer()
@@ -36,6 +36,17 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
       emit(BlocSuccess<List<LookUp>>(updatedClaims));
     } catch (e) {
       emit(BlocFailed("Kullanıcı yetkileri getirilemedi: ${e.toString()}"));
+    }
+  }
+
+  Future<void> saveUserClaimsByUserId(int userId, List<int> claims) async {
+    emit(BlocLoading("Kullanıcı yetkileri kaydediliyor..."));
+    try {
+      // yetkileri güncelle
+      await service.update(userId, {"UserId": userId, "ClaimIds": claims});
+      await getUserClaimsByUserId(userId); // Kullanıcıları tekrar yükleyin
+    } catch (e) {
+      emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
     }
   }
 }

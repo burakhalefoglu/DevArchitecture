@@ -170,7 +170,7 @@ class AdminUserPage extends StatelessWidget {
   void _changeUserClaims(BuildContext context, int userId) async {
     await showDialog(
       context: context,
-      builder: (c) => ChangeUserClaimsDialog(c: context, userId: userId),
+      builder: (c) => ChangeUserClaimsDialog(userId: userId),
     );
   }
 

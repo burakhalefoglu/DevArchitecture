@@ -40,7 +40,7 @@ class _UserClaimAutocompleteState extends State<UserClaimAutocomplete> {
         builder: (context, state) {
           if (state is BlocInitial) {
             BlocProvider.of<UserClaimCubit>(context)
-                .getSelectedUserClaimsByUserId(widget.userId);
+                .getUserClaimsByUserId(widget.userId);
             return const Center(child: CircularProgressIndicator());
           } else if (state is BlocLoading) {
             return const Center(child: CircularProgressIndicator());
