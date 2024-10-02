@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../core/bloc/bloc_helper.dart';
 import '../../core/widgets/inputs/email_input.dart';
 import '../../core/widgets/inputs/password_input.dart';
 import '../../core/theme/extensions.dart';
@@ -44,26 +45,9 @@ class LoginPage extends StatelessWidget {
             Modular.to.navigate(RoutesConstants.appHomePage);
           }
         }, builder: (context, state) {
-          if (state is BlocLoading) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getInfoMessage(state.message);
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state is BlocChecking) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getInfoMessage(state.message);
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state is BlocSending) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getInfoMessage(state.message);
-            return const Center(child: CircularProgressIndicator());
+          var resultWidget = getResultWidgetByStateWithScaffold(context, state);
+          if (resultWidget != null) {
+            return resultWidget;
           }
           return Center(
             child: SizedBox(
