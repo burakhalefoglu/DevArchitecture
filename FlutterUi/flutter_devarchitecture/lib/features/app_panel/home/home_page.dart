@@ -6,8 +6,8 @@ import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../../core/theme/custom_colors.dart';
 import '../../../../core/widgets/base_widgets.dart';
-import '../../layouts/base_scaffold.dart';
-import '../../layouts/sidebar/sidebar_constants.dart';
+import '../../../core/features/layouts/base_scaffold.dart';
+import '../../../core/features/layouts/sidebar/sidebar_constants.dart';
 import 'responsive/fake_data.dart';
 import 'widgets/header_cards.dart';
 
