@@ -31,10 +31,10 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          if (state is BlocLoading) {
-            return const Center(child: CircularProgressIndicator());
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
           }
-
           return AlertDialog(
             title: const Text('Kullanıcı Gruplarını Güncelle'),
             content: SizedBox(

@@ -25,15 +25,20 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          UserClaimCubit()..getUserClaimsByUserId(widget.userId),
+      create: (context) => UserClaimCubit(),
       child: BlocConsumer<UserClaimCubit, BaseState>(
         listener: (context, state) {
+          if (state is BlocInitial) {
+            BlocProvider.of<UserClaimCubit>(context).getUserClaimsByUserId(
+              widget.userId,
+            );
+          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          if (state is BlocLoading) {
-            return const Center(child: CircularProgressIndicator());
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
           }
 
           return AlertDialog(

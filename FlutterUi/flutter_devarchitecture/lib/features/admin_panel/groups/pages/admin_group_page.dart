@@ -22,14 +22,18 @@ class AdminGroupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GroupCubit()..getAll(),
+      create: (context) => GroupCubit(),
       child: BlocConsumer<GroupCubit, BaseState>(
         listener: (context, state) {
+          if (state is BlocInitial) {
+            BlocProvider.of<GroupCubit>(context).getAll();
+          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          if (state is BlocLoading) {
-            return const Center(child: CircularProgressIndicator());
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
           }
 
           List<Map<String, dynamic>> tableData = [];

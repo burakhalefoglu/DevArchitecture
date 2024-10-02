@@ -31,13 +31,17 @@ class _LanguageDropdownButtonState extends State<LanguageDropdownButton> {
       create: (context) => LanguageCubit(),
       child: BlocConsumer<LanguageCubit, BaseState>(
         listener: (context, state) {
+          if (state is BlocInitial) {
+            BlocProvider.of<LanguageCubit>(context).getLanguageLookups();
+          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          if (state is BlocInitial || state is BlocLoading) {
-            BlocProvider.of<LanguageCubit>(context).getLanguageLookups();
-            return const CircularProgressIndicator();
-          } else if (state is BlocSuccess<List<LookUp>>) {
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
+          }
+          if (state is BlocSuccess<List<LookUp>>) {
             List<LookUp> languages = state.result!;
 
             // Dropdown'da gösterilecek seçenekler

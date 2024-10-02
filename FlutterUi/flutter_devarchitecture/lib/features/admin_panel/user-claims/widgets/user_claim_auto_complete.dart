@@ -32,16 +32,18 @@ class _UserClaimAutocompleteState extends State<UserClaimAutocomplete> {
       create: (context) => UserClaimCubit(),
       child: BlocConsumer<UserClaimCubit, BaseState>(
         listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
-        builder: (context, state) {
           if (state is BlocInitial) {
             BlocProvider.of<UserClaimCubit>(context)
                 .getUserClaimsByUserId(widget.userId);
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is BlocLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is BlocSuccess<List<LookUp>>) {
+          }
+          showScreenMessageByBlocStatus(state);
+        },
+        builder: (context, state) {
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
+          }
+          if (state is BlocSuccess<List<LookUp>>) {
             final options = state.result!
                 .map((claim) => {'id': claim.id, 'label': claim.label})
                 .toList();

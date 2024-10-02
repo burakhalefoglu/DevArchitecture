@@ -32,13 +32,14 @@ class _UserGroupAutocompleteState extends State<UserGroupAutocomplete> {
       create: (context) => UserGroupCubit(),
       child: BlocConsumer<UserGroupCubit, BaseState>(
         listener: (context, state) {
+          if (state is BlocInitial) {
+            BlocProvider.of<UserGroupCubit>(context)
+                .getUserGroupPermissions(widget.userId);
+          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
           if (state is BlocInitial) {
-            // BlocInitial durumunda kullanıcı gruplarını yükleyin
-            BlocProvider.of<UserGroupCubit>(context)
-                .getUserGroupPermissions(widget.userId);
             return const Center(child: CircularProgressIndicator());
           } else if (state is BlocLoading) {
             return const Center(child: CircularProgressIndicator());

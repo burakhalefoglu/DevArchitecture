@@ -32,16 +32,18 @@ class _GroupUsersAutocompleteState extends State<GroupUsersAutocomplete> {
       create: (context) => UserGroupCubit(),
       child: BlocConsumer<UserGroupCubit, BaseState>(
         listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
-        builder: (context, state) {
           if (state is BlocInitial) {
             BlocProvider.of<UserGroupCubit>(context)
                 .getGroupUsers(widget.groupId);
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is BlocLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is BlocSuccess<List<LookUp>>) {
+          }
+          showScreenMessageByBlocStatus(state);
+        },
+        builder: (context, state) {
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
+          }
+          if (state is BlocSuccess<List<LookUp>>) {
             final options = state.result!
                 .map((user) => {'id': user.id, 'label': user.label})
                 .toList();

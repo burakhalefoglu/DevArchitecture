@@ -22,13 +22,21 @@ class _UpdateGroupClaimDialogState extends State<UpdateGroupClaimsDialog> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          GroupClaimCubit()..getGroupClaimsByGroupId(widget.groupId),
+      create: (context) => GroupClaimCubit(),
       child: BlocConsumer<GroupClaimCubit, BaseState>(
         listener: (context, state) {
+          if (state is BlocInitial) {
+            BlocProvider.of<GroupClaimCubit>(context).getGroupClaimsByGroupId(
+              widget.groupId,
+            );
+          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
+          }
           return AlertDialog(
             title: const Text('Grup Yetkilerini Güncelle'),
             content: SizedBox(

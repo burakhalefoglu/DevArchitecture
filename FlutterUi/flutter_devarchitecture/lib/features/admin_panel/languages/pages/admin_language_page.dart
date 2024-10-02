@@ -24,15 +24,16 @@ class AdminLanguagePage extends StatelessWidget {
       create: (context) => LanguageCubit(),
       child: BlocConsumer<LanguageCubit, BaseState>(
         listener: (context, state) {
+          if (state is BlocInitial) {
+            BlocProvider.of<LanguageCubit>(context).getAll();
+          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          if (state is BlocInitial) {
-            // İlk dil verilerini yükle
-            BlocProvider.of<LanguageCubit>(context).getAll();
-            return const Center(child: CircularProgressIndicator());
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
           }
-
           List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
             tableData = state.result!.map((language) => language).toList();

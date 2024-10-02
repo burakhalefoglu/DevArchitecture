@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../di/core_initializer.dart';
 import 'base_state.dart';
 
@@ -35,4 +37,12 @@ void showScreenMessageByBlocStatus(BaseState state) {
         .screenMessage
         .getWarningMessage(state.message!);
   }
+}
+
+Widget? getResultWidgetByState(BaseState state) {
+  if (state is BlocInitial || state is BlocLoading) {
+    return const Center(child: CircularProgressIndicator());
+  }
+
+  return null;
 }

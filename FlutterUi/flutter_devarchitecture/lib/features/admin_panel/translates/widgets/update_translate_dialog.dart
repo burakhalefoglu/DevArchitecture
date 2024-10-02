@@ -6,7 +6,7 @@ import '../models/translate.dart';
 import '../../../../core/widgets/inputs/text_input.dart';
 
 class UpdateTranslateDialog extends StatefulWidget {
-  final Translate translate; // Güncellenecek çeviri
+  final Translate translate;
 
   const UpdateTranslateDialog({Key? key, required this.translate})
       : super(key: key);
@@ -28,7 +28,7 @@ class _UpdateTranslateDialogState extends State<UpdateTranslateDialog> {
     _valueController = TextEditingController(text: widget.translate.value);
     _selectedLanguage = LookUp(
       id: widget.translate.langId,
-      label: '', // Dil adı buraya getirilmeli
+      label: '',
     );
   }
 

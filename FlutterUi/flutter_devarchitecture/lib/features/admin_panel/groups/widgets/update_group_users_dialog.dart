@@ -28,6 +28,10 @@ class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
+          }
           return AlertDialog(
             title: const Text('Grup Kullanıcılarını Güncelle'),
             content: SizedBox(
@@ -49,7 +53,6 @@ class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
               ElevatedButton(
                 onPressed: () {
                   if (_selectedUserIds.isNotEmpty) {
-                    // Grup kullanıcılarını kaydet
                     BlocProvider.of<UserGroupCubit>(context)
                         .saveGroupUsers(widget.groupId, _selectedUserIds);
                     Navigator.of(context).pop();

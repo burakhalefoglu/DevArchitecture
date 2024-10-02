@@ -25,14 +25,15 @@ class AdminTranslatePage extends StatelessWidget {
       create: (context) => TranslateCubit(),
       child: BlocConsumer<TranslateCubit, BaseState>(
         listener: (context, state) {
+          if (state is BlocInitial) {
+            BlocProvider.of<TranslateCubit>(context).getAll();
+          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          if (state is BlocInitial) {
-            BlocProvider.of<TranslateCubit>(context).getAll();
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is BlocLoading) {
-            return const Center(child: CircularProgressIndicator());
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
           }
 
           List<Map<String, dynamic>> tableData = [];

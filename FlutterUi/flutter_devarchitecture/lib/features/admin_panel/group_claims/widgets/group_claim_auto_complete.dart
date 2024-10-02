@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
 import '../../../../../core/bloc/base_state.dart';
+import '../../../../core/bloc/bloc_helper.dart';
 import '../../group_claims/bloc/group_claim_cubit.dart';
 import '../../lookups/models/lookup.dart';
 import '../../lookups/widgets/lookup_multi_select_auto_complete.dart';
@@ -29,21 +29,21 @@ class _GroupClaimAutocompleteState extends State<GroupClaimAutocomplete> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          GroupClaimCubit()..getGroupClaimsByGroupId(widget.groupId),
+      create: (context) => GroupClaimCubit(),
       child: BlocConsumer<GroupClaimCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocFailed) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getErrorMessage(state.message);
+          if (state is BlocInitial) {
+            BlocProvider.of<GroupClaimCubit>(context)
+                .getGroupClaimsByGroupId(widget.groupId);
           }
+          showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          if (state is BlocLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is BlocSuccess<List<LookUp>>) {
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
+          }
+          if (state is BlocSuccess<List<LookUp>>) {
             final options = state.result!
                 .map((claim) => {'id': claim.id, 'label': claim.label})
                 .toList();

@@ -23,12 +23,15 @@ class AdminOperationClaimPage extends StatelessWidget {
       create: (context) => OperationClaimCubit(),
       child: BlocConsumer<OperationClaimCubit, BaseState>(
         listener: (context, state) {
+          if (state is BlocInitial) {
+            BlocProvider.of<OperationClaimCubit>(context).getAll();
+          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          if (state is BlocInitial || state is BlocLoading) {
-            BlocProvider.of<OperationClaimCubit>(context).getAll();
-            return const Center(child: CircularProgressIndicator());
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
           }
           List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {

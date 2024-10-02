@@ -28,12 +28,15 @@ class AdminUserPage extends StatelessWidget {
       create: (context) => UserCubit(),
       child: BlocConsumer<UserCubit, BaseState>(
         listener: (context, state) {
+          if (state is BlocInitial) {
+            BlocProvider.of<UserCubit>(context).getAllUser();
+          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          if (state is BlocInitial || state is BlocLoading) {
-            BlocProvider.of<UserCubit>(context).getAllUser();
-            return const Center(child: CircularProgressIndicator());
+          var resultWidget = getResultWidgetByState(state);
+          if (resultWidget != null) {
+            return resultWidget;
           }
           List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<User>>) {
@@ -41,7 +44,6 @@ class AdminUserPage extends StatelessWidget {
                 ? state.result!.map((e) => e.toMap()).toList()
                 : [];
           }
-
           return buildBaseScaffold(
             context,
             Column(
