@@ -14,7 +14,6 @@ import '../../../../core/widgets/base_widgets.dart';
 import '../../../../core/widgets/button_widgets.dart';
 import '../../../../core/widgets/tables/filter_table_widget.dart';
 import '../bloc/translate_cubit.dart';
-import '../models/translate_dto.dart';
 
 class AdminTranslatePage extends StatelessWidget {
   const AdminTranslatePage({super.key});
@@ -36,69 +35,66 @@ class AdminTranslatePage extends StatelessWidget {
             return resultWidget;
           }
 
-          List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
-            tableData = state.result!.isNotEmpty ? state.result! : [];
+            return buildTranslateTable(context, state.result!);
           }
-
-          return buildBaseScaffold(
-            context,
-            Column(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: context.defaultHorizontalPadding,
-                    child: buildPageTitle(
-                      context,
-                      "Dil Çeviri Listesi",
-                      subDirection: "Admin Panel",
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 9,
-                  child: FilterTableWidget(
-                    datas: tableData,
-                    headers: const [
-                      {"id": "ID"},
-                      {"code": "Kod"},
-                      {"language": "Dil"},
-                      {"value": "Değer"},
-                    ],
-                    color: CustomColors.light.getColor,
-                    utilityButton: DownloadButtons(
-                            color: CustomColors.dark.getColor,
-                            data: state is BlocSuccess<List<TranslateDto>>
-                                ? state.result!.map((nv) => nv.toMap()).toList()
-                                : [])
-                        .excelButton(context),
-                    customManipulationButton: const [
-                      getEditButton,
-                      getDeleteButton
-                    ],
-                    customManipulationCallback: [
-                      (translateId) => _editTranslate(
-                          context,
-                          tableData.firstWhere(
-                              (element) => element['id'] == translateId)),
-                      (translateId) => _confirmDelete(context, translateId)
-                    ],
-                    infoHover: getInfoHover(
-                      context,
-                      "Dil çevirileri bu sayfada listelenmektedir.",
-                      color: CustomColors.gray.getColor,
-                    ),
-                    addButton: getAddButton(
-                      context,
-                      () => _addTranslate(context),
-                      color: CustomColors.dark.getColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
+          return SizedBox.shrink();
         },
+      ),
+    );
+  }
+
+  Widget buildTranslateTable(
+      BuildContext context, List<Map<String, dynamic>> datas) {
+    return buildBaseScaffold(
+      context,
+      Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: context.defaultHorizontalPadding,
+              child: buildPageTitle(
+                context,
+                "Dil Çeviri Listesi",
+                subDirection: "Admin Panel",
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 9,
+            child: FilterTableWidget(
+              datas: datas,
+              headers: const [
+                {"id": "ID"},
+                {"code": "Kod"},
+                {"language": "Dil"},
+                {"value": "Değer"},
+              ],
+              color: CustomColors.light.getColor,
+              utilityButton: DownloadButtons(
+                      color: CustomColors.dark.getColor, data: datas)
+                  .excelButton(context),
+              customManipulationButton: const [getEditButton, getDeleteButton],
+              customManipulationCallback: [
+                (translateId) => _editTranslate(
+                    context,
+                    datas
+                        .firstWhere((element) => element['id'] == translateId)),
+                (translateId) => _confirmDelete(context, translateId)
+              ],
+              infoHover: getInfoHover(
+                context,
+                "Dil çevirileri bu sayfada listelenmektedir.",
+                color: CustomColors.gray.getColor,
+              ),
+              addButton: getAddButton(
+                context,
+                () => _addTranslate(context),
+                color: CustomColors.dark.getColor,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

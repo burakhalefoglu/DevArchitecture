@@ -38,88 +38,90 @@ class AdminUserPage extends StatelessWidget {
           if (resultWidget != null) {
             return resultWidget;
           }
-          List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<User>>) {
-            tableData = state.result!.isNotEmpty
-                ? state.result!.map((e) => e.toMap()).toList()
-                : [];
+            print("tableData: " +
+                state.result!.map((e) => e.toMap()).toList().toString());
+            return buildUserTable(
+                context, state.result!.map((e) => e.toMap()).toList());
           }
-          return buildBaseScaffold(
-            context,
-            Column(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: context.defaultHorizontalPadding,
-                    child: buildPageTitle(
-                      context,
-                      "Kullanıcı Listesi",
-                      subDirection: "Admin Panel",
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 9,
-                  child: FilterTableWidget(
-                    datas: tableData,
-                    headers: const [
-                      {"userId": "ID"},
-                      {"email": "E-posta"},
-                      {"fullName": "Ad-Soyad"},
-                      {"status": "Durum"},
-                      {"mobilePhones": "Telefon"},
-                      {"address": "Adres"},
-                      {"notes": "Notlar"},
-                    ],
-                    color: CustomColors.primary.getColor,
-                    customManipulationButton: const [
-                      getChangePasswordButton,
-                      getChangePermissionButton,
-                      getChangeGroupButton,
-                      getEditButton,
-                      getDeleteButton
-                    ],
-                    customManipulationCallback: [
-                      (userId) => _changePassword(
-                            context,
-                            tableData.firstWhere((element) =>
-                                element['userId'] == userId)['userId'],
-                          ),
-                      (userId) => _changeUserClaims(
-                            context,
-                            tableData.firstWhere((element) =>
-                                element['userId'] == userId)['userId'],
-                          ),
-                      (userId) => _changeUserGroups(
-                            context,
-                            tableData.firstWhere((element) =>
-                                element['userId'] == userId)['userId'],
-                          ),
-                      (userId) => _editUser(
-                          context,
-                          tableData.firstWhere(
-                            (element) => element['userId'] == userId,
-                          )),
-                      (userId) => _confirmDelete(context, userId)
-                    ],
-                    infoHover:
-                        getInfoHover(context, "Kullanıcı bilgilerini düzenle"),
-                    addButton: getAddButton(
-                      context,
-                      () => _addUser(context),
-                      color: CustomColors.white.getColor,
-                    ),
-                    utilityButton: DownloadButtons(
-                            data: state is BlocSuccess<List<User>>
-                                ? state.result!.map((nv) => nv.toMap()).toList()
-                                : [])
-                        .excelButton(context),
-                  ),
-                ),
-              ],
-            ),
-          );
+          return SizedBox.shrink();
         },
+      ),
+    );
+  }
+
+  Widget buildUserTable(
+      BuildContext context, List<Map<String, dynamic>> datas) {
+    return buildBaseScaffold(
+      context,
+      Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: context.defaultHorizontalPadding,
+              child: buildPageTitle(
+                context,
+                "Kullanıcı Listesi",
+                subDirection: "Admin Panel",
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 9,
+            child: FilterTableWidget(
+              datas: datas,
+              headers: const [
+                {"userId": "ID"},
+                {"email": "E-posta"},
+                {"fullName": "Ad-Soyad"},
+                {"status": "Durum"},
+                {"mobilePhones": "Telefon"},
+                {"address": "Adres"},
+                {"notes": "Notlar"},
+              ],
+              color: CustomColors.primary.getColor,
+              customManipulationButton: const [
+                getChangePasswordButton,
+                getChangePermissionButton,
+                getChangeGroupButton,
+                getEditButton,
+                getDeleteButton
+              ],
+              customManipulationCallback: [
+                (userId) => _changePassword(
+                      context,
+                      datas.firstWhere(
+                          (element) => element['userId'] == userId)['userId'],
+                    ),
+                (userId) => _changeUserClaims(
+                      context,
+                      datas.firstWhere(
+                          (element) => element['userId'] == userId)['userId'],
+                    ),
+                (userId) => _changeUserGroups(
+                      context,
+                      datas.firstWhere(
+                          (element) => element['userId'] == userId)['userId'],
+                    ),
+                (userId) => _editUser(
+                    context,
+                    datas.firstWhere(
+                      (element) => element['userId'] == userId,
+                    )),
+                (userId) => _confirmDelete(context, userId)
+              ],
+              infoHover: getInfoHover(context, "Kullanıcı bilgilerini düzenle"),
+              addButton: getAddButton(
+                context,
+                () => _addUser(context),
+                color: CustomColors.white.getColor,
+              ),
+              utilityButton: DownloadButtons(
+                data: datas,
+              ).excelButton(context),
+            ),
+          ),
+        ],
       ),
     );
   }

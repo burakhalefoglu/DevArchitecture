@@ -34,67 +34,62 @@ class AdminLanguagePage extends StatelessWidget {
           if (resultWidget != null) {
             return resultWidget;
           }
-          List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
-            tableData = state.result!.map((language) => language).toList();
+            return buildLanguageTable(context, state.result!);
           }
-
-          return buildBaseScaffold(
-            context,
-            Column(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: context.defaultHorizontalPadding,
-                    child: buildPageTitle(
-                      context,
-                      "Diller Listesi",
-                      subDirection: "Admin Panel",
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 9,
-                  child: FilterTableWidget(
-                    datas: tableData,
-                    headers: const [
-                      {"id": "ID"},
-                      {"code": "Kod"},
-                      {"name": "Dil Adı"},
-                    ],
-                    infoHover:
-                        getInfoHover(context, "Diller bu sayfada listelenir."),
-                    utilityButton: DownloadButtons(
-                            color: CustomColors.dark.getColor,
-                            data:
-                                state is BlocSuccess<List<Map<String, dynamic>>>
-                                    ? state.result!
-                                    : [])
-                        .excelButton(context),
-                    color: CustomColors.danger.getColor,
-                    customManipulationButton: const [
-                      getEditButton,
-                      getDeleteButton
-                    ],
-                    customManipulationCallback: [
-                      (id) => _editLanguage(
-                          context,
-                          tableData.firstWhere(
-                            (element) => element['id'] == id,
-                          )),
-                      (id) => _confirmDelete(context, id)
-                    ],
-                    addButton: getAddButton(
-                      context,
-                      () => _addLanguage(context),
-                      color: CustomColors.white.getColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
+          return SizedBox.shrink();
         },
+      ),
+    );
+  }
+
+  Widget buildLanguageTable(
+      BuildContext context, List<Map<String, dynamic>> datas) {
+    return buildBaseScaffold(
+      context,
+      Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: context.defaultHorizontalPadding,
+              child: buildPageTitle(
+                context,
+                "Diller Listesi",
+                subDirection: "Admin Panel",
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 9,
+            child: FilterTableWidget(
+              datas: datas,
+              headers: const [
+                {"id": "ID"},
+                {"code": "Kod"},
+                {"name": "Dil Adı"},
+              ],
+              infoHover: getInfoHover(context, "Diller bu sayfada listelenir."),
+              utilityButton: DownloadButtons(
+                      color: CustomColors.dark.getColor, data: datas)
+                  .excelButton(context),
+              color: CustomColors.danger.getColor,
+              customManipulationButton: const [getEditButton, getDeleteButton],
+              customManipulationCallback: [
+                (id) => _editLanguage(
+                    context,
+                    datas.firstWhere(
+                      (element) => element['id'] == id,
+                    )),
+                (id) => _confirmDelete(context, id)
+              ],
+              addButton: getAddButton(
+                context,
+                () => _addLanguage(context),
+                color: CustomColors.white.getColor,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

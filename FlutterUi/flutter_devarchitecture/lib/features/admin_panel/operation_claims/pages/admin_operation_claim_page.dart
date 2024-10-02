@@ -33,63 +33,60 @@ class AdminOperationClaimPage extends StatelessWidget {
           if (resultWidget != null) {
             return resultWidget;
           }
-          List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
-            tableData = state.result!.isNotEmpty ? state.result! : [];
+            return buildOperationClaimTable(context, state.result!);
           }
-
-          return buildBaseScaffold(
-            context,
-            Column(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: context.defaultHorizontalPadding,
-                    child: buildPageTitle(
-                      context,
-                      "Operasyon Yetkileri Listesi",
-                      subDirection: "Admin Panel",
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 9,
-                  child: FilterTableWidget(
-                    datas: tableData,
-                    headers: const [
-                      {"id": "ID"},
-                      {"name": "Yetki Adı"},
-                      {"alias": "Takma Ad"},
-                      {"description": "Açıklama"},
-                    ],
-                    color: CustomColors.warning.getColor,
-                    customManipulationButton: const [
-                      getEditButton,
-                    ],
-                    customManipulationCallback: [
-                      (index) => _editOperationClaim(
-                          context,
-                          tableData
-                              .firstWhere((element) => element['id'] == index)),
-                    ],
-                    infoHover: getInfoHover(
-                      color: CustomColors.dark.getColor,
-                      context,
-                      "Operasyon yetkileri burada listelenmektedir.",
-                    ),
-                    utilityButton: DownloadButtons(
-                            color: CustomColors.dark.getColor,
-                            data:
-                                state is BlocSuccess<List<Map<String, dynamic>>>
-                                    ? state.result!
-                                    : [])
-                        .excelButton(context),
-                  ),
-                ),
-              ],
-            ),
-          );
+          return SizedBox.shrink();
         },
+      ),
+    );
+  }
+
+  Widget buildOperationClaimTable(
+      BuildContext context, List<Map<String, dynamic>> datas) {
+    return buildBaseScaffold(
+      context,
+      Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: context.defaultHorizontalPadding,
+              child: buildPageTitle(
+                context,
+                "Operasyon Yetkileri Listesi",
+                subDirection: "Admin Panel",
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 9,
+            child: FilterTableWidget(
+              datas: datas,
+              headers: const [
+                {"id": "ID"},
+                {"name": "Yetki Adı"},
+                {"alias": "Takma Ad"},
+                {"description": "Açıklama"},
+              ],
+              color: CustomColors.warning.getColor,
+              customManipulationButton: const [
+                getEditButton,
+              ],
+              customManipulationCallback: [
+                (index) => _editOperationClaim(context,
+                    datas.firstWhere((element) => element['id'] == index)),
+              ],
+              infoHover: getInfoHover(
+                color: CustomColors.dark.getColor,
+                context,
+                "Operasyon yetkileri burada listelenmektedir.",
+              ),
+              utilityButton: DownloadButtons(
+                      color: CustomColors.dark.getColor, data: datas)
+                  .excelButton(context),
+            ),
+          ),
+        ],
       ),
     );
   }

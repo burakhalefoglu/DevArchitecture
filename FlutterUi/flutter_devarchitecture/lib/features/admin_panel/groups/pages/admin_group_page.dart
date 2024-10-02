@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../../core/theme/extensions.dart';
 import '../../../../core/bloc/bloc_helper.dart';
+import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../widgets/add_group_dialog.dart';
 import '../widgets/update_group_claims_dialog.dart';
 import '../widgets/update_group_dialog.dart';
@@ -36,66 +37,68 @@ class AdminGroupPage extends StatelessWidget {
             return resultWidget;
           }
 
-          List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
-            tableData = state.result!.isNotEmpty ? state.result! : [];
+            return buildGroupTable(context, state.result!);
           }
-
-          return buildBaseScaffold(
-            context,
-            Column(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: context.defaultHorizontalPadding,
-                    child: buildPageTitle(
-                      context,
-                      "Gruplar Listesi",
-                      subDirection: "Admin Panel",
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 9,
-                  child: FilterTableWidget(
-                    datas: tableData,
-                    headers: const [
-                      {"id": "ID"},
-                      {"groupName": "Grup Adı"},
-                    ],
-                    color: CustomColors.primary.getColor,
-                    customManipulationButton: const [
-                      updateGroupClaimButton,
-                      updateUserGroupButton,
-                      getEditButton,
-                      getDeleteButton
-                    ],
-                    customManipulationCallback: [
-                      (index) => _updateGroupClaims(
-                          context,
-                          tableData
-                              .firstWhere((element) => element['id'] == index)),
-                      (index) => _updateGroupUsers(
-                          context,
-                          tableData
-                              .firstWhere((element) => element['id'] == index)),
-                      (index) => _editGroup(
-                          context,
-                          tableData
-                              .firstWhere((element) => element['id'] == index)),
-                      (index) => _confirmDelete(context, index)
-                    ],
-                    addButton: getAddButton(
-                      context,
-                      () => _addGroup(context),
-                      color: CustomColors.white.getColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
+          return SizedBox.shrink();
         },
+      ),
+    );
+  }
+
+  Widget buildGroupTable(
+      BuildContext context, List<Map<String, dynamic>> datas) {
+    return buildBaseScaffold(
+      context,
+      Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: context.defaultHorizontalPadding,
+              child: buildPageTitle(
+                context,
+                "Gruplar Listesi",
+                subDirection: "Admin Panel",
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 9,
+            child: FilterTableWidget(
+              infoHover:
+                  getInfoHover(context, "Gruplar bu sayfada listelenir."),
+              utilityButton: DownloadButtons(
+                      color: CustomColors.dark.getColor, data: datas)
+                  .excelButton(context),
+              datas: datas,
+              headers: const [
+                {"id": "ID"},
+                {"groupName": "Grup Adı"},
+              ],
+              color: CustomColors.primary.getColor,
+              customManipulationButton: const [
+                updateGroupClaimButton,
+                updateUserGroupButton,
+                getEditButton,
+                getDeleteButton
+              ],
+              customManipulationCallback: [
+                (index) => _updateGroupClaims(context,
+                    datas.firstWhere((element) => element['id'] == index)),
+                (index) => _updateGroupUsers(context,
+                    datas.firstWhere((element) => element['id'] == index)),
+                (index) => _editGroup(context,
+                    datas.firstWhere((element) => element['id'] == index)),
+                (index) => _confirmDelete(context, index)
+              ],
+              addButton: getAddButton(
+                context,
+                () => _addGroup(context),
+                color: CustomColors.white.getColor,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
