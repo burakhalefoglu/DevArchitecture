@@ -35,12 +35,12 @@ class _LanguageCodeDropdownButtonState
       create: (context) => LanguageCubit(),
       child: BlocConsumer<LanguageCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocInitial) {
-            BlocProvider.of<LanguageCubit>(context).getLanguageCodes();
-          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
+          if (state is BlocInitial) {
+            BlocProvider.of<LanguageCubit>(context).getLanguageCodes();
+          }
           var resultWidget = getResultWidgetByState(context, state);
           if (resultWidget != null) {
             return resultWidget;

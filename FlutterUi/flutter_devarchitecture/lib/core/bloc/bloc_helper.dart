@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 
+import '../../features/layouts/base_scaffold.dart';
 import '../di/core_initializer.dart';
 import 'base_state.dart';
 
@@ -40,14 +41,41 @@ void showScreenMessageByBlocStatus(BaseState state) {
   }
 }
 
+Widget? getResultWidgetByStateWithScaffold(
+    BuildContext context, BaseState state) {
+  var wid = getResultWidgetByState(context, state);
+  if (wid != null) {
+    return buildBaseScaffold(context, wid);
+  }
+  return null;
+}
+
 Widget? getResultWidgetByState(BuildContext context, BaseState state) {
-  if (state is BlocInitial || state is BlocLoading) {
+  if (state is BlocLoading) {
     return Center(
         child: CoreInitializer()
             .coreContainer
             .statusAnimationAsset
             .getLoadingAnimationAsset(
                 context.percent10Screen, context.percent10Screen));
+  }
+  if (state is BlocChecking) {
+    return Center(
+      child: CoreInitializer()
+          .coreContainer
+          .statusAnimationAsset
+          .getCheckingAnimationAsset(
+              context.percent10Screen, context.percent10Screen),
+    );
+  }
+  if (state is BlocSending) {
+    return Center(
+      child: CoreInitializer()
+          .coreContainer
+          .statusAnimationAsset
+          .getSendingAnimationAsset(
+              context.percent10Screen, context.percent10Screen),
+    );
   }
   return null;
 }

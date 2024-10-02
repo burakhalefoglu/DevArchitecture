@@ -25,13 +25,13 @@ class AdminGroupPage extends StatelessWidget {
       create: (context) => GroupCubit(),
       child: BlocConsumer<GroupCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocInitial) {
-            BlocProvider.of<GroupCubit>(context).getAll();
-          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          var resultWidget = getResultWidgetByState(context, state);
+          if (state is BlocInitial) {
+            BlocProvider.of<GroupCubit>(context).getAll();
+          }
+          var resultWidget = getResultWidgetByStateWithScaffold(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }

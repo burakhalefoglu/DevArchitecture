@@ -27,20 +27,19 @@ class AdminUserPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => UserCubit(),
       child: BlocConsumer<UserCubit, BaseState>(
-        listener: (context, state) async {
-          if (state is BlocInitial) {
-            await BlocProvider.of<UserCubit>(context).getAllUser();
-          }
+        listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          var resultWidget = getResultWidgetByState(context, state);
+          if (state is BlocInitial) {
+            BlocProvider.of<UserCubit>(context).getAllUser();
+          }
+          var resultWidget = getResultWidgetByStateWithScaffold(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }
           List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<User>>) {
-            print("users: " + state.result!.map((e) => e.toMap()).toString());
             tableData = state.result!.isNotEmpty
                 ? state.result!.map((e) => e.toMap()).toList()
                 : [];

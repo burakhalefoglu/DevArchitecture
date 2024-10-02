@@ -32,13 +32,13 @@ class _GroupClaimAutocompleteState extends State<GroupClaimAutocomplete> {
       create: (context) => GroupClaimCubit(),
       child: BlocConsumer<GroupClaimCubit, BaseState>(
         listener: (context, state) {
+          showScreenMessageByBlocStatus(state);
+        },
+        builder: (context, state) {
           if (state is BlocInitial) {
             BlocProvider.of<GroupClaimCubit>(context)
                 .getGroupClaimsByGroupId(widget.groupId);
           }
-          showScreenMessageByBlocStatus(state);
-        },
-        builder: (context, state) {
           var resultWidget = getResultWidgetByState(context, state);
           if (resultWidget != null) {
             return resultWidget;

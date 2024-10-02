@@ -24,13 +24,13 @@ class AdminLanguagePage extends StatelessWidget {
       create: (context) => LanguageCubit(),
       child: BlocConsumer<LanguageCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocInitial) {
-            BlocProvider.of<LanguageCubit>(context).getAll();
-          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          var resultWidget = getResultWidgetByState(context, state);
+          if (state is BlocInitial) {
+            BlocProvider.of<LanguageCubit>(context).getAll();
+          }
+          var resultWidget = getResultWidgetByStateWithScaffold(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }

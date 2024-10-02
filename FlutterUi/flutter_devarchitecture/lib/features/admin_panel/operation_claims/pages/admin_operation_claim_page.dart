@@ -23,13 +23,13 @@ class AdminOperationClaimPage extends StatelessWidget {
       create: (context) => OperationClaimCubit(),
       child: BlocConsumer<OperationClaimCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocInitial) {
-            BlocProvider.of<OperationClaimCubit>(context).getAll();
-          }
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          var resultWidget = getResultWidgetByState(context, state);
+          if (state is BlocInitial) {
+            BlocProvider.of<OperationClaimCubit>(context).getAll();
+          }
+          var resultWidget = getResultWidgetByStateWithScaffold(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }
