@@ -57,7 +57,7 @@ dependencies:
   flutter_secure_storage: ^9.2.2
 
   # utils
-  url_launcher: ^6.1.5
+  url_launcher: ^6.3.0
   flutter_local_notifications: ^12.0.0
   dart_amqp: ^0.3.1
   internet_connection_checker: ^1.0.0+1
