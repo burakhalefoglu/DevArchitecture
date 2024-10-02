@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../group_claims/bloc/group_claim_cubit.dart';
 import '../../lookups/models/lookup.dart';
@@ -33,9 +34,10 @@ class _GroupClaimAutocompleteState extends State<GroupClaimAutocomplete> {
       child: BlocConsumer<GroupClaimCubit, BaseState>(
         listener: (context, state) {
           if (state is BlocFailed) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
-            );
+            CoreInitializer()
+                .coreContainer
+                .screenMessage
+                .getErrorMessage(state.message);
           }
         },
         builder: (context, state) {

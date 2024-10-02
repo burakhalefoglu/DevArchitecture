@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/di/core_initializer.dart';
 import '../../group_claims/bloc/group_claim_cubit.dart';
 import '../../group_claims/widgets/group_claim_auto_complete.dart';
 
@@ -25,9 +26,10 @@ class _UpdateGroupClaimDialogState extends State<UpdateGroupClaimsDialog> {
       child: BlocConsumer<GroupClaimCubit, BaseState>(
         listener: (context, state) {
           if (state is BlocFailed) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
-            );
+            CoreInitializer()
+                .coreContainer
+                .screenMessage
+                .getErrorMessage(state.message);
           }
         },
         builder: (context, state) {
@@ -57,11 +59,10 @@ class _UpdateGroupClaimDialogState extends State<UpdateGroupClaimsDialog> {
                             widget.groupId, _selectedClaims);
                     Navigator.of(context).pop();
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Lütfen en az bir yetki seçiniz.'),
-                      ),
-                    );
+                    CoreInitializer()
+                        .coreContainer
+                        .screenMessage
+                        .getErrorMessage('Lütfen en az bir yetki seçiniz.');
                   }
                 },
                 child: const Text('Kaydet'),

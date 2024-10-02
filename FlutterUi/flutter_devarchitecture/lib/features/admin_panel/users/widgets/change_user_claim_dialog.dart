@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/di/core_initializer.dart';
 import '../../user-claims/bloc/user_claim_cubit.dart';
 import '../../user-claims/widgets/user_claim_auto_complete.dart';
 
@@ -28,9 +29,10 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
       child: BlocConsumer<UserClaimCubit, BaseState>(
         listener: (context, state) {
           if (state is BlocFailed) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
-            );
+            CoreInitializer()
+                .coreContainer
+                .screenMessage
+                .getErrorMessage(state.message);
           }
         },
         builder: (context, state) {
@@ -63,11 +65,10 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
                         .saveUserClaimsByUserId(widget.userId, _selectedClaims);
                     Navigator.of(context).pop();
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Lütfen en az bir yetki seçiniz.'),
-                      ),
-                    );
+                    CoreInitializer()
+                        .coreContainer
+                        .screenMessage
+                        .getErrorMessage('Lütfen en az bir yetki seçiniz.');
                   }
                 },
                 child: const Text('Kaydet'),

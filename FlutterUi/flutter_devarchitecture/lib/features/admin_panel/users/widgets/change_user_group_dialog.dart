@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/di/core_initializer.dart';
 import '../../user-groups/bloc/user_group_cubit.dart';
 import '../../user-groups/widgets/user_group_auto_complete.dart';
 
@@ -27,9 +28,10 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
       child: BlocConsumer<UserGroupCubit, BaseState>(
         listener: (context, state) {
           if (state is BlocFailed) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
-            );
+            CoreInitializer()
+                .coreContainer
+                .screenMessage
+                .getErrorMessage(state.message);
           }
         },
         builder: (context, state) {
@@ -63,11 +65,10 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
                             widget.userId, _selectedGroups);
                     Navigator.of(context).pop();
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Lütfen en az bir grup seçiniz.'),
-                      ),
-                    );
+                    CoreInitializer()
+                        .coreContainer
+                        .screenMessage
+                        .getErrorMessage('Lütfen en az bir grup seçiniz.');
                   }
                 },
                 child: const Text('Kaydet'),

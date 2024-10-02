@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bloc/base_state.dart';
+import '../../../../core/di/core_initializer.dart';
 import '../../lookups/widgets/lookup_multi_select_auto_complete.dart';
 import '../bloc/user_claim_cubit.dart';
 import '../../lookups/models/lookup.dart';
@@ -32,9 +33,10 @@ class _UserClaimAutocompleteState extends State<UserClaimAutocomplete> {
       child: BlocConsumer<UserClaimCubit, BaseState>(
         listener: (context, state) {
           if (state is BlocFailed) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
-            );
+            CoreInitializer()
+                .coreContainer
+                .screenMessage
+                .getErrorMessage(state.message);
           }
         },
         builder: (context, state) {
