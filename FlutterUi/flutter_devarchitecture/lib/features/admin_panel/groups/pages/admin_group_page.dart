@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../../core/theme/extensions.dart';
-import '../widgets/add_group_dialog_widget.dart';
+import '../widgets/add_group_dialog.dart';
+import '../widgets/update_group_claims_dialog.dart';
 import '../widgets/update_group_dialog_widget.dart';
-import '../widgets/change_group_users_dialog.dart';
+import '../widgets/update_group_users_dialog.dart';
 import '/core/widgets/tables/filter_table_widget.dart';
 import '../../../../../core/widgets/base_widgets.dart';
 import '../../../../../core/di/core_initializer.dart';
@@ -71,12 +72,10 @@ class AdminGroupPage extends StatelessWidget {
                       getDeleteButton
                     ],
                     customManipulationCallback: [
-                      (index) => {
-                            CoreInitializer()
-                                .coreContainer
-                                .screenMessage
-                                .getInfoMessage(index.toString())
-                          },
+                      (index) => _updateGroupClaims(
+                          context,
+                          tableData
+                              .firstWhere((element) => element['id'] == index)),
                       (index) => _updateGroupUsers(
                           context,
                           tableData
@@ -126,7 +125,15 @@ class AdminGroupPage extends StatelessWidget {
       BuildContext context, Map<String, dynamic> groupData) async {
     await showDialog(
       context: context,
-      builder: (c) => ChangeGroupUsersDialog(groupId: groupData['id']),
+      builder: (c) => UpdateGroupUsersDialog(groupId: groupData['id']),
+    );
+  }
+
+  void _updateGroupClaims(
+      BuildContext context, Map<String, dynamic> groupData) async {
+    await showDialog(
+      context: context,
+      builder: (c) => UpdateGroupClaimsDialog(groupId: groupData['id']),
     );
   }
 

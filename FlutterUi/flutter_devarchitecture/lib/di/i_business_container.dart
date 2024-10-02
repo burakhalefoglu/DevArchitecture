@@ -1,3 +1,4 @@
+import 'package:flutter_devarchitecture/features/admin_panel/group_claims/services/i_group_claim_service.dart';
 import 'package:flutter_devarchitecture/features/admin_panel/languages/services/i_language_service.dart';
 import 'package:flutter_devarchitecture/features/admin_panel/logs/services/i_service.dart';
 import 'package:flutter_devarchitecture/features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
@@ -31,6 +32,8 @@ abstract class IBusinessContainer {
   late IGroupService groupService;
 
   late ILookupService lookupService;
+
+  late IGroupClaimService groupClaimService;
 
   void setup();
   void checkIfUnRegistered<T extends Object>(Function register);

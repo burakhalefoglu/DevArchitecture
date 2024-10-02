@@ -1,5 +1,8 @@
+import 'package:flutter_devarchitecture/features/admin_panel/group_claims/services/i_group_claim_service.dart';
 import 'package:flutter_devarchitecture/features/admin_panel/lookups/services/api_in_memory_service.dart';
 import 'package:get_it/get_it.dart';
+import '../../features/admin_panel/group_claims/services/api_group_claim_service.dart';
+import '../../features/admin_panel/group_claims/services/in_memory_group_claim_service.dart';
 import '../../features/admin_panel/groups/services/i_group.dart';
 import '../../features/admin_panel/groups/services/in_memory_group_service.dart';
 import '../../../core/configs/app_config.dart';
@@ -74,6 +77,9 @@ class GetItBusinessContainer implements IBusinessContainer {
   late ILookupService lookupService;
 
   @override
+  late IGroupClaimService groupClaimService;
+
+  @override
   void setup() {
     //*? Services Binding For DEVELOPMENT
     if (appConfig.name == 'dev' || appConfig.name == '') {
@@ -126,6 +132,11 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<ILookupService>((() {
         lookupService =
             _getIt.registerSingleton<ILookupService>(InMemoryLookupService());
+      }));
+
+      checkIfUnRegistered<IGroupClaimService>((() {
+        groupClaimService = _getIt
+            .registerSingleton<IGroupClaimService>(InMemoryGroupClaimService());
       }));
     }
 
@@ -181,6 +192,11 @@ class GetItBusinessContainer implements IBusinessContainer {
         lookupService =
             _getIt.registerSingleton<ILookupService>(ApiLookupService());
       }));
+
+      checkIfUnRegistered<IGroupClaimService>((() {
+        groupClaimService = _getIt.registerSingleton<IGroupClaimService>(
+            ApiGroupClaimService(method: "/group-claims"));
+      }));
     }
 
     //*? Services Binding For PRODUCTION
@@ -234,6 +250,11 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<ILookupService>((() {
         lookupService =
             _getIt.registerSingleton<ILookupService>(ApiLookupService());
+      }));
+
+      checkIfUnRegistered<IGroupClaimService>((() {
+        groupClaimService = _getIt.registerSingleton<IGroupClaimService>(
+            ApiGroupClaimService(method: "/group-claims"));
       }));
     }
   }

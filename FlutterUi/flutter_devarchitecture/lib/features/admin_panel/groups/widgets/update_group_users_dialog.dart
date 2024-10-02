@@ -5,17 +5,17 @@ import 'package:flutter_devarchitecture/features/admin_panel/user-groups/bloc/us
 import '../../../../core/bloc/base_state.dart';
 import '../../user-groups/widgets/group_users_auto_complete.dart';
 
-class ChangeGroupUsersDialog extends StatefulWidget {
+class UpdateGroupUsersDialog extends StatefulWidget {
   final int groupId;
 
-  const ChangeGroupUsersDialog({Key? key, required this.groupId})
+  const UpdateGroupUsersDialog({Key? key, required this.groupId})
       : super(key: key);
 
   @override
-  _ChangeGroupUsersDialogState createState() => _ChangeGroupUsersDialogState();
+  _UpdateGroupUsersDialogState createState() => _UpdateGroupUsersDialogState();
 }
 
-class _ChangeGroupUsersDialogState extends State<ChangeGroupUsersDialog> {
+class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
   List<int> _selectedUserIds = [];
 
   @override
