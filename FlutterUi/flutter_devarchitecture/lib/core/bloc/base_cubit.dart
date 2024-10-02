@@ -22,7 +22,7 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
         if (kDebugMode) {
           print(result.message);
         }
-        emit(BlocFailed(result.message));
+        emitFailState(result.message);
         return;
       }
       print(result.data);
@@ -31,7 +31,7 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
       if (kDebugMode) {
         print(e);
       }
-      emit(BlocFailed(e.toString()));
+      emitFailState(e.toString());
     }
   }
 
@@ -43,15 +43,16 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
         if (kDebugMode) {
           print(result.message);
         }
-        emit(BlocFailed(result.message));
+        emitFailState(result.message);
         return;
       }
+      emit(BlocAdded());
       getAll();
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
-      emit(BlocFailed(e.toString()));
+      emitFailState(e.toString());
     }
   }
 
@@ -63,15 +64,16 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
         if (kDebugMode) {
           print(result.message);
         }
-        emit(BlocFailed(result.message));
+        emitFailState(result.message);
         return;
       }
+      emit(BlocUpdated());
       getAll();
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
-      emit(BlocFailed(e.toString()));
+      emitFailState(e.toString());
     }
   }
 
@@ -83,15 +85,16 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
         if (kDebugMode) {
           print(result.message);
         }
-        emit(BlocFailed(result.message));
+        emitFailState(result.message);
         return;
       }
+      emit(BlocDeleted());
       getAll();
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
-      emit(BlocFailed(e.toString()));
+      emitFailState(e.toString());
     }
   }
 

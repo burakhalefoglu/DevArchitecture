@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/bloc/bloc_helper.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../user-groups/bloc/user_group_cubit.dart';
 import '../../user-groups/widgets/user_group_auto_complete.dart';
@@ -27,12 +28,7 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
       create: (context) => UserGroupCubit(),
       child: BlocConsumer<UserGroupCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocFailed) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getErrorMessage(state.message);
-          }
+          showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
           if (state is BlocLoading) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/bloc/bloc_helper.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
@@ -8,7 +9,6 @@ import '../models/translate.dart';
 import '../widgets/add_translate_dialog.dart';
 import '../widgets/update_translate_dialog.dart';
 import '/features/layouts/base_scaffold.dart';
-import '../../../../core/di/core_initializer.dart';
 import '../../../../core/theme/custom_colors.dart';
 import '../../../../core/widgets/base_widgets.dart';
 import '../../../../core/widgets/button_widgets.dart';
@@ -25,12 +25,7 @@ class AdminTranslatePage extends StatelessWidget {
       create: (context) => TranslateCubit(),
       child: BlocConsumer<TranslateCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocFailed) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getErrorMessage(state.message);
-          }
+          showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
           if (state is BlocInitial) {
@@ -40,7 +35,6 @@ class AdminTranslatePage extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          // Çeviri verilerini işleme
           List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
             tableData = state.result!.isNotEmpty ? state.result! : [];

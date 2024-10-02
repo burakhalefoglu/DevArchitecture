@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../../core/theme/extensions.dart';
+import '../../../../core/bloc/bloc_helper.dart';
 import '../widgets/add_group_dialog.dart';
 import '../widgets/update_group_claims_dialog.dart';
-import '../widgets/update_group_dialog_widget.dart';
+import '../widgets/update_group_dialog.dart';
 import '../widgets/update_group_users_dialog.dart';
 import '/core/widgets/tables/filter_table_widget.dart';
 import '../../../../../core/widgets/base_widgets.dart';
-import '../../../../../core/di/core_initializer.dart';
 import '../../../../../core/theme/custom_colors.dart';
 import '../../../../../core/widgets/button_widgets.dart';
 import '/features/layouts/base_scaffold.dart';
@@ -25,12 +25,7 @@ class AdminGroupPage extends StatelessWidget {
       create: (context) => GroupCubit()..getAll(),
       child: BlocConsumer<GroupCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocFailed) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getErrorMessage(state.message);
-          }
+          showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
           if (state is BlocLoading) {

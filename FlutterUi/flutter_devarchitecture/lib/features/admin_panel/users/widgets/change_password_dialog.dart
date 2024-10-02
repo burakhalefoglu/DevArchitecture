@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 
 class ChangeUserPasswordDialog extends StatefulWidget {
-  final int userId; // Kullanıcının ID'si
+  final int userId;
   const ChangeUserPasswordDialog({Key? key, required this.userId})
       : super(key: key);
 

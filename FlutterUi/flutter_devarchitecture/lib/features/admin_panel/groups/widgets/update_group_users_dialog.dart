@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
 import 'package:flutter_devarchitecture/features/admin_panel/user-groups/bloc/user_group_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/bloc/bloc_helper.dart';
 import '../../user-groups/widgets/group_users_auto_complete.dart';
 
 class UpdateGroupUsersDialog extends StatefulWidget {
@@ -24,17 +25,7 @@ class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
       create: (context) => UserGroupCubit(),
       child: BlocConsumer<UserGroupCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocFailed) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getErrorMessage(state.message);
-          } else if (state is BlocSuccess) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getSuccessMessage('Grup kullanıcıları güncellendi.');
-          }
+          showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
           return AlertDialog(

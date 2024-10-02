@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/bloc/bloc_helper.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
@@ -14,7 +15,6 @@ import '../widgets/change_user_group_dialog.dart';
 import '../widgets/update_user_dialog.dart';
 import '/core/widgets/tables/filter_table_widget.dart';
 import '../../../../core/widgets/base_widgets.dart';
-import '../../../../core/di/core_initializer.dart';
 import '../../../../core/theme/custom_colors.dart';
 import '/core/widgets/button_widgets.dart';
 import '/features/layouts/base_scaffold.dart';
@@ -28,21 +28,13 @@ class AdminUserPage extends StatelessWidget {
       create: (context) => UserCubit(),
       child: BlocConsumer<UserCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocFailed) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getErrorMessage(state.message);
-          }
+          showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          // İlk kullanıcı yüklemesi ve yükleme durumları için göstergesi
           if (state is BlocInitial || state is BlocLoading) {
             BlocProvider.of<UserCubit>(context).getAllUser();
             return const Center(child: CircularProgressIndicator());
           }
-
-          // Kullanıcı verilerini işleme
           List<Map<String, dynamic>> tableData = [];
           if (state is BlocSuccess<List<User>>) {
             tableData = state.result!.isNotEmpty

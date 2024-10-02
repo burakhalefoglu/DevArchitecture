@@ -21,12 +21,28 @@ class BlocSending extends BaseState {
   BlocSending(this.message);
 }
 
-class BlocSuccess<T> extends BaseState {
-  final T? result;
-  const BlocSuccess(this.result);
-}
-
 class BlocFailed extends BaseState {
   final String message;
   const BlocFailed(this.message);
+}
+
+class BlocSuccess<T> extends BaseState {
+  final T? result;
+  final String? message;
+  const BlocSuccess(this.result, {this.message});
+}
+
+class BlocAdded extends BlocSuccess {
+  const BlocAdded()
+      : super(null, message: "Veri Başarılı bir şekilde Eklendi!");
+}
+
+class BlocUpdated extends BlocSuccess {
+  const BlocUpdated()
+      : super(null, message: "Veri Başarılı bir şekilde Güncellendi!");
+}
+
+class BlocDeleted extends BlocSuccess {
+  const BlocDeleted()
+      : super(null, message: "Veri Başarılı bir şekilde silindi!");
 }

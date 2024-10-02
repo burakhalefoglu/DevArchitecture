@@ -8,7 +8,7 @@ import '../../../../core/widgets/inputs/text_input.dart';
 import '../models/user.dart';
 
 class UpdateUserDialog extends StatefulWidget {
-  final User user; // Güncellenecek kullanıcı
+  final User user;
 
   const UpdateUserDialog({Key? key, required this.user}) : super(key: key);
 

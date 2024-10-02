@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/bloc/bloc_helper.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../user-claims/bloc/user_claim_cubit.dart';
 import '../../user-claims/widgets/user_claim_auto_complete.dart';
@@ -19,7 +20,7 @@ class ChangeUserClaimsDialog extends StatefulWidget {
 }
 
 class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
-  List<int> _selectedClaims = []; // Seçilen yetkiler
+  List<int> _selectedClaims = [];
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +29,7 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
           UserClaimCubit()..getUserClaimsByUserId(widget.userId),
       child: BlocConsumer<UserClaimCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocFailed) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getErrorMessage(state.message);
-          }
+          showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
           if (state is BlocLoading) {

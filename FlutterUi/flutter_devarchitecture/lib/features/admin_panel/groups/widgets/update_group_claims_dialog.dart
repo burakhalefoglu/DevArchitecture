@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/bloc/bloc_helper.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../group_claims/bloc/group_claim_cubit.dart';
 import '../../group_claims/widgets/group_claim_auto_complete.dart';
@@ -25,12 +26,7 @@ class _UpdateGroupClaimDialogState extends State<UpdateGroupClaimsDialog> {
           GroupClaimCubit()..getGroupClaimsByGroupId(widget.groupId),
       child: BlocConsumer<GroupClaimCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocFailed) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getErrorMessage(state.message);
-          }
+          showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
           return AlertDialog(

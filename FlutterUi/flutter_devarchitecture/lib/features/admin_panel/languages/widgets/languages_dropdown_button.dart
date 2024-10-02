@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/features/admin_panel/lookups/models/lookup.dart';
 
-import '../../../../core/di/core_initializer.dart';
+import '../../../../core/bloc/bloc_helper.dart';
 import '../bloc/language_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/widgets/inputs/dropdown_button.dart';
@@ -31,12 +31,7 @@ class _LanguageDropdownButtonState extends State<LanguageDropdownButton> {
       create: (context) => LanguageCubit(),
       child: BlocConsumer<LanguageCubit, BaseState>(
         listener: (context, state) {
-          if (state is BlocFailed) {
-            CoreInitializer()
-                .coreContainer
-                .screenMessage
-                .getErrorMessage(state.message);
-          }
+          showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
           if (state is BlocInitial || state is BlocLoading) {
