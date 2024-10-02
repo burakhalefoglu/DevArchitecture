@@ -29,7 +29,7 @@ class AdminOperationClaimPage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          var resultWidget = getResultWidgetByState(state);
+          var resultWidget = getResultWidgetByState(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }

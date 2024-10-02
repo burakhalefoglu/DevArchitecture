@@ -12,7 +12,6 @@ class UserCubit extends BaseCubit<User> {
   Future<void> getAllUser() async {
     emit(BlocLoading("Kullanıcılar getiriliyor..."));
     try {
-      // Veritabanından kullanıcıları al
       final users =
           await BusinessInitializer().businessContainer.userService.getAll();
       emit(BlocSuccess<List<User>>(

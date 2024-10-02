@@ -33,7 +33,7 @@ class _UpdateGroupClaimDialogState extends State<UpdateGroupClaimsDialog> {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          var resultWidget = getResultWidgetByState(state);
+          var resultWidget = getResultWidgetByState(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }

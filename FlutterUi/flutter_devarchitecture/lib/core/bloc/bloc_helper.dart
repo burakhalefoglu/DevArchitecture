@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 
 import '../di/core_initializer.dart';
 import 'base_state.dart';
@@ -39,10 +40,14 @@ void showScreenMessageByBlocStatus(BaseState state) {
   }
 }
 
-Widget? getResultWidgetByState(BaseState state) {
+Widget? getResultWidgetByState(BuildContext context, BaseState state) {
   if (state is BlocInitial || state is BlocLoading) {
-    return const Center(child: CircularProgressIndicator());
+    return Center(
+        child: CoreInitializer()
+            .coreContainer
+            .statusAnimationAsset
+            .getLoadingAnimationAsset(
+                context.percent10Screen, context.percent10Screen));
   }
-
   return null;
 }
