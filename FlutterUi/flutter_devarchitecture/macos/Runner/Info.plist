@@ -2,22 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Kameraya erişim izni gerekiyor.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Konuma erişim izni gerekiyor.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Konuma erişim izni gerekiyor.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Mikrofona erişim izni gerekiyor.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Fotoğraflara erişim izni gerekiyor.</string>
-	<key>NSContactsUsageDescription</key>
-	<string>Kişilere erişim izni gerekiyor.</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Bluetooth'a erişim izni gerekiyor.</string>
-	<key>NSBatteryUsageDescription</key>
-	<string>This app needs access to battery information to show the battery level and charging status.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

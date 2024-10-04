@@ -2,42 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>io.flutter.embedded_views_preview</key>
-<true/>
-<key>NSFaceIDUsageDescription</key>
-<string>Bu uygulama biyometrik kimlik doğrulama için yüz tanımayı kullanır.</string>
-<key>GMSApiKey</key>
-<!--TODO: FİLL  YOUR_API_KEY-->
-<string>YOUR_API_KEY</string>
-	<key>UIBackgroundModes</key>
-<array>
-  <string>fetch</string>
-  <string>remote-notification</string>
-</array>
-<key>NSCameraUsageDescription</key>
-<string>Kameraya erişim izni gerekiyor.</string>
-<key>NSLocationWhenInUseUsageDescription</key>
-<string>Konuma erişim izni gerekiyor.</string>
-<key>NSMicrophoneUsageDescription</key>
-<string>Mikrofona erişim izni gerekiyor.</string>
-<key>NSPhotoLibraryUsageDescription</key>
-<string>Fotoğraflara erişim izni gerekiyor.</string>
-<key>NSContactsUsageDescription</key>
-<string>Kişilere erişim izni gerekiyor.</string>
-<key>NSBluetoothAlwaysUsageDescription</key>
-<string>Bluetooth'a erişim izni gerekiyor.</string>
-<key>NSBatteryUsageDescription</key>
-<string>This app needs access to battery information.</string>
-<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-<string>We need your location to show notifications</string>
-<key>NSLocationAlwaysUsageDescription</key>
-<string>We need your location to show notifications</string>
-	
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
