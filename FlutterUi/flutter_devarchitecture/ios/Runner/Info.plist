@@ -2,6 +2,34 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	    <!-- Gerekli izinler -->
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+			<string>remote-notification</string>
+		</array>
+	
+		<!-- Firebase -->
+		<key>FirebaseAppDelegateProxyEnabled</key>
+		<false/>
+	
+		<!-- Google Maps API Key //TODO: FİLL YOUR APİ KEY --> 
+		<key>GMSApiKey</key>
+		<string>YOUR_GOOGLE_MAPS_API_KEY</string>
+	
+		<!-- Yerel depolama ve diğer izinler -->
+		<key>NSFaceIDUsageDescription</key>
+		<string>Face ID kullanımı gereklidir</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>Konum kullanımı gereklidir</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>Konum her zaman kullanılabilir</string>
+		<key>NSCameraUsageDescription</key>
+		<string>Kamera kullanımı gereklidir</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>Mikrofon kullanımı gereklidir</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Fotoğraf galerisi erişimi gereklidir</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

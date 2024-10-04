@@ -2,6 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	  <!-- Firebase konfigürasyonu -->
+	  <key>FirebaseAppDelegateProxyEnabled</key>
+	  <false/>
+  
+	  <!-- İzinler -->
+	  <key>NSCameraUsageDescription</key>
+	  <string>Kamera kullanımı gereklidir</string>
+	  <key>NSMicrophoneUsageDescription</key>
+	  <string>Mikrofon kullanımı gereklidir</string>
+	  <key>NSPhotoLibraryUsageDescription</key>
+	  <string>Fotoğraf galerisi erişimi gereklidir</string>
+  
+	  <!-- Harita ve diğer servisler -->
+	  <key>NSLocationWhenInUseUsageDescription</key>
+	  <string>Konum bilgisi kullanımı gereklidir</string>
+	  <key>NSFaceIDUsageDescription</key>
+	  <string>Face ID ile doğrulama gereklidir</string>
+	  <key>GMSApiKey</key>
+	  <string>YOUR_GOOGLE_MAPS_API_KEY</string>
+	  
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
