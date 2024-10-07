@@ -32,6 +32,7 @@ class AdminUserPage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
+          List<Map<String, dynamic>>? datas = [];
           if (state is BlocInitial) {
             BlocProvider.of<UserCubit>(context).getAllUser();
           }
@@ -39,11 +40,13 @@ class AdminUserPage extends StatelessWidget {
           if (resultWidget != null) {
             return resultWidget;
           }
+
+          if (state is BlocFailed) {
+            return buildUserTable(context, datas);
+          }
           if (state is BlocSuccess<List<User>>) {
-            print("tableData: " +
-                state.result!.map((e) => e.toMap()).toList().toString());
-            return buildUserTable(
-                context, state.result!.map((e) => e.toMap()).toList());
+            datas = state.result!.map((e) => e.toMap()).toList();
+            return buildUserTable(context, datas);
           }
           return SizedBox.shrink();
         },

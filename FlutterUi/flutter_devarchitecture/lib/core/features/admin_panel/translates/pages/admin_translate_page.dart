@@ -28,6 +28,7 @@ class AdminTranslatePage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
+          List<Map<String, dynamic>>? datas = [];
           if (state is BlocInitial) {
             BlocProvider.of<TranslateCubit>(context).getAll();
           }
@@ -36,8 +37,13 @@ class AdminTranslatePage extends StatelessWidget {
             return resultWidget;
           }
 
+          if (state is BlocFailed) {
+            return buildTranslateTable(context, datas);
+          }
+
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
-            return buildTranslateTable(context, state.result!);
+            datas = state.result;
+            return buildTranslateTable(context, datas!);
           }
           return SizedBox.shrink();
         },

@@ -30,6 +30,8 @@ class AdminGroupPage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
+          List<Map<String, dynamic>>? datas = [];
+
           if (state is BlocInitial) {
             BlocProvider.of<GroupCubit>(context).getAll();
           }
@@ -37,10 +39,14 @@ class AdminGroupPage extends StatelessWidget {
           if (resultWidget != null) {
             return resultWidget;
           }
-
-          if (state is BlocSuccess<List<Map<String, dynamic>>>) {
-            return buildGroupTable(context, state.result!);
+          if (state is BlocFailed) {
+            return buildGroupTable(context, datas);
           }
+          if (state is BlocSuccess<List<Map<String, dynamic>>>) {
+            datas = state.result;
+            return buildGroupTable(context, datas!);
+          }
+
           return SizedBox.shrink();
         },
       ),

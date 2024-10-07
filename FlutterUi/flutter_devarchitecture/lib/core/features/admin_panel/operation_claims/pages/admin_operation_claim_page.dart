@@ -27,6 +27,7 @@ class AdminOperationClaimPage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
+          List<Map<String, dynamic>>? datas = [];
           if (state is BlocInitial) {
             BlocProvider.of<OperationClaimCubit>(context).getAll();
           }
@@ -34,8 +35,12 @@ class AdminOperationClaimPage extends StatelessWidget {
           if (resultWidget != null) {
             return resultWidget;
           }
+          if (state is BlocFailed) {
+            return buildOperationClaimTable(context, datas);
+          }
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
-            return buildOperationClaimTable(context, state.result!);
+            datas = state.result;
+            return buildOperationClaimTable(context, datas!);
           }
           return SizedBox.shrink();
         },

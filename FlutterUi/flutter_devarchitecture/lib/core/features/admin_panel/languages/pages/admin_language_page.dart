@@ -28,6 +28,7 @@ class AdminLanguagePage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
+          List<Map<String, dynamic>>? datas = [];
           if (state is BlocInitial) {
             BlocProvider.of<LanguageCubit>(context).getAll();
           }
@@ -35,8 +36,14 @@ class AdminLanguagePage extends StatelessWidget {
           if (resultWidget != null) {
             return resultWidget;
           }
+
+          if (state is BlocFailed) {
+            return buildLanguageTable(context, datas);
+          }
+
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
-            return buildLanguageTable(context, state.result!);
+            datas = state.result;
+            return buildLanguageTable(context, datas!);
           }
           return SizedBox.shrink();
         },
