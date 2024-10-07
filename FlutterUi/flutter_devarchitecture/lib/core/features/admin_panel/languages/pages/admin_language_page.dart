@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/base_state.dart';
+import '../../../../bloc/bloc_consumer_extension.dart';
 import '../../../../bloc/bloc_helper.dart';
 import '../../../../theme/extensions.dart';
 import '../../../../utilities/download_management/buttons/download_buttons.dart';
@@ -22,7 +23,7 @@ class AdminLanguagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LanguageCubit(),
-      child: BlocConsumer<LanguageCubit, BaseState>(
+      child: ExtendedBlocConsumer<LanguageCubit, BaseState>(
         listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },

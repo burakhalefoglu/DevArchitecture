@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 
 import '../../../../bloc/base_state.dart';
+import '../../../../bloc/bloc_consumer_extension.dart';
 import '../../../../bloc/bloc_helper.dart';
 import '../../../../theme/custom_colors.dart';
 import '../../../../utilities/download_management/buttons/download_buttons.dart';
@@ -21,7 +22,7 @@ class AdminOperationClaimPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => OperationClaimCubit(),
-      child: BlocConsumer<OperationClaimCubit, BaseState>(
+      child: ExtendedBlocConsumer<OperationClaimCubit, BaseState>(
         listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },

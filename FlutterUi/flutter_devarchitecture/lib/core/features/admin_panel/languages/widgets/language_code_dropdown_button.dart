@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/core/features/admin_panel/lookups/models/lookup.dart';
 
+import '../../../../bloc/bloc_consumer_extension.dart';
 import '../../../../bloc/bloc_helper.dart';
 import '../bloc/language_cubit.dart';
 import '../../../../bloc/base_state.dart';
@@ -33,7 +34,7 @@ class _LanguageCodeDropdownButtonState
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LanguageCubit(),
-      child: BlocConsumer<LanguageCubit, BaseState>(
+      child: ExtendedBlocConsumer<LanguageCubit, BaseState>(
         listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },

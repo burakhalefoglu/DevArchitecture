@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/bloc/base_state.dart';
+import '../../../../bloc/bloc_consumer_extension.dart';
 import '../../../../bloc/bloc_helper.dart';
 import '../../lookups/widgets/lookup_multi_select_auto_complete.dart';
 import '../bloc/user_claim_cubit.dart';
@@ -30,7 +31,7 @@ class _UserClaimAutocompleteState extends State<UserClaimAutocomplete> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserClaimCubit(),
-      child: BlocConsumer<UserClaimCubit, BaseState>(
+      child: ExtendedBlocConsumer<UserClaimCubit, BaseState>(
         listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },

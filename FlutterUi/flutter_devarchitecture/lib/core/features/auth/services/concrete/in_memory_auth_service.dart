@@ -43,7 +43,8 @@ class InMemoryAuthService extends InMemoryService<AuthRequestBasic>
   }
 
   @override
-  Future<void> saveUserPassword(PasswordDto passwordDto) async {
+  Future<IResult> saveUserPassword(PasswordDto passwordDto) async {
     _authList[0]['password'] = passwordDto.password;
+    return SuccessResult("");
   }
 }

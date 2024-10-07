@@ -15,17 +15,27 @@ class ApiUserGroupService extends ApiService<UserGroup>
         .coreContainer
         .http
         .get("$url/users/$userId/groups");
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureDataResult(result["message"] ?? ""));
+      }
+    }
     var data = result["data"] as List<Map<String, dynamic>>;
     return Future.value(
         SuccessDataResult(data.map((e) => LookUp.fromMap(e)).toList(), ""));
   }
 
   @override
-  Future<void> saveUserGroupPermissions(int userId, List<int> groups) async {
-    await CoreInitializer()
+  Future<IResult> saveUserGroupPermissions(int userId, List<int> groups) async {
+    var result = await CoreInitializer()
         .coreContainer
         .http
         .put("$url", {"UserId": userId, "GroupId": groups});
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureResult(result["message"] ?? ""));
+      }
+    }
     return Future.value(SuccessResult("Veri Güncellendi !"));
   }
 
@@ -41,11 +51,16 @@ class ApiUserGroupService extends ApiService<UserGroup>
   }
 
   @override
-  Future<void> saveGroupUsers(int groupId, List<int> userIds) async {
-    await CoreInitializer()
+  Future<IResult> saveGroupUsers(int groupId, List<int> userIds) async {
+    var result = await CoreInitializer()
         .coreContainer
         .http
         .put("$url/groups/", {"GroupId": groupId, "UserIds": userIds});
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureResult(result["message"] ?? ""));
+      }
+    }
     return Future.value(SuccessResult("Veri Güncellendi !"));
   }
 }

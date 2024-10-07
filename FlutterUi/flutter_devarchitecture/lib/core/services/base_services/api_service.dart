@@ -26,6 +26,21 @@ abstract class ApiService<T> implements IService {
   }
 
   @override
+  Future<IResult> createMany(List<Map<String, dynamic>> maps) async {
+    for (var i = 0; i < maps.length; i++) {
+      var result =
+          await CoreInitializer().coreContainer.http.post(url, maps[i]);
+      if (result["success"] != null) {
+        if (result["success"] == false) {
+          return Future.value(FailureResult(
+              "${i + 1} numaralı veriden itibaren eklenemedi ${result["message"]}"));
+        }
+      }
+    }
+    return Future.value(SuccessResult("Tüm Veriler Eklendi!"));
+  }
+
+  @override
   Future<IResult> delete(int id) async {
     var result = await CoreInitializer().coreContainer.http.delete("$url/$id");
     if (result["success"] != null) {

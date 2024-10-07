@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/bloc/base_state.dart';
+import '../../../../bloc/bloc_consumer_extension.dart';
 import '../../../../bloc/bloc_helper.dart';
 import '../bloc/group_claim_cubit.dart';
 import '../../lookups/models/lookup.dart';
@@ -30,7 +31,7 @@ class _GroupClaimAutocompleteState extends State<GroupClaimAutocomplete> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GroupClaimCubit(),
-      child: BlocConsumer<GroupClaimCubit, BaseState>(
+      child: ExtendedBlocConsumer<GroupClaimCubit, BaseState>(
         listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },

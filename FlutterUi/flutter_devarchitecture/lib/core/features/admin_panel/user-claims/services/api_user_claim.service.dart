@@ -14,6 +14,11 @@ class ApiUserClaimService extends ApiService<UserClaim>
   Future<IDataResult<List<LookUp>>> getUserClaimsByUserId(int userId) async {
     var result =
         await CoreInitializer().coreContainer.http.get("$url/users/$userId");
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureDataResult(result["message"] ?? ""));
+      }
+    }
     var data = result["data"] as List<Map<String, dynamic>>;
     return Future.value(
         SuccessDataResult(data.map((e) => LookUp.fromMap(e)).toList(), ""));

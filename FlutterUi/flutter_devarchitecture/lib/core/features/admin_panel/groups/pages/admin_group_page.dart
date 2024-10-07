@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/bloc/base_state.dart';
 import '../../../../../../core/theme/extensions.dart';
+import '../../../../bloc/bloc_consumer_extension.dart';
 import '../../../../bloc/bloc_helper.dart';
 import '../../../../utilities/download_management/buttons/download_buttons.dart';
 import '../widgets/add_group_dialog.dart';
@@ -24,7 +25,7 @@ class AdminGroupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GroupCubit(),
-      child: BlocConsumer<GroupCubit, BaseState>(
+      child: ExtendedBlocConsumer<GroupCubit, BaseState>(
         listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },

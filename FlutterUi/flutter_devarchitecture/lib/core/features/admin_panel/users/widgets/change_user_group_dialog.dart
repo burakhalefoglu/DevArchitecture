@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../bloc/base_state.dart';
+import '../../../../bloc/bloc_consumer_extension.dart';
 import '../../../../bloc/bloc_helper.dart';
 import '../../../../di/core_initializer.dart';
 import '../../user-groups/bloc/user_group_cubit.dart';
@@ -26,7 +27,7 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserGroupCubit(),
-      child: BlocConsumer<UserGroupCubit, BaseState>(
+      child: ExtendedBlocConsumer<UserGroupCubit, BaseState>(
         listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },

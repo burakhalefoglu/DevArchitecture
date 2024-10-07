@@ -12,6 +12,11 @@ class ApiTranslateService extends ApiService<Translate>
   @override
   Future<IDataResult<List<TranslateDto>>> getTranslates() async {
     var result = await CoreInitializer().coreContainer.http.get("$url/dtos/");
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureDataResult(result["message"] ?? ""));
+      }
+    }
     var data = result["data"] as List<Map<String, dynamic>>;
     return Future.value(SuccessDataResult(
         data.map((e) => TranslateDto.fromMap(e)).toList(), ""));

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
 import 'package:flutter_devarchitecture/core/features/admin_panel/user-groups/bloc/user_group_cubit.dart';
 import '../../../../bloc/base_state.dart';
+import '../../../../bloc/bloc_consumer_extension.dart';
 import '../../../../bloc/bloc_helper.dart';
 import '../../user-groups/widgets/group_users_auto_complete.dart';
 
@@ -23,7 +24,7 @@ class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserGroupCubit(),
-      child: BlocConsumer<UserGroupCubit, BaseState>(
+      child: ExtendedBlocConsumer<UserGroupCubit, BaseState>(
         listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },

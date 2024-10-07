@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../bloc/base_state.dart';
+import '../../../../bloc/bloc_consumer_extension.dart';
 import '../../../../bloc/bloc_helper.dart';
 import '../../../../di/core_initializer.dart';
 import '../../user-claims/bloc/user_claim_cubit.dart';
@@ -26,7 +27,7 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserClaimCubit(),
-      child: BlocConsumer<UserClaimCubit, BaseState>(
+      child: ExtendedBlocConsumer<UserClaimCubit, BaseState>(
         listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },

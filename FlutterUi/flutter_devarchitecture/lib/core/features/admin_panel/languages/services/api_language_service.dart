@@ -13,6 +13,11 @@ class ApiLanguageService extends ApiService<Language>
   Future<IDataResult<List<LookUp>>> getLanguageCodes() async {
     var result =
         await CoreInitializer().coreContainer.http.get(url + "/codes/");
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureDataResult(result["message"] ?? ""));
+      }
+    }
     var data =
         (result["data"] as List).map((e) => e as Map<String, dynamic>).toList();
 
@@ -24,6 +29,11 @@ class ApiLanguageService extends ApiService<Language>
   Future<IDataResult<List<LookUp>>> getLanguageLookups() async {
     var result =
         await CoreInitializer().coreContainer.http.get(url + "/lookups/");
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureDataResult(result["message"] ?? ""));
+      }
+    }
     var data =
         (result["data"] as List).map((e) => e as Map<String, dynamic>).toList();
 

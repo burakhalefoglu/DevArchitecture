@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../bloc/bloc_consumer_extension.dart';
 import '../../bloc/bloc_helper.dart';
 import '../../widgets/inputs/email_input.dart';
 import '../../widgets/inputs/password_input.dart';
@@ -31,7 +32,8 @@ class LoginPage extends StatelessWidget {
   Widget buildLoginForm(BuildContext context) {
     return BlocProvider(
         create: (context) => AuthCubit(),
-        child: BlocConsumer<AuthCubit, BaseState>(listener: (context, state) {
+        child: ExtendedBlocConsumer<AuthCubit, BaseState>(
+            listener: (context, state) {
           if (state is BlocFailed) {
             CoreInitializer()
                 .coreContainer
@@ -139,7 +141,7 @@ class LoginPage extends StatelessWidget {
                         BlocProvider.of<AuthCubit>(context).emitCheckingState();
                         if (!_form.currentState!.validate()) {
                           BlocProvider.of<AuthCubit>(context).emitFailState(
-                              Messages.formValidationErrorMessage);
+                              message: Messages.formValidationErrorMessage);
                           return;
                         }
                         await BlocProvider.of<AuthCubit>(context)

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/base_state.dart';
+import '../../../../bloc/bloc_consumer_extension.dart';
 import '../../../../bloc/bloc_helper.dart';
 import '../../../../di/core_initializer.dart';
 import '../../group_claims/bloc/group_claim_cubit.dart';
@@ -23,7 +24,7 @@ class _UpdateGroupClaimDialogState extends State<UpdateGroupClaimsDialog> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GroupClaimCubit(),
-      child: BlocConsumer<GroupClaimCubit, BaseState>(
+      child: ExtendedBlocConsumer<GroupClaimCubit, BaseState>(
         listener: (context, state) {
           showScreenMessageByBlocStatus(state);
         },

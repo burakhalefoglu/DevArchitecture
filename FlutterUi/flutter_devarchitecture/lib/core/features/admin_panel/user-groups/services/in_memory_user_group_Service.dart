@@ -40,7 +40,7 @@ class InMemoryUserGroupService extends InMemoryService<UserGroup>
   }
 
   @override
-  Future<void> saveGroupUsers(int groupId, List<int> userIds) async {
+  Future<IResult> saveGroupUsers(int groupId, List<int> userIds) async {
     for (var userId in userIds) {
       List<UserGroup> userGroups =
           _groups.where((element) => element.userId == userId).toList();
@@ -48,10 +48,12 @@ class InMemoryUserGroupService extends InMemoryService<UserGroup>
         group.groupId = groupId;
       }
     }
+
+    return SuccessResult("Veri Güncellendi !");
   }
 
   @override
-  Future<void> saveUserGroupPermissions(int userId, List<int> groups) async {
-    Future.value();
+  Future<IResult> saveUserGroupPermissions(int userId, List<int> groups) async {
+    return Future.value(SuccessResult("Veri Güncellendi !"));
   }
 }
