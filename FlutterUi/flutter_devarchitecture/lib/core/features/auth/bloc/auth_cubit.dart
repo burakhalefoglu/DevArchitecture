@@ -20,7 +20,7 @@ class AuthCubit extends BaseCubit<AuthRequestBasic> {
           .authService
           .login(body.email, body.password);
       if (!result.isSuccess) {
-        emit(BlocFailed(result.message));
+        emitFailState(message: result.message);
         return;
       }
       if (appConfig.name == "dev") {
@@ -60,8 +60,8 @@ class AuthCubit extends BaseCubit<AuthRequestBasic> {
 
       emit(BlocSuccess(
           'Hoşgeldiniz. ${decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"].toString()}'));
-    } catch (e) {
-      emit(BlocFailed(e.toString()));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 }

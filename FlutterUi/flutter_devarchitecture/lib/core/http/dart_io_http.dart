@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_devarchitecture/core/helpers/exceptions.dart';
 
 import 'http_interceptor.dart';
 import 'i_http.dart';
@@ -33,26 +34,14 @@ class HttpDartIo implements IHttp {
       print(url);
       print(response.statusCode);
     }
-    if (response.statusCode == 400) {
-      httpClient.close();
-      throw Exception("400 Bad Request");
-    }
-    if (response.statusCode == 401) {
-      httpClient.close();
-      throw Exception("401 Unauthorized");
-    }
-    if (response.statusCode == 403) {
-      httpClient.close();
-      throw Exception("403 Forbidden");
-    }
-    if (response.statusCode == 500) {
-      httpClient.close();
-      throw Exception("500 Internal Server Error");
-    }
+    await _handleError(response, httpClient);
 
     String reply = await response.transform(utf8.decoder).join();
     var decodedJson = jsonDecode(reply);
     httpClient.close();
+    if (decodedJson is String) {
+      return {"message": decodedJson};
+    }
     if (decodedJson is Map<String, dynamic>) {
       Map<String, dynamic> map = decodedJson;
       return map;
@@ -83,26 +72,13 @@ class HttpDartIo implements IHttp {
       print(url);
       print(response.statusCode);
     }
-    if (response.statusCode == 400) {
-      httpClient.close();
-      throw Exception("400 Bad Request");
-    }
-    if (response.statusCode == 401) {
-      httpClient.close();
-      throw Exception("401 Unauthorized");
-    }
-    if (response.statusCode == 403) {
-      httpClient.close();
-      throw Exception("403 Forbidden");
-    }
-    if (response.statusCode == 500) {
-      httpClient.close();
-      throw Exception("500 Internal Server Error");
-    }
-
+    await _handleError(response, httpClient);
     String reply = await response.transform(utf8.decoder).join();
     var decodedJson = jsonDecode(reply);
     httpClient.close();
+    if (decodedJson is String) {
+      return {"message": decodedJson};
+    }
     if (decodedJson is Map<String, dynamic>) {
       Map<String, dynamic> map = decodedJson;
       return map;
@@ -116,7 +92,7 @@ class HttpDartIo implements IHttp {
   }
 
   @override
-  Future<void> delete(String url) async {
+  Future<Map<String, dynamic>> delete(String url) async {
     HttpClient httpClient = HttpClient();
     httpClient.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -132,26 +108,27 @@ class HttpDartIo implements IHttp {
       print(url);
       print(response.statusCode);
     }
-    if (response.statusCode == 400) {
-      httpClient.close();
-      throw Exception("400 Bad Request");
+    await _handleError(response, httpClient);
+    httpClient.close();
+    String reply = await response.transform(utf8.decoder).join();
+    var decodedJson = jsonDecode(reply);
+    if (decodedJson is String) {
+      return {"message": decodedJson};
     }
-    if (response.statusCode == 401) {
-      httpClient.close();
-      throw Exception("401 Unauthorized");
+    if (decodedJson is Map<String, dynamic>) {
+      Map<String, dynamic> map = decodedJson;
+      return map;
+    } else if (decodedJson is List) {
+      List<Map<String, dynamic>> list =
+          decodedJson.map((e) => e as Map<String, dynamic>).toList();
+      return {"data": list};
     }
-    if (response.statusCode == 403) {
-      httpClient.close();
-      throw Exception("403 Forbidden");
-    }
-    if (response.statusCode == 500) {
-      httpClient.close();
-      throw Exception("500 Internal Server Error");
-    }
+    return decodedJson;
   }
 
   @override
-  Future<void> put(String url, Map<String, dynamic> body) async {
+  Future<Map<String, dynamic>> put(
+      String url, Map<String, dynamic> body) async {
     HttpClient httpClient = HttpClient();
     httpClient.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
@@ -168,22 +145,44 @@ class HttpDartIo implements IHttp {
       print(url);
       print(response.statusCode);
     }
+    await _handleError(response, httpClient);
+    httpClient.close();
+    String reply = await response.transform(utf8.decoder).join();
+    var decodedJson = jsonDecode(reply);
+    if (decodedJson is String) {
+      return {"message": decodedJson};
+    }
+    if (decodedJson is Map<String, dynamic>) {
+      Map<String, dynamic> map = decodedJson;
+      return map;
+    } else if (decodedJson is List) {
+      List<Map<String, dynamic>> list =
+          decodedJson.map((e) => e as Map<String, dynamic>).toList();
+      return {"data": list};
+    }
+    return decodedJson;
+  }
+
+  Future<Map<String, dynamic>?> _handleError(
+      HttpClientResponse response, HttpClient httpClient) async {
+    String reply = await response.transform(utf8.decoder).join();
     if (response.statusCode == 400) {
       httpClient.close();
-      throw Exception("400 Bad Request");
+      throw BadRequestException(reply);
     }
     if (response.statusCode == 401) {
       httpClient.close();
-      throw Exception("401 Unauthorized");
+      throw UnauthorizedException(reply);
     }
     if (response.statusCode == 403) {
       httpClient.close();
-      throw Exception("403 Forbidden");
+
+      throw ForbiddenException(reply);
     }
     if (response.statusCode == 500) {
       httpClient.close();
-      throw Exception("500 Internal Server Error");
+      throw InternalServerErrorException(reply);
     }
-    httpClient.close();
+    return null;
   }
 }

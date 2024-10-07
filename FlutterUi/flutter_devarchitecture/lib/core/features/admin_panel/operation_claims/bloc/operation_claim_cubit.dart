@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import '../models/operation_claim.dart';
 import '../../../../bloc/base_cubit.dart';
 import '../../../../bloc/base_state.dart';
@@ -18,15 +16,12 @@ class OperationClaimCubit extends BaseCubit<OperationClaim> {
       var result =
           await service.update(operationClaimDto.id, operationClaimDto.toMap());
       if (!result.isSuccess) {
-        if (kDebugMode) {
-          print(result.message);
-        }
-        emit(BlocFailed(result.message));
+        emitFailState(message: result.message);
         return;
       }
       await getAll();
-    } catch (e) {
-      emit(BlocFailed("Operasyon yetkileri güncellenemedi: ${e.toString()}"));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 }

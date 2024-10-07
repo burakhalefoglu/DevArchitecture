@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import '../../lookups/models/lookup.dart';
 import '../models/user_group.dart';
 import '../../../../bloc/base_cubit.dart';
@@ -18,16 +16,19 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
           .businessContainer
           .lookupService
           .getGroupLookUp();
-      print(groups.map((e) => e.toMap()).toList());
+
       var selectedGroups = await BusinessInitializer()
           .businessContainer
           .userGroupService
           .getUserGroupPermissions(userId);
-      print(selectedGroups.data!.map((e) => e.toMap()).toList());
+
+      if (!selectedGroups.isSuccess) {
+        emitFailState(message: selectedGroups.message);
+        return;
+      }
 
       var selectedGroupIds =
           selectedGroups.data!.map((group) => group.id).toSet();
-      print(selectedGroupIds.toList());
 
       List<LookUp> updatedGroups = groups.map((group) {
         return LookUp(
@@ -38,22 +39,26 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
       }).toList();
       emit(BlocSuccess<List<LookUp>>(updatedGroups));
       print(updatedGroups.map((e) => e.toMap()).toList());
-    } catch (e) {
-      emit(BlocFailed("Kullanıcı grupları getirilemedi: ${e.toString()}"));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
   Future<void> saveUserGroupPermissions(int userId, List<int> groups) async {
     emit(BlocLoading("Kullanıcı grupları kaydediliyor..."));
     try {
-      // yetkileri güncelle
-      await BusinessInitializer()
+      var result = await BusinessInitializer()
           .businessContainer
           .userGroupService
           .saveUserGroupPermissions(userId, groups);
+
+      if (!result.isSuccess) {
+        emitFailState(message: result.message);
+        return;
+      }
       await getUserGroupPermissions(userId); // Verileri tekrar yükleyin
-    } catch (e) {
-      emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
@@ -69,6 +74,11 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
           .userGroupService
           .getGroupUsers(groupId);
 
+      if (!selectedUsers.isSuccess) {
+        emitFailState(message: selectedUsers.message);
+        return;
+      }
+
       var selectedUserIds = selectedUsers.data!.map((user) => user.id).toSet();
 
       List<LookUp> updatedUsers = users.map((user) {
@@ -80,24 +90,26 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
       }).toList();
 
       emit(BlocSuccess<List<LookUp>>(updatedUsers));
-    } catch (e) {
-      emit(BlocFailed("Kullanıcılar getirilemedi: ${e.toString()}"));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
   Future<void> saveGroupUsers(int groupId, List<int> userIds) async {
     try {
       emit(BlocSending("Veri Ekleniyor"));
-      await BusinessInitializer()
+      var result = await BusinessInitializer()
           .businessContainer
           .userGroupService
           .saveGroupUsers(groupId, userIds);
-      await getGroupUsers(groupId);
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
+
+      if (!result.isSuccess) {
+        emitFailState(message: result.message);
+        return;
       }
-      emit(BlocFailed(e.toString()));
+      await getGroupUsers(groupId);
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 }

@@ -17,13 +17,17 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
           .lookupService
           .getOperationClaimLookUp();
 
-      final selectedUserClaims = await BusinessInitializer()
+      final selectedUserClaimsResult = await BusinessInitializer()
           .businessContainer
           .userClaimService
           .getUserClaimsByUserId(userId);
 
+      if (!selectedUserClaimsResult.isSuccess) {
+        emitFailState(message: selectedUserClaimsResult.message);
+        return;
+      }
       var selectedClaimIds =
-          selectedUserClaims.data!.map((claim) => claim.id).toSet();
+          selectedUserClaimsResult.data!.map((claim) => claim.id).toSet();
 
       List<LookUp> updatedClaims = userClaims.map((claim) {
         return LookUp(
@@ -34,8 +38,8 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
       }).toList();
 
       emit(BlocSuccess<List<LookUp>>(updatedClaims));
-    } catch (e) {
-      emit(BlocFailed("Kullanıcı yetkileri getirilemedi: ${e.toString()}"));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
@@ -43,10 +47,16 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
     emit(BlocLoading("Kullanıcı yetkileri kaydediliyor..."));
     try {
       // yetkileri güncelle
-      await service.update(userId, {"UserId": userId, "ClaimIds": claims});
+      var result =
+          await service.update(userId, {"UserId": userId, "ClaimIds": claims});
+
+      if (!result.isSuccess) {
+        emitFailState(message: result.message);
+        return;
+      }
       await getUserClaimsByUserId(userId); // Kullanıcıları tekrar yükleyin
-    } catch (e) {
-      emit(BlocFailed("Kullanıcı yetkileri kaydedilemedi: ${e.toString()}"));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 }

@@ -21,13 +21,16 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
       print("groupClaims: " +
           groupClaims.map((claim) => claim.toMap()).toList().toString());
 
-      final selectedGroupClaims = await BusinessInitializer()
+      final selectedGroupClaimResult = await BusinessInitializer()
           .businessContainer
           .groupClaimService
           .getGroupClaimsByGroupId(groupId);
-
+      if (!selectedGroupClaimResult.isSuccess) {
+        emitFailState(message: selectedGroupClaimResult.message);
+        return;
+      }
       var selectedClaimIds =
-          selectedGroupClaims.data!.map((claim) => claim.id).toSet();
+          selectedGroupClaimResult.data!.map((claim) => claim.id).toSet();
 
       List<LookUp> updatedClaims = groupClaims.map((claim) {
         return LookUp(
@@ -39,22 +42,26 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
       print("updatedClaims: " +
           updatedClaims.map((e) => e.toMap()).toList().toString());
       emit(BlocSuccess<List<LookUp>>(updatedClaims));
-    } catch (e) {
-      emit(BlocFailed("Grup yetkileri getirilemedi: ${e.toString()}"));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
   Future<void> saveGroupClaimsByGroupId(int groupId, List<int> claims) async {
     emit(BlocLoading("Grup yetkisi güncelleniyor..."));
     try {
-      await BusinessInitializer()
+      var result = await BusinessInitializer()
           .businessContainer
           .groupClaimService
           .update(groupId, {'GroupId': groupId, 'ClaimIds': claims});
+      if (result.isSuccess == false) {
+        emitFailState(message: result.message);
+        return;
+      }
       await getGroupClaimsByGroupId(groupId);
       emit(BlocSuccess("Grup yetkisi güncellendi"));
-    } catch (e) {
-      emit(BlocFailed("Grup yetkisi eklenemedi: ${e.toString()}"));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 }

@@ -16,19 +16,34 @@ abstract class ApiService<T> implements IService {
 
   @override
   Future<IResult> create(Map<String, dynamic> body) async {
-    await CoreInitializer().coreContainer.http.post(url, body);
+    var result = await CoreInitializer().coreContainer.http.post(url, body);
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureResult(result["message"] ?? ""));
+      }
+    }
     return Future.value(SuccessResult("Tüm Veriler Eklendi!"));
   }
 
   @override
   Future<IResult> delete(int id) async {
-    await CoreInitializer().coreContainer.http.delete("$url/$id");
+    var result = await CoreInitializer().coreContainer.http.delete("$url/$id");
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureResult(result["message"] ?? ""));
+      }
+    }
     return Future.value(SuccessResult("Veri Silindi"));
   }
 
   @override
   Future<IDataResult<List<Map<String, dynamic>>>> getAll() async {
     var result = await CoreInitializer().coreContainer.http.get(url);
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureDataResult(result["message"] ?? ""));
+      }
+    }
     var data =
         (result["data"] as List).map((e) => e as Map<String, dynamic>).toList();
 
@@ -38,6 +53,11 @@ abstract class ApiService<T> implements IService {
   @override
   Future<IDataResult<Map<String, dynamic>>> getById(int id) async {
     var result = await CoreInitializer().coreContainer.http.get("$url/$id");
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureDataResult(result["message"] ?? ""));
+      }
+    }
     var data = result["data"] as Map<String, dynamic>;
     return Future.value(SuccessDataResult(data, ""));
   }
@@ -46,21 +66,23 @@ abstract class ApiService<T> implements IService {
   Future<IDataResult<Map<String, dynamic>>> getByName(String name) async {
     var result =
         await CoreInitializer().coreContainer.http.get("$url/name?name=$name");
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureDataResult(result["message"] ?? ""));
+      }
+    }
     var data = result["data"] as Map<String, dynamic>;
     return Future.value(SuccessDataResult(data, ""));
   }
 
   @override
   Future<IResult> update(id, Map<String, dynamic> body) async {
-    await CoreInitializer().coreContainer.http.put(url, body);
-    return Future.value(SuccessResult("Veri Güncellendi !"));
-  }
-
-  @override
-  Future<IResult> createMany(List<Map<String, dynamic>> body) async {
-    for (var element in body) {
-      await CoreInitializer().coreContainer.http.post(url, element);
+    var result = await CoreInitializer().coreContainer.http.put(url, body);
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureResult(result["message"] ?? ""));
+      }
     }
-    return Future.value(SuccessResult("Tüm Veriler Eklendi!"));
+    return Future.value(SuccessResult("Veri Güncellendi !"));
   }
 }

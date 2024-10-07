@@ -17,6 +17,11 @@ class ApiAuthService extends ApiService<AuthRequestBasic>
         .coreContainer
         .http
         .post("$url/login", {'email': username, 'password': password});
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureDataResult(result["message"] ?? ""));
+      }
+    }
     return SuccessDataResult(
         AuthResponse(
           token: result["data"]["token"],
@@ -28,10 +33,16 @@ class ApiAuthService extends ApiService<AuthRequestBasic>
   }
 
   @override
-  Future<void> saveUserPassword(PasswordDto passwordDto) async {
-    await CoreInitializer()
+  Future<IResult> saveUserPassword(PasswordDto passwordDto) async {
+    var result = await CoreInitializer()
         .coreContainer
         .http
         .put("$url/user-password", passwordDto.toMap());
+    if (result["success"] != null) {
+      if (result["success"] == false) {
+        return Future.value(FailureResult(result["message"] ?? ""));
+      }
+    }
+    return SuccessResult(result["message"]);
   }
 }

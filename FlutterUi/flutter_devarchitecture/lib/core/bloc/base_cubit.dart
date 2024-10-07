@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_devarchitecture/core/helpers/exceptions.dart';
 import 'base_state.dart';
 import '../models/i_entity.dart';
 import '../services/i_service.dart';
@@ -22,16 +23,13 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
         if (kDebugMode) {
           print(result.message);
         }
-        emitFailState(result.message);
-        return;
+        emitFailState(message: result.message);
+        return null;
       }
-      print(result.data);
+
       emit(BlocSuccess<List<Map<String, dynamic>>>(result.data!));
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-      emitFailState(e.toString());
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
@@ -43,16 +41,13 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
         if (kDebugMode) {
           print(result.message);
         }
-        emitFailState(result.message);
+        emitFailState(message: result.message);
         return;
       }
       emit(BlocAdded());
       getAll();
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-      emitFailState(e.toString());
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
@@ -64,16 +59,15 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
         if (kDebugMode) {
           print(result.message);
         }
-        emitFailState(result.message);
+        emitFailState(
+          message: result.message,
+        );
         return;
       }
       emit(BlocUpdated());
       getAll();
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-      emitFailState(e.toString());
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
@@ -85,16 +79,15 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
         if (kDebugMode) {
           print(result.message);
         }
-        emitFailState(result.message);
+        emitFailState(
+          message: result.message,
+        );
         return;
       }
       emit(BlocDeleted());
       getAll();
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-      emitFailState(e.toString());
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
@@ -106,7 +99,32 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
     emit(BlocChecking("Veriler Kontrol Ediliyor!"));
   }
 
-  void emitFailState(String message) {
-    emit(BlocFailed(message));
+  void emitFailState({String? message, Exception? e}) {
+    if (kDebugMode) {
+      print(message);
+    }
+
+    if (e != null) {
+      if (kDebugMode) {
+        print(e);
+      }
+      if (e is BadRequestException) {
+        emit(BlocFailed(400, e.message));
+      }
+      if (e is UnauthorizedException) {
+        emit(BlocFailed(401, e.message));
+      }
+      if (e is ForbiddenException) {
+        emit(BlocFailed(403, e.message));
+      }
+      if (e is NotFoundException) {
+        emit(BlocFailed(404, e.message));
+      }
+      if (e is InternalServerErrorException) {
+        emit(BlocFailed(500, e.message));
+      }
+    }
+    emit(
+        BlocFailed(500, "Beklenmeyen Hata olustu: ${message ?? e.toString()}"));
   }
 }

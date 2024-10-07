@@ -22,8 +22,14 @@ class BlocSending extends BaseState {
 }
 
 class BlocFailed extends BaseState {
+  final int statusCode;
   final String message;
-  const BlocFailed(this.message);
+
+  BlocFailed(this.statusCode, this.message);
+
+  factory BlocFailed.fromJson(Map<String, dynamic> json) {
+    return BlocFailed(json['statusCode'], json['message']);
+  }
 }
 
 class BlocSuccess<T> extends BaseState {

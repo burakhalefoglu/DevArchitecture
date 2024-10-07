@@ -14,27 +14,35 @@ class LanguageCubit extends BaseCubit<Language> {
     emit(BlocLoading("Diller getiriliyor..."));
     try {
       // Diller getiriliyor
-      final languages = await BusinessInitializer()
+      final languagesResult = await BusinessInitializer()
           .businessContainer
           .languageService
           .getLanguageCodes();
-      emit(BlocSuccess<List<LookUp>>(languages.data!));
-    } catch (e) {
-      emit(BlocFailed("Diller getirilemedi: ${e.toString()}"));
+
+      if (!languagesResult.isSuccess) {
+        emitFailState(message: languagesResult.message);
+        return;
+      }
+      emit(BlocSuccess<List<LookUp>>(languagesResult.data!));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
   Future<void> getLanguageLookups() async {
     emit(BlocLoading("Diller getiriliyor..."));
     try {
-      // Diller getiriliyor
-      final languages = await BusinessInitializer()
+      final result = await BusinessInitializer()
           .businessContainer
           .languageService
           .getLanguageLookups();
-      emit(BlocSuccess<List<LookUp>>(languages.data!));
-    } catch (e) {
-      emit(BlocFailed("Diller getirilemedi: ${e.toString()}"));
+      if (!result.isSuccess) {
+        emitFailState(message: result.message);
+        return;
+      }
+      emit(BlocSuccess<List<LookUp>>(result.data!));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 }

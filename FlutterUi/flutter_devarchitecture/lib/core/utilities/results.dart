@@ -22,19 +22,22 @@ class SuccessDataResult<T> extends IDataResult<T> {
 }
 
 class FailureDataResult<T, E> extends IDataResult<T> {
-  @override
-  final String message;
+  final String _message;
 
   @override
   T? get data => null;
   @override
   bool get isSuccess => false;
+  @override
+  @override
+  String get message => this._message;
 
-  FailureDataResult(this.message);
+  FailureDataResult(this._message);
 }
 
 class SuccessResult extends IResult {
   final String _message;
+
   @override
   bool get isSuccess => true;
 

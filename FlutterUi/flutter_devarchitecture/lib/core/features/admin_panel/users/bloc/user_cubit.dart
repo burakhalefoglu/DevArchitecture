@@ -12,12 +12,17 @@ class UserCubit extends BaseCubit<User> {
   Future<void> getAllUser() async {
     emit(BlocLoading("Kullanıcılar getiriliyor..."));
     try {
-      final users =
+      final usersResult =
           await BusinessInitializer().businessContainer.userService.getAll();
+
+      if (!usersResult.isSuccess) {
+        emitFailState(message: usersResult.message);
+        return;
+      }
       emit(BlocSuccess<List<User>>(
-          users.data!.map((e) => User.fromMap(e)).toList()));
-    } catch (e) {
-      emit(BlocFailed("Kullanıcılar getirilemedi: ${e.toString()}"));
+          usersResult.data!.map((e) => User.fromMap(e)).toList()));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 
@@ -26,11 +31,15 @@ class UserCubit extends BaseCubit<User> {
     try {
       // şifreyi güncelle
       var authService = BusinessInitializer().businessContainer.authService;
-      await authService
+      var result = await authService
           .saveUserPassword(PasswordDto(password: password, userId: userId));
+      if (!result.isSuccess) {
+        emitFailState(message: result.message);
+        return;
+      }
       await getAllUser(); // Kullanıcıları tekrar yükleyin
-    } catch (e) {
-      emit(BlocFailed("Kullanıcı sifresi kaydedilemedi: ${e.toString()}"));
+    } on Exception catch (e) {
+      emitFailState(e: e);
     }
   }
 }
