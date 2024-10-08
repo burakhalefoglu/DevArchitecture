@@ -36,7 +36,6 @@ class ApiTranslateService extends ApiService<Translate>
         return Future.value(FailureDataResult(""));
       }
     }
-    print(jsonDecode(result["message"]));
     return Future.value(SuccessDataResult(jsonDecode(result["message"]), ""));
   }
 }
