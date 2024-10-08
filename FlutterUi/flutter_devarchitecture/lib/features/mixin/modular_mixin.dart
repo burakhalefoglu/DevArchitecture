@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/theme/theme_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
+import '../../core/theme/theme_provider.dart';
 import '../../core/helpers/translation_provider.dart';
 
 mixin ModularMixin {
@@ -19,6 +19,7 @@ mixin ModularMixin {
       ],
       child: Consumer2<ThemeProvider, TranslationProvider>(
         builder: (context, themeProvider, translationProvider, child) {
+          print("Modular yüklendi!");
           return MaterialApp.router(
             locale: translationProvider.locale,
             supportedLocales: const [

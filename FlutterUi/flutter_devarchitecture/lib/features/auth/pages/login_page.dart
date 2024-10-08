@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../core/bloc/bloc_consumer_extension.dart';
@@ -85,10 +86,10 @@ class LoginPage extends StatelessWidget {
                             ],
                           ),
                         )
-                      : const Expanded(
+                      : Expanded(
                           flex: 2,
                           child: Text(
-                            "Giriş Ekranı",
+                            context.translationProvider.translate("Login"),
                             style: TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.bold),
                           ),
@@ -103,7 +104,8 @@ class LoginPage extends StatelessWidget {
                               flex: 2,
                               child: CustomEmailInput(
                                 contentPadding: 2,
-                                labelText: 'E-mail',
+                                labelText: context.translationProvider
+                                    .translate("Email"),
                                 controller: _emailController,
                               ),
                             ),
@@ -151,7 +153,8 @@ class LoginPage extends StatelessWidget {
                           lang: _languageController.text,
                         ));
                       },
-                      child: const Text("Giriş Yap"),
+                      child:
+                          Text(context.translationProvider.translate("Login")),
                     ),
                   ),
                   const Spacer(
