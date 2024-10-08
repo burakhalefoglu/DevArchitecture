@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
 import 'core/di/core_initializer.dart';
 import 'core/di/firebase/firebase_initializer.dart';
 import 'core/mixins/battery_state_mixin.dart';
@@ -9,9 +8,6 @@ import 'core/mixins/internet_connection_mixin.dart';
 import 'features/mixin/modular_mixin.dart';
 import 'core/mixins/ok_toast_mixin.dart';
 import 'di/business_initializer.dart';
-
-//? Firebase Options will be used in FirebaseInitializer
-// import 'firebase_options.dart';
 
 Future<void> main() async {
   //? Initializers
@@ -30,13 +26,16 @@ Future<void> main() async {
         );
     FirebaseInitializer();
   }
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return App();
+    return MaterialApp(
+      home: App(),
+    );
   }
 }
 

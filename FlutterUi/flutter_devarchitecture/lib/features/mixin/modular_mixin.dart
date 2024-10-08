@@ -1,35 +1,42 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_devarchitecture/core/theme/theme_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
-
-import '../../core/theme/theme_provider.dart';
-import '../../routes/app_route_module.dart';
+import '../../core/helpers/translation_provider.dart';
 
 mixin ModularMixin {
   Widget buildModular(BuildContext context) {
-    return ModularApp(module: AppRouteModule(), child: MyApp());
-  }
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => ThemeProvider(),
-      child: Consumer<ThemeProvider>(
-        builder: (context, themeProvider, child) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ThemeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TranslationProvider(),
+        ),
+      ],
+      child: Consumer2<ThemeProvider, TranslationProvider>(
+        builder: (context, themeProvider, translationProvider, child) {
           return MaterialApp.router(
+            locale: translationProvider.locale,
+            supportedLocales: const [
+              Locale('en', 'US'),
+              Locale('tr', 'TR'),
+              Locale('de', 'DE'),
+              Locale('es', 'ES'),
+              Locale('fr', 'FR'),
+              Locale('it', 'IT'),
+              Locale('pt', 'PT'),
+              Locale('ru', 'RU'),
+              Locale('ja', 'JP'),
+              Locale('zh', 'CN'),
+            ],
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('tr', 'TR'),
-              Locale('en', 'US'),
             ],
             scrollBehavior: ScrollConfiguration.of(context).copyWith(
               dragDevices: {
@@ -41,8 +48,8 @@ class MyApp extends StatelessWidget {
                 PointerDeviceKind.unknown,
               },
             ),
-            theme: lightTheme,
-            darkTheme: darkTheme,
+            theme: themeProvider.lightTheme,
+            darkTheme: themeProvider.darkTheme,
             themeMode: themeProvider.themeMode,
             routerConfig: Modular.routerConfig,
           );
