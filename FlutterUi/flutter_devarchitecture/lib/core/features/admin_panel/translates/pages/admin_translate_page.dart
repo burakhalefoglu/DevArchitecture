@@ -28,24 +28,34 @@ class AdminTranslatePage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          List<Map<String, dynamic>>? datas = [];
+          List<Map<String, dynamic>>? datas;
+
           if (state is BlocInitial) {
             BlocProvider.of<TranslateCubit>(context).getAll();
           }
+
           var resultWidget = getResultWidgetByStateWithScaffold(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }
 
-          if (state is BlocFailed) {
-            return buildTranslateTable(context, datas);
-          }
-
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
             datas = state.result;
-            return buildTranslateTable(context, datas!);
+          } else if (state is BlocFailed) {
+            final previousState =
+                BlocProvider.of<TranslateCubit>(context).state;
+            if (previousState is BlocSuccess<List<Map<String, dynamic>>>) {
+              datas = previousState.result;
+            } else {
+              datas = [];
+            }
           }
-          return SizedBox.shrink();
+
+          if (datas == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return buildTranslateTable(context, datas);
         },
       ),
     );
@@ -83,10 +93,12 @@ class AdminTranslatePage extends StatelessWidget {
                   .excelButton(context),
               customManipulationButton: const [getEditButton, getDeleteButton],
               customManipulationCallback: [
-                (translateId) => _editTranslate(
-                    context,
-                    datas
-                        .firstWhere((element) => element['id'] == translateId)),
+                (translateId) {
+                  var translate = datas.firstWhere(
+                    (element) => element['id'] == translateId,
+                  );
+                  _editTranslate(context, translate);
+                },
                 (translateId) => _confirmDelete(context, translateId)
               ],
               infoHover: getInfoHover(

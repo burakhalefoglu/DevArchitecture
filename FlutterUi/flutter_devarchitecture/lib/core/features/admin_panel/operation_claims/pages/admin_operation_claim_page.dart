@@ -27,22 +27,34 @@ class AdminOperationClaimPage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          List<Map<String, dynamic>>? datas = [];
+          List<Map<String, dynamic>>? datas;
+
           if (state is BlocInitial) {
             BlocProvider.of<OperationClaimCubit>(context).getAll();
           }
+
           var resultWidget = getResultWidgetByStateWithScaffold(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }
-          if (state is BlocFailed) {
-            return buildOperationClaimTable(context, datas);
-          }
+
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
             datas = state.result;
-            return buildOperationClaimTable(context, datas!);
+          } else if (state is BlocFailed) {
+            final previousState =
+                BlocProvider.of<OperationClaimCubit>(context).state;
+            if (previousState is BlocSuccess<List<Map<String, dynamic>>>) {
+              datas = previousState.result;
+            } else {
+              datas = [];
+            }
           }
-          return SizedBox.shrink();
+
+          if (datas == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return buildOperationClaimTable(context, datas);
         },
       ),
     );
@@ -79,8 +91,12 @@ class AdminOperationClaimPage extends StatelessWidget {
                 getEditButton,
               ],
               customManipulationCallback: [
-                (index) => _editOperationClaim(context,
-                    datas.firstWhere((element) => element['id'] == index)),
+                (index) {
+                  var operationClaim = datas.firstWhere(
+                    (element) => element['id'] == index,
+                  );
+                  _editOperationClaim(context, operationClaim);
+                },
               ],
               infoHover: getInfoHover(
                 color: CustomColors.dark.getColor,

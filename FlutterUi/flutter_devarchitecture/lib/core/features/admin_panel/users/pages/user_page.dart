@@ -32,23 +32,33 @@ class AdminUserPage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          List<Map<String, dynamic>>? datas = [];
+          List<Map<String, dynamic>>? datas;
+
           if (state is BlocInitial) {
             BlocProvider.of<UserCubit>(context).getAllUser();
           }
+
           var resultWidget = getResultWidgetByStateWithScaffold(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }
 
-          if (state is BlocFailed) {
-            return buildUserTable(context, datas);
-          }
           if (state is BlocSuccess<List<User>>) {
             datas = state.result!.map((e) => e.toMap()).toList();
-            return buildUserTable(context, datas);
+          } else if (state is BlocFailed) {
+            final previousState = BlocProvider.of<UserCubit>(context).state;
+            if (previousState is BlocSuccess<List<User>>) {
+              datas = previousState.result!.map((e) => e.toMap()).toList();
+            } else {
+              datas = [];
+            }
           }
-          return SizedBox.shrink();
+
+          if (datas == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return buildUserTable(context, datas);
         },
       ),
     );
@@ -92,26 +102,30 @@ class AdminUserPage extends StatelessWidget {
                 getDeleteButton
               ],
               customManipulationCallback: [
-                (userId) => _changePassword(
-                      context,
-                      datas.firstWhere(
-                          (element) => element['userId'] == userId)['userId'],
-                    ),
-                (userId) => _changeUserClaims(
-                      context,
-                      datas.firstWhere(
-                          (element) => element['userId'] == userId)['userId'],
-                    ),
-                (userId) => _changeUserGroups(
-                      context,
-                      datas.firstWhere(
-                          (element) => element['userId'] == userId)['userId'],
-                    ),
-                (userId) => _editUser(
-                    context,
-                    datas.firstWhere(
-                      (element) => element['userId'] == userId,
-                    )),
+                (userId) {
+                  var user = datas.firstWhere(
+                    (element) => element['userId'] == userId,
+                  );
+                  _changePassword(context, user['userId']);
+                },
+                (userId) {
+                  var user = datas.firstWhere(
+                    (element) => element['userId'] == userId,
+                  );
+                  _changeUserClaims(context, user['userId']);
+                },
+                (userId) {
+                  var user = datas.firstWhere(
+                    (element) => element['userId'] == userId,
+                  );
+                  _changeUserGroups(context, user['userId']);
+                },
+                (userId) {
+                  var user = datas.firstWhere(
+                    (element) => element['userId'] == userId,
+                  );
+                  _editUser(context, user);
+                },
                 (userId) => _confirmDelete(context, userId)
               ],
               infoHover: getInfoHover(context, "Kullanıcı bilgilerini düzenle"),

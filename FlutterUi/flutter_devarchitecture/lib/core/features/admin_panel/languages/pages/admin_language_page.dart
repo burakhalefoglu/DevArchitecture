@@ -28,24 +28,33 @@ class AdminLanguagePage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          List<Map<String, dynamic>>? datas = [];
+          List<Map<String, dynamic>>? datas;
+
           if (state is BlocInitial) {
             BlocProvider.of<LanguageCubit>(context).getAll();
           }
+
           var resultWidget = getResultWidgetByStateWithScaffold(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }
 
-          if (state is BlocFailed) {
-            return buildLanguageTable(context, datas);
-          }
-
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
             datas = state.result;
-            return buildLanguageTable(context, datas!);
+          } else if (state is BlocFailed) {
+            final previousState = BlocProvider.of<LanguageCubit>(context).state;
+            if (previousState is BlocSuccess<List<Map<String, dynamic>>>) {
+              datas = previousState.result;
+            } else {
+              datas = [];
+            }
           }
-          return SizedBox.shrink();
+
+          if (datas == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return buildLanguageTable(context, datas);
         },
       ),
     );
@@ -83,11 +92,12 @@ class AdminLanguagePage extends StatelessWidget {
               color: CustomColors.danger.getColor,
               customManipulationButton: const [getEditButton, getDeleteButton],
               customManipulationCallback: [
-                (id) => _editLanguage(
-                    context,
-                    datas.firstWhere(
-                      (element) => element['id'] == id,
-                    )),
+                (id) {
+                  var language = datas.firstWhere(
+                    (element) => element['id'] == id,
+                  );
+                  _editLanguage(context, language);
+                },
                 (id) => _confirmDelete(context, id)
               ],
               addButton: getAddButton(

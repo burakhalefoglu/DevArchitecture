@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../bloc/bloc_consumer_extension.dart';
-import '../../bloc/bloc_helper.dart';
-import '../../widgets/inputs/email_input.dart';
-import '../../widgets/inputs/password_input.dart';
-import '../../theme/extensions.dart';
+import '../../../bloc/bloc_consumer_extension.dart';
+import '../../../bloc/bloc_helper.dart';
+import '../../../widgets/inputs/email_input.dart';
+import '../../../widgets/inputs/password_input.dart';
+import '../../../theme/extensions.dart';
 
-import '../../bloc/base_state.dart';
-import '../../constants/messages.dart';
-import '../../di/core_initializer.dart';
-import '../admin_panel/languages/widgets/language_code_dropdown_button.dart';
-import 'bloc/auth_cubit.dart';
-import '../layouts/base_scaffold.dart';
-import 'models/auth.dart';
+import '../../../bloc/base_state.dart';
+import '../../../constants/messages.dart';
+import '../../../di/core_initializer.dart';
+import '../../admin_panel/languages/widgets/language_code_dropdown_button.dart';
+import '../bloc/auth_cubit.dart';
+import '../../layouts/base_scaffold.dart';
+import '../models/auth.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});

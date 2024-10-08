@@ -29,7 +29,7 @@ import '../core/features/admin_panel/logs/pages/log_page.dart';
 import '../core/features/admin_panel/operation_claims/pages/admin_operation_claim_page.dart';
 import '../core/features/admin_panel/translates/pages/admin_translate_page.dart';
 import '../features/app_panel/home/home_page.dart';
-import '../core/features/auth/login_page.dart';
+import '../core/features/auth/pages/login_page.dart';
 import '../core/features/not_found/not_found_page.dart';
 import '../core/features/utilities/download/pdf_download_button_page.dart';
 import '../core/features/utilities/download/txt_download_button_page.dart';

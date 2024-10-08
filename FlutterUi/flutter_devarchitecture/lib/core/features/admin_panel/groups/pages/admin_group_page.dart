@@ -30,24 +30,33 @@ class AdminGroupPage extends StatelessWidget {
           showScreenMessageByBlocStatus(state);
         },
         builder: (context, state) {
-          List<Map<String, dynamic>>? datas = [];
+          List<Map<String, dynamic>>? datas;
 
           if (state is BlocInitial) {
             BlocProvider.of<GroupCubit>(context).getAll();
           }
+
           var resultWidget = getResultWidgetByStateWithScaffold(context, state);
           if (resultWidget != null) {
             return resultWidget;
           }
-          if (state is BlocFailed) {
-            return buildGroupTable(context, datas);
-          }
+
           if (state is BlocSuccess<List<Map<String, dynamic>>>) {
             datas = state.result;
-            return buildGroupTable(context, datas!);
+          } else if (state is BlocFailed) {
+            final previousState = BlocProvider.of<GroupCubit>(context).state;
+            if (previousState is BlocSuccess<List<Map<String, dynamic>>>) {
+              datas = previousState.result;
+            } else {
+              datas = [];
+            }
           }
 
-          return SizedBox.shrink();
+          if (datas == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return buildGroupTable(context, datas);
         },
       ),
     );
@@ -90,12 +99,24 @@ class AdminGroupPage extends StatelessWidget {
                 getDeleteButton
               ],
               customManipulationCallback: [
-                (index) => _updateGroupClaims(context,
-                    datas.firstWhere((element) => element['id'] == index)),
-                (index) => _updateGroupUsers(context,
-                    datas.firstWhere((element) => element['id'] == index)),
-                (index) => _editGroup(context,
-                    datas.firstWhere((element) => element['id'] == index)),
+                (index) {
+                  var group = datas.firstWhere(
+                    (element) => element['id'] == index,
+                  );
+                  _updateGroupClaims(context, group);
+                },
+                (index) {
+                  var group = datas.firstWhere(
+                    (element) => element['id'] == index,
+                  );
+                  _updateGroupUsers(context, group);
+                },
+                (index) {
+                  var group = datas.firstWhere(
+                    (element) => element['id'] == index,
+                  );
+                  _editGroup(context, group);
+                },
                 (index) => _confirmDelete(context, index)
               ],
               addButton: getAddButton(
