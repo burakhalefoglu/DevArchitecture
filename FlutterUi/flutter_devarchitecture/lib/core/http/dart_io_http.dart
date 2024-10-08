@@ -23,34 +23,42 @@ class HttpDartIo implements IHttp {
     httpClient.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
 
-    HttpClientRequest request = await httpClient.getUrl(Uri.parse(url));
+    try {
+      HttpClientRequest request = await httpClient.getUrl(Uri.parse(url));
 
-    var intercepts = await interceptor.interceptJson();
-    for (var key in intercepts.keys) {
-      request.headers.set(key, intercepts[key]);
-    }
-    HttpClientResponse response = await request.close();
-    if (kDebugMode) {
-      print(url);
-      print(response.statusCode);
-    }
-    await _handleError(response, httpClient);
+      var intercepts = await interceptor.interceptJson();
+      for (var key in intercepts.keys) {
+        request.headers.set(key, intercepts[key]);
+      }
 
-    String reply = await response.transform(utf8.decoder).join();
-    var decodedJson = jsonDecode(reply);
-    httpClient.close();
-    if (decodedJson is String) {
-      return {"message": decodedJson};
+      HttpClientResponse response = await request.close();
+
+      if (kDebugMode) {
+        print(url);
+        print(response.statusCode);
+      }
+
+      // Response'u bir değişkene al ve sadece bir kere dinle
+      String reply = await response.transform(utf8.decoder).join();
+
+      await _handleError(response.statusCode, reply);
+
+      var decodedJson = jsonDecode(reply);
+
+      if (decodedJson is String) {
+        return {"message": decodedJson};
+      }
+      if (decodedJson is Map<String, dynamic>) {
+        return decodedJson;
+      } else if (decodedJson is List) {
+        List<Map<String, dynamic>> list =
+            decodedJson.map((e) => e as Map<String, dynamic>).toList();
+        return {"data": list};
+      }
+      return decodedJson;
+    } finally {
+      httpClient.close();
     }
-    if (decodedJson is Map<String, dynamic>) {
-      Map<String, dynamic> map = decodedJson;
-      return map;
-    } else if (decodedJson is List) {
-      List<Map<String, dynamic>> list =
-          decodedJson.map((e) => e as Map<String, dynamic>).toList();
-      return {"data": list};
-    }
-    return decodedJson;
   }
 
   @override
@@ -59,35 +67,39 @@ class HttpDartIo implements IHttp {
     HttpClient httpClient = HttpClient();
     httpClient.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
+    try {
+      HttpClientRequest request = await httpClient.postUrl(Uri.parse(url));
+      var intercepts = await interceptor.interceptJson();
+      for (var key in intercepts.keys) {
+        request.headers.set(key, intercepts[key]);
+      }
 
-    HttpClientRequest request = await httpClient.postUrl(Uri.parse(url));
-    var intercepts = await interceptor.interceptJson();
-    for (var key in intercepts.keys) {
-      request.headers.set(key, intercepts[key]);
-    }
+      request.add(utf8.encode(json.encode(body)));
+      HttpClientResponse response = await request.close();
 
-    request.add(utf8.encode(json.encode(body)));
-    HttpClientResponse response = await request.close();
-    if (kDebugMode) {
-      print(url);
-      print(response.statusCode);
-    }
-    await _handleError(response, httpClient);
-    String reply = await response.transform(utf8.decoder).join();
-    var decodedJson = jsonDecode(reply);
-    httpClient.close();
-    if (decodedJson is String) {
-      return {"message": decodedJson};
-    }
-    if (decodedJson is Map<String, dynamic>) {
-      Map<String, dynamic> map = decodedJson;
-      return map;
-    } else if (decodedJson is List) {
-      List<Map<String, dynamic>> list =
-          decodedJson.map((e) => e as Map<String, dynamic>).toList();
-      return {"data": list};
-    } else {
+      if (kDebugMode) {
+        print(url);
+        print(response.statusCode);
+      }
+
+      String reply = await response.transform(utf8.decoder).join();
+
+      await _handleError(response.statusCode, reply);
+
+      var decodedJson = jsonDecode(reply);
+      if (decodedJson is String) {
+        return {"message": decodedJson};
+      }
+      if (decodedJson is Map<String, dynamic>) {
+        return decodedJson;
+      } else if (decodedJson is List) {
+        List<Map<String, dynamic>> list =
+            decodedJson.map((e) => e as Map<String, dynamic>).toList();
+        return {"data": list};
+      }
       return {"response": decodedJson};
+    } finally {
+      httpClient.close();
     }
   }
 
@@ -96,34 +108,39 @@ class HttpDartIo implements IHttp {
     HttpClient httpClient = HttpClient();
     httpClient.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
+    try {
+      HttpClientRequest request = await httpClient.deleteUrl(Uri.parse(url));
 
-    HttpClientRequest request = await httpClient.deleteUrl(Uri.parse(url));
+      var intercepts = await interceptor.interceptJson();
+      for (var key in intercepts.keys) {
+        request.headers.set(key, intercepts[key]);
+      }
+      HttpClientResponse response = await request.close();
 
-    var intercepts = await interceptor.interceptJson();
-    for (var key in intercepts.keys) {
-      request.headers.set(key, intercepts[key]);
+      if (kDebugMode) {
+        print(url);
+        print(response.statusCode);
+      }
+
+      String reply = await response.transform(utf8.decoder).join();
+
+      await _handleError(response.statusCode, reply);
+
+      var decodedJson = jsonDecode(reply);
+      if (decodedJson is String) {
+        return {"message": decodedJson};
+      }
+      if (decodedJson is Map<String, dynamic>) {
+        return decodedJson;
+      } else if (decodedJson is List) {
+        List<Map<String, dynamic>> list =
+            decodedJson.map((e) => e as Map<String, dynamic>).toList();
+        return {"data": list};
+      }
+      return decodedJson;
+    } finally {
+      httpClient.close();
     }
-    HttpClientResponse response = await request.close();
-    if (kDebugMode) {
-      print(url);
-      print(response.statusCode);
-    }
-    await _handleError(response, httpClient);
-    httpClient.close();
-    String reply = await response.transform(utf8.decoder).join();
-    var decodedJson = jsonDecode(reply);
-    if (decodedJson is String) {
-      return {"message": decodedJson};
-    }
-    if (decodedJson is Map<String, dynamic>) {
-      Map<String, dynamic> map = decodedJson;
-      return map;
-    } else if (decodedJson is List) {
-      List<Map<String, dynamic>> list =
-          decodedJson.map((e) => e as Map<String, dynamic>).toList();
-      return {"data": list};
-    }
-    return decodedJson;
   }
 
   @override
@@ -132,55 +149,54 @@ class HttpDartIo implements IHttp {
     HttpClient httpClient = HttpClient();
     httpClient.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
+    try {
+      HttpClientRequest request = await httpClient.putUrl(Uri.parse(url));
+      var intercepts = await interceptor.interceptJson();
+      for (var key in intercepts.keys) {
+        request.headers.set(key, intercepts[key]);
+      }
 
-    HttpClientRequest request = await httpClient.putUrl(Uri.parse(url));
-    var intercepts = await interceptor.interceptJson();
-    for (var key in intercepts.keys) {
-      request.headers.set(key, intercepts[key]);
-    }
+      request.add(utf8.encode(json.encode(body)));
+      HttpClientResponse response = await request.close();
 
-    request.add(utf8.encode(json.encode(body)));
-    HttpClientResponse response = await request.close();
-    if (kDebugMode) {
-      print(url);
-      print(response.statusCode);
+      if (kDebugMode) {
+        print(url);
+        print(response.statusCode);
+      }
+
+      String reply = await response.transform(utf8.decoder).join();
+
+      await _handleError(response.statusCode, reply);
+
+      var decodedJson = jsonDecode(reply);
+      if (decodedJson is String) {
+        return {"message": decodedJson};
+      }
+      if (decodedJson is Map<String, dynamic>) {
+        return decodedJson;
+      } else if (decodedJson is List) {
+        List<Map<String, dynamic>> list =
+            decodedJson.map((e) => e as Map<String, dynamic>).toList();
+        return {"data": list};
+      }
+      return decodedJson;
+    } finally {
+      httpClient.close();
     }
-    await _handleError(response, httpClient);
-    httpClient.close();
-    String reply = await response.transform(utf8.decoder).join();
-    var decodedJson = jsonDecode(reply);
-    if (decodedJson is String) {
-      return {"message": decodedJson};
-    }
-    if (decodedJson is Map<String, dynamic>) {
-      Map<String, dynamic> map = decodedJson;
-      return map;
-    } else if (decodedJson is List) {
-      List<Map<String, dynamic>> list =
-          decodedJson.map((e) => e as Map<String, dynamic>).toList();
-      return {"data": list};
-    }
-    return decodedJson;
   }
 
   Future<Map<String, dynamic>?> _handleError(
-      HttpClientResponse response, HttpClient httpClient) async {
-    String reply = await response.transform(utf8.decoder).join();
-    if (response.statusCode == 400) {
-      httpClient.close();
+      int statusCode, String reply) async {
+    if (statusCode == 400) {
       throw BadRequestException(reply);
     }
-    if (response.statusCode == 401) {
-      httpClient.close();
+    if (statusCode == 401) {
       throw UnauthorizedException(reply);
     }
-    if (response.statusCode == 403) {
-      httpClient.close();
-
+    if (statusCode == 403) {
       throw ForbiddenException(reply);
     }
-    if (response.statusCode == 500) {
-      httpClient.close();
+    if (statusCode == 500) {
       throw InternalServerErrorException(reply);
     }
     return null;
