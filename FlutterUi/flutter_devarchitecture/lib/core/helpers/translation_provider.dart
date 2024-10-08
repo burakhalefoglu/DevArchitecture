@@ -23,9 +23,6 @@ class TranslationProvider with ChangeNotifier {
     } else {
       var result = await translationService.getTranslatesByCode(code);
       if (result is SuccessDataResult) {
-        _translations = {
-          for (var item in result.data!) item['key']: item['value']
-        };
         localStorageService.save(
             'translations_$code', jsonEncode(_translations));
       } else {

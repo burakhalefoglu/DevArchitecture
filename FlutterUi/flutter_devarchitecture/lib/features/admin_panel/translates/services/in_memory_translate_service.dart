@@ -29,8 +29,8 @@ class InMemoryTranslateService extends InMemoryService<Translate>
   }
 
   @override
-  Future<IDataResult<List<Map<String, dynamic>>>> getTranslatesByCode(
+  Future<IDataResult<Map<String, dynamic>>> getTranslatesByCode(
       String code) async {
-    return SuccessDataResult(_translations, "");
+    return SuccessDataResult(_translations.toSet().first, "");
   }
 }

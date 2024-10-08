@@ -18,9 +18,9 @@ import '../../features/admin_panel/lookups/services/in_memory_lookup_service.dar
 import '../../features/admin_panel/operation_claims/services/api_operation_claim_service.dart';
 import '../../features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
 import '../../features/admin_panel/operation_claims/services/in_memory_operation_claim_service.dart';
-import '../../features/admin_panel/translates/services/api_in_memory_service.dart';
+import '../../features/admin_panel/translates/services/api_translate_service.dart';
 import '../../features/admin_panel/translates/services/i_translate_service.dart';
-import '../../features/admin_panel/translates/services/in_memory_service.dart';
+import '../../features/admin_panel/translates/services/in_memory_translate_service.dart';
 import '../../features/admin_panel/user-claims/services/i_user_claim_service.dart';
 import '../../features/admin_panel/user-groups/services/api_user_group_service.dart';
 import '../../features/admin_panel/user-groups/services/i_user_group_service.dart';

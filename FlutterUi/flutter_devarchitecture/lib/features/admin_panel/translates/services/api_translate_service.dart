@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../../../core/di/core_initializer.dart';
 import '../../../../core/services/base_services/api_service.dart';
 import '../../../../core/utilities/results.dart';
@@ -23,7 +25,7 @@ class ApiTranslateService extends ApiService<Translate>
   }
 
   @override
-  Future<IDataResult<List<Map<String, dynamic>>>> getTranslatesByCode(
+  Future<IDataResult<Map<String, dynamic>>> getTranslatesByCode(
       String code) async {
     var result = await CoreInitializer()
         .coreContainer
@@ -31,10 +33,10 @@ class ApiTranslateService extends ApiService<Translate>
         .get("$url/languages/${code}/");
     if (result["success"] != null) {
       if (result["success"] == false) {
-        return Future.value(FailureDataResult(result["message"] ?? ""));
+        return Future.value(FailureDataResult(""));
       }
     }
-    var data = result["data"] as List<Map<String, dynamic>>;
-    return Future.value(SuccessDataResult(data, ""));
+    print(jsonDecode(result["message"]));
+    return Future.value(SuccessDataResult(jsonDecode(result["message"]), ""));
   }
 }
