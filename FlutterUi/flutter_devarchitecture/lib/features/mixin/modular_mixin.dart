@@ -15,7 +15,11 @@ mixin ModularMixin {
           create: (_) => ThemeProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => TranslationProvider(),
+          create: (context) {
+            var translationProvider = TranslationProvider();
+            translationProvider.loadTranslations('tr-Tr');
+            return translationProvider;
+          },
         ),
       ],
       child: Consumer2<ThemeProvider, TranslationProvider>(

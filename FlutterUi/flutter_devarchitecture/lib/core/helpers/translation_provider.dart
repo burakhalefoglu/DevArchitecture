@@ -8,7 +8,7 @@ class TranslationProvider with ChangeNotifier {
   final translationService =
       BusinessInitializer().businessContainer.translateService;
   Map<String, String> _translations = {};
-  Locale _locale = Locale('en');
+  Locale _locale = Locale('tr');
 
   Map<String, String> get translations => _translations;
   Locale get locale => _locale;
@@ -22,6 +22,8 @@ class TranslationProvider with ChangeNotifier {
       _translations = Map<String, String>.from(jsonDecode(savedTranslations));
     } else {
       var result = await translationService.getTranslatesByCode(code);
+      print("result: ${result.data}");
+      print("result: ${result.message}");
       if (result is SuccessDataResult) {
         localStorageService.save(
             'translations_$code', jsonEncode(_translations));
@@ -31,6 +33,7 @@ class TranslationProvider with ChangeNotifier {
             .screenMessage
             .getErrorMessage(result.message);
       }
+      print("translation on main apps: $_translations");
     }
     notifyListeners();
   }
@@ -44,6 +47,8 @@ class TranslationProvider with ChangeNotifier {
   }
 
   String translate(String key) {
+    print("key: $key");
+    print("translations: $_translations");
     return _translations[key] ?? key;
   }
 
