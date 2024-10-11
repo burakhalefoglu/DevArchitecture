@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:provider/provider.dart';
 import '../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../core/bloc/bloc_helper.dart';
+import '../../../core/helpers/translation_provider.dart';
 import '../../../core/widgets/inputs/email_input.dart';
 import '../../../core/widgets/inputs/password_input.dart';
 import '../../../core/theme/extensions.dart';
-
 import '../../../core/bloc/base_state.dart';
 import '../../../core/constants/messages.dart';
 import '../../../core/di/core_initializer.dart';
@@ -88,10 +88,14 @@ class LoginPage extends StatelessWidget {
                         )
                       : Expanded(
                           flex: 2,
-                          child: Text(
-                            context.translationProvider.translate("Login"),
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.bold),
+                          child: Consumer<TranslationProvider>(
+                            builder: (context, translationProvider, child) {
+                              return Text(
+                                translationProvider.translate("Login"),
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.bold),
+                              );
+                            },
                           ),
                         ),
                   Expanded(
@@ -102,11 +106,15 @@ class LoginPage extends StatelessWidget {
                           children: [
                             Expanded(
                               flex: 2,
-                              child: CustomEmailInput(
-                                contentPadding: 2,
-                                labelText: context.translationProvider
-                                    .translate("Email"),
-                                controller: _emailController,
+                              child: Consumer<TranslationProvider>(
+                                builder: (context, translationProvider, child) {
+                                  return CustomEmailInput(
+                                    contentPadding: 2,
+                                    labelText:
+                                        translationProvider.translate("Email"),
+                                    controller: _emailController,
+                                  );
+                                },
                               ),
                             ),
                             Expanded(
@@ -138,23 +146,27 @@ class LoginPage extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 1,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        BlocProvider.of<AuthCubit>(context).emitCheckingState();
-                        if (!_form.currentState!.validate()) {
-                          BlocProvider.of<AuthCubit>(context).emitFailState(
-                              message: Messages.formValidationErrorMessage);
-                          return;
-                        }
-                        await BlocProvider.of<AuthCubit>(context)
-                            .login(AuthRequestBasic(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                          lang: _languageController.text,
-                        ));
+                    child: Consumer<TranslationProvider>(
+                      builder: (context, translationProvider, child) {
+                        return ElevatedButton(
+                          onPressed: () async {
+                            BlocProvider.of<AuthCubit>(context)
+                                .emitCheckingState();
+                            if (!_form.currentState!.validate()) {
+                              BlocProvider.of<AuthCubit>(context).emitFailState(
+                                  message: Messages.formValidationErrorMessage);
+                              return;
+                            }
+                            await BlocProvider.of<AuthCubit>(context)
+                                .login(AuthRequestBasic(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                              lang: _languageController.text,
+                            ));
+                          },
+                          child: Text(translationProvider.translate("Login")),
+                        );
                       },
-                      child:
-                          Text(context.translationProvider.translate("Login")),
                     ),
                   ),
                   const Spacer(
