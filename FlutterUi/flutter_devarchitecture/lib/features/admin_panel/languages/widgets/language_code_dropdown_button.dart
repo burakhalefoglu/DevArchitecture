@@ -67,7 +67,6 @@ class _LanguageCodeDropdownButtonState
                     : languages.firstWhere((lang) => lang.label == value,
                         orElse: () => languages.first);
                 widget.getInitialValue(_selectedLanguage!);
-                _updateLanguage(_selectedLanguage!.id.toString());
               },
               options: options,
               onChanged: (String? selectedValue) {

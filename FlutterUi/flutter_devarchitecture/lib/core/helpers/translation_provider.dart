@@ -5,6 +5,8 @@ import 'package:flutter_devarchitecture/di/business_initializer.dart';
 class TranslationProvider with ChangeNotifier {
   final translationService =
       BusinessInitializer().businessContainer.translateService;
+  final localStorageService = CoreInitializer().coreContainer.storage;
+
   Map<String, String> _translations = {};
   Locale _locale = Locale('tr');
 
@@ -17,9 +19,8 @@ class TranslationProvider with ChangeNotifier {
       _translations.clear();
       result.data!.forEach((key, value) {
         _translations[key] = value;
-        print("key: " + key + " value: " + value);
       });
-      notifyListeners(); // notifyListeners'ı burada çağırarak güncellemeleri tetikleyin
+      notifyListeners();
     } else {
       CoreInitializer()
           .coreContainer
@@ -29,7 +30,15 @@ class TranslationProvider with ChangeNotifier {
   }
 
   Future<void> changeLocale(String languageCode) async {
+    String? storedLanguageCode =
+        await localStorageService.read('current_language_code');
+
+    if (storedLanguageCode == languageCode) {
+      return;
+    }
+
     _locale = Locale(languageCode);
+    await localStorageService.save('current_language_code', languageCode);
     await _loadTranslations(languageCode);
   }
 
