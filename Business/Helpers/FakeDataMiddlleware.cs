@@ -296,6 +296,24 @@ namespace Business.Helpers
                 { LangId = 1, Code = "DeleteConfirm", Value = "Emin misiniz?" });
             await mediator.Send(new CreateTranslateInternalCommand
                 { LangId = 2, Code = "DeleteConfirm", Value = "Are you sure?" });
+
+            // TODO: Add more translations to database configuration
+            await mediator.Send(new CreateTranslateInternalCommand
+                { LangId = 1, Code = "EmailCantBeEmpty", Value = "E-posta boş bırakılamaz!" });
+            await mediator.Send(new CreateTranslateInternalCommand
+                { LangId = 2, Code = "EmailCantBeEmpty", Value = "Email can not be empty!" });
+            await mediator.Send(new CreateTranslateInternalCommand
+                { LangId = 1, Code = "InvalidEmail", Value = "Lütfen geçerli bir e-posta giriniz!" });
+            await mediator.Send(new CreateTranslateInternalCommand
+                { LangId = 2, Code = "InvalidEmail", Value = "Please enter a valid email address!" });
+            await mediator.Send(new CreateTranslateInternalCommand
+                { LangId = 1, Code = "InvalidPassword", Value = "Lütfen geçerli bir parola giriniz!" });
+            await mediator.Send(new CreateTranslateInternalCommand
+                { LangId = 2, Code = "InvalidPassword", Value = "Please enter a valid password address!" });
+
+
+
+            // Create default group
             await mediator.Send(new CreateGroupCommand
             {
                 GroupName = "Default Group"

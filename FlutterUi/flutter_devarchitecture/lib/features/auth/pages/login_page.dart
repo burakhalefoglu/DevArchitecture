@@ -103,14 +103,14 @@ class LoginPage extends StatelessWidget {
                               flex: 2,
                               child: CustomEmailInput(
                                 contentPadding: 2,
-                                labelText: context.translationProvider
-                                    .translate("Email"),
+                                context: context,
                                 controller: _emailController,
                               ),
                             ),
                             Expanded(
                               flex: 2,
                               child: CustomPasswordInput(
+                                  context: context,
                                   passwordController: _passwordController),
                             ),
                             context.isMobile

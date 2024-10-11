@@ -111,7 +111,7 @@ class _InputExamplesPageState extends State<InputExamplesPage> {
                     Expanded(
                       flex: 5,
                       child: CustomEmailInput(
-                        labelText: "E-posta",
+                        context: context,
                         controller: _emailController,
                       ),
                     ),
@@ -150,6 +150,7 @@ class _InputExamplesPageState extends State<InputExamplesPage> {
                   Expanded(
                     flex: 5,
                     child: CustomPasswordInput(
+                      context: context,
                       passwordController: _passwordController,
                     ),
                   ),

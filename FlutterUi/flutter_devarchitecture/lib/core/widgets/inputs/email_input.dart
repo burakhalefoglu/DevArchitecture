@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import '../../theme/custom_colors.dart';
 import 'extensions/extensions.dart';
 
 class CustomEmailInput extends TextFormField {
   CustomEmailInput(
-      {required String labelText,
+      {required BuildContext context,
       super.key,
       super.onChanged,
       super.enabled = true,
@@ -15,10 +16,10 @@ class CustomEmailInput extends TextFormField {
           validator: (value) {
             if (!enabled) return null;
             if (value == null || value.isEmpty) {
-              return '$labelText boş bırakılamaz';
+              return context.translationProvider.translate("EmailCantBeEmpty");
             }
             if (!value.isValidEmail) {
-              return 'Lütfen geçerli bir e-posta adresi giriniz.';
+              return context.translationProvider.translate("InvalidEmail");
             }
 
             return null;
@@ -31,8 +32,8 @@ class CustomEmailInput extends TextFormField {
                 color: CustomColors.dark.getColor.withAlpha(150),
               ),
               enabled: enabled!,
-              hintText: "örn: abc@example.com",
-              labelText: labelText,
+              hintText: "abc@example.com",
+              labelText: context.translationProvider.translate("Email"),
               contentPadding: EdgeInsets.only(bottom: contentPadding)),
         );
 }

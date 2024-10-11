@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import '../../theme/custom_colors.dart';
 import 'extensions/extensions.dart';
 
 class CustomPasswordInput extends StatefulWidget {
   final TextEditingController passwordController;
+  final BuildContext context;
   final bool enabled;
 
   const CustomPasswordInput(
-      {super.key, required this.passwordController, this.enabled = true});
+      {super.key,
+      required this.context,
+      required this.passwordController,
+      this.enabled = true});
 
   @override
   PasswordFieldState createState() => PasswordFieldState();
@@ -35,10 +40,10 @@ class PasswordFieldState extends State<CustomPasswordInput> {
       validator: (value) {
         if (!widget.enabled) return null;
         if (value == null || value.isEmpty) {
-          return 'şifre girişi boş bırakılamaz';
+          return context.translationProvider.translate('PasswordEmpty');
         }
         if (!value.isValidPassword) {
-          return 'Lütfen geçerli bir şifre giriniz.';
+          return context.translationProvider.translate('InvalidPassword');
         }
         return null;
       },
@@ -51,7 +56,7 @@ class PasswordFieldState extends State<CustomPasswordInput> {
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.only(bottom: 20),
         floatingLabelBehavior: FloatingLabelBehavior.never,
-        labelText: "Şifre Girişi",
+        labelText: context.translationProvider.translate('Password'),
         hintText: "***********",
         filled: true,
         fillColor: Colors.transparent,

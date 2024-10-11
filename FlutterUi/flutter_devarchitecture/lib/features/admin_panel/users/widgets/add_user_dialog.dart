@@ -65,7 +65,7 @@ class _AddUserDialogState extends State<AddUserDialog> {
                   flex: 5,
                   child: CustomEmailInput(
                     controller: _emailController,
-                    labelText: 'E-posta',
+                    context: context,
                   ),
                 ),
                 const Spacer(),
