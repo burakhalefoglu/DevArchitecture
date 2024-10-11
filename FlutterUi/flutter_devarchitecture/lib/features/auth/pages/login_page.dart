@@ -3,10 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:provider/provider.dart';
 import '../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../core/bloc/bloc_helper.dart';
-import '../../../core/helpers/translation_provider.dart';
 import '../../../core/widgets/inputs/email_input.dart';
 import '../../../core/widgets/inputs/password_input.dart';
 import '../../../core/theme/extensions.dart';
@@ -49,10 +47,6 @@ class LoginPage extends StatelessWidget {
             Modular.to.navigate(RoutesConstants.appHomePage);
           }
         }, builder: (context, state) {
-          if (state is BlocInitial) {
-            Provider.of<TranslationProvider>(context, listen: false)
-                .changeLocale("tr-TR");
-          }
           var resultWidget = getResultWidgetByStateWithScaffold(context, state);
           if (resultWidget != null) {
             return resultWidget;

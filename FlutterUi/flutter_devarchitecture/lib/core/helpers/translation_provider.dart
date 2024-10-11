@@ -13,7 +13,7 @@ class TranslationProvider with ChangeNotifier {
   Map<String, String> get translations => _translations;
   Locale get locale => _locale;
 
-  Future<void> _loadTranslations(String code) async {
+  Future<void> loadTranslations(String code) async {
     var result = await translationService.getTranslatesByCode(code);
     if (result.isSuccess) {
       _translations.clear();
@@ -39,7 +39,7 @@ class TranslationProvider with ChangeNotifier {
 
     _locale = Locale(languageCode);
     await localStorageService.save('current_language_code', languageCode);
-    await _loadTranslations(languageCode);
+    await loadTranslations(languageCode);
   }
 
   String translate(String key) {

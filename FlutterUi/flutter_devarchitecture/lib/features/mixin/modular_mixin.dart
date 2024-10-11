@@ -9,56 +9,46 @@ import '../../routes/app_route_module.dart';
 
 mixin ModularMixin {
   Widget buildModular(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => ThemeProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => TranslationProvider(),
-        ),
-      ],
-      child: Consumer2<ThemeProvider, TranslationProvider>(
-        builder: (context, themeProvider, translationProvider, child) {
-          return ModularApp(
-            module: AppRouteModule(),
-            child: MaterialApp.router(
-              locale: translationProvider.locale,
-              supportedLocales: const [
-                Locale('en', 'US'),
-                Locale('tr', 'TR'),
-                Locale('de', 'DE'),
-                Locale('es', 'ES'),
-                Locale('fr', 'FR'),
-                Locale('it', 'IT'),
-                Locale('pt', 'PT'),
-                Locale('ru', 'RU'),
-                Locale('ja', 'JP'),
-                Locale('zh', 'CN'),
-              ],
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              scrollBehavior: ScrollConfiguration.of(context).copyWith(
-                dragDevices: {
-                  PointerDeviceKind.touch,
-                  PointerDeviceKind.mouse,
-                  PointerDeviceKind.stylus,
-                  PointerDeviceKind.trackpad,
-                  PointerDeviceKind.invertedStylus,
-                  PointerDeviceKind.unknown,
-                },
-              ),
-              theme: themeProvider.lightTheme,
-              darkTheme: themeProvider.darkTheme,
-              themeMode: themeProvider.themeMode,
-              routerConfig: Modular.routerConfig,
+    return Consumer2<ThemeProvider, TranslationProvider>(
+      builder: (context, themeProvider, translationProvider, child) {
+        return ModularApp(
+          module: AppRouteModule(),
+          child: MaterialApp.router(
+            locale: translationProvider.locale,
+            supportedLocales: const [
+              Locale('en', 'US'),
+              Locale('tr', 'TR'),
+              Locale('de', 'DE'),
+              Locale('es', 'ES'),
+              Locale('fr', 'FR'),
+              Locale('it', 'IT'),
+              Locale('pt', 'PT'),
+              Locale('ru', 'RU'),
+              Locale('ja', 'JP'),
+              Locale('zh', 'CN'),
+            ],
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            scrollBehavior: ScrollConfiguration.of(context).copyWith(
+              dragDevices: {
+                PointerDeviceKind.touch,
+                PointerDeviceKind.mouse,
+                PointerDeviceKind.stylus,
+                PointerDeviceKind.trackpad,
+                PointerDeviceKind.invertedStylus,
+                PointerDeviceKind.unknown,
+              },
             ),
-          );
-        },
-      ),
+            theme: themeProvider.lightTheme,
+            darkTheme: themeProvider.darkTheme,
+            themeMode: themeProvider.themeMode,
+            routerConfig: Modular.routerConfig,
+          ),
+        );
+      },
     );
   }
 }
