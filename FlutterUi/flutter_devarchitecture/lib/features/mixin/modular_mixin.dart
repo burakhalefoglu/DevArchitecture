@@ -14,6 +14,7 @@ mixin ModularMixin {
         return ModularApp(
           module: AppRouteModule(),
           child: MaterialApp.router(
+            title: 'Flutter DevArchitecture',
             locale: translationProvider.locale,
             supportedLocales: const [
               Locale('en', 'US'),

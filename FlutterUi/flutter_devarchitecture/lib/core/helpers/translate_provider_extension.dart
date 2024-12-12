@@ -4,5 +4,5 @@ import 'translation_provider.dart';
 
 extension TranslationProviderExtension on BuildContext {
   TranslationProvider get translationProvider =>
-      Provider.of<TranslationProvider>(this, listen: true);
+      Provider.of<TranslationProvider>(this);
 }

@@ -35,6 +35,7 @@ class _LocalNotificationPageState extends State<LocalNotificationPage> {
             onPressed: () => _notificationService.showNotification(
               "Bu bir bildirimdir.",
               "Bildirim Başlığı",
+              context,
             ),
             child: Text('Bildirim Gönder'),
           ),
@@ -43,35 +44,11 @@ class _LocalNotificationPageState extends State<LocalNotificationPage> {
             onPressed: () => _notificationService.showNotificationWithSound(
               "Bu bildirim ses içeriyor.",
               "Sesli Bildirim",
+              context,
             ),
             child: Text('Sesli Bildirim Gönder'),
           ),
           const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () => _notificationService.showNotificationWithVibration(
-              "Bu bildirim titreşim içeriyor.",
-              "Titreşimli Bildirim",
-            ),
-            child: Text('Titreşimli Bildirim Gönder'),
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () =>
-                _notificationService.showNotificationWithSoundAndVibration(
-              "Bu bildirim ses ve titreşim içeriyor.",
-              "Ses ve Titreşimli Bildirim",
-            ),
-            child: Text('Ses ve Titreşimli Bildirim Gönder'),
-          ),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () => _notificationService.schedulePeriodicNotification(
-              "Bu bir periyodik bildirimdir.",
-              "Periyodik Bildirim",
-              Duration(hours: 1),
-            ),
-            child: Text('Periyodik Bildirim Ayarla'),
-          ),
         ],
       ),
     );

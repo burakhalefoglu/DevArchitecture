@@ -7,8 +7,8 @@ class TranslationProvider with ChangeNotifier {
       BusinessInitializer().businessContainer.translateService;
   final localStorageService = CoreInitializer().coreContainer.storage;
 
-  Map<String, String> _translations = {};
-  Locale _locale = Locale('tr');
+  static Map<String, String> _translations = {};
+  static Locale _locale = Locale('tr');
 
   Map<String, String> get translations => _translations;
   Locale get locale => _locale;

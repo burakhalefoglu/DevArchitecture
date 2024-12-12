@@ -15,6 +15,7 @@ class ThemeProvider with ChangeNotifier {
   static bool isDarkMode() => _themeMode == ThemeMode.dark;
 
   ThemeData get darkTheme => ThemeData(
+        useMaterial3: false,
         fontFamily: "nunito",
         drawerTheme:
             DrawerThemeData(backgroundColor: CustomColors.dark.getColor),
@@ -28,11 +29,9 @@ class ThemeProvider with ChangeNotifier {
         colorScheme: ColorScheme.dark(
           primary: CustomColors.primary.getColor,
           secondary: CustomColors.secondary.getColor,
-          background: CustomColors.dark.getColor,
-          surface: Colors.grey[850]!,
+          surface: CustomColors.dark.getColor,
           onPrimary: CustomColors.white.getColor,
           onSecondary: CustomColors.dark.getColor,
-          onBackground: CustomColors.white.getColor,
           onSurface: CustomColors.white.getColor,
         ),
         buttonTheme: ButtonThemeData(
@@ -78,6 +77,7 @@ class ThemeProvider with ChangeNotifier {
       );
 
   ThemeData get lightTheme => ThemeData(
+        useMaterial3: false,
         fontFamily: "nunito",
         drawerTheme: DrawerThemeData(
           backgroundColor: CustomColors.white.getColor,
@@ -92,11 +92,9 @@ class ThemeProvider with ChangeNotifier {
         colorScheme: ColorScheme.light(
           primary: CustomColors.primary.getColor,
           secondary: CustomColors.secondary.getColor,
-          background: CustomColors.white.getColor,
-          surface: Colors.grey[200]!,
+          surface: CustomColors.white.getColor,
           onPrimary: CustomColors.white.getColor,
           onSecondary: CustomColors.dark.getColor,
-          onBackground: CustomColors.dark.getColor,
           onSurface: CustomColors.dark.getColor,
         ),
         buttonTheme: ButtonThemeData(

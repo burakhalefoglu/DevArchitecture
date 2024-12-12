@@ -1,4 +1,4 @@
-platform :osx, '10.15'
+platform :osx, '11.5'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -8,7 +8,7 @@ project 'Runner', {
   'Profile' => :release,
   'Release' => :release,
 }
-
+inhibit_all_warnings!
 def flutter_root
   generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'ephemeral', 'Flutter-Generated.xcconfig'), __FILE__)
   unless File.exist?(generated_xcode_build_settings_path)

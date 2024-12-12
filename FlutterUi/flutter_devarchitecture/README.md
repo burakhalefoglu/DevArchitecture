@@ -1,3 +1,18 @@
 # flutter_devarchitecture
 
-A new Flutter project.
+cd ios
+rm -rf Podfile.lock Pods
+pod deintegrate
+pod setup
+pod install
+cd ..
+flutter build ios
+
+
+cd macos
+rm -rf Podfile.lock Pods
+pod deintegrate
+pod setup
+pod install
+cd ..
+flutter build macos
