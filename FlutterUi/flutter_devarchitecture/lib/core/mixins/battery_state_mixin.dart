@@ -8,8 +8,8 @@ mixin BatteryStateMixin<T extends StatefulWidget> on State<T> {
     await _batteryState.listenBatteryState(_screenMessage);
   }
 
-  Future<void> stopCheckingConnection() async {
-    var _batteryState = CoreInitializer().coreContainer.internetConnection;
-    await _batteryState.stopListening();
+  Future<void> stopListeningBatteryState() async {
+    var _batteryState = CoreInitializer().coreContainer.batteryState;
+    await _batteryState.stopListeningBatteryState();
   }
 }

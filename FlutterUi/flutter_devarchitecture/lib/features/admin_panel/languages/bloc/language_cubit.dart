@@ -20,12 +20,12 @@ class LanguageCubit extends BaseCubit<Language> {
           .getLanguageCodes();
 
       if (!languagesResult.isSuccess) {
-        emitFailState(message: languagesResult.message);
+        emitFailState(languagesResult.message);
         return;
       }
       emit(BlocSuccess<List<LookUp>>(languagesResult.data!));
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
@@ -37,12 +37,12 @@ class LanguageCubit extends BaseCubit<Language> {
           .languageService
           .getLanguageLookups();
       if (!result.isSuccess) {
-        emitFailState(message: result.message);
+        emitFailState(result.message);
         return;
       }
       emit(BlocSuccess<List<LookUp>>(result.data!));
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 }

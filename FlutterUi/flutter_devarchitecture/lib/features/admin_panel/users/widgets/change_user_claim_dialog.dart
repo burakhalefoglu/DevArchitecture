@@ -28,9 +28,6 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
     return BlocProvider(
       create: (context) => UserClaimCubit(),
       child: ExtendedBlocConsumer<UserClaimCubit, BaseState>(
-        listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
         builder: (context, state) {
           if (state is BlocInitial) {
             BlocProvider.of<UserClaimCubit>(context).getUserClaimsByUserId(

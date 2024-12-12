@@ -17,89 +17,89 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
 
   Future<void> getAll() async {
     try {
-      emit(BlocLoading("Veriler Getiriliyor..."));
+      emit(BlocLoading());
       var result = await service.getAll();
       if (!result.isSuccess) {
         if (kDebugMode) {
           print(result.message);
         }
-        emitFailState(message: result.message);
+        emitFailState(result.message);
         return null;
       }
 
       emit(BlocSuccess<List<Map<String, dynamic>>>(result.data!));
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
   Future<void> add(T body) async {
     try {
-      emit(BlocSending("Veri Ekleniyor"));
+      emit(BlocSending());
       var result = await service.create(body.toMap());
       if (!result.isSuccess) {
         if (kDebugMode) {
           print(result.message);
         }
-        emitFailState(message: result.message);
+        emitFailState(result.message);
         return;
       }
       emit(BlocAdded());
       getAll();
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
   Future<void> update(T body) async {
     try {
-      emit(BlocSending("Veri güncelleniyor"));
+      emit(BlocSending());
       var result = await service.update(body.id, body.toMap());
       if (!result.isSuccess) {
         if (kDebugMode) {
           print(result.message);
         }
         emitFailState(
-          message: result.message,
+          result.message,
         );
         return;
       }
       emit(BlocUpdated());
       getAll();
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
   Future<void> delete(dynamic id) async {
     try {
-      emit(BlocSending("Veri siliniyor"));
+      emit(BlocSending());
       var result = await service.delete(id);
       if (!result.isSuccess) {
         if (kDebugMode) {
           print(result.message);
         }
         emitFailState(
-          message: result.message,
+          result.message,
         );
         return;
       }
       emit(BlocDeleted());
       getAll();
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
   void emitLoadingState() {
-    emit(BlocLoading("Yükleniyor!"));
+    emit(BlocLoading());
   }
 
   void emitCheckingState() {
-    emit(BlocChecking("Veriler Kontrol Ediliyor!"));
+    emit(BlocChecking());
   }
 
-  void emitFailState({String? message, Exception? e}) {
+  void emitFailState(String message, {Exception? e}) {
     if (kDebugMode) {
       print(message);
     }
@@ -109,22 +109,25 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
         print(e);
       }
       if (e is BadRequestException) {
-        emit(BlocFailed(400, e.message));
+        emit(BlocFailed(400, message));
       }
       if (e is UnauthorizedException) {
-        emit(BlocFailed(401, e.message));
+        emit(BlocFailed(401, message));
       }
       if (e is ForbiddenException) {
-        emit(BlocFailed(403, e.message));
+        emit(BlocFailed(403, message));
       }
       if (e is NotFoundException) {
-        emit(BlocFailed(404, e.message));
+        emit(BlocFailed(404, message));
       }
       if (e is InternalServerErrorException) {
-        emit(BlocFailed(500, e.message));
+        emit(BlocFailed(500, message));
       }
     }
-    emit(
-        BlocFailed(500, "Beklenmeyen Hata olustu: ${message ?? e.toString()}"));
+    if (kDebugMode) {
+      emit(BlocFailed(500, e.toString()));
+    } else {
+      emit(BlocFailed(500, message));
+    }
   }
 }

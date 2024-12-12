@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import 'package:flutter_devarchitecture/features/layouts/base_scaffold.dart';
-import '../../core/theme/custom_colors.dart';
+import '../../theme/custom_colors.dart';
 
 class ColorPalettePage extends StatelessWidget {
   @override
@@ -29,7 +29,7 @@ class ColorPalettePage extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(16.0),
         child: Text(
-          color.toString().split('.').last, // Enum ismini alır
+          color.toString().split('.').last,
           style: TextStyle(
             color: color == CustomColors.dark ? Colors.white : Colors.black,
             fontSize: 18.0,

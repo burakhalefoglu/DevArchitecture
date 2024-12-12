@@ -28,9 +28,6 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
     return BlocProvider(
       create: (context) => UserGroupCubit(),
       child: ExtendedBlocConsumer<UserGroupCubit, BaseState>(
-        listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
         builder: (context, state) {
           var resultWidget = getResultWidgetByState(context, state);
           if (resultWidget != null) {

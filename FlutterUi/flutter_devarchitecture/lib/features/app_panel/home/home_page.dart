@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import '../../../core/theme/responsive.dart';
 import 'dart:async';
 import 'dart:math';

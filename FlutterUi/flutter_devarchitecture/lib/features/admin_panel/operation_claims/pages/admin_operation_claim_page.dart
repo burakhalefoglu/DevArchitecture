@@ -23,9 +23,6 @@ class AdminOperationClaimPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => OperationClaimCubit(),
       child: ExtendedBlocConsumer<OperationClaimCubit, BaseState>(
-        listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
         builder: (context, state) {
           List<Map<String, dynamic>>? datas;
 

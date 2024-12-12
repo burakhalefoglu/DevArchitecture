@@ -32,9 +32,6 @@ class _UserClaimAutocompleteState extends State<UserClaimAutocomplete> {
     return BlocProvider(
       create: (context) => UserClaimCubit(),
       child: ExtendedBlocConsumer<UserClaimCubit, BaseState>(
-        listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
         builder: (context, state) {
           if (state is BlocInitial) {
             BlocProvider.of<UserClaimCubit>(context)

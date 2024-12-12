@@ -14,13 +14,13 @@ class AuthCubit extends BaseCubit<AuthRequestBasic> {
 
   Future<void> login(AuthRequestBasic body) async {
     try {
-      emit(BlocSending("Giriş Bilgileri Sistemden Sorgulanıyor!"));
+      emit(BlocSending());
       var result = await BusinessInitializer()
           .businessContainer
           .authService
           .login(body.email, body.password);
       if (!result.isSuccess) {
-        emitFailState(message: result.message);
+        emitFailState(result.message);
         return;
       }
       if (appConfig.name == "dev") {
@@ -59,9 +59,9 @@ class AuthCubit extends BaseCubit<AuthRequestBasic> {
           .save("claims", result.data!.claims.toString());
 
       emit(BlocSuccess(
-          'Hoşgeldiniz. ${decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"].toString()}'));
+          '${decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"].toString()}'));
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 }

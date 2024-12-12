@@ -31,9 +31,6 @@ class _LanguageDropdownButtonState extends State<LanguageDropdownButton> {
     return BlocProvider(
       create: (context) => LanguageCubit(),
       child: ExtendedBlocConsumer<LanguageCubit, BaseState>(
-        listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
         builder: (context, state) {
           if (state is BlocInitial) {
             BlocProvider.of<LanguageCubit>(context).getLanguageLookups();

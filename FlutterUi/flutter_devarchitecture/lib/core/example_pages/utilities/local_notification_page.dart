@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '/core/di/core_initializer.dart';
 
-import '../../core/utilities/local_notification/i_notification_service.dart';
-import '../layouts/base_scaffold.dart';
+import '../../utilities/local_notification/i_notification_service.dart';
+import '../../../features/layouts/base_scaffold.dart';
 
 class LocalNotificationPage extends StatefulWidget {
   @override

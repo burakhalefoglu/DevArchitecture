@@ -23,7 +23,7 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
           .getUserGroupPermissions(userId);
 
       if (!selectedGroups.isSuccess) {
-        emitFailState(message: selectedGroups.message);
+        emitFailState(selectedGroups.message);
         return;
       }
 
@@ -40,7 +40,7 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
       emit(BlocSuccess<List<LookUp>>(updatedGroups));
       print(updatedGroups.map((e) => e.toMap()).toList());
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
@@ -53,12 +53,12 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
           .saveUserGroupPermissions(userId, groups);
 
       if (!result.isSuccess) {
-        emitFailState(message: result.message);
+        emitFailState(result.message);
         return;
       }
       await getUserGroupPermissions(userId); // Verileri tekrar yükleyin
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
@@ -75,7 +75,7 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
           .getGroupUsers(groupId);
 
       if (!selectedUsers.isSuccess) {
-        emitFailState(message: selectedUsers.message);
+        emitFailState(selectedUsers.message);
         return;
       }
 
@@ -91,7 +91,7 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
 
       emit(BlocSuccess<List<LookUp>>(updatedUsers));
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
@@ -104,12 +104,12 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
           .saveGroupUsers(groupId, userIds);
 
       if (!result.isSuccess) {
-        emitFailState(message: result.message);
+        emitFailState(result.message);
         return;
       }
       await getGroupUsers(groupId);
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 }

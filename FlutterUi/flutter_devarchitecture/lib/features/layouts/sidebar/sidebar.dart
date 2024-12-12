@@ -68,7 +68,7 @@ class _NavBarState extends State<NavBar> {
               Icons.format_list_bulleted_sharp,
               SidebarConstants.appPanelPageTitle, [
             {
-              "name": "Anasayfa",
+              "name": SidebarConstants.homePageTitle,
               "route": RoutesConstants.appHomePage,
               "icon": Icons.home
             },

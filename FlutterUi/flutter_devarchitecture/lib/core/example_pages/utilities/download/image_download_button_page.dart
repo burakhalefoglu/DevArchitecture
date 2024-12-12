@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/custom_colors.dart';
-import '../../../core/utilities/download_management/buttons/download_buttons.dart';
-import '../../../core/widgets/base_widgets.dart';
-import '../../../core/widgets/tables/filter_table_widget.dart';
-import '../../layouts/base_scaffold.dart';
+import '../../../theme/custom_colors.dart';
+import '../../../utilities/download_management/buttons/download_buttons.dart';
+import '../../../widgets/base_widgets.dart';
+import '../../../widgets/tables/filter_table_widget.dart';
+import '../../../../features/layouts/base_scaffold.dart';
 import '../data/users.dart';
 
-class JsonDownloadPage extends StatelessWidget {
+class ImageDownloadPage extends StatelessWidget {
+  ImageDownloadPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final downloadButtons =
@@ -20,7 +22,7 @@ class JsonDownloadPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: buildPageTitle(context, "JSON Download Button",
+              child: buildPageTitle(context, "Image Download Button",
                   subDirection: ""),
             ),
           ),
@@ -37,13 +39,12 @@ class JsonDownloadPage extends StatelessWidget {
               color: CustomColors.white.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              utilityButton: downloadButtons.jsonButton(context),
+              utilityButton: downloadButtons.imageButton(context),
             ),
           ),
           const Spacer(flex: 5),
         ],
       ),
-      isDrawer: true,
     );
   }
 }

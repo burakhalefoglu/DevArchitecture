@@ -142,7 +142,7 @@ class LoginPage extends StatelessWidget {
                         BlocProvider.of<AuthCubit>(context).emitCheckingState();
                         if (!_form.currentState!.validate()) {
                           BlocProvider.of<AuthCubit>(context).emitFailState(
-                              message: Messages.formValidationErrorMessage);
+                              Messages.formValidationErrorMessage);
                           return;
                         }
                         await BlocProvider.of<AuthCubit>(context)

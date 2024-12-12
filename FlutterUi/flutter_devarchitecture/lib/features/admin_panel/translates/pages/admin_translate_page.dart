@@ -24,9 +24,6 @@ class AdminTranslatePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => TranslateCubit(),
       child: ExtendedBlocConsumer<TranslateCubit, BaseState>(
-        listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
         builder: (context, state) {
           List<Map<String, dynamic>>? datas;
 

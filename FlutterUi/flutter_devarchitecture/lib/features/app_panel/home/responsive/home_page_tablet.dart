@@ -72,8 +72,10 @@ class HomePageTablet extends StatelessWidget {
                                             .getBarChart(
                                                 context,
                                                 basicData,
-                                                "Kategoriler",
-                                                "Satışlar",
+                                                context.translationProvider
+                                                    .translate("Categories"),
+                                                context.translationProvider
+                                                    .translate("Sales"),
                                                 headerTitle: 'BAR CHART',
                                                 CustomColors
                                                     .secondary.getColor)),
@@ -86,8 +88,10 @@ class HomePageTablet extends StatelessWidget {
                                             .getLineChart(
                                                 context,
                                                 basicData,
-                                                "Kategoriler",
-                                                "Satışlar",
+                                                context.translationProvider
+                                                    .translate("Categories"),
+                                                context.translationProvider
+                                                    .translate("Sales"),
                                                 headerTitle: 'LINE CHART',
                                                 CustomColors.danger.getColor)),
                                   ],
@@ -105,11 +109,14 @@ class HomePageTablet extends StatelessWidget {
                                         .coreContainer
                                         .basicChart
                                         .getPieChart(
-                                            context,
-                                            basicData,
-                                            headerTitle: 'PİE CHART',
-                                            "Kategoriler",
-                                            "Satışlar")),
+                                          context,
+                                          basicData,
+                                          headerTitle: 'PİE CHART',
+                                          context.translationProvider
+                                              .translate("Categories"),
+                                          context.translationProvider
+                                              .translate("Sales"),
+                                        )),
                                 const Spacer(),
                                 Expanded(
                                     flex: 5,
@@ -137,8 +144,10 @@ class HomePageTablet extends StatelessWidget {
                                           .getLineAreaChart(
                                               context,
                                               basicData,
-                                              "Kategoriler",
-                                              "Satışlar",
+                                              context.translationProvider
+                                                  .translate("Categories"),
+                                              context.translationProvider
+                                                  .translate("Sales"),
                                               headerTitle: 'LINE AREA CHART',
                                               CustomColors.secondary.getColor)),
                                   const Spacer(),
@@ -169,8 +178,10 @@ class HomePageTablet extends StatelessWidget {
                                               context,
                                               heatmapData,
                                               headerTitle: 'HEATMAP CHART',
-                                              "İsim",
-                                              "Gün")),
+                                              context.translationProvider
+                                                  .translate("Name"),
+                                              context.translationProvider
+                                                  .translate("Days"))),
                                   const Spacer(),
                                   Expanded(
                                       flex: 5,

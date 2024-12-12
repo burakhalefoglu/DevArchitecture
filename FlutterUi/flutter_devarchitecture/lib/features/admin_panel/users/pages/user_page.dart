@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
@@ -28,9 +29,6 @@ class AdminUserPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => UserCubit(),
       child: ExtendedBlocConsumer<UserCubit, BaseState>(
-        listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
         builder: (context, state) {
           List<Map<String, dynamic>>? datas;
 
@@ -75,8 +73,9 @@ class AdminUserPage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                "Kullanıcı Listesi",
-                subDirection: "Admin Panel",
+                context.translationProvider.translate("UserList"),
+                subDirection:
+                    context.translationProvider.translate("Management"),
               ),
             ),
           ),
@@ -84,14 +83,17 @@ class AdminUserPage extends StatelessWidget {
             flex: 9,
             child: FilterTableWidget(
               datas: datas,
-              headers: const [
+              headers: [
                 {"userId": "ID"},
-                {"email": "E-posta"},
-                {"fullName": "Ad-Soyad"},
-                {"status": "Durum"},
-                {"mobilePhones": "Telefon"},
-                {"address": "Adres"},
-                {"notes": "Notlar"},
+                {"email": context.translationProvider.translate("Email")},
+                {"fullName": context.translationProvider.translate("FullName")},
+                {"status": context.translationProvider.translate("Status")},
+                {
+                  "mobilePhones":
+                      context.translationProvider.translate("MobilePhones")
+                },
+                {"address": context.translationProvider.translate("Address")},
+                {"notes": context.translationProvider.translate("Notes")},
               ],
               color: CustomColors.primary.getColor,
               customManipulationButton: const [
@@ -128,7 +130,8 @@ class AdminUserPage extends StatelessWidget {
                 },
                 (userId) => _confirmDelete(context, userId)
               ],
-              infoHover: getInfoHover(context, "Kullanıcı bilgilerini düzenle"),
+              infoHover: getInfoHover(
+                  context, context.translationProvider.translate("UpdateUser")),
               addButton: getAddButton(
                 context,
                 () => _addUser(context),

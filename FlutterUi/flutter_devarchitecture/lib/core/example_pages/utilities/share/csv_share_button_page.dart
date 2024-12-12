@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/custom_colors.dart';
-import '../../../core/utilities/download_management/buttons/download_buttons.dart';
-import '../../../core/widgets/base_widgets.dart';
-import '../../../core/widgets/tables/filter_table_widget.dart';
-import '../../layouts/base_scaffold.dart';
+import '../../../theme/custom_colors.dart';
+import '../../../utilities/file_share/Buttons/share_buttons.dart';
+import '../../../widgets/base_widgets.dart';
+import '../../../widgets/tables/filter_table_widget.dart';
+import '../../../../features/layouts/base_scaffold.dart';
 import '../data/users.dart';
 
-class TxtDownloadPage extends StatelessWidget {
+class CsvSharePage extends StatelessWidget {
+  CsvSharePage({super.key});
   @override
   Widget build(BuildContext context) {
-    final downloadButtons =
-        DownloadButtons(data: users.map((e) => e.toMap()).toList());
+    final shareButtons =
+        ShareButtons(data: users.map((e) => e.toMap()).toList());
 
     return buildBaseScaffold(
       context,
@@ -20,8 +21,8 @@ class TxtDownloadPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: buildPageTitle(context, "TXT Download Button",
-                  subDirection: ""),
+              child:
+                  buildPageTitle(context, "Csv Share Button", subDirection: ""),
             ),
           ),
           Expanded(
@@ -37,13 +38,12 @@ class TxtDownloadPage extends StatelessWidget {
               color: CustomColors.white.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              utilityButton: downloadButtons.txtButton(context),
+              utilityButton: shareButtons.csvButton(context),
             ),
           ),
           const Spacer(flex: 5),
         ],
       ),
-      isDrawer: true,
     );
   }
 }

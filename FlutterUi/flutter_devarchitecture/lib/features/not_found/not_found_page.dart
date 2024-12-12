@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
+import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../routes/routes_constants.dart';
 import '../layouts/base_scaffold.dart';
@@ -29,7 +30,7 @@ class NotFoundPage extends StatelessWidget {
                                 context.percent75Screen)),
                     Expanded(
                         child: Text(
-                      "Ulaşmaya Çalıştığınız Sayfa bulunmamaktadır!",
+                      context.translationProvider.translate("PageNotFound"),
                       style: TextStyle(
                           fontSize: context.isMobile ? 18 : 22,
                           fontWeight: FontWeight.w500),
@@ -41,7 +42,8 @@ class NotFoundPage extends StatelessWidget {
                         onPressed: () {
                           Modular.to.navigate(RoutesConstants.appHomePage);
                         },
-                        child: const Text("Anasayfaya Geri Dön"),
+                        child: Text(context.translationProvider
+                            .translate("ReturnHomePage")),
                       ),
                     )
                   ],

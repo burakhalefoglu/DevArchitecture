@@ -26,7 +26,7 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
           .groupClaimService
           .getGroupClaimsByGroupId(groupId);
       if (!selectedGroupClaimResult.isSuccess) {
-        emitFailState(message: selectedGroupClaimResult.message);
+        emitFailState(selectedGroupClaimResult.message);
         return;
       }
       var selectedClaimIds =
@@ -43,7 +43,7 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
           updatedClaims.map((e) => e.toMap()).toList().toString());
       emit(BlocSuccess<List<LookUp>>(updatedClaims));
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
@@ -55,13 +55,13 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
           .groupClaimService
           .update(groupId, {'GroupId': groupId, 'ClaimIds': claims});
       if (result.isSuccess == false) {
-        emitFailState(message: result.message);
+        emitFailState(result.message);
         return;
       }
       await getGroupClaimsByGroupId(groupId);
       emit(BlocSuccess("Grup yetkisi güncellendi"));
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 }

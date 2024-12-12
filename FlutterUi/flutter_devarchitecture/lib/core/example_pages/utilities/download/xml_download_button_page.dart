@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/custom_colors.dart';
-import '../../../core/utilities/download_management/buttons/download_buttons.dart';
-import '../../../core/widgets/base_widgets.dart';
-import '../../../core/widgets/tables/filter_table_widget.dart';
-import '../../layouts/base_scaffold.dart';
+import '../../../theme/custom_colors.dart';
+import '../../../utilities/download_management/buttons/download_buttons.dart';
+import '../../../widgets/base_widgets.dart';
+import '../../../widgets/tables/filter_table_widget.dart';
+import '../../../../features/layouts/base_scaffold.dart';
 import '../data/users.dart';
 
-class ImageDownloadPage extends StatelessWidget {
-  ImageDownloadPage({super.key});
-
+class XmlDownloadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final downloadButtons =
@@ -22,7 +20,7 @@ class ImageDownloadPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: buildPageTitle(context, "Image Download Button",
+              child: buildPageTitle(context, "XML Download Button",
                   subDirection: ""),
             ),
           ),
@@ -39,12 +37,13 @@ class ImageDownloadPage extends StatelessWidget {
               color: CustomColors.white.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              utilityButton: downloadButtons.imageButton(context),
+              utilityButton: downloadButtons.xmlButton(context),
             ),
           ),
           const Spacer(flex: 5),
         ],
       ),
+      isDrawer: true,
     );
   }
 }

@@ -26,9 +26,6 @@ class AdminGroupPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => GroupCubit(),
       child: ExtendedBlocConsumer<GroupCubit, BaseState>(
-        listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
         builder: (context, state) {
           List<Map<String, dynamic>>? datas;
 

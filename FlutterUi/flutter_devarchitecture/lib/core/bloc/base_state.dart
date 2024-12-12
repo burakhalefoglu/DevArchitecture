@@ -7,18 +7,16 @@ class BlocInitial extends BaseState {
 }
 
 class BlocLoading extends BaseState {
-  final String message;
-  BlocLoading(this.message);
+  final String? message;
+  BlocLoading([this.message]);
 }
 
-class BlocChecking extends BaseState {
-  final String message;
-  BlocChecking(this.message);
+class BlocChecking extends BlocLoading {
+  BlocChecking([String? message]) : super(message);
 }
 
-class BlocSending extends BaseState {
-  final String message;
-  BlocSending(this.message);
+class BlocSending extends BlocLoading {
+  BlocSending([String? message]) : super(message);
 }
 
 class BlocFailed extends BaseState {
@@ -35,20 +33,18 @@ class BlocFailed extends BaseState {
 class BlocSuccess<T> extends BaseState {
   final T? result;
   final String? message;
+
   const BlocSuccess(this.result, {this.message});
 }
 
 class BlocAdded extends BlocSuccess {
-  const BlocAdded()
-      : super(null, message: "Veri Başarılı bir şekilde Eklendi!");
+  const BlocAdded({String? message}) : super(null, message: message);
 }
 
 class BlocUpdated extends BlocSuccess {
-  const BlocUpdated()
-      : super(null, message: "Veri Başarılı bir şekilde Güncellendi!");
+  const BlocUpdated({String? message}) : super(null, message: message);
 }
 
 class BlocDeleted extends BlocSuccess {
-  const BlocDeleted()
-      : super(null, message: "Veri Başarılı bir şekilde silindi!");
+  const BlocDeleted({String? message}) : super(null, message: message);
 }

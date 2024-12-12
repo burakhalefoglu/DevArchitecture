@@ -24,9 +24,6 @@ class AdminLanguagePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => LanguageCubit(),
       child: ExtendedBlocConsumer<LanguageCubit, BaseState>(
-        listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
         builder: (context, state) {
           List<Map<String, dynamic>>? datas;
 

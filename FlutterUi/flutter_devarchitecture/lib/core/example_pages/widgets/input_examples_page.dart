@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import 'package:flutter_devarchitecture/features/layouts/base_scaffold.dart';
-import '../../core/widgets/inputs/auto_complete.dart';
-import '../../core/widgets/inputs/date_input.dart';
-import '../../core/widgets/inputs/dropdown_button.dart';
-import '../../core/widgets/inputs/email_input.dart';
-import '../../core/widgets/inputs/number_input.dart';
-import '../../core/widgets/inputs/password_input.dart';
-import '../../core/widgets/inputs/phone_input.dart';
-import '../../core/widgets/inputs/plate_input.dart';
-import '../../core/widgets/inputs/text_input.dart';
-import '../../core/widgets/inputs/vehicle_license_input.dart';
+import '../../widgets/inputs/auto_complete.dart';
+import '../../widgets/inputs/date_input.dart';
+import '../../widgets/inputs/dropdown_button.dart';
+import '../../widgets/inputs/email_input.dart';
+import '../../widgets/inputs/number_input.dart';
+import '../../widgets/inputs/password_input.dart';
+import '../../widgets/inputs/phone_input.dart';
+import '../../widgets/inputs/plate_input.dart';
+import '../../widgets/inputs/text_input.dart';
+import '../../widgets/inputs/vehicle_license_input.dart';
 
 class InputExamplesPage extends StatefulWidget {
   @override

@@ -26,7 +26,6 @@ PopupMenuButton buildNavWithSubMenuItemElement(BuildContext context,
     offset: !context.isMobile ? const Offset(200, 0) : const Offset(0, 0),
     itemBuilder: (context) {
       return List.generate(options.length, (index) {
-        // Eğer alt menü varsa, aynı fonksiyon tekrar çağrılır.
         if (options[index].containsKey('subMenu') &&
             options[index]['subMenu'] != null) {
           return PopupMenuItem(

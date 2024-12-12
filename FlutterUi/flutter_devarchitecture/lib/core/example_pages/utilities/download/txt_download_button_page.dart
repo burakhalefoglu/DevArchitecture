@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/custom_colors.dart';
-import '../../../core/utilities/download_management/buttons/download_buttons.dart';
-import '../../../core/widgets/base_widgets.dart';
-import '../../../core/widgets/tables/filter_table_widget.dart';
-import '../../layouts/base_scaffold.dart';
+import '../../../theme/custom_colors.dart';
+import '../../../utilities/download_management/buttons/download_buttons.dart';
+import '../../../widgets/base_widgets.dart';
+import '../../../widgets/tables/filter_table_widget.dart';
+import '../../../../features/layouts/base_scaffold.dart';
 import '../data/users.dart';
 
-class CsvDownloadPage extends StatelessWidget {
-  CsvDownloadPage({super.key});
+class TxtDownloadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final downloadButtons =
@@ -21,7 +20,7 @@ class CsvDownloadPage extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: buildPageTitle(context, "Csv Download Button",
+              child: buildPageTitle(context, "TXT Download Button",
                   subDirection: ""),
             ),
           ),
@@ -38,12 +37,13 @@ class CsvDownloadPage extends StatelessWidget {
               color: CustomColors.white.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              utilityButton: downloadButtons.csvButton(context),
+              utilityButton: downloadButtons.txtButton(context),
             ),
           ),
           const Spacer(flex: 5),
         ],
       ),
+      isDrawer: true,
     );
   }
 }

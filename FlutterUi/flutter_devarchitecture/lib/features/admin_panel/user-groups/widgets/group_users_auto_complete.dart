@@ -32,9 +32,6 @@ class _GroupUsersAutocompleteState extends State<GroupUsersAutocomplete> {
     return BlocProvider(
       create: (context) => UserGroupCubit(),
       child: ExtendedBlocConsumer<UserGroupCubit, BaseState>(
-        listener: (context, state) {
-          showScreenMessageByBlocStatus(state);
-        },
         builder: (context, state) {
           if (state is BlocInitial) {
             BlocProvider.of<UserGroupCubit>(context)

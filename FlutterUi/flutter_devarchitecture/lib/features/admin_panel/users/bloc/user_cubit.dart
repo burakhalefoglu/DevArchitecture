@@ -10,36 +10,36 @@ class UserCubit extends BaseCubit<User> {
   }
 
   Future<void> getAllUser() async {
-    emit(BlocLoading("Kullanıcılar getiriliyor..."));
+    emit(BlocLoading());
+
     try {
       final usersResult =
           await BusinessInitializer().businessContainer.userService.getAll();
 
       if (!usersResult.isSuccess) {
-        emitFailState(message: usersResult.message);
+        emitFailState(usersResult.message);
         return;
       }
       emit(BlocSuccess<List<User>>(
           usersResult.data!.map((e) => User.fromMap(e)).toList()));
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
   Future<void> saveUserPassword(int userId, String password) async {
-    emit(BlocLoading("Kullanıcı sifresi kaydediliyor..."));
+    emit(BlocLoading());
     try {
-      // şifreyi güncelle
       var authService = BusinessInitializer().businessContainer.authService;
       var result = await authService
           .saveUserPassword(PasswordDto(password: password, userId: userId));
       if (!result.isSuccess) {
-        emitFailState(message: result.message);
+        emitFailState(result.message);
         return;
       }
-      await getAllUser(); // Kullanıcıları tekrar yükleyin
+      await getAllUser();
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 }

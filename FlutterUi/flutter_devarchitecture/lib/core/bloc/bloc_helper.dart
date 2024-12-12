@@ -13,13 +13,22 @@ void showScreenMessageByBlocStatus(BaseState state) {
         .getErrorMessage(state.message);
   }
   if (state is BlocChecking) {
-    CoreInitializer().coreContainer.screenMessage.getInfoMessage(state.message);
+    CoreInitializer()
+        .coreContainer
+        .screenMessage
+        .getInfoMessage(state.message ?? "");
   }
   if (state is BlocSending) {
-    CoreInitializer().coreContainer.screenMessage.getInfoMessage(state.message);
+    CoreInitializer()
+        .coreContainer
+        .screenMessage
+        .getInfoMessage(state.message ?? "");
   }
   if (state is BlocLoading) {
-    CoreInitializer().coreContainer.screenMessage.getInfoMessage(state.message);
+    CoreInitializer()
+        .coreContainer
+        .screenMessage
+        .getInfoMessage(state.message ?? "");
   }
   if (state is BlocAdded) {
     CoreInitializer()

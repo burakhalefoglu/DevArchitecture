@@ -1,25 +1,24 @@
-import 'package:flutter_devarchitecture/features/theme/color_palette_page.dart';
-import 'package:flutter_devarchitecture/features/utilities/logger_page.dart';
-import 'package:flutter_devarchitecture/features/utilities/permission_page.dart';
-import 'package:flutter_devarchitecture/features/utilities/qr_code_scanner.dart';
-import 'package:flutter_devarchitecture/features/utilities/screen_message_page.dart';
-
-import '../features/utilities/share/csv_share_button_page.dart';
-import '../features/utilities/share/excel_share_button_page.dart';
-import '../features/utilities/share/image_share_button_page.dart';
-import '../features/utilities/share/json_share_button_page.dart';
-import '../features/utilities/share/pdf_share_button_page.dart';
-import '../features/utilities/share/txt_share_button_page.dart';
-import '../features/utilities/share/xml_share_button_page.dart';
-import '../features/utilities/internet_connection_page.dart';
-import '../features/utilities/local_notification_page.dart';
-import '../features/widgets/input_examples_page.dart';
+import '../core/example_pages/theme/color_palette_page.dart';
+import '../core/example_pages/utilities/logger_page.dart';
+import '../core/example_pages/utilities/permission_page.dart';
+import '../core/example_pages/utilities/qr_code_scanner.dart';
+import '../core/example_pages/utilities/screen_message_page.dart';
+import '../core/example_pages/utilities/share/csv_share_button_page.dart';
+import '../core/example_pages/utilities/share/excel_share_button_page.dart';
+import '../core/example_pages/utilities/share/image_share_button_page.dart';
+import '../core/example_pages/utilities/share/json_share_button_page.dart';
+import '../core/example_pages/utilities/share/pdf_share_button_page.dart';
+import '../core/example_pages/utilities/share/txt_share_button_page.dart';
+import '../core/example_pages/utilities/share/xml_share_button_page.dart';
+import '../core/example_pages/utilities/internet_connection_page.dart';
+import '../core/example_pages/utilities/local_notification_page.dart';
+import '../core/example_pages/widgets/input_examples_page.dart';
 import '../features/admin_panel/languages/pages/admin_language_page.dart';
 import '../features/admin_panel/users/pages/user_page.dart';
-import '../features/utilities/download/csv_download_button_page.dart';
-import '../features/utilities/download/excel_download_button_page.dart';
-import '../features/utilities/download/image_download_button_page.dart';
-import '../features/utilities/download/json_download_button_page.dart';
+import '../core/example_pages/utilities/download/csv_download_button_page.dart';
+import '../core/example_pages/utilities/download/excel_download_button_page.dart';
+import '../core/example_pages/utilities/download/image_download_button_page.dart';
+import '../core/example_pages/utilities/download/json_download_button_page.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -31,12 +30,12 @@ import '../features/admin_panel/translates/pages/admin_translate_page.dart';
 import '../features/app_panel/home/home_page.dart';
 import '../features/auth/pages/login_page.dart';
 import '../features/not_found/not_found_page.dart';
-import '../features/utilities/download/pdf_download_button_page.dart';
-import '../features/utilities/download/txt_download_button_page.dart';
-import '../features/utilities/download/xml_download_button_page.dart';
-import '../features/utilities/battery_status_page.dart';
-import '../features/utilities/biometric_auth_page.dart';
-import '../features/utilities/device_info_page.dart';
+import '../core/example_pages/utilities/download/pdf_download_button_page.dart';
+import '../core/example_pages/utilities/download/txt_download_button_page.dart';
+import '../core/example_pages/utilities/download/xml_download_button_page.dart';
+import '../core/example_pages/utilities/battery_status_page.dart';
+import '../core/example_pages/utilities/biometric_auth_page.dart';
+import '../core/example_pages/utilities/device_info_page.dart';
 import 'routes_constants.dart';
 
 class AppRouteModule extends Module {

@@ -16,12 +16,12 @@ class OperationClaimCubit extends BaseCubit<OperationClaim> {
       var result =
           await service.update(operationClaimDto.id, operationClaimDto.toMap());
       if (!result.isSuccess) {
-        emitFailState(message: result.message);
+        emitFailState(result.message);
         return;
       }
       await getAll();
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 }

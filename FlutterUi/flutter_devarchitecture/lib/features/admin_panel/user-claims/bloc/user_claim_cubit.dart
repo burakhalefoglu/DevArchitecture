@@ -23,7 +23,7 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
           .getUserClaimsByUserId(userId);
 
       if (!selectedUserClaimsResult.isSuccess) {
-        emitFailState(message: selectedUserClaimsResult.message);
+        emitFailState(selectedUserClaimsResult.message);
         return;
       }
       var selectedClaimIds =
@@ -39,7 +39,7 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
 
       emit(BlocSuccess<List<LookUp>>(updatedClaims));
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 
@@ -51,12 +51,12 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
           await service.update(userId, {"UserId": userId, "ClaimIds": claims});
 
       if (!result.isSuccess) {
-        emitFailState(message: result.message);
+        emitFailState(result.message);
         return;
       }
       await getUserClaimsByUserId(userId); // Kullanıcıları tekrar yükleyin
     } on Exception catch (e) {
-      emitFailState(e: e);
+      emitFailState("", e: e);
     }
   }
 }
