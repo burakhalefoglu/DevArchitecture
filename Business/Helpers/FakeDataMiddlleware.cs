@@ -351,6 +351,174 @@ namespace Business.Helpers
             await mediator.Send(new CreateTranslateInternalCommand
                 { LangId = 2, Code = "Days", Value = "Days" });
 
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "HomePageTitle", Value = "Anasayfa" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "HomePageTitle", Value = "Home Page" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AdminPanelPageTitle", Value = "Yönetim" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AdminPanelPageTitle", Value = "Admin Panel" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AdminPanelHomePageTitle", Value = "Admin Paneli" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AdminPanelHomePageTitle", Value = "Admin Panel" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AdminPanelPageUserTitle", Value = "Kullanıcılar" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AdminPanelPageUserTitle", Value = "Users" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AdminPanelPageGroupTitle", Value = "Gruplar" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AdminPanelPageGroupTitle", Value = "Groups" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AdminPanelPageOperationClaimTitle", Value = "Operasyon Yetkileri" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AdminPanelPageOperationClaimTitle", Value = "Operation Claims" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AdminPanelPageLanguageTitle", Value = "Diller" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AdminPanelPageLanguageTitle", Value = "Languages" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AdminPanelPageTranslateTitle", Value = "Dil Çevirileri" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AdminPanelPageTranslateTitle", Value = "Language Translations" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AdminPanelPageLogTitle", Value = "Log Kayıtları" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AdminPanelPageLogTitle", Value = "Log Records" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AppPanelPageTitle", Value = "Uygulama" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AppPanelPageTitle", Value = "Application" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "UtilitiesPageTitle", Value = "Utilities" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "UtilitiesPageTitle", Value = "Utilities" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "BatteryStatusPageTitle", Value = "Batarya Durumu" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "BatteryStatusPageTitle", Value = "Battery Status" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "BiometricAuthPageTitle", Value = "Biyometrik Kimlik Dogrulama" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "BiometricAuthPageTitle", Value = "Biometric Authentication" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "DeviceInfoPageTitle", Value = "Cihaz Bilgileri" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "DeviceInfoPageTitle", Value = "Device Info" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "DownloadPageTitle", Value = "İndirme İşlemleri" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "DownloadPageTitle", Value = "Download Operations" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "ExcelDownloadPageTitle", Value = "Excel" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "ExcelDownloadPageTitle", Value = "Excel" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "PdfDownloadPageTitle", Value = "PDF" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "PdfDownloadPageTitle", Value = "PDF" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CsvDownloadPageTitle", Value = "CSV" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CsvDownloadPageTitle", Value = "CSV" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "JsonDownloadPageTitle", Value = "JSON" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "JsonDownloadPageTitle", Value = "JSON" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "XmlDownloadPageTitle", Value = "XML" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "XmlDownloadPageTitle", Value = "XML" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "ImageDownloadPageTitle", Value = "Resim" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "ImageDownloadPageTitle", Value = "Image" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "TxtDownloadPageTitle", Value = "TXT" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "TxtDownloadPageTitle", Value = "TXT" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "SharePageTitle", Value = "Paylaşım İşlemleri" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "SharePageTitle", Value = "Share Operations" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "ExcelSharePageTitle", Value = "Excel" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "ExcelSharePageTitle", Value = "Excel" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "PdfSharePageTitle", Value = "PDF" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "PdfSharePageTitle", Value = "PDF" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CsvSharePageTitle", Value = "CSV" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CsvSharePageTitle", Value = "CSV" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "JsonSharePageTitle", Value = "JSON" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "JsonSharePageTitle", Value = "JSON" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "XmlSharePageTitle", Value = "XML" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "XmlSharePageTitle", Value = "XML" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "ImageSharePageTitle", Value = "Resim" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "ImageSharePageTitle", Value = "Image" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "TxtSharePageTitle", Value = "TXT" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "TxtSharePageTitle", Value = "TXT" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "InternetConnectionPageTitle", Value = "İnternet Bağlantısı" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "InternetConnectionPageTitle", Value = "Internet Connection" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "LocalNotificationPageTitle", Value = "Yerel Bildirimler" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "LocalNotificationPageTitle", Value = "Local Notifications" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "ScreenMessagePageTitle", Value = "Ekran Mesajı" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "ScreenMessagePageTitle", Value = "Screen Message" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "LoggerPageTitle", Value = "Log İşlemleri" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "LoggerPageTitle", Value = "Logger Operations" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "PermissionPageTitle", Value = "İzinler" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "PermissionPageTitle", Value = "Permissions" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "QrCodeScannerPageTitle", Value = "QR Kod Okuma" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "QrCodeScannerPageTitle", Value = "QR Code Scanner" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "TemplatesPageTitle", Value = "Tema" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "TemplatesPageTitle", Value = "Templates" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "ColorPalettePageTitle", Value = "Renk Paleti" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "ColorPalettePageTitle", Value = "Color Palette" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "WidgetsPageTitle", Value = "Widgetler" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "WidgetsPageTitle", Value = "Widgets" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "InputExamplesPageTitle", Value = "Girdi Olayları" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "InputExamplesPageTitle", Value = "Input Examples" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "FormValidationErrorMessage", Value = "Lütfen eksik bilgileri doldurun ve tekrar deneyin." });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "FormValidationErrorMessage", Value = "Please fill in the missing information and try again." });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerDefaultHttpMessage", Value = "Veriler getiriliyor" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerDefaultHttpMessage", Value = "Data is being retrieved" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerDefaultCalculateMessage", Value = "Hesaplama yapılıyor" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerDefaultCalculateMessage", Value = "Calculation is being performed" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerSaveInfoMessage", Value = "Kayıt İşlemi Yapılıyor..." });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerSaveInfoMessage", Value = "Save operation is being performed..." });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerInternetConnectionSuccessMessage", Value = "İnternet Bağlantısı başarılı!" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerInternetConnectionSuccessMessage", Value = "Internet connection successful!" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerDefaultWarningMessage", Value = "Bir problem olabilir." });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerDefaultWarningMessage", Value = "There might be a problem." });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerInternetConnectionErrorMessage", Value = "İnternet Bağlantınızı kontrol ediniz!" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerInternetConnectionErrorMessage", Value = "Please check your internet connection!" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerDefaultErrorMessage", Value = "Bir hata oluştu" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerDefaultErrorMessage", Value = "An error occurred" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CompanyNameInputFieldWidgetEmptyErrorMessage", Value = "Firma Adı Boş Geçilemez!" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CompanyNameInputFieldWidgetEmptyErrorMessage", Value = "Company name cannot be empty!" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerSuccessHttpMessage", Value = "Veriler hazır" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerSuccessHttpMessage", Value = "Data is ready" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerSuccessSaveMessage", Value = "Kayıt İşlemi Başarılı!" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerSuccessSaveMessage", Value = "Save operation successful!" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerSuccessCalculateMessage", Value = "Hesaplama Tamamlandı!" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerSuccessCalculateMessage", Value = "Calculation completed!" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "FuelInputErrorMessage", Value = "Yakıt Alım Miktarı Kapasiteyi Aşıyor!" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "FuelInputErrorMessage", Value = "Fuel intake exceeds capacity!" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "FuelSpendErrorMessage", Value = "Yakıt Harcama Geçerli Miktarı Aşıyor!" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "FuelSpendErrorMessage", Value = "Fuel expenditure exceeds valid amount!" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CustomerAddSuccessMessage", Value = "Veri Eklendi..." });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CustomerAddSuccessMessage", Value = "Data added..." });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "CheckSuccessMessage", Value = "Veri kontrolü başarılı!, Sisteme gönderiliyor..." });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "CheckSuccessMessage", Value = "Data verification successful! Sending to the system..." });
+
             // Create default group
             await mediator.Send(new CreateGroupCommand
             {

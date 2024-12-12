@@ -1,37 +1,3 @@
-// class Messages {
-//   // info messages
-//   static String formValidationErrorMessage =
-//       "Lütfen eksik bilgileri doldurun ve tekrar deneyin.";
-//   static String customerDefaultHttpMessage = "Veriler getiriliyor";
-//   static String customerDefaultCalculateMessage = "Hesaplama yapılıyor";
-//   static String customerSaveInfoMessage = "Kayıt İşlemi Yapılıyor...";
-//   static String customerInternetConnectionSuccessMessage =
-//       "İnternet Bağlanısı başarılı!";
-//   // warning messages
-//   static String customerDefaultWarningMessage = "Bir problem olabilir.";
-
-//   // error messages
-//   static String customerInternetConnectionErrorMessage =
-//       "İnternet Bağlanıtızı kontrol ediniz!";
-//   static String customerDefaultErrorMessage = "Bir hata oluştu";
-//   static String companyNameinputFieldWidgetEmptyErrorMessage =
-//       "Firma Adı Boş Geçilemez!";
-
-//   // success messages
-//   static String customerSuccessHttpMessage = "Veriler hazır";
-//   static String customerSuccessSaveMessage = "Kayıt İşlemi Başarılı!";
-//   static String customerSuccessCalculateMessage = "Hesaplama Tamamlandı!";
-
-//   static String fuelInputErrorMessage = "Yakıt Alım Miktarı Kapasiteyi Aşıyor!";
-
-//   static var fuelSpendErrorMessage = "Yakıt Harcama Geçerli Miktarı Aşıyor!";
-
-//   static String customerAddSuccessMessage = "Veri Eklendi...";
-
-//   static String checkSuccessMessage =
-//       "Veri kontrolü başarılı!, Sisteme gönderiliyor...";
-// }
-
 import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 
@@ -64,36 +30,35 @@ class Messages {
   static late String customerAddSuccessMessage;
   static late String checkSuccessMessage;
 
-  /// Uygulama başlatıldığında bir kez çağrılır.
   static void init(BuildContext context) {
     _context = context;
 
-    formValidationErrorMessage = _translate("formValidationErrorMessage");
-    customerDefaultHttpMessage = _translate("customerDefaultHttpMessage");
+    formValidationErrorMessage = _translate("FormValidationErrorMessage");
+    customerDefaultHttpMessage = _translate("CustomerDefaultHttpMessage");
     customerDefaultCalculateMessage =
-        _translate("customerDefaultCalculateMessage");
-    customerSaveInfoMessage = _translate("customerSaveInfoMessage");
+        _translate("CustomerDefaultCalculateMessage");
+    customerSaveInfoMessage = _translate("CustomerSaveInfoMessage");
     customerInternetConnectionSuccessMessage =
-        _translate("customerInternetConnectionSuccessMessage");
+        _translate("CustomerInternetConnectionSuccessMessage");
 
-    customerDefaultWarningMessage = _translate("customerDefaultWarningMessage");
+    customerDefaultWarningMessage = _translate("CustomerDefaultWarningMessage");
 
     customerInternetConnectionErrorMessage =
-        _translate("customerInternetConnectionErrorMessage");
-    customerDefaultErrorMessage = _translate("customerDefaultErrorMessage");
+        _translate("CustomerInternetConnectionErrorMessage");
+    customerDefaultErrorMessage = _translate("CustomerDefaultErrorMessage");
     companyNameInputFieldWidgetEmptyErrorMessage =
-        _translate("companyNameInputFieldWidgetEmptyErrorMessage");
+        _translate("CompanyNameInputFieldWidgetEmptyErrorMessage");
 
-    customerSuccessHttpMessage = _translate("customerSuccessHttpMessage");
-    customerSuccessSaveMessage = _translate("customerSuccessSaveMessage");
+    customerSuccessHttpMessage = _translate("CustomerSuccessHttpMessage");
+    customerSuccessSaveMessage = _translate("CustomerSuccessSaveMessage");
     customerSuccessCalculateMessage =
-        _translate("customerSuccessCalculateMessage");
+        _translate("CustomerSuccessCalculateMessage");
 
-    fuelInputErrorMessage = _translate("fuelInputErrorMessage");
-    fuelSpendErrorMessage = _translate("fuelSpendErrorMessage");
+    fuelInputErrorMessage = _translate("FuelInputErrorMessage");
+    fuelSpendErrorMessage = _translate("FuelSpendErrorMessage");
 
-    customerAddSuccessMessage = _translate("customerAddSuccessMessage");
-    checkSuccessMessage = _translate("checkSuccessMessage");
+    customerAddSuccessMessage = _translate("CustomerAddSuccessMessage");
+    checkSuccessMessage = _translate("CheckSuccessMessage");
   }
 
   static String _translate(String key) {
