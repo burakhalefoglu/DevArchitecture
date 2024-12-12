@@ -69,6 +69,15 @@ class _AppState extends State<App>
         BatteryStateMixin,
         ModularMixin {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Provider.of<TranslationProvider>(context, listen: false)
+          .loadTranslations("tr-TR");
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return buildChild(context);
   }

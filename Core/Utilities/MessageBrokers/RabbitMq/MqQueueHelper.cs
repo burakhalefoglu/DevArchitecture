@@ -19,25 +19,26 @@ namespace Core.Utilities.MessageBrokers.RabbitMq
 
         public void QueueMessage(string messageText)
         {
-            var factory = new ConnectionFactory
-            {
-                HostName = _brokerOptions.HostName,
-                UserName = _brokerOptions.UserName,
-                Password = _brokerOptions.Password
-            };
-            using var connection = factory.CreateConnection();
-            using var channel = connection.CreateModel();
-            channel.QueueDeclare(
+            ConnectionFactory factory = new ConnectionFactory();
+
+            factory.UserName = _brokerOptions.UserName;
+            factory.Password = _brokerOptions.Password;
+            factory.HostName = _brokerOptions.HostName;
+
+            using var connection = factory.CreateConnectionAsync().GetAwaiter().GetResult();
+            using var channel =  connection.CreateChannelAsync().GetAwaiter().GetResult();
+
+            channel.QueueDeclareAsync(
                 queue: "DArchQueue",
                 durable: false,
                 exclusive: false,
                 autoDelete: false,
-                arguments: null);
+                arguments: null).GetAwaiter().GetResult();
 
             var message = JsonConvert.SerializeObject(messageText);
-            var body = Encoding.UTF8.GetBytes(message);
+            byte[] messageBodyBytes = Encoding.UTF8.GetBytes(message);
 
-            channel.BasicPublish(exchange: string.Empty, routingKey: "DArchQueue", basicProperties: null, body: body);
+            channel.BasicPublishAsync(exchange: string.Empty, routingKey: "DArchQueue", false, body: messageBodyBytes).GetAwaiter().GetResult();
         }
     }
 }

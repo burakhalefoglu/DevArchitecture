@@ -19,35 +19,38 @@ namespace Core.Utilities.MessageBrokers.RabbitMq
 
         public void GetQueue()
         {
-            var factory = new ConnectionFactory()
-            {
-                HostName = _brokerOptions.HostName,
-                UserName = _brokerOptions.UserName,
-                Password = _brokerOptions.Password
-            };
-            using var connection = factory.CreateConnection();
-            using var channel = connection.CreateModel();
-            channel.QueueDeclare(
+            ConnectionFactory factory = new ConnectionFactory();
+
+            factory.UserName = _brokerOptions.UserName;
+            factory.Password = _brokerOptions.Password;
+            factory.HostName = _brokerOptions.HostName;
+
+            using var connection = factory.CreateConnectionAsync().GetAwaiter().GetResult();
+            using var channel =  connection.CreateChannelAsync().GetAwaiter().GetResult();
+
+            channel.QueueDeclareAsync(
                 queue: "DArchQueue",
                 durable: false,
                 exclusive: false,
                 autoDelete: false,
-                arguments: null);
+                arguments: null).GetAwaiter().GetResult();
 
-            var consumer = new EventingBasicConsumer(channel);
+            var consumer = new AsyncEventingBasicConsumer(channel);
 
-            consumer.Received += (model, mq) =>
+            consumer.ReceivedAsync += async (ch, ea) =>
             {
-                var body = mq.Body.ToArray();
+                var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-
                 Console.WriteLine($"Message: {message}");
+                await channel.BasicAckAsync(ea.DeliveryTag, false);
+
             };
 
-            channel.BasicConsume(
-                queue: "DArchQueue",
+                string consumerTag = channel.BasicConsumeAsync(queue: "DArchQueue",
                 autoAck: true,
-                consumer: consumer);
+                consumer: consumer).GetAwaiter().GetResult();
+
+
             Console.ReadKey();
         }
     }

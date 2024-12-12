@@ -60,6 +60,10 @@ class _LanguageCodeDropdownButtonState
               key: widget.key,
               icon: Icons.language,
               getFirstValue: (value) {
+                print(languages
+                    .map((lang) => lang.id.toString())
+                    .toList()
+                    .toString());
                 _selectedLanguage = widget.isShort
                     ? languages.firstWhere(
                         (lang) => lang.id.toString() == value,

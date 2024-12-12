@@ -3,8 +3,6 @@ using Business.Constants;
 using Business.DependencyResolvers;
 using Business.Fakes.DArch;
 using Business.Services.Authentication;
-using Core.CrossCuttingConcerns.Caching;
-using Core.CrossCuttingConcerns.Caching.Microsoft;
 using Core.DependencyResolvers;
 using Core.Extensions;
 using Core.Utilities.ElasticSearch;
@@ -34,7 +32,6 @@ using Hangfire.InMemory;
 using Hangfire.PostgreSql;
 using Hangfire.RecurringJobExtensions;
 using Hangfire.SqlServer;
-using Microsoft.EntityFrameworkCore.InMemory.Infrastructure.Internal;
 
 namespace Business
 {
@@ -121,7 +118,7 @@ namespace Business
                         case "inMemory":
                             var inMemoryOptions = new InMemoryStorageOptions
                             {
-                                DisableJobSerialization = false
+                                //TODO: DisableJobSerialization = false
                             };
                             config.UseInMemoryStorage(inMemoryOptions);
                             break;
@@ -135,7 +132,10 @@ namespace Business
 
             services.AddAutoMapper(typeof(ConfigurationManager));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            services.AddMediatR(typeof(BusinessStartup).GetTypeInfo().Assembly);
+            services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(typeof(BusinessStartup).Assembly);
+            });
 
             ValidatorOptions.Global.DisplayNameResolver = (type, memberInfo, expression) =>
             {
