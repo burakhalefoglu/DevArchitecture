@@ -4,11 +4,12 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'core/constants/messages.dart';
+import 'core/constants/screen_element_constants.dart';
 import 'core/di/core_initializer.dart';
 import 'core/di/firebase/firebase_initializer.dart';
 import 'core/helpers/translation_provider.dart';
 import 'core/theme/theme_provider.dart';
-import 'features/layouts/sidebar/sidebar_constants.dart';
+import 'core/constants/sidebar_constants.dart';
 import 'features/mixin/modular_mixin.dart';
 import 'core/mixins/battery_state_mixin.dart';
 import 'core/mixins/internet_connection_mixin.dart';
@@ -84,6 +85,7 @@ class _AppState extends State<App>
     //: init constants
     Messages.init(context);
     SidebarConstants.init(context);
+    ScreenElementConstants.init(context);
     return buildChild(context);
   }
 

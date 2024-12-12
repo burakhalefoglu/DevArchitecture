@@ -30,6 +30,8 @@ class Messages {
   static late String customerAddSuccessMessage;
   static late String checkSuccessMessage;
 
+  static late String comingSoon;
+
   static void init(BuildContext context) {
     _context = context;
 
@@ -59,6 +61,8 @@ class Messages {
 
     customerAddSuccessMessage = _translate("CustomerAddSuccessMessage");
     checkSuccessMessage = _translate("CheckSuccessMessage");
+
+    comingSoon = _translate("ComingSoon");
   }
 
   static String _translate(String key) {

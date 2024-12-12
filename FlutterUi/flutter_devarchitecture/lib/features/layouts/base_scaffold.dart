@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/constants/messages.dart';
 import '../../core/theme/custom_colors.dart';
 import '../../core/di/core_initializer.dart';
 import '../../core/theme/theme_provider.dart';
@@ -43,7 +45,7 @@ buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {
 
 Widget buildThemeButton(BuildContext context, ThemeProvider themeProvider) {
   return Tooltip(
-    message: "Tema seç",
+    message: context.translationProvider.translate("ChangeTheme"),
     child: IconButton(
       icon: Icon(
         themeProvider.themeMode == ThemeMode.dark
@@ -60,7 +62,7 @@ Widget buildThemeButton(BuildContext context, ThemeProvider themeProvider) {
 Widget buildNotificationButton(BuildContext context) {
   late bool isHasNotification = true;
   return Tooltip(
-    message: "Bildirimler",
+    message: context.translationProvider.translate("Notifications"),
     child: Stack(
       children: [
         IconButton(
@@ -68,7 +70,7 @@ Widget buildNotificationButton(BuildContext context) {
             CoreInitializer()
                 .coreContainer
                 .screenMessage
-                .getInfoMessage("Bildirimleriniz Henüz Gelmedi.");
+                .getInfoMessage(Messages.comingSoon);
           },
           icon: const Icon(Icons.notifications_active_outlined),
         ),
@@ -87,14 +89,14 @@ Widget buildNotificationButton(BuildContext context) {
 
 Widget buildProfileButton(BuildContext context) {
   return Tooltip(
-    message: "Profil Sayfası",
+    message: context.translationProvider.translate("Profile"),
     child: IconButton(
       onPressed: () {
         CoreInitializer()
             .coreContainer
             .screenMessage
-            .getInfoMessage("Profil Sayfası Henüz Gelmedi.");
-        // Modular.to.navigate('/profile');
+            .getInfoMessage(Messages.comingSoon);
+        //TODO: Modular.to.navigate('/profile');
       },
       icon: const Icon(Icons.account_circle_outlined),
     ),
@@ -103,7 +105,7 @@ Widget buildProfileButton(BuildContext context) {
 
 Widget buildLogOutButton(BuildContext context) {
   return Tooltip(
-    message: "Cıkış Yap",
+    message: context.translationProvider.translate("LogOut"),
     child: IconButton(
         onPressed: () {
           CoreInitializer().coreContainer.storage.delete("inputPersonId");
