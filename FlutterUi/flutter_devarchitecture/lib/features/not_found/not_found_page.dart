@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../core/constants/messages.dart';
+import '../../core/constants/screen_element_constants.dart';
+import '../../core/di/core_initializer.dart';
 import '../../routes/routes_constants.dart';
 import '../layouts/base_scaffold.dart';
 import '../../core/theme/extensions.dart';
@@ -30,7 +31,7 @@ class NotFoundPage extends StatelessWidget {
                                 context.percent75Screen)),
                     Expanded(
                         child: Text(
-                      context.translationProvider.translate("PageNotFound"),
+                      Messages.pageNotFound,
                       style: TextStyle(
                           fontSize: context.isMobile ? 18 : 22,
                           fontWeight: FontWeight.w500),
@@ -42,8 +43,7 @@ class NotFoundPage extends StatelessWidget {
                         onPressed: () {
                           Modular.to.navigate(RoutesConstants.appHomePage);
                         },
-                        child: Text(context.translationProvider
-                            .translate("ReturnHomePage")),
+                        child: Text(ScreenElementConstants.returnHomePage),
                       ),
                     )
                   ],

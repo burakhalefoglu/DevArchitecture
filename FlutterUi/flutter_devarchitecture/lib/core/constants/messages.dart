@@ -18,6 +18,7 @@ class Messages {
   static late String customerInternetConnectionErrorMessage;
   static late String customerDefaultErrorMessage;
   static late String companyNameInputFieldWidgetEmptyErrorMessage;
+  static late String pageNotFound;
 
   // Success Messages
   static late String customerSuccessHttpMessage;
@@ -35,6 +36,7 @@ class Messages {
   static void init(BuildContext context) {
     _context = context;
 
+    pageNotFound = _translate("PageNotFound");
     formValidationErrorMessage = _translate("FormValidationErrorMessage");
     customerDefaultHttpMessage = _translate("CustomerDefaultHttpMessage");
     customerDefaultCalculateMessage =

@@ -4,6 +4,8 @@ import 'package:flutter_devarchitecture/core/helpers/translate_provider_extensio
 class ScreenElementConstants {
   static late BuildContext _context;
 
+  static late String appName;
+  static late String returnHomePage;
   static late String loginTitle;
   static late String loginButton;
   static late String registerButton;
@@ -46,6 +48,8 @@ class ScreenElementConstants {
   static void init(BuildContext context) {
     _context = context;
 
+    appName = _translate("AppName");
+    returnHomePage = _translate("ReturnHomePage");
     loginTitle = _translate("LoginTitle");
     loginButton = _translate("LoginButton");
     registerButton = _translate("RegisterButton");

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
-import 'package:flutter_devarchitecture/core/theme/extensions.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/theme/extensions.dart';
 import '../../core/constants/messages.dart';
 import '../../core/theme/custom_colors.dart';
 import '../../core/di/core_initializer.dart';

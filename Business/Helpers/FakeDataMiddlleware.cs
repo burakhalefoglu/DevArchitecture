@@ -18,6 +18,11 @@ namespace Business.Helpers
             await mediator.Send(new CreateLanguageInternalCommand { Code = "tr-TR", Name = "Türkçe" });
             await mediator.Send(new CreateLanguageInternalCommand { Code = "en-EN", Name = "English" });
 
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AppName", Value = "Flutter DevArchitecture" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AppName", Value = "Flutter DevArchitecture" });
+
+
+
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "Login", Value = "Giriş" });
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "Email", Value = "E-posta" });
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "Password", Value = "Parola" });
