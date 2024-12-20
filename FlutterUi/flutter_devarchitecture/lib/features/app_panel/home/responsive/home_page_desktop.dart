@@ -102,10 +102,9 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                             .getBarChart(
                                                 context,
                                                 basicData,
-                                                context.translationProvider
-                                                    .translate("Categories"),
-                                                context.translationProvider
-                                                    .translate("Sales"),
+                                                ScreenElementConstants
+                                                    .categories,
+                                                ScreenElementConstants.sales,
                                                 headerTitle: 'BAR CHART',
                                                 CustomColors
                                                     .secondary.getColor)),
@@ -119,10 +118,9 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                                 headerTitle: 'LINE CHART',
                                                 context,
                                                 basicData,
-                                                context.translationProvider
-                                                    .translate("Categories"),
-                                                context.translationProvider
-                                                    .translate("Sales"),
+                                                ScreenElementConstants
+                                                    .categories,
+                                                ScreenElementConstants.sales,
                                                 CustomColors.danger.getColor)),
                                     const Spacer(),
                                     Expanded(
@@ -134,10 +132,8 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                               headerTitle: 'PİE CHART',
                                               context,
                                               basicData,
-                                              context.translationProvider
-                                                  .translate("Categories"),
-                                              context.translationProvider
-                                                  .translate("Sales"),
+                                              ScreenElementConstants.categories,
+                                              ScreenElementConstants.sales,
                                             ))
                                   ],
                                 ),
@@ -170,10 +166,9 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                                 headerTitle: 'LINE AREA CHART',
                                                 context,
                                                 basicData,
-                                                context.translationProvider
-                                                    .translate("Categories"),
-                                                context.translationProvider
-                                                    .translate("Sales"),
+                                                ScreenElementConstants
+                                                    .categories,
+                                                ScreenElementConstants.sales,
                                                 CustomColors
                                                     .secondary.getColor)),
                                     const Spacer(),
@@ -208,10 +203,8 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                               context,
                                               headerTitle: 'HEATMAP CHART',
                                               heatmapData,
-                                              context.translationProvider
-                                                  .translate("Name"),
-                                              context.translationProvider
-                                                  .translate("Days"),
+                                              ScreenElementConstants.name,
+                                              ScreenElementConstants.days,
                                             )),
                                     const Spacer(),
                                     Expanded(
@@ -233,10 +226,8 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                               headerTitle: 'EVENT STREAM CHART',
                                               context,
                                               streamData,
-                                              context.translationProvider
-                                                  .translate("Categories"),
-                                              context.translationProvider
-                                                  .translate("Sales"),
+                                              ScreenElementConstants.categories,
+                                              ScreenElementConstants.sales,
                                               CustomColors.warning.getColor),
                                     ),
                                   ],

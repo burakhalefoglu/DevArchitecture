@@ -102,10 +102,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                   .getBarChart(
                                       context,
                                       basicData,
-                                      context.translationProvider
-                                          .translate("Categories"),
-                                      context.translationProvider
-                                          .translate("Sales"),
+                                      ScreenElementConstants.categories,
+                                      ScreenElementConstants.sales,
                                       headerTitle: 'BAR CHART',
                                       CustomColors.secondary.getColor)),
                           const Spacer(
@@ -119,10 +117,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                   .getLineChart(
                                       context,
                                       basicData,
-                                      context.translationProvider
-                                          .translate("Categories"),
-                                      context.translationProvider
-                                          .translate("Sales"),
+                                      ScreenElementConstants.categories,
+                                      ScreenElementConstants.sales,
                                       headerTitle: 'LINE CHART',
                                       CustomColors.danger.getColor)),
                           const Spacer(
@@ -137,10 +133,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                     context,
                                     basicData,
                                     headerTitle: 'PİE CHART',
-                                    context.translationProvider
-                                        .translate("Categories"),
-                                    context.translationProvider
-                                        .translate("Sales"),
+                                    ScreenElementConstants.categories,
+                                    ScreenElementConstants.sales,
                                   )),
                           const Spacer(
                             flex: 2,
@@ -166,10 +160,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                   .getLineAreaChart(
                                       context,
                                       basicData,
-                                      context.translationProvider
-                                          .translate("Categories"),
-                                      context.translationProvider
-                                          .translate("Sales"),
+                                      ScreenElementConstants.categories,
+                                      ScreenElementConstants.sales,
                                       headerTitle: 'LINE AREA CHART',
                                       CustomColors.secondary.getColor)),
                           const Spacer(
@@ -194,13 +186,12 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                   .coreContainer
                                   .analyticsChart
                                   .getHeatMapChart(
-                                      headerTitle: 'HEATMAP CHART',
-                                      context,
-                                      heatmapData,
-                                      context.translationProvider
-                                          .translate("Name"),
-                                      context.translationProvider
-                                          .translate("Days"))),
+                                    headerTitle: 'HEATMAP CHART',
+                                    context,
+                                    heatmapData,
+                                    ScreenElementConstants.name,
+                                    ScreenElementConstants.days,
+                                  )),
                           const Spacer(
                             flex: 2,
                           ),
@@ -225,10 +216,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                 .getEventStreamChart(
                                     context,
                                     streamData,
-                                    context.translationProvider
-                                        .translate("Categories"),
-                                    context.translationProvider
-                                        .translate("Sales"),
+                                    ScreenElementConstants.categories,
+                                    ScreenElementConstants.sales,
                                     headerTitle: 'EVENT STREAM CHART',
                                     CustomColors.warning.getColor),
                           ),

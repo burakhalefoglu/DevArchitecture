@@ -36,7 +36,6 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
 
   @override
   void initState() {
-    // Null değerleri "" ile değiştir
     _reformatNullToEmptyString();
     filteredData = widget.datas;
     super.initState();

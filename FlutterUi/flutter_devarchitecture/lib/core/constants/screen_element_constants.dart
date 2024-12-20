@@ -44,6 +44,14 @@ class ScreenElementConstants {
   static late String clearButton;
   static late String sortButton;
   static late String id;
+  static late String logOutButton;
+  static late String profileButton;
+  static late String notificationsButton;
+  static late String changeThemeButton;
+  static late String categories;
+  static late String sales;
+  static late String name;
+  static late String days;
 
   static void init(BuildContext context) {
     _context = context;
@@ -88,6 +96,16 @@ class ScreenElementConstants {
     clearButton = _translate("ClearButton");
     sortButton = _translate("SortButton");
     id = _translate("Id");
+
+    // backend ekle!
+    logOutButton = _translate("LogOutButton");
+    profileButton = _translate("ProfileButton");
+    notificationsButton = _translate("NotificationsButton");
+    changeThemeButton = _translate("ChangeThemeButton");
+    categories = _translate("Categories");
+    sales = _translate("Sales");
+    name = _translate("Name");
+    days = _translate("Days");
   }
 
   static String _translate(String key) {

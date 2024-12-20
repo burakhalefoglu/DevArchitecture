@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'extensions/extensions.dart';
+import '../../helpers/extensions.dart';
 
 class CustomNumberInput extends TextFormField {
   CustomNumberInput(

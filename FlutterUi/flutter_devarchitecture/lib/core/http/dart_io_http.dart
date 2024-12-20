@@ -38,7 +38,6 @@ class HttpDartIo implements IHttp {
         print(response.statusCode);
       }
 
-      // Response'u bir değişkene al ve sadece bir kere dinle
       String reply = await response.transform(utf8.decoder).join();
 
       await _handleError(response.statusCode, reply);

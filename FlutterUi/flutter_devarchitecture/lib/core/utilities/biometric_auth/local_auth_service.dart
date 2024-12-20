@@ -74,15 +74,8 @@ class LocalAuthService implements IBiometricAuth {
       CustomBiometricType biometricType) async {
     try {
       final availableBiometrics = await getAvailableBiometrics();
-      if (availableBiometrics.contains(biometricType)) {
-        // Biometrik doğrulama türü cihazda mevcut
-        return true;
-      } else {
-        // Biometrik doğrulama türü cihazda mevcut değil
-        return false;
-      }
+      return availableBiometrics.contains(biometricType);
     } catch (e) {
-      // Hata yönetimi
       return false;
     }
   }

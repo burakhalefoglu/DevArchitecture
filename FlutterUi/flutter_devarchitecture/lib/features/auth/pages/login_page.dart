@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
+import 'package:flutter_devarchitecture/core/constants/screen_element_constants.dart';
 import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../core/bloc/bloc_consumer_extension.dart';
@@ -88,7 +88,7 @@ class LoginPage extends StatelessWidget {
                       : Expanded(
                           flex: 2,
                           child: Text(
-                            context.translationProvider.translate("Login"),
+                            ScreenElementConstants.loginTitle,
                             style: TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.bold),
                           ),
@@ -152,8 +152,7 @@ class LoginPage extends StatelessWidget {
                           lang: _languageController.text,
                         ));
                       },
-                      child:
-                          Text(context.translationProvider.translate("Login")),
+                      child: Text(ScreenElementConstants.loginButton),
                     ),
                   ),
                   const Spacer(

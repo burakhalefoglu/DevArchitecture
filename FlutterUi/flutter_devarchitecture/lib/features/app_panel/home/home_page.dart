@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
+import '../../../core/constants/screen_element_constants.dart';
 import '../../../core/constants/sidebar_constants.dart';
 import '../../../core/theme/responsive.dart';
 import 'dart:async';

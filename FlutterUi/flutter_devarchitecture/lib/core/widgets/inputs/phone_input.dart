@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'extensions/extensions.dart';
+import '../../helpers/extensions.dart';
 
 class CustomPhoneInput extends TextFormField {
   CustomPhoneInput({

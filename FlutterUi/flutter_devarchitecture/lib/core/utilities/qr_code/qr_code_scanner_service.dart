@@ -42,7 +42,6 @@ class QRCodeScannerService implements IQRCodeScannerService {
       ),
     );
 
-    // Kaynakları serbest bırakın
     controller?.dispose();
 
     return completer.future;

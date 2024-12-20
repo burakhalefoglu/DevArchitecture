@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import '../../theme/custom_colors.dart';
-import 'extensions/extensions.dart';
+import '../../helpers/extensions.dart';
 
 class CustomPasswordInput extends StatefulWidget {
   final TextEditingController passwordController;

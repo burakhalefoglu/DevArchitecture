@@ -72,10 +72,9 @@ class HomePageTablet extends StatelessWidget {
                                             .getBarChart(
                                                 context,
                                                 basicData,
-                                                context.translationProvider
-                                                    .translate("Categories"),
-                                                context.translationProvider
-                                                    .translate("Sales"),
+                                                ScreenElementConstants
+                                                    .categories,
+                                                ScreenElementConstants.sales,
                                                 headerTitle: 'BAR CHART',
                                                 CustomColors
                                                     .secondary.getColor)),
@@ -88,10 +87,9 @@ class HomePageTablet extends StatelessWidget {
                                             .getLineChart(
                                                 context,
                                                 basicData,
-                                                context.translationProvider
-                                                    .translate("Categories"),
-                                                context.translationProvider
-                                                    .translate("Sales"),
+                                                ScreenElementConstants
+                                                    .categories,
+                                                ScreenElementConstants.sales,
                                                 headerTitle: 'LINE CHART',
                                                 CustomColors.danger.getColor)),
                                   ],
@@ -112,10 +110,8 @@ class HomePageTablet extends StatelessWidget {
                                           context,
                                           basicData,
                                           headerTitle: 'PİE CHART',
-                                          context.translationProvider
-                                              .translate("Categories"),
-                                          context.translationProvider
-                                              .translate("Sales"),
+                                          ScreenElementConstants.categories,
+                                          ScreenElementConstants.sales,
                                         )),
                                 const Spacer(),
                                 Expanded(
@@ -144,10 +140,8 @@ class HomePageTablet extends StatelessWidget {
                                           .getLineAreaChart(
                                               context,
                                               basicData,
-                                              context.translationProvider
-                                                  .translate("Categories"),
-                                              context.translationProvider
-                                                  .translate("Sales"),
+                                              ScreenElementConstants.categories,
+                                              ScreenElementConstants.sales,
                                               headerTitle: 'LINE AREA CHART',
                                               CustomColors.secondary.getColor)),
                                   const Spacer(),
@@ -175,13 +169,12 @@ class HomePageTablet extends StatelessWidget {
                                           .coreContainer
                                           .analyticsChart
                                           .getHeatMapChart(
-                                              context,
-                                              heatmapData,
-                                              headerTitle: 'HEATMAP CHART',
-                                              context.translationProvider
-                                                  .translate("Name"),
-                                              context.translationProvider
-                                                  .translate("Days"))),
+                                            context,
+                                            heatmapData,
+                                            headerTitle: 'HEATMAP CHART',
+                                            ScreenElementConstants.name,
+                                            ScreenElementConstants.days,
+                                          )),
                                   const Spacer(),
                                   Expanded(
                                       flex: 5,

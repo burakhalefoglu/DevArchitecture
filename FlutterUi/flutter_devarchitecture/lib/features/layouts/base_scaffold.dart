@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_devarchitecture/core/constants/screen_element_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 
@@ -44,7 +45,7 @@ buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {
 
 Widget buildThemeButton(BuildContext context, ThemeProvider themeProvider) {
   return Tooltip(
-    message: context.translationProvider.translate("ChangeTheme"),
+    message: ScreenElementConstants.changeThemeButton,
     child: IconButton(
       icon: Icon(
         themeProvider.themeMode == ThemeMode.dark
@@ -61,7 +62,7 @@ Widget buildThemeButton(BuildContext context, ThemeProvider themeProvider) {
 Widget buildNotificationButton(BuildContext context) {
   late bool isHasNotification = true;
   return Tooltip(
-    message: context.translationProvider.translate("Notifications"),
+    message: ScreenElementConstants.notificationsButton,
     child: Stack(
       children: [
         IconButton(
@@ -88,7 +89,7 @@ Widget buildNotificationButton(BuildContext context) {
 
 Widget buildProfileButton(BuildContext context) {
   return Tooltip(
-    message: context.translationProvider.translate("Profile"),
+    message: ScreenElementConstants.profileButton,
     child: IconButton(
       onPressed: () {
         CoreInitializer()
@@ -104,7 +105,7 @@ Widget buildProfileButton(BuildContext context) {
 
 Widget buildLogOutButton(BuildContext context) {
   return Tooltip(
-    message: context.translationProvider.translate("LogOut"),
+    message: ScreenElementConstants.logOutButton,
     child: IconButton(
         onPressed: () {
           CoreInitializer().coreContainer.storage.delete("inputPersonId");
