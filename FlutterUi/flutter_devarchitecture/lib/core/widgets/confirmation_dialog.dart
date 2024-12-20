@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_devarchitecture/core/constants/screen_element_constants.dart';
 import '../theme/custom_colors.dart';
 
 showConfirmationDialog(BuildContext c, void Function() onPressed) {
@@ -15,13 +16,13 @@ showConfirmationDialog(BuildContext c, void Function() onPressed) {
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           title: Text(
-            'Emin misiniz?',
+            ScreenElementConstants.attention,
             style: TextStyle(
               color: CustomColors.danger.getColor,
               fontWeight: FontWeight.bold,
             ),
           ),
-          content: const Text('Bu işlem geri alınamaz.'),
+          content: Text(ScreenElementConstants.thisActionCannotBeUndone),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -30,7 +31,7 @@ showConfirmationDialog(BuildContext c, void Function() onPressed) {
               style: TextButton.styleFrom(
                 foregroundColor: CustomColors.gray.getColor,
               ),
-              child: const Text('İptal'),
+              child: Text(ScreenElementConstants.cancel),
             ),
             TextButton(
               onPressed: () {
@@ -40,7 +41,7 @@ showConfirmationDialog(BuildContext c, void Function() onPressed) {
               style: TextButton.styleFrom(
                 foregroundColor: CustomColors.danger.getColor,
               ),
-              child: const Text('Evet'),
+              child: Text(ScreenElementConstants.yes),
             ),
           ],
         ),

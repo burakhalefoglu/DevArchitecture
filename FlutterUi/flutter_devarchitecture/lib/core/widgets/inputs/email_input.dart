@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
+import '../../constants/messages.dart';
+import '../../constants/screen_element_constants.dart';
 import '../../theme/custom_colors.dart';
 import '../../helpers/extensions.dart';
 
@@ -16,10 +17,10 @@ class CustomEmailInput extends TextFormField {
           validator: (value) {
             if (!enabled) return null;
             if (value == null || value.isEmpty) {
-              return context.translationProvider.translate("EmailCantBeEmpty");
+              return ScreenElementConstants.email + " " + Messages.cantBeEmpty;
             }
             if (!value.isValidEmail) {
-              return context.translationProvider.translate("InvalidEmail");
+              return Messages.invalidEmail;
             }
 
             return null;
@@ -33,7 +34,7 @@ class CustomEmailInput extends TextFormField {
               ),
               enabled: enabled!,
               hintText: "abc@example.com",
-              labelText: context.translationProvider.translate("Email"),
+              labelText: ScreenElementConstants.email,
               contentPadding: EdgeInsets.only(bottom: contentPadding)),
         );
 }

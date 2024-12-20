@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
+import '../../constants/messages.dart';
+import '../../constants/screen_element_constants.dart';
 import '../../theme/custom_colors.dart';
 import '../../helpers/extensions.dart';
 
@@ -40,10 +41,10 @@ class PasswordFieldState extends State<CustomPasswordInput> {
       validator: (value) {
         if (!widget.enabled) return null;
         if (value == null || value.isEmpty) {
-          return context.translationProvider.translate('PasswordEmpty');
+          return ScreenElementConstants.password + Messages.cantBeEmpty;
         }
         if (!value.isValidPassword) {
-          return context.translationProvider.translate('InvalidPassword');
+          return Messages.invalidPassword;
         }
         return null;
       },
@@ -55,8 +56,7 @@ class PasswordFieldState extends State<CustomPasswordInput> {
       inputFormatters: <TextInputFormatter>[],
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.only(bottom: 20),
-        floatingLabelBehavior: FloatingLabelBehavior.never,
-        labelText: context.translationProvider.translate('Password'),
+        labelText: ScreenElementConstants.password,
         hintText: "***********",
         filled: true,
         fillColor: Colors.transparent,

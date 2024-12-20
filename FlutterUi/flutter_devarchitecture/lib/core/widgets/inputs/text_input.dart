@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/messages.dart';
+
 class CustomTextInput extends TextFormField {
   CustomTextInput(
       {required String labelText,
@@ -17,13 +19,13 @@ class CustomTextInput extends TextFormField {
           validator: (value) {
             if (!enabled!) return null;
             if (value == null || value.isEmpty) {
-              return '$labelText boş bırakılamaz';
+              return '$labelText ${Messages.cantBeEmpty}';
             }
             if (value.length < min) {
-              return "$labelText minimum $min karakter olmalı";
+              return "$labelText ${Messages.minCharacter} ($min)";
             }
             if (value.length > max) {
-              return "$labelText maximum $max karakter olmalı";
+              return "$labelText ${Messages.maxCharacter} ($max)";
             }
             return null;
           },

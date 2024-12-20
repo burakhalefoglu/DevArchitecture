@@ -18,7 +18,7 @@ class GoogleAutoComplete implements IAddressInput {
       isLatLngRequired: true,
       getPlaceDetailWithLatLng: (Prediction prediction) {
         print("placeDetails" + prediction.lng.toString());
-      }, // this callback is called when isLatLngRequired is true
+      },
       itemClick: (Prediction prediction) {
         controller.text = prediction.description!;
         controller.selection = TextSelection.fromPosition(

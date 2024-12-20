@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../constants/messages.dart';
+import '../../constants/screen_element_constants.dart';
 import '../../helpers/extensions.dart';
 
 class CustomPhoneInput extends TextFormField {
@@ -12,17 +14,17 @@ class CustomPhoneInput extends TextFormField {
           validator: (value) {
             if (!enabled!) return null;
             if (value == null || value.isEmpty) {
-              return 'telefon girişi boş bırakılamaz';
+              return ScreenElementConstants.phoneNumber + Messages.cantBeEmpty;
             }
             if (!value.isValidPhone) {
-              return 'Lütfen geçerli bir telefon numarası giriniz.';
+              return Messages.invalidPhone;
             }
             return null;
           },
           inputFormatters: <TextInputFormatter>[],
-          decoration: const InputDecoration(
-              labelText: 'Telefon numarası',
-              hintText: 'örn: 555 555 55 55',
+          decoration: InputDecoration(
+              labelText: ScreenElementConstants.phoneNumber,
+              hintText: '+90 999 999 99 99',
               contentPadding: EdgeInsets.only(bottom: 20)),
         );
 }

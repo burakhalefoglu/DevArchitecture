@@ -85,6 +85,30 @@ class ScreenElementConstants {
   static late String xmlShareTooltip;
   static late String shareTitle;
 
+  static late String noData;
+  static late String noConnection;
+  static late String noDataFound;
+  static late String error;
+
+  static late String attention;
+  static late String warning;
+  static late String success;
+  static late String information;
+
+  static late String ok;
+  static late String cancel;
+  static late String yes;
+  static late String no;
+
+  static late String email;
+  static late String password;
+
+  static late String thisActionCannotBeUndone;
+  static late String noDataAvailable;
+  static late String vehicleRegistrationNumber;
+  static late String vehicleLicensePlate;
+  static late String phoneNumber;
+
   static void init(BuildContext context) {
     _context = context;
 
@@ -168,6 +192,25 @@ class ScreenElementConstants {
     jsonShareTooltip = _translate("JsonShareTooltip");
     xmlShareTooltip = _translate("XmlShareTooltip");
     shareTitle = _translate("ShareTitle");
+    noData = _translate("NoData");
+    noConnection = _translate("NoConnection");
+    noDataFound = _translate("NoDataFound");
+    error = _translate("Error");
+    attention = _translate("Attention");
+    warning = _translate("Warning");
+    success = _translate("Success");
+    information = _translate("Information");
+    ok = _translate("Ok");
+    cancel = _translate("Cancel");
+    yes = _translate("Yes");
+    no = _translate("No");
+    email = _translate("Email");
+    password = _translate("Password");
+    thisActionCannotBeUndone = _translate("ThisActionCannotBeUndone");
+    noDataAvailable = _translate("NoDataAvailable");
+    vehicleRegistrationNumber = _translate("VehicleRegistrationNumber");
+    vehicleLicensePlate = _translate("VehicleLicensePlate");
+    phoneNumber = _translate("PhoneNumber");
   }
 
   static String _translate(String key) {

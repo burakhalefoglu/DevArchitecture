@@ -1,6 +1,8 @@
+import '../../constants/screen_element_constants.dart';
 import 'base/split_input.dart';
 
-/// SERİ - NO
+/// Turkey Vehicle Registration Number Format
+/// Serial - Number
 /// "99 xxxxxx"
 class CustomVehicleLicenseInput extends SingleSplitInput {
   CustomVehicleLicenseInput(
@@ -11,6 +13,6 @@ class CustomVehicleLicenseInput extends SingleSplitInput {
       required super.confirmFocusNodes})
       : super(
             format: 's2 d6',
-            labelText: "Araç Ruhsatı",
+            labelText: ScreenElementConstants.vehicleRegistrationNumber,
             hintTexts: ["XX", "000000"]);
 }

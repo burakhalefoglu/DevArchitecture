@@ -1,9 +1,10 @@
+import '../../constants/screen_element_constants.dart';
 import 'base/split_input.dart';
 
-/// Harf ve rakam grupları şöyledir:
+/// Turkey Vehicle License Plate Number Format
 /// "99 X 9999", "99 X 99999"
 /// "99 XX 999", "99 XX 9999"
-/// "99 XXX 99" veya "99 XXX 999"
+/// "99 XXX 99" or "99 XXX 999"
 class CustomPlateInput extends SingleSplitInput {
   CustomPlateInput({
     super.key,
@@ -14,6 +15,6 @@ class CustomPlateInput extends SingleSplitInput {
     isSimple = false,
   }) : super(
             format: isSimple ? 's15' : 'd2 s3 d5',
-            labelText: "Plaka",
+            labelText: ScreenElementConstants.vehicleLicensePlate,
             hintTexts: isSimple ? ["XXXXXXXX"] : ["00", "XXX", "00000"]);
 }

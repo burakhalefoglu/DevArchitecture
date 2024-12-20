@@ -31,6 +31,15 @@ class Messages {
 
   static late String comingSoon;
   static late String selectOutputFileMessage;
+  static late String cantBeEmpty;
+  static late String invalidEmail;
+  static late String minCharacter;
+  static late String maxCharacter;
+  static late String invalidPhone;
+  static late String invalidPassword;
+  static late String minimum;
+  static late String maximum;
+  static late String invalidNumber;
 
   static void init(BuildContext context) {
     _context = context;
@@ -59,6 +68,15 @@ class Messages {
     selectOutputFileMessage = _translate("SelectOutputFileMessage");
     comingSoon = _translate("ComingSoon");
     downloadSuccessMessage = _translate("DownloadSuccessMessage");
+    cantBeEmpty = _translate("CantBeEmpty");
+    invalidEmail = _translate("InvalidEmail");
+    minCharacter = _translate("MinCharacter");
+    maxCharacter = _translate("MaxCharacter");
+    invalidPhone = _translate("invalidPhone");
+    invalidPassword = _translate("InvalidPassword");
+    minimum = _translate("Minimum");
+    maximum = _translate("Maximum");
+    invalidNumber = _translate("InvalidNumber");
   }
 
   static String _translate(String key) {

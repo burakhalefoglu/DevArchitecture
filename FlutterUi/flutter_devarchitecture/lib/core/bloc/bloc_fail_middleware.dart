@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
 import 'package:flutter_devarchitecture/routes/routes_constants.dart';
 import 'package:provider/provider.dart';
+import '../constants/messages.dart';
 import '../helpers/translation_provider.dart';
 import 'base_state.dart';
 
@@ -43,13 +44,13 @@ class BlocFailedMiddleware {
           CoreInitializer()
               .coreContainer
               .screenMessage
-              .getErrorMessage(translationProvider.translate('Unknown'));
+              .getErrorMessage(Messages.customerDefaultErrorMessage);
           break;
         default:
           CoreInitializer()
               .coreContainer
               .screenMessage
-              .getErrorMessage(translationProvider.translate('Unknown'));
+              .getErrorMessage(Messages.customerDefaultErrorMessage);
           break;
       }
     }

@@ -1,4 +1,7 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/foundation.dart';
+import '../../constants/messages.dart';
+import '../../di/core_initializer.dart';
 import 'i_remote_config_service.dart';
 
 class FirebaseRemoteConfigService implements IRemoteConfigService {
@@ -20,7 +23,13 @@ class FirebaseRemoteConfigService implements IRemoteConfigService {
     try {
       await _remoteConfig.fetchAndActivate();
     } catch (e) {
-      print("Failed to fetch and activate remote config: $e");
+      CoreInitializer()
+          .coreContainer
+          .screenMessage
+          .getErrorMessage(Messages.customerDefaultErrorMessage);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
