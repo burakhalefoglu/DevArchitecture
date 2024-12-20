@@ -4,7 +4,7 @@ import 'i_group.dart';
 
 class InMemoryGroupService extends InMemoryService<Group>
     implements IGroupService {
-  List<Group> _group = [Group(id: 1, groupName: "deneme1")];
+  List<Group> _group = [Group(id: 1, groupName: "group")];
   InMemoryGroupService() {
     super.datas = _group.map((e) => e.toMap()).toList();
   }

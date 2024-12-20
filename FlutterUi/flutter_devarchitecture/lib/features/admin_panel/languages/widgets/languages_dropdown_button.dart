@@ -42,7 +42,6 @@ class _LanguageDropdownButtonState extends State<LanguageDropdownButton> {
           if (state is BlocSuccess<List<LookUp>>) {
             List<LookUp> languages = state.result!;
 
-            // Dropdown'da gösterilecek seçenekler
             List<String> options = languages.map((lang) => lang.label).toList();
 
             return CustomDropdownButton(

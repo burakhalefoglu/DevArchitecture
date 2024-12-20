@@ -48,7 +48,6 @@ class _LanguageCodeDropdownButtonState
           if (state is BlocSuccess<List<LookUp>>) {
             List<LookUp> languages = state.result!;
 
-            // Dropdown'da gösterilecek seçenekler
             List<String> options = widget.isShort
                 ? languages.map((lang) => lang.id.toString()).toList()
                 : languages.map((lang) => lang.label).toList();
