@@ -1,8 +1,12 @@
 import 'dart:convert';
+import 'dart:math';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_devarchitecture/core/constants/screen_element_constants.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 
+import '../../constants/messages.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 
@@ -11,30 +15,23 @@ class JsonShare implements IJsonShare {
   Future<void> share(List<Map<String, dynamic>> data) async {
     try {
       final jsonString = jsonEncode(data);
-
-      // JSON dosyasını geçici bir dizine kaydet
       final directory = await getTemporaryDirectory();
-      final path = '${directory.path}/example.json';
+      final path = '${directory.path}/data${Random().nextInt(10000000)}.json';
       final file = File(path);
       await file.writeAsString(jsonString);
-
-      // Dosyayı paylaş
       await Share.shareXFiles(
         [XFile(path)],
-        text: 'JSON dosyası paylaşılıyor.',
+        text: ScreenElementConstants.shareTitle,
       );
-
-      // Başarı mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getSuccessMessage("JSON dosyası başarıyla paylaşıldı.");
     } catch (e) {
-      // Hata mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage("JSON dosyası paylaşılırken bir hata oluştu: $e");
+      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      if (kDebugMode) {
+        print(e);
+      }
     }
+  }
+
+  void _showErrorMessage(String message) {
+    CoreInitializer().coreContainer.screenMessage.getErrorMessage(message);
   }
 }

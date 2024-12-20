@@ -1,8 +1,12 @@
 import 'dart:io';
+import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:xml/xml.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../constants/messages.dart';
+import '../../constants/screen_element_constants.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 
@@ -24,29 +28,25 @@ class XmlShare implements IXmlShare {
 
       final xmlString = builder.buildDocument().toXmlString(pretty: true);
 
-      // XML dosyasını geçici bir dizine kaydet
       final directory = await getTemporaryDirectory();
-      final path = '${directory.path}/example.xml';
+      final path = '${directory.path}/data${Random().nextInt(100000)}.xml';
       final file = File(path);
       await file.writeAsString(xmlString);
 
       // Dosyayı paylaş
       await Share.shareXFiles(
         [XFile(path)],
-        text: 'XML dosyası paylaşılıyor.',
+        text: ScreenElementConstants.shareTitle,
       );
-
-      // Başarı mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getSuccessMessage("XML dosyası başarıyla paylaşıldı.");
     } catch (e) {
-      // Hata mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage("XML dosyası paylaşılırken bir hata oluştu: $e");
+      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      if (kDebugMode) {
+        print(e);
+      }
     }
+  }
+
+  void _showErrorMessage(String message) {
+    CoreInitializer().coreContainer.screenMessage.getErrorMessage(message);
   }
 }

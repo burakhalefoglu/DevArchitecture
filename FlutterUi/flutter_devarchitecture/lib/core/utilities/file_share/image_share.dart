@@ -1,8 +1,12 @@
 import 'dart:io';
+import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../constants/messages.dart';
+import '../../constants/screen_element_constants.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 
@@ -10,17 +14,16 @@ class ImageShare implements IImageShare {
   @override
   Future<void> share(List<Map<String, dynamic>> data) async {
     try {
-      final int startX = 10; // Başlangıç x koordinatı
-      final int startY = 10; // Başlangıç y koordinatı
-      final int rowHeight = 30; // Satır yüksekliği
-      final int colWidth = 250; // Sütun genişliği
+      final int startX = 10;
+      final int startY = 10;
+      final int rowHeight = 30;
+      final int colWidth = 250;
 
-      final width = (colWidth * data.first.keys.length) + 200; // Genişlik
-      final height = (rowHeight * data.length) + 200; // Yükseklik
-      final image = img.Image(width: width, height: height); // Resim boyutları
-      img.fill(image, color: img.ColorRgb8(255, 255, 255)); // Beyaz arka plan
+      final width = (colWidth * data.first.keys.length) + 200;
+      final height = (rowHeight * data.length) + 200;
+      final image = img.Image(width: width, height: height);
+      img.fill(image, color: img.ColorRgb8(255, 255, 255));
 
-      // Sütun başlıklarını ekleyin
       if (data.isNotEmpty) {
         final headers = data.first.keys.toList();
         for (int i = 0; i < headers.length; i++) {
@@ -35,7 +38,6 @@ class ImageShare implements IImageShare {
         }
       }
 
-      // Verileri ekleyin
       for (int rowIndex = 0; rowIndex < data.length; rowIndex++) {
         var row = data[rowIndex];
         var values = row.values.toList();
@@ -51,29 +53,24 @@ class ImageShare implements IImageShare {
         }
       }
 
-      // Geçici bir dizine kaydet
       final directory = await getTemporaryDirectory();
-      final path = '${directory.path}/data.png';
+      final path = '${directory.path}/data${Random().nextInt(10000000)}.png';
       final file = File(path);
       await file.writeAsBytes(img.encodePng(image));
 
-      // Dosyayı paylaş
       await Share.shareXFiles(
         [XFile(path)],
-        text: 'Resim dosyası paylaşılıyor.',
+        text: ScreenElementConstants.shareTitle,
       );
-
-      // Başarı mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getSuccessMessage("Resim dosyası başarıyla paylaşıldı.");
     } catch (e) {
-      // Hata mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage("Resim dosyası paylaşılırken bir hata oluştu: $e");
+      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      if (kDebugMode) {
+        print(e);
+      }
     }
+  }
+
+  void _showErrorMessage(String message) {
+    CoreInitializer().coreContainer.screenMessage.getErrorMessage(message);
   }
 }

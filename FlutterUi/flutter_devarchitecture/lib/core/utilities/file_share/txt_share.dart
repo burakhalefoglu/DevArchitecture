@@ -1,7 +1,11 @@
 import 'dart:io';
+import 'dart:math';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_devarchitecture/core/constants/screen_element_constants.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../constants/messages.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 
@@ -9,13 +13,11 @@ class TxtShare implements ITxtShare {
   @override
   Future<void> share(List<Map<String, dynamic>> data) async {
     try {
-      // Geçici bir dizine kaydetmek için dosya yolu oluştur
       final directory = await getTemporaryDirectory();
-      final path = '${directory.path}/example.txt';
+      final path = '${directory.path}/data${Random().nextInt(10000000)}".txt';
       final file = File(path);
       final sink = file.openWrite();
 
-      // Verileri yazdır
       for (var row in data) {
         sink.writeln(row.entries
             .map((entry) => '${entry.key}: ${entry.value}')
@@ -23,24 +25,19 @@ class TxtShare implements ITxtShare {
       }
 
       await sink.close();
-
-      // Dosyayı paylaş
       await Share.shareXFiles(
         [XFile(path)],
-        text: 'TXT dosyası paylaşılıyor.',
+        text: ScreenElementConstants.shareTitle,
       );
-
-      // Başarı mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getSuccessMessage("TXT dosyası başarıyla paylaşıldı.");
     } catch (e) {
-      // Hata mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage("TXT dosyası paylaşılırken bir hata oluştu: $e");
+      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      if (kDebugMode) {
+        print(e);
+      }
     }
+  }
+
+  void _showErrorMessage(String message) {
+    CoreInitializer().coreContainer.screenMessage.getErrorMessage(message);
   }
 }

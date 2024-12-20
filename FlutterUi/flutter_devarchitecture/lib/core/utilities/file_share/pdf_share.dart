@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter_devarchitecture/core/constants/screen_element_constants.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
@@ -5,6 +9,7 @@ import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 
+import '../../constants/messages.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 
@@ -13,8 +18,6 @@ class PdfShare implements IPdfShare {
   Future<void> share(List<Map<String, dynamic>> data) async {
     try {
       final pdf = pw.Document();
-
-      // Yazı tiplerini yükle
       final regularFontData =
           await rootBundle.load("assets/fonts/NotoSans-Regular.ttf");
       final boldFontData =
@@ -23,27 +26,23 @@ class PdfShare implements IPdfShare {
       final regularFont = pw.Font.ttf(regularFontData);
       final boldFont = pw.Font.ttf(boldFontData);
 
-      // Sütun sayısını kontrol et
       int columnCount = data.isNotEmpty ? data.first.keys.length : 0;
       pw.PageOrientation orientation = columnCount > 5
           ? pw.PageOrientation.landscape
           : pw.PageOrientation.portrait;
 
-      // PDF sayfasını oluştur
       pdf.addPage(
         pw.Page(
-          orientation: orientation, // Sütun sayısına göre yönlendirmeyi ayarla
+          orientation: orientation,
           build: (pw.Context context) {
             return pw.Column(
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: [
                 pw.Text(
-                  "Data Table",
+                  ScreenElementConstants.dataTableTitle,
                   style: pw.TextStyle(font: boldFont, fontSize: 24),
                 ),
-                pw.SizedBox(height: 20), // Boşluk
-
-                // Excel tarzı tabloyu oluşturma
+                pw.SizedBox(height: 20),
                 pw.TableHelper.fromTextArray(
                   headers: data.isNotEmpty ? data.first.keys.toList() : [],
                   data: data.map((item) => item.values.toList()).toList(),
@@ -71,30 +70,24 @@ class PdfShare implements IPdfShare {
           },
         ),
       );
-
-      // PDF'yi geçici bir dizine kaydet
       final directory = await getTemporaryDirectory();
-      final path = '${directory.path}/example.pdf';
+      final path = '${directory.path}/data${Random().nextInt(10000000)}.pdf';
       final file = File(path);
       await file.writeAsBytes(await pdf.save());
 
-      // Dosyayı paylaş
       await Share.shareXFiles(
         [XFile(path)],
-        text: 'PDF dosyası paylaşılıyor.',
+        text: ScreenElementConstants.shareTitle,
       );
-
-      // Başarı mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getSuccessMessage("PDF dosyası başarıyla paylaşıldı.");
     } catch (e) {
-      // Hata mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage("PDF dosyası paylaşılırken bir hata oluştu: $e");
+      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      if (kDebugMode) {
+        print(e);
+      }
     }
+  }
+
+  void _showErrorMessage(String message) {
+    CoreInitializer().coreContainer.screenMessage.getErrorMessage(message);
   }
 }

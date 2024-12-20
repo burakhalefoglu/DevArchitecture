@@ -83,6 +83,7 @@ class ScreenElementConstants {
   static late String txtShareTooltip;
   static late String jsonShareTooltip;
   static late String xmlShareTooltip;
+  static late String shareTitle;
 
   static void init(BuildContext context) {
     _context = context;
@@ -166,6 +167,7 @@ class ScreenElementConstants {
     txtShareTooltip = _translate("TxtShareTooltip");
     jsonShareTooltip = _translate("JsonShareTooltip");
     xmlShareTooltip = _translate("XmlShareTooltip");
+    shareTitle = _translate("ShareTitle");
   }
 
   static String _translate(String key) {

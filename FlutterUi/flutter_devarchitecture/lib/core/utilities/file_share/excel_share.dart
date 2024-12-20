@@ -1,8 +1,13 @@
+import 'dart:math';
+
 import 'package:excel/excel.dart';
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 
+import '../../constants/messages.dart';
+import '../../constants/screen_element_constants.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 
@@ -12,8 +17,6 @@ class ExcelShare implements IExcelShare {
     try {
       var excel = Excel.createExcel();
       Sheet sheetObject = excel['Sheet1'];
-
-      // Sütun başlıklarını ekleyin
       if (data.isNotEmpty) {
         List<CellValue?> headerRow =
             data.first.keys.map((key) => TextCellValue(key)).toList();
@@ -23,8 +26,6 @@ class ExcelShare implements IExcelShare {
               .value = headerRow[i];
         }
       }
-
-      // Verileri ekleyin
       for (int rowIndex = 0; rowIndex < data.length; rowIndex++) {
         var row = data[rowIndex];
         List<CellValue?> rowData =
@@ -36,30 +37,24 @@ class ExcelShare implements IExcelShare {
               .value = rowData[colIndex];
         }
       }
-
-      // Excel dosyasını geçici bir dizine kaydet
       final directory = await getTemporaryDirectory();
-      final path = '${directory.path}/example.xlsx';
+      final path = '${directory.path}/data${Random().nextInt(10000000)}.xlsx';
       final file = File(path);
       await file.writeAsBytes(excel.encode()!);
 
-      // Dosyayı paylaş
       await Share.shareXFiles(
         [XFile(path)],
-        text: 'Excel dosyası paylaşılıyor.',
+        text: ScreenElementConstants.shareTitle,
       );
-
-      // Başarı mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getSuccessMessage("Excel dosyası başarıyla paylaşıldı.");
     } catch (e) {
-      // Hata mesajı
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage("Excel dosyası paylaşılırken bir hata oluştu: $e");
+      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      if (kDebugMode) {
+        print(e);
+      }
     }
+  }
+
+  void _showErrorMessage(String message) {
+    CoreInitializer().coreContainer.screenMessage.getErrorMessage(message);
   }
 }
