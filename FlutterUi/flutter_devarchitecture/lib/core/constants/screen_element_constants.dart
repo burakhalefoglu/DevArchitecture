@@ -52,6 +52,37 @@ class ScreenElementConstants {
   static late String sales;
   static late String name;
   static late String days;
+  static late String months;
+  static late String years;
+  static late String hours;
+  static late String minutes;
+  static late String seconds;
+  static late String today;
+  static late String yesterday;
+  static late String week;
+  static late String month;
+  static late String year;
+  static late String day;
+  static late String hour;
+  static late String minute;
+  static late String second;
+  static late String dataTableTitle;
+
+  static late String pdfDownloadTooltip;
+  static late String excelDownloadTooltip;
+  static late String csvDownloadTooltip;
+  static late String imageDownloadTooltip;
+  static late String txtDownloadTooltip;
+  static late String jsonDownloadTooltip;
+  static late String xmlDownloadTooltip;
+
+  static late String pdfShareTooltip;
+  static late String excelShareTooltip;
+  static late String csvShareTooltip;
+  static late String imageShareTooltip;
+  static late String txtShareTooltip;
+  static late String jsonShareTooltip;
+  static late String xmlShareTooltip;
 
   static void init(BuildContext context) {
     _context = context;
@@ -97,7 +128,7 @@ class ScreenElementConstants {
     sortButton = _translate("SortButton");
     id = _translate("Id");
 
-    // backend ekle!
+    // backend___________________!
     logOutButton = _translate("LogOutButton");
     profileButton = _translate("ProfileButton");
     notificationsButton = _translate("NotificationsButton");
@@ -106,6 +137,35 @@ class ScreenElementConstants {
     sales = _translate("Sales");
     name = _translate("Name");
     days = _translate("Days");
+    months = _translate("Months");
+    years = _translate("Years");
+    hours = _translate("Hours");
+    minutes = _translate("Minutes");
+    seconds = _translate("Seconds");
+    today = _translate("Today");
+    yesterday = _translate("Yesterday");
+    week = _translate("Week");
+    month = _translate("Month");
+    year = _translate("Year");
+    day = _translate("Day");
+    hour = _translate("Hour");
+    minute = _translate("Minute");
+    second = _translate("Second");
+    dataTableTitle = _translate("DataTableTitle");
+    pdfDownloadTooltip = _translate("PdfDownloadTooltip");
+    excelDownloadTooltip = _translate("ExcelDownloadTooltip");
+    csvDownloadTooltip = _translate("CsvDownloadTooltip");
+    imageDownloadTooltip = _translate("ImageDownloadTooltip");
+    txtDownloadTooltip = _translate("TxtDownloadTooltip");
+    jsonDownloadTooltip = _translate("JsonDownloadTooltip");
+    xmlDownloadTooltip = _translate("XmlDownloadTooltip");
+    pdfShareTooltip = _translate("PdfShareTooltip");
+    excelShareTooltip = _translate("ExcelShareTooltip");
+    csvShareTooltip = _translate("CsvShareTooltip");
+    imageShareTooltip = _translate("ImageShareTooltip");
+    txtShareTooltip = _translate("TxtShareTooltip");
+    jsonShareTooltip = _translate("JsonShareTooltip");
+    xmlShareTooltip = _translate("XmlShareTooltip");
   }
 
   static String _translate(String key) {

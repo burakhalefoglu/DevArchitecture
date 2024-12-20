@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_devarchitecture/core/constants/screen_element_constants.dart';
 
 import '../../../di/core_initializer.dart';
 import '../../../theme/custom_colors.dart';
 
 class DownloadButtons {
   final List<Map<String, dynamic>> data;
-  Color? color; // Nullable color
+  Color? color;
 
   DownloadButtons({
-    this.color, // Color now nullable
+    this.color,
     required this.data,
   }) {
-    color ??= CustomColors.white.getColor; // Set default color if null
+    color ??= CustomColors.white.getColor;
   }
 
   IconButton pdfButton(BuildContext context) {
     return IconButton(
       color: color,
       icon: Icon(Icons.picture_as_pdf),
-      tooltip: 'PDF İndir',
+      tooltip: ScreenElementConstants.pdfDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.pdfDownload.download(data);
       },
@@ -29,7 +30,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.table_chart),
-      tooltip: 'Excel  İndir',
+      tooltip: ScreenElementConstants.excelDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.excelDownload.download(data);
       },
@@ -40,7 +41,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.description),
-      tooltip: 'TXT  İndir',
+      tooltip: ScreenElementConstants.txtDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.txtDownload.download(data);
       },
@@ -51,7 +52,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.code),
-      tooltip: 'JSON  İndir',
+      tooltip: ScreenElementConstants.jsonDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.jsonDownload.download(data);
       },
@@ -62,7 +63,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.code),
-      tooltip: 'XML  İndir',
+      tooltip: ScreenElementConstants.xmlDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.xmlDownload.download(data);
       },
@@ -73,7 +74,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.image),
-      tooltip: 'Image  İndir',
+      tooltip: ScreenElementConstants.imageDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.imageDownload.download(data);
       },
@@ -84,7 +85,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.table_chart),
-      tooltip: 'CSV  İndir',
+      tooltip: ScreenElementConstants.csvDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.csvDownload.download(data);
       },

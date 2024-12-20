@@ -1,4 +1,5 @@
 import '../../configs/app_config.dart';
+import '../../constants/messages.dart';
 import '../../utilities/results.dart';
 import '../../di/core_initializer.dart';
 import '../i_service.dart';
@@ -22,7 +23,7 @@ abstract class ApiService<T> implements IService {
         return Future.value(FailureResult(result["message"] ?? ""));
       }
     }
-    return Future.value(SuccessResult("Tüm Veriler Eklendi!"));
+    return Future.value(SuccessResult(Messages.customerAddSuccessMessage));
   }
 
   @override
@@ -32,12 +33,11 @@ abstract class ApiService<T> implements IService {
           await CoreInitializer().coreContainer.http.post(url, maps[i]);
       if (result["success"] != null) {
         if (result["success"] == false) {
-          return Future.value(FailureResult(
-              "${i + 1} numaralı veriden itibaren eklenemedi ${result["message"]}"));
+          return Future.value(FailureResult("${result["message"]}"));
         }
       }
     }
-    return Future.value(SuccessResult("Tüm Veriler Eklendi!"));
+    return Future.value(SuccessResult(Messages.customerAddSuccessMessage));
   }
 
   @override
@@ -48,7 +48,7 @@ abstract class ApiService<T> implements IService {
         return Future.value(FailureResult(result["message"] ?? ""));
       }
     }
-    return Future.value(SuccessResult("Veri Silindi"));
+    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
   }
 
   @override
@@ -98,6 +98,6 @@ abstract class ApiService<T> implements IService {
         return Future.value(FailureResult(result["message"] ?? ""));
       }
     }
-    return Future.value(SuccessResult("Veri Güncellendi !"));
+    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
   }
 }

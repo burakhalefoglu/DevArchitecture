@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:csv/csv.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import "package:universal_html/html.dart" as html; // Web için gerekli
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
+import "package:universal_html/html.dart" as html;
 
+import '../../constants/messages.dart';
 import 'i_download.dart';
 import '/core/di/core_initializer.dart';
 
@@ -12,52 +14,40 @@ class CsvDownload implements ICsvDownload {
   @override
   Future<void> download(List<Map<String, dynamic>> data) async {
     try {
-      // Veriyi CSV formatına dönüştürme
       List<List<dynamic>> rows = [];
-
-      // Sütun başlıklarını ekleyin
       if (data.isNotEmpty) {
         List<String> headers = data.first.keys.toList();
         rows.add(headers);
       }
-
-      // Verileri ekleyin
       for (var row in data) {
         List<dynamic> rowData = row.values.toList();
         rows.add(rowData);
       }
-
-      // CSV verisini oluşturma
       String csvData = const ListToCsvConverter().convert(rows);
 
-      // Platforma göre dosya kaydetme yöntemi
       if (kIsWeb) {
-        // Web için dosya kaydetme
-        saveCsvWeb(csvData, 'example.csv');
+        saveCsvWeb(csvData, 'data${Random().nextInt(10000000)}.csv');
       } else if (Platform.isAndroid || Platform.isIOS) {
-        // Android ve iOS için dosya kaydetme
-        String? outputFilePath = await _getSavePath();
+        String? outputFilePath = await _getSavePathForMobileApps();
         if (outputFilePath != null) {
           final file = File(outputFilePath);
           await file.writeAsString(csvData);
-          _showSuccessMessage("CSV dosyası başarıyla indirildi.");
         }
       } else if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
-        // macOS, Linux ve Windows için dosya kaydetme
         String? outputFilePath = await _getSavePathForDesktop();
         if (outputFilePath != null) {
           final file = File(outputFilePath);
           await file.writeAsString(csvData);
-          _showSuccessMessage("CSV dosyası başarıyla indirildi.");
         }
       }
     } catch (e) {
-      // Hata mesajı
-      _showErrorMessage("CSV dosyası indirilirken bir hata oluştu: $e");
+      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
-  // Web için dosya kaydetme yöntemi
   void saveCsvWeb(String csvData, String fileName) {
     final bytes = Uint8List.fromList(csvData.codeUnits);
     final blob = html.Blob([bytes]);
@@ -68,42 +58,40 @@ class CsvDownload implements ICsvDownload {
     html.Url.revokeObjectUrl(url);
   }
 
-  // Android ve iOS için dosya yolu seçimi
-  Future<String?> _getSavePath() async {
+  Future<String?> _getSavePathForMobileApps() async {
     try {
       String? outputFilePath = await FilePicker.platform.saveFile(
-        dialogTitle: 'Lütfen bir çıkış dosyası seçin:',
-        fileName: 'example.csv',
+        dialogTitle: Messages.selectOutputFileMessage,
+        fileName: 'data${Random().nextInt(10000000)}.csv',
         type: FileType.custom,
         allowedExtensions: ['csv'],
       );
       return outputFilePath;
     } catch (e) {
-      _showErrorMessage("Dosya yolu seçimi sırasında bir hata oluştu: $e");
+      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      if (kDebugMode) {
+        print(e);
+      }
       return null;
     }
   }
 
-  // macOS, Linux ve Windows için dosya yolu seçimi
   Future<String?> _getSavePathForDesktop() async {
     try {
       String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
       if (selectedDirectory != null) {
-        return "$selectedDirectory/example.csv";
+        return "$selectedDirectory/data${Random().nextInt(10000000)}.csv";
       }
       return null;
     } catch (e) {
-      _showErrorMessage("Dosya yolu seçimi sırasında bir hata oluştu: $e");
+      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      if (kDebugMode) {
+        print(e);
+      }
       return null;
     }
   }
 
-  // Başarı mesajı gösterme yöntemi
-  void _showSuccessMessage(String message) {
-    CoreInitializer().coreContainer.screenMessage.getSuccessMessage(message);
-  }
-
-  // Hata mesajı gösterme yöntemi
   void _showErrorMessage(String message) {
     CoreInitializer().coreContainer.screenMessage.getErrorMessage(message);
   }

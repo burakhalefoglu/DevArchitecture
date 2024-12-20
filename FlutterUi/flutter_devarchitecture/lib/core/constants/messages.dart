@@ -24,14 +24,13 @@ class Messages {
   static late String customerSuccessHttpMessage;
   static late String customerSuccessSaveMessage;
   static late String customerSuccessCalculateMessage;
-
-  static late String fuelInputErrorMessage;
-  static late String fuelSpendErrorMessage;
-
   static late String customerAddSuccessMessage;
   static late String checkSuccessMessage;
+  static late String customerDefaultSuccessMessage;
+  static late String downloadSuccessMessage;
 
   static late String comingSoon;
+  static late String selectOutputFileMessage;
 
   static void init(BuildContext context) {
     _context = context;
@@ -44,27 +43,22 @@ class Messages {
     customerSaveInfoMessage = _translate("CustomerSaveInfoMessage");
     customerInternetConnectionSuccessMessage =
         _translate("CustomerInternetConnectionSuccessMessage");
-
     customerDefaultWarningMessage = _translate("CustomerDefaultWarningMessage");
-
     customerInternetConnectionErrorMessage =
         _translate("CustomerInternetConnectionErrorMessage");
     customerDefaultErrorMessage = _translate("CustomerDefaultErrorMessage");
     companyNameInputFieldWidgetEmptyErrorMessage =
         _translate("CompanyNameInputFieldWidgetEmptyErrorMessage");
-
     customerSuccessHttpMessage = _translate("CustomerSuccessHttpMessage");
     customerSuccessSaveMessage = _translate("CustomerSuccessSaveMessage");
     customerSuccessCalculateMessage =
         _translate("CustomerSuccessCalculateMessage");
-
-    fuelInputErrorMessage = _translate("FuelInputErrorMessage");
-    fuelSpendErrorMessage = _translate("FuelSpendErrorMessage");
-
     customerAddSuccessMessage = _translate("CustomerAddSuccessMessage");
     checkSuccessMessage = _translate("CheckSuccessMessage");
-
+    customerDefaultSuccessMessage = _translate("CustomerDefaultSuccessMessage");
+    selectOutputFileMessage = _translate("SelectOutputFileMessage");
     comingSoon = _translate("ComingSoon");
+    downloadSuccessMessage = _translate("DownloadSuccessMessage");
   }
 
   static String _translate(String key) {

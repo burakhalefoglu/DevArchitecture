@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../constants/messages.dart';
 import '../../utilities/results.dart';
 import '../i_service.dart';
 
@@ -29,7 +30,7 @@ abstract class FirebaseService implements IService {
       Timestamp.fromDate(body["deletedAt"]);
     }
     await _collectionRef.add(body);
-    return SuccessDataResult(body, "Eklendi");
+    return SuccessDataResult(body, "");
   }
 
   @override
@@ -38,7 +39,7 @@ abstract class FirebaseService implements IService {
       element["id"] = Random().nextInt(999999999);
       await create(element);
     }
-    return SuccessResult("Eklendi");
+    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
   }
 
   @override
@@ -127,7 +128,7 @@ abstract class FirebaseService implements IService {
       }
     }
     await _collectionRef.doc(documentID).update(body);
-    return SuccessResult("Güncellendi");
+    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
   }
 
   @override
@@ -143,6 +144,6 @@ abstract class FirebaseService implements IService {
       }
     }
     await _collectionRef.doc(documentID).delete();
-    return Future.value(SuccessResult("Silindi"));
+    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import '../../constants/messages.dart';
 import '../../utilities/results.dart';
 import '../../../core/services/i_service.dart';
 import '../../models/i_entity.dart';
@@ -9,13 +10,13 @@ class InMemoryService<T extends IEntity> implements IService {
   @override
   Future<IDataResult<Map<String, dynamic>>> create(Map<String, dynamic> body) {
     this.datas.add(body);
-    return Future.value(SuccessDataResult(body, "Tüm Veriler Eklendi!"));
+    return Future.value(SuccessDataResult(body, ""));
   }
 
   @override
   Future<IResult> delete(id) {
     datas.removeWhere((element) => element["id"] == id.toString());
-    return Future.value(SuccessResult("Veri Silindi !"));
+    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
   }
 
   @override
@@ -34,7 +35,7 @@ class InMemoryService<T extends IEntity> implements IService {
   Future<IResult> update(id, Map<String, dynamic> body) {
     datas.removeWhere((element) => element["id"] == id.toString());
     datas.add(body);
-    return Future.value(SuccessResult("Veri Güncellendi !"));
+    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
   }
 
   @override
@@ -42,7 +43,7 @@ class InMemoryService<T extends IEntity> implements IService {
     for (var element in body) {
       this.datas.add(element);
     }
-    return Future.value(SuccessResult("Tüm Veriler Eklendi!"));
+    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
   }
 
   @override
