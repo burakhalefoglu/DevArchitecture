@@ -108,6 +108,7 @@ class ScreenElementConstants {
   static late String vehicleRegistrationNumber;
   static late String vehicleLicensePlate;
   static late String phoneNumber;
+  static late String search;
 
   static void init(BuildContext context) {
     _context = context;
@@ -211,6 +212,7 @@ class ScreenElementConstants {
     vehicleRegistrationNumber = _translate("VehicleRegistrationNumber");
     vehicleLicensePlate = _translate("VehicleLicensePlate");
     phoneNumber = _translate("PhoneNumber");
+    search = _translate("Search");
   }
 
   static String _translate(String key) {

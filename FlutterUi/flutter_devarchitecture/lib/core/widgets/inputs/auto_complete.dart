@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
+import '../../constants/messages.dart';
 import '../../theme/custom_colors.dart';
 
 class CustomAutoComplete extends StatelessWidget {
@@ -38,7 +39,7 @@ class CustomAutoComplete extends StatelessWidget {
           validator: (value) {
             if (!enabled) return null;
             if ((value == null || value.isEmpty || value == "")) {
-              return '$labelText boş bırakılamaz';
+              return '$labelText ${Messages.cantBeEmpty}';
             }
             for (var i = 0; i < options.length; i++) {
               if (options[i][valueKey].toString().toUpperCase() ==
@@ -46,7 +47,7 @@ class CustomAutoComplete extends StatelessWidget {
                 return null;
               }
             }
-            return 'Lütfen geçerli bir $labelText giriniz.';
+            return '${Messages.invalid} $labelText';
           },
           controller: controller,
           focusNode: focusNode,
@@ -99,9 +100,7 @@ class CustomAutoComplete extends StatelessWidget {
           child: Material(
             elevation: 4.0,
             child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                  maxHeight: 200,
-                  maxWidth: 500), //RELEVANT CHANGE: added maxWidth
+              constraints: const BoxConstraints(maxHeight: 200, maxWidth: 500),
               child: ListView.builder(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,

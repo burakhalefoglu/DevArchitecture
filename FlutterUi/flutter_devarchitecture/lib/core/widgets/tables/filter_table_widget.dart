@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_devarchitecture/core/constants/screen_element_constants.dart';
 
 import '/core/widgets/inputs/text_input.dart';
 import '../../di/core_initializer.dart';
@@ -64,7 +65,7 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
           Expanded(
             flex: 2,
             child: CustomTextInput(
-              labelText: " Search",
+              labelText: ScreenElementConstants.search,
               hintText: "",
               min: 3,
               max: 15,

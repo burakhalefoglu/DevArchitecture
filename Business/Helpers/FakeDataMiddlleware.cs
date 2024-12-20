@@ -592,6 +592,33 @@ namespace Business.Helpers
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "Maximum", Value = "Maximum" });
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "InvalidNumber", Value = "Geçersiz Numara" });
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "InvalidNumber", Value = "Invalid Number" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "Invalid", Value = "Geçersiz" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "Invalid", Value = "Invalid" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "InvalidDate", Value = "Geçersiz Tarih" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "InvalidDate", Value = "Invalid Date" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "DateCantBeEmpty", Value = "Tarih Boş Olamaz" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "DateCantBeEmpty", Value = "Date Can't Be Empty" });
+
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "GroupPermissionUpdate", Value = "Grup İzinlerini Güncelle" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "GroupPermissionUpdate", Value = "Update Group Permissions" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "GroupUpdate", Value = "Grup Güncelle" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "GroupUpdate", Value = "Group Update" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "PasswordChange", Value = "Şifre Değişikliği" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "PasswordChange", Value = "Password Change" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "PermissionChange", Value = "Yetki Değişikliği" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "PermissionChange", Value = "Permission Change" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "GroupChange", Value = "Grup Değişikliği" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "GroupChange", Value = "Group Change" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "EditMessage", Value = "Düzenle" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "EditMessage", Value = "Edit" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "DeleteMessage", Value = "Sil" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "DeleteMessage", Value = "Delete" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "DownloadMessage", Value = "İndir" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "DownloadMessage", Value = "Download" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "AddMessage", Value = "Ekle" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "AddMessage", Value = "Add" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "DetailedInformationMessage", Value = "Detaylı Bilgi" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "DetailedInformationMessage", Value = "Detailed Information" });
 
 
             // Create default group

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import '../constants/messages.dart';
 import '../theme/custom_colors.dart';
 
 Widget updateGroupClaimButton(BuildContext context, VoidCallback onPressed) =>
     Tooltip(
-      message: "Grup İzinleri Yenile",
+      message: Messages.groupPermissionUpdate,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -15,7 +16,7 @@ Widget updateGroupClaimButton(BuildContext context, VoidCallback onPressed) =>
 
 Widget updateUserGroupButton(BuildContext context, VoidCallback onPressed) =>
     Tooltip(
-      message: "Kullanıcı Grubunu Yenile",
+      message: Messages.groupUpdate,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -27,7 +28,7 @@ Widget updateUserGroupButton(BuildContext context, VoidCallback onPressed) =>
 
 Widget getChangePasswordButton(BuildContext context, VoidCallback onPressed) =>
     Tooltip(
-      message: "Sifreyi Değiştir",
+      message: Messages.passwordChange,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -40,7 +41,7 @@ Widget getChangePasswordButton(BuildContext context, VoidCallback onPressed) =>
 Widget getChangePermissionButton(
         BuildContext context, VoidCallback onPressed) =>
     Tooltip(
-      message: "İzinleri Değiştir",
+      message: Messages.permissionChange,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -52,7 +53,7 @@ Widget getChangePermissionButton(
 
 Widget getChangeGroupButton(BuildContext context, VoidCallback onPressed) =>
     Tooltip(
-        message: "Grubu Değiştir",
+        message: Messages.groupChange,
         child: IconButton(
             hoverColor: CustomColors.transparent.getColor,
             onPressed: onPressed,
@@ -71,7 +72,7 @@ Widget getInfoHover(BuildContext context, String message, {Color? color}) =>
     );
 
 Widget getEditButton(BuildContext context, VoidCallback onPressed) => Tooltip(
-      message: "Veriyi Düzenle",
+      message: Messages.editMessage,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -83,7 +84,7 @@ Widget getEditButton(BuildContext context, VoidCallback onPressed) => Tooltip(
     );
 
 Widget getDeleteButton(BuildContext context, VoidCallback onPressed) => Tooltip(
-      message: "Veriyi Sil",
+      message: Messages.deleteMessage,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -97,7 +98,7 @@ Widget getDeleteButton(BuildContext context, VoidCallback onPressed) => Tooltip(
 Widget getDownloadButton(BuildContext context, VoidCallback onPressed,
         {Color? color}) =>
     Tooltip(
-      message: "Veriyi Excel Formatında İndir",
+      message: Messages.downloadMessage,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -110,7 +111,7 @@ Widget getDownloadButton(BuildContext context, VoidCallback onPressed,
 Widget getAddButton(BuildContext context, VoidCallback onPressed,
         {Color? color}) =>
     Tooltip(
-      message: "Yeni Kayıt Ekle",
+      message: Messages.addMessage,
       child: IconButton(
           onPressed: onPressed,
           hoverColor: CustomColors.transparent.getColor,
@@ -123,7 +124,7 @@ Widget getAddButton(BuildContext context, VoidCallback onPressed,
 Widget getNewPageOpenButton(
         BuildContext context, final VoidCallback onPressed) =>
     Tooltip(
-      message: "Ayrıntılı Bilgi...",
+      message: Messages.detailedInformationMessage,
       child: IconButton(
           onPressed: onPressed,
           hoverColor: CustomColors.transparent.getColor,

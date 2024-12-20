@@ -40,6 +40,19 @@ class Messages {
   static late String minimum;
   static late String maximum;
   static late String invalidNumber;
+  static late String invalid;
+  static late String invalidDate;
+  static late String dateCantBeEmpty;
+  static late String groupPermissionUpdate;
+  static late String groupUpdate;
+  static late String passwordChange;
+  static late String permissionChange;
+  static late String groupChange;
+  static late String editMessage;
+  static late String deleteMessage;
+  static late String downloadMessage;
+  static late String addMessage;
+  static late String detailedInformationMessage;
 
   static void init(BuildContext context) {
     _context = context;
@@ -77,6 +90,20 @@ class Messages {
     minimum = _translate("Minimum");
     maximum = _translate("Maximum");
     invalidNumber = _translate("InvalidNumber");
+    invalid = _translate("Invalid");
+    invalidDate = _translate("InvalidDate");
+    dateCantBeEmpty = _translate("DateCantBeEmpty");
+
+    groupPermissionUpdate = _translate("GroupPermissionUpdate");
+    groupUpdate = _translate("GroupUpdate");
+    passwordChange = _translate("PasswordChange");
+    permissionChange = _translate("PermissionChange");
+    groupChange = _translate("GroupChange");
+    editMessage = _translate("EditMessage");
+    deleteMessage = _translate("DeleteMessage");
+    downloadMessage = _translate("DownloadMessage");
+    addMessage = _translate("AddMessage");
+    detailedInformationMessage = _translate("DetailedInformationMessage");
   }
 
   static String _translate(String key) {
