@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 
-import '../../constants/messages.dart';
+import '../../constants/temp/messages.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 

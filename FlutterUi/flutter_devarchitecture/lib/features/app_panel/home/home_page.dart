@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/screen_element_constants.dart';
-import '../../../core/constants/sidebar_constants.dart';
+import '../../../core/constants/temp/sidebar_constants.dart';
 import '../../../core/theme/responsive.dart';
 import 'dart:async';
 import 'dart:math';
@@ -8,7 +8,7 @@ import '/core/theme/extensions.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../../core/theme/custom_colors.dart';
 import '../../../../core/widgets/base_widgets.dart';
-import '../../layouts/base_scaffold.dart';
+import '../../../layouts/base_scaffold.dart';
 import 'responsive/fake_data.dart';
 import 'widgets/header_cards.dart';
 

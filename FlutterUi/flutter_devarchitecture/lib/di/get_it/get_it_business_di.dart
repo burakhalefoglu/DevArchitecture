@@ -21,18 +21,18 @@ import '../../features/admin_panel/operation_claims/services/in_memory_operation
 import '../../features/admin_panel/translates/services/api_translate_service.dart';
 import '../../features/admin_panel/translates/services/i_translate_service.dart';
 import '../../features/admin_panel/translates/services/in_memory_translate_service.dart';
-import '../../features/admin_panel/user-claims/services/i_user_claim_service.dart';
-import '../../features/admin_panel/user-groups/services/api_user_group_service.dart';
-import '../../features/admin_panel/user-groups/services/i_user_group_service.dart';
-import '../../features/admin_panel/user-groups/services/in_memory_user_group_Service.dart';
-import '../../features/admin_panel/user-claims/services/api_user_claim.service.dart';
-import '../../features/admin_panel/user-claims/services/in_memory_user_claim.dart';
+import '../../features/admin_panel/user_claims/services/i_user_claim_service.dart';
+import '../../features/admin_panel/user_groups/services/api_user_group_service.dart';
+import '../../features/admin_panel/user_groups/services/i_user_group_service.dart';
+import '../../features/admin_panel/user_groups/services/in_memory_user_group_Service.dart';
+import '../../features/admin_panel/user_claims/services/api_user_claim.service.dart';
+import '../../features/admin_panel/user_claims/services/in_memory_user_claim.dart';
 import '../../features/admin_panel/users/services/api_user_service.dart';
 import '../../features/admin_panel/users/services/i_user_service.dart';
 import '../../features/admin_panel/users/services/in_memory_user_service.dart';
-import '../../features/auth/services/abstract/i_auth_service.dart';
-import '../../features/auth/services/concrete/api_auth_service.dart';
-import '../../features/auth/services/concrete/in_memory_auth_service.dart';
+import '../../features/public/auth/services/abstract/i_auth_service.dart';
+import '../../features/public/auth/services/concrete/api_auth_service.dart';
+import '../../features/public/auth/services/concrete/in_memory_auth_service.dart';
 import '../i_business_container.dart';
 
 class GetItBusinessContainer implements IBusinessContainer {

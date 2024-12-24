@@ -1,8 +1,8 @@
-import '/features/auth/models/password_dto.dart';
+import '../../models/password_dto.dart';
 
-import '../../../../core/utilities/results.dart';
-import '../../../../core/di/core_initializer.dart';
-import '../../../../core/services/base_services/api_service.dart';
+import '../../../../../core/utilities/results.dart';
+import '../../../../../core/di/core_initializer.dart';
+import '../../../../../core/services/base_services/api_service.dart';
 import '../../models/auth.dart';
 import '../abstract/i_auth_service.dart';
 

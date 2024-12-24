@@ -9,7 +9,7 @@ import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 
-import '../../constants/messages.dart';
+import '../../constants/temp/messages.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 

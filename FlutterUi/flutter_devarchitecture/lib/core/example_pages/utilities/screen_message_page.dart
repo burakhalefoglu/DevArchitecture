@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '/core/di/core_initializer.dart';
 import '/core/utilities/screen_message/i_screen_message.dart';
 
-import '../../../features/layouts/base_scaffold.dart';
+import '../../../layouts/base_scaffold.dart';
 
 class ScreenMessagePage extends StatefulWidget {
   @override

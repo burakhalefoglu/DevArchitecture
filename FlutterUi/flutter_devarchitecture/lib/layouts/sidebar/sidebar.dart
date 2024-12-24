@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../routes/routes_constants.dart';
+import '../../routes/routes_constants.dart';
 import 'helper.dart';
-import '../../../core/constants/sidebar_constants.dart';
+import '../../core/constants/temp/sidebar_constants.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '/core/di/core_initializer.dart';
 import '/core/utilities/internet_connection/i_internet_connection.dart';
 
-import '../../../features/layouts/base_scaffold.dart';
+import '../../../layouts/base_scaffold.dart';
 
 class InternetConnectionPage extends StatefulWidget {
   @override

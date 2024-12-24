@@ -1,4 +1,4 @@
-import '../../../core/models/i_entity.dart';
+import '../../../../core/models/i_entity.dart';
 
 class PasswordDto implements IEntity {
   String password;

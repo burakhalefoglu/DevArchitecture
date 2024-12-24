@@ -1,4 +1,4 @@
-import '../../../auth/models/password_dto.dart';
+import '../../../public/auth/models/password_dto.dart';
 import '../../../../core/bloc/base_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../di/business_initializer.dart';

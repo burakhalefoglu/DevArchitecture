@@ -6,11 +6,11 @@ import '/features/admin_panel/translates/services/i_translate_service.dart';
 
 import '../features/admin_panel/groups/services/i_group.dart';
 import '../features/admin_panel/lookups/services/i_lookup_service.dart';
-import '../features/admin_panel/user-groups/services/i_user_group_service.dart';
-import '../features/admin_panel/user-claims/services/i_user_claim_service.dart';
+import '../features/admin_panel/user_groups/services/i_user_group_service.dart';
+import '../features/admin_panel/user_claims/services/i_user_claim_service.dart';
 import '../features/admin_panel/users/services/i_user_service.dart';
 
-import '../features/auth/services/abstract/i_auth_service.dart';
+import '../features/public/auth/services/abstract/i_auth_service.dart';
 
 abstract class IBusinessContainer {
   late IAuthService authService;

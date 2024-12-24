@@ -3,12 +3,12 @@ import '/core/constants/screen_element_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/theme/extensions.dart';
-import '../../core/constants/messages.dart';
-import '../../core/theme/custom_colors.dart';
-import '../../core/di/core_initializer.dart';
-import '../../core/theme/theme_provider.dart';
-import '../../routes/routes_constants.dart';
+import '../core/theme/extensions.dart';
+import '../core/constants/temp/messages.dart';
+import '../core/theme/custom_colors.dart';
+import '../core/di/core_initializer.dart';
+import '../core/theme/theme_provider.dart';
+import '../routes/routes_constants.dart';
 import 'sidebar/sidebar.dart';
 
 buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {

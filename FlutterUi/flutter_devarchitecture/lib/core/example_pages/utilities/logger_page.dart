@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import '/core/di/core_initializer.dart';
-import '/features/layouts/base_scaffold.dart';
+import '../../../layouts/base_scaffold.dart';
 
 import '../../utilities/logger/i_logger.dart';
 

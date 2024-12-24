@@ -4,7 +4,7 @@ import '../../../theme/custom_colors.dart';
 import '../../../utilities/file_share/Buttons/share_buttons.dart';
 import '../../../widgets/base_widgets.dart';
 import '../../../widgets/tables/filter_table_widget.dart';
-import '../../../../features/layouts/base_scaffold.dart';
+import '../../../../layouts/base_scaffold.dart';
 import '../data/users.dart';
 
 class ExcelSharePage extends StatelessWidget {

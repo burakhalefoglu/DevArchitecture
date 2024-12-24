@@ -5,10 +5,10 @@ import '/core/constants/screen_element_constants.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/constants/messages.dart';
+import '../../../../core/constants/temp/messages.dart';
 import '../../../../core/di/core_initializer.dart';
-import '../../user-groups/bloc/user_group_cubit.dart';
-import '../../user-groups/widgets/user_group_auto_complete.dart';
+import '../../user_groups/bloc/user_group_cubit.dart';
+import '../../user_groups/widgets/user_group_auto_complete.dart';
 
 class ChangeUserGroupsDialog extends StatefulWidget {
   final int userId;

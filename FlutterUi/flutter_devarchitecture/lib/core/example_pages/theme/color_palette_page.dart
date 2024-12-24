@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '/core/theme/extensions.dart';
-import '/features/layouts/base_scaffold.dart';
+import '../../../layouts/base_scaffold.dart';
 import '../../theme/custom_colors.dart';
 
 class ColorPalettePage extends StatelessWidget {

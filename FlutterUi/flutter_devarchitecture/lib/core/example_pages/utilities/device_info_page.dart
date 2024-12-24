@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../di/core_initializer.dart';
-import '../../../features/layouts/base_scaffold.dart';
+import '../../../layouts/base_scaffold.dart';
 
 class DeviceInfoPage extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/core/constants/messages.dart';
+import '../../../../core/constants/temp/messages.dart';
 import '/core/constants/screen_element_constants.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
@@ -11,7 +11,7 @@ import '../../../../core/widgets/confirmation_dialog.dart';
 import '../models/translate.dart';
 import '../widgets/add_translate_dialog.dart';
 import '../widgets/update_translate_dialog.dart';
-import '../../../layouts/base_scaffold.dart';
+import '../../../../layouts/base_scaffold.dart';
 import '../../../../core/theme/custom_colors.dart';
 import '../../../../core/widgets/base_widgets.dart';
 import '../../../../core/widgets/button_widgets.dart';

@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import 'core/constants/messages.dart';
+import 'core/constants/temp/messages.dart';
 import 'core/constants/screen_element_constants.dart';
 import 'core/di/core_initializer.dart';
 import 'core/di/firebase/firebase_initializer.dart';
 import 'core/helpers/translation_provider.dart';
 import 'core/theme/theme_provider.dart';
-import 'core/constants/sidebar_constants.dart';
-import 'features/mixin/modular_mixin.dart';
-import 'core/mixins/battery_state_mixin.dart';
+import 'core/constants/temp/sidebar_constants.dart';
+import 'modular_mixin.dart';
 import 'core/mixins/internet_connection_mixin.dart';
 import 'core/mixins/ok_toast_mixin.dart';
 import 'di/business_initializer.dart';
@@ -66,11 +65,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App>
-    with
-        OKToastMixin<App>,
-        InternetConnectionCheckerMixin,
-        BatteryStateMixin,
-        ModularMixin {
+    with OKToastMixin<App>, InternetConnectionCheckerMixin, ModularMixin {
   @override
   void initState() {
     super.initState();
@@ -82,7 +77,7 @@ class _AppState extends State<App>
 
   @override
   Widget build(BuildContext context) {
-    //: init constants
+    //! please init constants here!
     Messages.init(context);
     SidebarConstants.init(context);
     ScreenElementConstants.init(context);
@@ -91,9 +86,8 @@ class _AppState extends State<App>
 
   @override
   Widget buildChild(BuildContext context) {
+    // TODO: connection pop up
     listenConnection();
-    listenBatteryState();
-
     return buildModular(context);
   }
 
@@ -101,6 +95,5 @@ class _AppState extends State<App>
   void dispose() {
     super.dispose();
     stopCheckingConnection();
-    stopListeningBatteryState();
   }
 }

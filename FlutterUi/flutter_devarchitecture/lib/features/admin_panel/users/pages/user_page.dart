@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/constants/messages.dart';
+import '../../../../core/constants/temp/messages.dart';
 import '../../../../core/constants/screen_element_constants.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
@@ -19,7 +19,7 @@ import '/core/widgets/tables/filter_table_widget.dart';
 import '../../../../core/widgets/base_widgets.dart';
 import '../../../../core/theme/custom_colors.dart';
 import '/core/widgets/button_widgets.dart';
-import '../../../layouts/base_scaffold.dart';
+import '../../../../layouts/base_scaffold.dart';
 
 class AdminUserPage extends StatelessWidget {
   const AdminUserPage({super.key});

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../constants/messages.dart';
+import '../../constants/temp/messages.dart';
 import '../../utilities/results.dart';
 import '../i_service.dart';
 

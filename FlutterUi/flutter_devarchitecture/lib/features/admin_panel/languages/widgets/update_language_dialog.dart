@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '/core/constants/screen_element_constants.dart';
 import '/core/theme/extensions.dart';
-import '../../../../core/constants/messages.dart';
+import '../../../../core/constants/temp/messages.dart';
 import '../models/language.dart';
 
 class UpdateLanguageDialog extends StatefulWidget {

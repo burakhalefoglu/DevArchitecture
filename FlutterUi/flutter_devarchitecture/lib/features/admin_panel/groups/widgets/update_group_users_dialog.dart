@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/core/constants/messages.dart';
+import '../../../../core/constants/temp/messages.dart';
 import '/core/constants/screen_element_constants.dart';
 import '/core/di/core_initializer.dart';
-import '/features/admin_panel/user-groups/bloc/user_group_cubit.dart';
+import '../../user_groups/bloc/user_group_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../user-groups/widgets/group_users_auto_complete.dart';
+import '../../user_groups/widgets/group_users_auto_complete.dart';
 
 class UpdateGroupUsersDialog extends StatefulWidget {
   final int groupId;

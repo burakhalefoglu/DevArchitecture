@@ -1,5 +1,5 @@
-import '../../../../core/utilities/results.dart';
-import '../../../../core/services/i_service.dart';
+import '../../../../../core/utilities/results.dart';
+import '../../../../../core/services/i_service.dart';
 import '../../models/auth.dart';
 import '../../models/password_dto.dart';
 
