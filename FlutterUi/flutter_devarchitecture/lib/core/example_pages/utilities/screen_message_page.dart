@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
-import 'package:flutter_devarchitecture/core/utilities/screen_message/i_screen_message.dart';
+import '/core/di/core_initializer.dart';
+import '/core/utilities/screen_message/i_screen_message.dart';
 
 import '../../../features/layouts/base_scaffold.dart';
 

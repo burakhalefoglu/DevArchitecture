@@ -1,6 +1,6 @@
-import 'package:flutter_devarchitecture/core/di/firebase/i_firebase_container.dart';
-import 'package:flutter_devarchitecture/core/utilities/analytics/firebase_analytics_service.dart';
-import 'package:flutter_devarchitecture/core/utilities/performance/i_performance_service.dart';
+import '/core/di/firebase/i_firebase_container.dart';
+import '/core/utilities/analytics/firebase_analytics_service.dart';
+import '/core/utilities/performance/i_performance_service.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../utilities/analytics/i_analytics_service.dart';

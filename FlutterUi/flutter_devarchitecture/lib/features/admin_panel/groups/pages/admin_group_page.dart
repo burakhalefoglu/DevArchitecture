@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '/core/constants/screen_element_constants.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../../core/theme/extensions.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
+import '../../../../core/constants/messages.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../widgets/add_group_dialog.dart';
 import '../widgets/update_group_claims_dialog.dart';
@@ -70,23 +72,22 @@ class AdminGroupPage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                "Gruplar Listesi",
-                subDirection: "Admin Panel",
+                ScreenElementConstants.groupList,
+                subDirection: ScreenElementConstants.adminPanel,
               ),
             ),
           ),
           Expanded(
             flex: 9,
             child: FilterTableWidget(
-              infoHover:
-                  getInfoHover(context, "Gruplar bu sayfada listelenir."),
+              infoHover: getInfoHover(context, Messages.groupInfoHover),
               utilityButton: DownloadButtons(
                       color: CustomColors.dark.getColor, data: datas)
                   .excelButton(context),
               datas: datas,
-              headers: const [
+              headers: [
                 {"id": "ID"},
-                {"groupName": "Grup Adı"},
+                {"groupName": ScreenElementConstants.groupName},
               ],
               color: CustomColors.primary.getColor,
               customManipulationButton: const [

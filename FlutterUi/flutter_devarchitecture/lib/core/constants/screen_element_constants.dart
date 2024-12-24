@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
+import '/core/helpers/translate_provider_extension.dart';
 
 class ScreenElementConstants {
   static late BuildContext _context;
 
   static late String appName;
+  static late String adminPanel;
   static late String returnHomePage;
   static late String loginTitle;
   static late String loginButton;
@@ -110,10 +111,71 @@ class ScreenElementConstants {
   static late String phoneNumber;
   static late String search;
 
+  static late String groupClaims;
+  static late String selectGroupClaim;
+  static late String groupList;
+  static late String groupName;
+  static late String addGroup;
+  static late String groupNameHint;
+  static late String updateGroupClaims;
+  static late String updateButton;
+  static late String updateGroup;
+  static late String updateGroupUsers;
+  static late String languageList;
+  static late String code;
+  static late String addLanguage;
+  static late String updateLanguage;
+  static late String logList;
+  static late String level;
+  static late String exceptionMessage;
+  static late String timeStamp;
+  static late String user;
+  static late String value;
+  static late String type;
+
+  static late String operationClaimList;
+  static late String alias;
+  static late String aliasHint;
+  static late String description;
+  static late String updateOperationClaim;
+  static late String language;
+  static late String translateList;
+  static late String codeHint;
+  static late String valueHint;
+
+  static late String addTranslate;
+  static late String updateTranslate;
+  static late String userClaims;
+  static late String selectUserClaims;
+
+  static late String users;
+  static late String selectUsers;
+  static late String userGroups;
+  static late String selectUserGroups;
+  static late String addUser;
+  static late String fullName;
+  static late String fullNameHint;
+  static late String address;
+  static late String addressHint;
+  static late String active;
+  static late String inactive;
+  static late String notes;
+  static late String notesHint;
+  static late String changePassword;
+  static late String newPassword;
+  static late String confirmPassword;
+  static late String updateUserClaims;
+  static late String updateUserGroups;
+  static late String updateUsers;
+  static late String userList;
+  static late String status;
+  static late String mobilePhones;
+
   static void init(BuildContext context) {
     _context = context;
 
     appName = _translate("AppName");
+    adminPanel = _translate("AdminPanel");
     returnHomePage = _translate("ReturnHomePage");
     loginTitle = _translate("LoginTitle");
     loginButton = _translate("LoginButton");
@@ -213,6 +275,62 @@ class ScreenElementConstants {
     phoneNumber = _translate("PhoneNumber");
     search = _translate("Search");
     // backend___________________!
+
+    groupClaims = _translate("GroupClaims");
+    selectGroupClaim = _translate("SelectGroupClaim");
+    groupList = _translate("GroupList");
+    groupName = _translate("GroupName");
+    groupNameHint = _translate("GroupNameHint");
+    addGroup = _translate("AddGroup");
+    updateGroupClaims = _translate("UpdateGroupClaims");
+    updateButton = _translate("UpdateButton");
+    updateGroup = _translate("UpdateGroup");
+    updateGroupUsers = _translate("UpdateGroupUsers");
+    languageList = _translate("LanguageList");
+    code = _translate("Code");
+    addLanguage = _translate("AddLanguage");
+    updateLanguage = _translate("UpdateLanguage");
+    logList = _translate("LogList");
+    level = _translate("Level");
+    exceptionMessage = _translate("ExceptionMessage");
+    timeStamp = _translate("TimeStamp");
+    user = _translate("User");
+    value = _translate("Value");
+    type = _translate("Type");
+    updateOperationClaim = _translate("UpdateOperationClaim");
+    aliasHint = _translate("AliasHint");
+    description = _translate("Description");
+    operationClaimList = _translate("OperationClaimList");
+    language = _translate("Language");
+    translateList = _translate("TranslateList");
+    codeHint = _translate("CodeHint");
+    valueHint = _translate("ValueHint");
+    addTranslate = _translate("AddTranslate");
+    updateTranslate = _translate("UpdateTranslate");
+    userClaims = _translate("UserClaims");
+    selectUserClaims = _translate("SelectUserClaims");
+    selectUsers = _translate("SelectUsers");
+    users = _translate("Users");
+    userGroups = _translate("UserGroups");
+    selectUserGroups = _translate("SelectUserGroups");
+    addUser = _translate("AddUser");
+    fullName = _translate("FullName");
+    fullNameHint = _translate("FullNameHint");
+    address = _translate("Address");
+    addressHint = _translate("AddressHint");
+    active = _translate("Active");
+    inactive = _translate("Inactive");
+    notes = _translate("Notes");
+    notesHint = _translate("NotesHint");
+    changePassword = _translate("ChangePassword");
+    newPassword = _translate("NewPassword");
+    confirmPassword = _translate("ConfirmPassword");
+    updateUserClaims = _translate("UpdateUserClaims");
+    updateUserGroups = _translate("UpdateUserGroups");
+    updateUsers = _translate("UpdateUsers");
+    userList = _translate("UserList");
+    status = _translate("Status");
+    mobilePhones = _translate("MobilePhones");
   }
 
   static String _translate(String key) {

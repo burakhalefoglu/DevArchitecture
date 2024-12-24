@@ -1,8 +1,8 @@
-import 'package:flutter_devarchitecture/features/admin_panel/lookups/models/lookup.dart';
-
 import '../../../../core/bloc/base_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/constants/messages.dart';
 import '../../../../di/business_initializer.dart';
+import '../../lookups/models/lookup.dart';
 import '../models/group_claim.dart';
 
 class GroupClaimCubit extends BaseCubit<GroupClaim> {
@@ -11,7 +11,7 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
   }
 
   Future<void> getGroupClaimsByGroupId(int groupId) async {
-    emit(BlocLoading("Grup yetkileri getiriliyor..."));
+    emit(BlocLoading());
     try {
       final groupClaims = await BusinessInitializer()
           .businessContainer
@@ -39,8 +39,6 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
           isSelected: selectedClaimIds.contains(claim.id),
         );
       }).toList();
-      print("updatedClaims: " +
-          updatedClaims.map((e) => e.toMap()).toList().toString());
       emit(BlocSuccess<List<LookUp>>(updatedClaims));
     } on Exception catch (e) {
       emitFailState("", e: e);
@@ -48,7 +46,7 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
   }
 
   Future<void> saveGroupClaimsByGroupId(int groupId, List<int> claims) async {
-    emit(BlocLoading("Grup yetkisi güncelleniyor..."));
+    emit(BlocLoading());
     try {
       var result = await BusinessInitializer()
           .businessContainer
@@ -59,7 +57,7 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
         return;
       }
       await getGroupClaimsByGroupId(groupId);
-      emit(BlocSuccess("Grup yetkisi güncellendi"));
+      emit(BlocSuccess(Messages.customerDefaultSuccessMessage));
     } on Exception catch (e) {
       emitFailState("", e: e);
     }

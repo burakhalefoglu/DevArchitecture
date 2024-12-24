@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/theme/extensions.dart';
-import 'package:flutter_devarchitecture/features/layouts/base_scaffold.dart';
+import '/core/theme/extensions.dart';
+import '/features/layouts/base_scaffold.dart';
 import '../../widgets/inputs/auto_complete.dart';
 import '../../widgets/inputs/date_input.dart';
 import '../../widgets/inputs/dropdown_button.dart';

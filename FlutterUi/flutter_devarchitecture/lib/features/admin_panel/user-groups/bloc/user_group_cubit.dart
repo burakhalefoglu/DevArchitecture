@@ -10,7 +10,7 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
   }
 
   Future<void> getUserGroupPermissions(int userId) async {
-    emit(BlocLoading("Kullanıcı grupları getiriliyor..."));
+    emit(BlocLoading());
     try {
       final groups = await BusinessInitializer()
           .businessContainer
@@ -45,7 +45,7 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
   }
 
   Future<void> saveUserGroupPermissions(int userId, List<int> groups) async {
-    emit(BlocLoading("Kullanıcı grupları kaydediliyor..."));
+    emit(BlocLoading());
     try {
       var result = await BusinessInitializer()
           .businessContainer
@@ -56,7 +56,7 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
         emitFailState(result.message);
         return;
       }
-      await getUserGroupPermissions(userId); // Verileri tekrar yükleyin
+      await getUserGroupPermissions(userId);
     } on Exception catch (e) {
       emitFailState("", e: e);
     }
@@ -97,7 +97,7 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
 
   Future<void> saveGroupUsers(int groupId, List<int> userIds) async {
     try {
-      emit(BlocSending("Veri Ekleniyor"));
+      emit(BlocSending());
       var result = await BusinessInitializer()
           .businessContainer
           .userGroupService

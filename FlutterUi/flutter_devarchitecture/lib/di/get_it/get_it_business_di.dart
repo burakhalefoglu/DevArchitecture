@@ -1,5 +1,5 @@
-import 'package:flutter_devarchitecture/features/admin_panel/group_claims/services/i_group_claim_service.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/lookups/services/api_lookup_service.dart';
+import '/features/admin_panel/group_claims/services/i_group_claim_service.dart';
+import '/features/admin_panel/lookups/services/api_lookup_service.dart';
 import 'package:get_it/get_it.dart';
 import '../../features/admin_panel/group_claims/services/api_group_claim_service.dart';
 import '../../features/admin_panel/group_claims/services/in_memory_group_claim_service.dart';

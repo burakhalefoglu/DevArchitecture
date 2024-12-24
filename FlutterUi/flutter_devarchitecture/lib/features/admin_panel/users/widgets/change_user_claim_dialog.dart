@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '/core/constants/screen_element_constants.dart';
 
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
+import '../../../../core/constants/messages.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../user-claims/bloc/user_claim_cubit.dart';
 import '../../user-claims/widgets/user_claim_auto_complete.dart';
@@ -40,7 +42,7 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
           }
 
           return AlertDialog(
-            title: const Text('Kullanıcı Yetkilerini Güncelle'),
+            title: Text(ScreenElementConstants.updateUserClaims),
             content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
               child: UserClaimAutocomplete(
@@ -55,7 +57,7 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('İptal'),
+                child: Text(ScreenElementConstants.cancelButton),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -67,10 +69,10 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
                     CoreInitializer()
                         .coreContainer
                         .screenMessage
-                        .getErrorMessage('Lütfen en az bir yetki seçiniz.');
+                        .getErrorMessage(Messages.atLeastOneSelection);
                   }
                 },
-                child: const Text('Kaydet'),
+                child: Text(ScreenElementConstants.saveButton),
               ),
             ],
           );

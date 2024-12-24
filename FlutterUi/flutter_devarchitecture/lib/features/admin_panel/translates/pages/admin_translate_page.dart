@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '/core/constants/messages.dart';
+import '/core/constants/screen_element_constants.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
@@ -69,8 +71,8 @@ class AdminTranslatePage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                "Dil Çeviri Listesi",
-                subDirection: "Admin Panel",
+                ScreenElementConstants.translateList,
+                subDirection: ScreenElementConstants.adminPanel,
               ),
             ),
           ),
@@ -78,11 +80,11 @@ class AdminTranslatePage extends StatelessWidget {
             flex: 9,
             child: FilterTableWidget(
               datas: datas,
-              headers: const [
+              headers: [
                 {"id": "ID"},
-                {"code": "Kod"},
-                {"language": "Dil"},
-                {"value": "Değer"},
+                {"code": ScreenElementConstants.code},
+                {"language": ScreenElementConstants.language},
+                {"value": ScreenElementConstants.value},
               ],
               color: CustomColors.light.getColor,
               utilityButton: DownloadButtons(
@@ -100,7 +102,7 @@ class AdminTranslatePage extends StatelessWidget {
               ],
               infoHover: getInfoHover(
                 context,
-                "Dil çevirileri bu sayfada listelenmektedir.",
+                Messages.translateInfoHover,
                 color: CustomColors.gray.getColor,
               ),
               addButton: getAddButton(

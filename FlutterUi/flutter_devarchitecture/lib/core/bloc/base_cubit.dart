@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_devarchitecture/core/helpers/exceptions.dart';
+import '../helpers/exceptions.dart';
 import 'base_state.dart';
 import '../models/i_entity.dart';
 import '../services/i_service.dart';

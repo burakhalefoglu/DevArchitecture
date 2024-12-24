@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
+import '../../../../core/constants/screen_element_constants.dart';
 import '../../lookups/widgets/lookup_multi_select_auto_complete.dart';
 import '../bloc/user_claim_cubit.dart';
 import '../../lookups/models/lookup.dart';
@@ -55,8 +56,8 @@ class _UserClaimAutocompleteState extends State<UserClaimAutocomplete> {
               valueKey: "label",
               selectedIds: selectedIds,
               options: options,
-              labelText: "Kullanıcı Yetkileri",
-              hintText: "Yetki seçin",
+              labelText: ScreenElementConstants.userClaims,
+              hintText: ScreenElementConstants.selectUserClaims,
               onChanged: widget.onChanged,
               controller: _controller,
               focusNode: _focusNode,

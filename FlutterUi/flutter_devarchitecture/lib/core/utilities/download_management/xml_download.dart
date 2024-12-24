@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
-import 'package:flutter_devarchitecture/core/constants/messages.dart';
+import '/core/constants/messages.dart';
 import 'package:xml/xml.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;

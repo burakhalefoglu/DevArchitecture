@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
-import 'package:flutter_devarchitecture/di/business_initializer.dart';
+import '/core/di/core_initializer.dart';
+import '/di/business_initializer.dart';
 
 class TranslationProvider with ChangeNotifier {
   final translationService =

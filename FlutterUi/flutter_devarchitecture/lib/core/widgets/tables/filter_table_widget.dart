@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/constants/screen_element_constants.dart';
+import '/core/constants/screen_element_constants.dart';
 
 import '/core/widgets/inputs/text_input.dart';
 import '../../di/core_initializer.dart';

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_devarchitecture/core/helpers/exceptions.dart';
+import '/core/helpers/exceptions.dart';
 
 import 'http_interceptor.dart';
 import 'i_http.dart';

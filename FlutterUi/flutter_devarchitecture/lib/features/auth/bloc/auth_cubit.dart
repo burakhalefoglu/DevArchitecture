@@ -1,4 +1,4 @@
-import 'package:flutter_devarchitecture/core/configs/app_config.dart';
+import '/core/configs/app_config.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../../../core/bloc/base_cubit.dart';

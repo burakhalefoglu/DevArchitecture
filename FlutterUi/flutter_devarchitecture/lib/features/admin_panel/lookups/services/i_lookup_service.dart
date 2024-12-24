@@ -1,4 +1,4 @@
-import 'package:flutter_devarchitecture/features/admin_panel/lookups/models/lookup.dart';
+import '/features/admin_panel/lookups/models/lookup.dart';
 
 abstract class ILookupService {
   Future<List<LookUp>> getGroupLookUp();

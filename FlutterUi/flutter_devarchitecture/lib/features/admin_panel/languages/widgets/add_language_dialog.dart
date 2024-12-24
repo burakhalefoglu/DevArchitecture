@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/theme/extensions.dart';
+import '/core/constants/messages.dart';
+import '/core/constants/screen_element_constants.dart';
+import '/core/theme/extensions.dart';
 import '../models/language.dart';
 
 class AddLanguageDialog extends StatefulWidget {
@@ -17,7 +19,7 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Yeni Dil Ekle'),
+      title: Text(ScreenElementConstants.addLanguage),
       content: Form(
         key: _formKey,
         child: Container(
@@ -30,10 +32,11 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
                 flex: 5,
                 child: TextFormField(
                   controller: _codeController,
-                  decoration: const InputDecoration(labelText: 'Kod'),
+                  decoration:
+                      InputDecoration(labelText: ScreenElementConstants.code),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Kod boş bırakılamaz';
+                      return Messages.cantBeEmpty;
                     }
                     return null;
                   },
@@ -44,10 +47,11 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
                 flex: 5,
                 child: TextFormField(
                   controller: _nameController,
-                  decoration: const InputDecoration(labelText: 'Dil Adı'),
+                  decoration:
+                      InputDecoration(labelText: ScreenElementConstants.name),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Dil adı boş bırakılamaz';
+                      return Messages.cantBeEmpty;
                     }
                     return null;
                   },
@@ -60,7 +64,7 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('İptal'),
+          child: Text(ScreenElementConstants.cancel),
         ),
         ElevatedButton(
           onPressed: () {
@@ -73,7 +77,7 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
               Navigator.of(context).pop(newLanguage);
             }
           },
-          child: const Text('Ekle'),
+          child: Text(ScreenElementConstants.saveButton),
         ),
       ],
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
+import '/core/helpers/translate_provider_extension.dart';
 
 class Messages {
   static late BuildContext _context;
@@ -54,6 +54,15 @@ class Messages {
   static late String addMessage;
   static late String detailedInformationMessage;
 
+  static late String groupInfoHover;
+  static late String atLeastOneSelection;
+  static late String languageInfoHover;
+  static late String logInfoHover;
+  static late String operationClaimInfoHover;
+  static late String translateInfoHover;
+  static late String passwordsDoNotMatch;
+  static late String userInfoHover;
+
   static void init(BuildContext context) {
     _context = context;
 
@@ -104,6 +113,14 @@ class Messages {
     downloadMessage = _translate("DownloadMessage");
     addMessage = _translate("AddMessage");
     detailedInformationMessage = _translate("DetailedInformationMessage");
+    groupInfoHover = _translate("GroupInfoHover");
+    atLeastOneSelection = _translate("AtLeastOneSelection");
+    languageInfoHover = _translate("LanguageInfoHover");
+    logInfoHover = _translate("LogInfoHover");
+    operationClaimInfoHover = _translate("OperationClaimInfoHover");
+    translateInfoHover = _translate("TranslateInfoHover");
+    passwordsDoNotMatch = _translate("PasswordsDoNotMatch");
+    userInfoHover = _translate("UserInfoHover");
   }
 
   static String _translate(String key) {

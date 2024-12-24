@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/core/constants/screen_element_constants.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/widgets/inputs/text_input.dart';
 import '../models/operation_claim_dto.dart';
@@ -39,7 +40,7 @@ class _UpdateOperationClaimDialogState
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Operasyon Yetkisini Güncelle'),
+      title: Text(ScreenElementConstants.updateOperationClaim),
       content: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -53,14 +54,15 @@ class _UpdateOperationClaimDialogState
               children: [
                 Expanded(
                     flex: 3,
-                    child: Text("Yetki Adı: ${widget.operationClaim.name}")),
+                    child: Text(
+                        "${ScreenElementConstants.name}: ${widget.operationClaim.name}")),
                 const Spacer(),
                 Expanded(
                   flex: 5,
                   child: CustomTextInput(
                     controller: _aliasController,
-                    labelText: 'Takma Ad',
-                    hintText: 'örn: Admin',
+                    labelText: ScreenElementConstants.alias,
+                    hintText: ScreenElementConstants.aliasHint,
                     min: 2,
                     max: 50,
                   ),
@@ -70,8 +72,8 @@ class _UpdateOperationClaimDialogState
                   flex: 5,
                   child: CustomTextInput(
                     controller: _descriptionController,
-                    labelText: 'Açıklama',
-                    hintText: 'örn: Bu yetki tüm erişim izinlerini içerir.',
+                    labelText: ScreenElementConstants.description,
+                    hintText: "",
                     min: 5,
                     max: 200,
                   ),
@@ -84,7 +86,7 @@ class _UpdateOperationClaimDialogState
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('İptal'),
+          child: Text(ScreenElementConstants.cancelButton),
         ),
         ElevatedButton(
           onPressed: () {
@@ -97,7 +99,7 @@ class _UpdateOperationClaimDialogState
               Navigator.of(context).pop(updatedOperationClaim);
             }
           },
-          child: const Text('Güncelle'),
+          child: Text(ScreenElementConstants.updateButton),
         ),
       ],
     );

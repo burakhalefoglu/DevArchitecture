@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/user-groups/bloc/user_group_cubit.dart';
+import '/core/constants/messages.dart';
+import '/core/constants/screen_element_constants.dart';
+import '/core/di/core_initializer.dart';
+import '/features/admin_panel/user-groups/bloc/user_group_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
@@ -31,7 +33,7 @@ class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
             return resultWidget;
           }
           return AlertDialog(
-            title: const Text('Grup Kullanıcılarını Güncelle'),
+            title: Text(ScreenElementConstants.updateGroupUsers),
             content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
               child: GroupUsersAutocomplete(
@@ -46,7 +48,7 @@ class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('İptal'),
+                child: Text(ScreenElementConstants.cancelButton),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -58,10 +60,10 @@ class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
                     CoreInitializer()
                         .coreContainer
                         .screenMessage
-                        .getInfoMessage('Lütfen en az bir kullanıcı seçin.');
+                        .getInfoMessage(Messages.atLeastOneSelection);
                   }
                 },
-                child: const Text('Güncelle'),
+                child: Text(ScreenElementConstants.updateButton),
               ),
             ],
           );

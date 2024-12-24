@@ -1,7 +1,7 @@
-import 'package:flutter_devarchitecture/core/utilities/file_share/i_share.dart';
-import 'package:flutter_devarchitecture/core/widgets/animations/i_page_animation_asset.dart';
-import 'package:flutter_devarchitecture/core/widgets/animations/i_interaction_animation_asset.dart';
-import 'package:flutter_devarchitecture/core/widgets/animations/i_status_animation_asset.dart';
+import '/core/utilities/file_share/i_share.dart';
+import '/core/widgets/animations/i_page_animation_asset.dart';
+import '/core/widgets/animations/i_interaction_animation_asset.dart';
+import '/core/widgets/animations/i_status_animation_asset.dart';
 import '../utilities/battery_state_management/i_battery_state.dart';
 import '../utilities/biometric_auth/i_biometric_auth.dart';
 import '../utilities/download_management/i_download.dart';

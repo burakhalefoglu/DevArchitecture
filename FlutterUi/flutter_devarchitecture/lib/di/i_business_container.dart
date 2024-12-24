@@ -1,8 +1,8 @@
-import 'package:flutter_devarchitecture/features/admin_panel/group_claims/services/i_group_claim_service.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/languages/services/i_language_service.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/logs/services/i_service.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
-import 'package:flutter_devarchitecture/features/admin_panel/translates/services/i_translate_service.dart';
+import '/features/admin_panel/group_claims/services/i_group_claim_service.dart';
+import '/features/admin_panel/languages/services/i_language_service.dart';
+import '/features/admin_panel/logs/services/i_service.dart';
+import '/features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
+import '/features/admin_panel/translates/services/i_translate_service.dart';
 
 import '../features/admin_panel/groups/services/i_group.dart';
 import '../features/admin_panel/lookups/services/i_lookup_service.dart';

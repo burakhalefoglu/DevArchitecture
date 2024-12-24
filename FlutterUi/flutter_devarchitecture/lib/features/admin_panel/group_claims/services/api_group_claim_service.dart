@@ -1,6 +1,6 @@
-import 'package:flutter_devarchitecture/core/utilities/results.dart';
+import '/core/utilities/results.dart';
 
-import 'package:flutter_devarchitecture/features/admin_panel/lookups/models/lookup.dart';
+import '/features/admin_panel/lookups/models/lookup.dart';
 
 import '../../../../core/di/core_initializer.dart';
 import '../../../../core/services/base_services/api_service.dart';

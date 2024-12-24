@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/theme/extensions.dart';
+import '/core/constants/screen_element_constants.dart';
+import '/core/theme/extensions.dart';
 import '../../lookups/models/lookup.dart';
 import '../../languages/widgets/languages_dropdown_button.dart';
 import '../models/translate.dart';
@@ -35,7 +36,7 @@ class _AddTranslateDialogState extends State<AddTranslateDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Yeni Çeviri Ekle'),
+      title: Text(ScreenElementConstants.addTranslate),
       content: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -61,8 +62,8 @@ class _AddTranslateDialogState extends State<AddTranslateDialog> {
                   flex: 5,
                   child: CustomTextInput(
                     controller: _codeController,
-                    labelText: 'Kod',
-                    hintText: 'örn: greeting',
+                    labelText: ScreenElementConstants.code,
+                    hintText: ScreenElementConstants.codeHint,
                     min: 1,
                     max: 50,
                   ),
@@ -72,8 +73,8 @@ class _AddTranslateDialogState extends State<AddTranslateDialog> {
                   flex: 5,
                   child: CustomTextInput(
                     controller: _valueController,
-                    labelText: 'Değer',
-                    hintText: 'örn: Merhaba',
+                    labelText: ScreenElementConstants.value,
+                    hintText: ScreenElementConstants.valueHint,
                     min: 1,
                     max: 100,
                   ),
@@ -86,7 +87,7 @@ class _AddTranslateDialogState extends State<AddTranslateDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('İptal'),
+          child: Text(ScreenElementConstants.cancelButton),
         ),
         ElevatedButton(
           onPressed: () {
@@ -101,7 +102,7 @@ class _AddTranslateDialogState extends State<AddTranslateDialog> {
               Navigator.of(context).pop(newTranslate);
             }
           },
-          child: const Text('Kaydet'),
+          child: Text(ScreenElementConstants.saveButton),
         ),
       ],
     );

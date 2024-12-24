@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
-
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
+import '../../../../core/constants/messages.dart';
+import '../../../../core/constants/screen_element_constants.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
@@ -73,9 +73,8 @@ class AdminUserPage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                context.translationProvider.translate("UserList"),
-                subDirection:
-                    context.translationProvider.translate("Management"),
+                ScreenElementConstants.userList,
+                subDirection: ScreenElementConstants.adminPanel,
               ),
             ),
           ),
@@ -85,15 +84,12 @@ class AdminUserPage extends StatelessWidget {
               datas: datas,
               headers: [
                 {"userId": "ID"},
-                {"email": context.translationProvider.translate("Email")},
-                {"fullName": context.translationProvider.translate("FullName")},
-                {"status": context.translationProvider.translate("Status")},
-                {
-                  "mobilePhones":
-                      context.translationProvider.translate("MobilePhones")
-                },
-                {"address": context.translationProvider.translate("Address")},
-                {"notes": context.translationProvider.translate("Notes")},
+                {"email": ScreenElementConstants.email},
+                {"fullName": ScreenElementConstants.fullName},
+                {"status": ScreenElementConstants.status},
+                {"mobilePhones": ScreenElementConstants.mobilePhones},
+                {"address": ScreenElementConstants.address},
+                {"notes": ScreenElementConstants.notes},
               ],
               color: CustomColors.primary.getColor,
               customManipulationButton: const [
@@ -130,8 +126,7 @@ class AdminUserPage extends StatelessWidget {
                 },
                 (userId) => _confirmDelete(context, userId)
               ],
-              infoHover: getInfoHover(
-                  context, context.translationProvider.translate("UpdateUser")),
+              infoHover: getInfoHover(context, Messages.userInfoHover),
               addButton: getAddButton(
                 context,
                 () => _addUser(context),

@@ -1,4 +1,4 @@
-import 'package:flutter_devarchitecture/features/admin_panel/lookups/models/lookup.dart';
+import '/features/admin_panel/lookups/models/lookup.dart';
 
 import '../../../../core/bloc/base_state.dart';
 import '../models/language.dart';
@@ -11,9 +11,8 @@ class LanguageCubit extends BaseCubit<Language> {
   }
 
   Future<void> getLanguageCodes() async {
-    emit(BlocLoading("Diller getiriliyor..."));
+    emit(BlocLoading());
     try {
-      // Diller getiriliyor
       final languagesResult = await BusinessInitializer()
           .businessContainer
           .languageService
@@ -30,7 +29,7 @@ class LanguageCubit extends BaseCubit<Language> {
   }
 
   Future<void> getLanguageLookups() async {
-    emit(BlocLoading("Diller getiriliyor..."));
+    emit(BlocLoading());
     try {
       final result = await BusinessInitializer()
           .businessContainer

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
+import '/core/helpers/translate_provider_extension.dart';
 
 class SidebarConstants {
   static late BuildContext _context;

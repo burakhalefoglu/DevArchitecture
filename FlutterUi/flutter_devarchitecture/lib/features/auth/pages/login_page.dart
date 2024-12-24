@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_devarchitecture/core/constants/screen_element_constants.dart';
-import 'package:flutter_devarchitecture/routes/routes_constants.dart';
+import '/core/constants/screen_element_constants.dart';
+import '/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../core/bloc/bloc_helper.dart';

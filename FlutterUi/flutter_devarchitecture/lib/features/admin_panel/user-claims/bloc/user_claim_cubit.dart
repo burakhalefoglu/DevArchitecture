@@ -10,7 +10,7 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
   }
 
   Future<void> getUserClaimsByUserId(int userId) async {
-    emit(BlocLoading("Kullanıcı yetkileri getiriliyor..."));
+    emit(BlocLoading());
     try {
       final userClaims = await BusinessInitializer()
           .businessContainer
@@ -44,9 +44,8 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
   }
 
   Future<void> saveUserClaimsByUserId(int userId, List<int> claims) async {
-    emit(BlocLoading("Kullanıcı yetkileri kaydediliyor..."));
+    emit(BlocLoading());
     try {
-      // yetkileri güncelle
       var result =
           await service.update(userId, {"UserId": userId, "ClaimIds": claims});
 
@@ -54,7 +53,7 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
         emitFailState(result.message);
         return;
       }
-      await getUserClaimsByUserId(userId); // Kullanıcıları tekrar yükleyin
+      await getUserClaimsByUserId(userId);
     } on Exception catch (e) {
       emitFailState("", e: e);
     }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_devarchitecture/core/theme/extensions.dart';
+import '/core/constants/screen_element_constants.dart';
+import '/core/theme/extensions.dart';
 
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
+import '../../../../core/constants/messages.dart';
 import '../../../../core/theme/custom_colors.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/base_widgets.dart';
@@ -68,8 +70,8 @@ class AdminOperationClaimPage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                "Operasyon Yetkileri Listesi",
-                subDirection: "Admin Panel",
+                ScreenElementConstants.operationClaimList,
+                subDirection: ScreenElementConstants.adminPanel,
               ),
             ),
           ),
@@ -77,11 +79,11 @@ class AdminOperationClaimPage extends StatelessWidget {
             flex: 9,
             child: FilterTableWidget(
               datas: datas,
-              headers: const [
+              headers: [
                 {"id": "ID"},
-                {"name": "Yetki Adı"},
-                {"alias": "Takma Ad"},
-                {"description": "Açıklama"},
+                {"name": ScreenElementConstants.name},
+                {"alias": ScreenElementConstants.alias},
+                {"description": ScreenElementConstants.description},
               ],
               color: CustomColors.warning.getColor,
               customManipulationButton: const [
@@ -98,7 +100,7 @@ class AdminOperationClaimPage extends StatelessWidget {
               infoHover: getInfoHover(
                 color: CustomColors.dark.getColor,
                 context,
-                "Operasyon yetkileri burada listelenmektedir.",
+                Messages.operationClaimInfoHover,
               ),
               utilityButton: DownloadButtons(
                       color: CustomColors.dark.getColor, data: datas)

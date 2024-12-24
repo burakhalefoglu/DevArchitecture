@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '/core/constants/screen_element_constants.dart';
 
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
+import '../../../../core/constants/messages.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../user-groups/bloc/user_group_cubit.dart';
 import '../../user-groups/widgets/user_group_auto_complete.dart';
@@ -21,7 +23,7 @@ class ChangeUserGroupsDialog extends StatefulWidget {
 }
 
 class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
-  List<int> _selectedGroups = []; // Seçilen gruplar
+  List<int> _selectedGroups = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
             return resultWidget;
           }
           return AlertDialog(
-            title: const Text('Kullanıcı Gruplarını Güncelle'),
+            title: Text(ScreenElementConstants.updateUserGroups),
             content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
               child: UserGroupAutocomplete(
@@ -49,7 +51,7 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('İptal'),
+                child: Text(ScreenElementConstants.cancelButton),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -62,10 +64,10 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
                     CoreInitializer()
                         .coreContainer
                         .screenMessage
-                        .getErrorMessage('Lütfen en az bir grup seçiniz.');
+                        .getErrorMessage(Messages.atLeastOneSelection);
                   }
                 },
-                child: const Text('Kaydet'),
+                child: Text(ScreenElementConstants.saveButton),
               ),
             ],
           );

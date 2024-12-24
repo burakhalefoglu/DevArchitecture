@@ -1,6 +1,6 @@
-import 'package:flutter_devarchitecture/core/utilities/results.dart';
+import '/core/utilities/results.dart';
 
-import 'package:flutter_devarchitecture/features/admin_panel/lookups/models/lookup.dart';
+import '/features/admin_panel/lookups/models/lookup.dart';
 
 import '../../../../core/services/base_services/in_memory_service.dart';
 import '../models/user_group.dart';

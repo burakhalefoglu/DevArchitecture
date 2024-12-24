@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '/core/constants/screen_element_constants.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
+import '../../../../core/constants/messages.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../group_claims/bloc/group_claim_cubit.dart';
 import '../../group_claims/widgets/group_claim_auto_complete.dart';
@@ -36,7 +38,7 @@ class _UpdateGroupClaimDialogState extends State<UpdateGroupClaimsDialog> {
             return resultWidget;
           }
           return AlertDialog(
-            title: const Text('Grup Yetkilerini Güncelle'),
+            title: Text(ScreenElementConstants.updateGroupClaims),
             content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
               child: GroupClaimAutocomplete(
@@ -51,7 +53,7 @@ class _UpdateGroupClaimDialogState extends State<UpdateGroupClaimsDialog> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('İptal'),
+                child: Text(ScreenElementConstants.cancel),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -64,10 +66,10 @@ class _UpdateGroupClaimDialogState extends State<UpdateGroupClaimsDialog> {
                     CoreInitializer()
                         .coreContainer
                         .screenMessage
-                        .getErrorMessage('Lütfen en az bir yetki seçiniz.');
+                        .getErrorMessage(Messages.atLeastOneSelection);
                   }
                 },
-                child: const Text('Kaydet'),
+                child: Text(ScreenElementConstants.saveButton),
               ),
             ],
           );

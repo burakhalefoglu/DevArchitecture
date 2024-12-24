@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/theme/extensions.dart';
+import '/core/constants/screen_element_constants.dart';
+import '/core/theme/extensions.dart';
+
+import '../../../../core/constants/messages.dart';
 
 class ChangeUserPasswordDialog extends StatefulWidget {
   final int userId;
@@ -33,7 +36,7 @@ class _ChangeUserPasswordDialogState extends State<ChangeUserPasswordDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Şifre Değiştir'),
+      title: Text(ScreenElementConstants.changePassword),
       content: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -48,10 +51,11 @@ class _ChangeUserPasswordDialogState extends State<ChangeUserPasswordDialog> {
                   child: TextFormField(
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: const InputDecoration(labelText: 'Yeni Şifre'),
+                    decoration: InputDecoration(
+                        labelText: ScreenElementConstants.newPassword),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Şifre boş olamaz';
+                        return Messages.cantBeEmpty;
                       }
                       return null;
                     },
@@ -63,11 +67,11 @@ class _ChangeUserPasswordDialogState extends State<ChangeUserPasswordDialog> {
                   child: TextFormField(
                     controller: _confirmPasswordController,
                     obscureText: true,
-                    decoration:
-                        const InputDecoration(labelText: 'Şifre Tekrar'),
+                    decoration: InputDecoration(
+                        labelText: ScreenElementConstants.confirmPassword),
                     validator: (value) {
                       if (value == null || value != _passwordController.text) {
-                        return 'Şifreler eşleşmiyor';
+                        return Messages.passwordsDoNotMatch;
                       }
                       return null;
                     },
@@ -81,7 +85,7 @@ class _ChangeUserPasswordDialogState extends State<ChangeUserPasswordDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('İptal'),
+          child: Text(ScreenElementConstants.cancelButton),
         ),
         ElevatedButton(
           onPressed: () {
@@ -89,7 +93,7 @@ class _ChangeUserPasswordDialogState extends State<ChangeUserPasswordDialog> {
               Navigator.of(context).pop(_passwordController.text);
             }
           },
-          child: const Text('Kaydet'),
+          child: Text(ScreenElementConstants.saveButton),
         ),
       ],
     );

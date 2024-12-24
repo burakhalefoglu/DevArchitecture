@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/theme/extensions.dart';
+import '/core/constants/screen_element_constants.dart';
+import '/core/theme/extensions.dart';
 import '../../../../core/widgets/inputs/date_input.dart';
 import '../../../../core/widgets/inputs/dropdown_button.dart';
 import '../../../../core/widgets/inputs/email_input.dart';
@@ -32,7 +33,9 @@ class _UpdateUserDialogState extends State<UpdateUserDialog> {
     _emailController = TextEditingController(text: widget.user.email);
     _fullNameController = TextEditingController(text: widget.user.fullName);
     _statusController = TextEditingController(
-        text: widget.user.status == true ? 'Active' : 'Inactive');
+        text: widget.user.status == true
+            ? ScreenElementConstants.active
+            : ScreenElementConstants.inactive);
     _mobilePhonesController =
         TextEditingController(text: widget.user.mobilePhones);
     _addressController = TextEditingController(text: widget.user.address);
@@ -55,7 +58,7 @@ class _UpdateUserDialogState extends State<UpdateUserDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Kullanıcı Güncelle'),
+      title: Text(ScreenElementConstants.updateUsers),
       content: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -76,8 +79,8 @@ class _UpdateUserDialogState extends State<UpdateUserDialog> {
                   flex: 5,
                   child: CustomTextInput(
                     controller: _fullNameController,
-                    labelText: 'Ad Soyad',
-                    hintText: 'örn: Ahmet Yılmaz',
+                    labelText: ScreenElementConstants.fullName,
+                    hintText: ScreenElementConstants.fullNameHint,
                     min: 3,
                     max: 50,
                   ),
@@ -86,12 +89,17 @@ class _UpdateUserDialogState extends State<UpdateUserDialog> {
                 Expanded(
                   flex: 5,
                   child: CustomDropdownButton(
-                    options: ['Active', 'Inactive'],
+                    options: [
+                      ScreenElementConstants.active,
+                      ScreenElementConstants.inactive
+                    ],
                     onChanged: (value) {
-                      _statusController.text = value ?? 'Active';
+                      _statusController.text =
+                          value ?? ScreenElementConstants.active;
                     },
                     getFirstValue: (value) {
-                      _statusController.text = value ?? 'Active';
+                      _statusController.text =
+                          value ?? ScreenElementConstants.active;
                     },
                     icon: Icons.list,
                   ),
@@ -108,8 +116,8 @@ class _UpdateUserDialogState extends State<UpdateUserDialog> {
                   flex: 5,
                   child: CustomTextInput(
                     controller: _addressController,
-                    labelText: 'Adres',
-                    hintText: 'örn: İstanbul, Türkiye',
+                    labelText: ScreenElementConstants.address,
+                    hintText: ScreenElementConstants.addressHint,
                     min: 10,
                     max: 100,
                   ),
@@ -119,8 +127,8 @@ class _UpdateUserDialogState extends State<UpdateUserDialog> {
                   flex: 5,
                   child: CustomTextInput(
                     controller: _notesController,
-                    labelText: 'Notlar',
-                    hintText: 'örn: Ek bilgi...',
+                    labelText: ScreenElementConstants.notes,
+                    hintText: ScreenElementConstants.notesHint,
                     min: 0,
                     max: 200,
                   ),
@@ -143,7 +151,7 @@ class _UpdateUserDialogState extends State<UpdateUserDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('İptal'),
+          child: Text(ScreenElementConstants.cancel),
         ),
         ElevatedButton(
           onPressed: () {
@@ -153,7 +161,9 @@ class _UpdateUserDialogState extends State<UpdateUserDialog> {
                 userId: widget.user.id,
                 email: _emailController.text,
                 fullName: _fullNameController.text,
-                status: _statusController.text == 'Active' ? true : false,
+                status: _statusController.text == ScreenElementConstants.active
+                    ? true
+                    : false,
                 mobilePhones: _mobilePhonesController.text,
                 address: _addressController.text,
                 notes: _notesController.text,
@@ -161,7 +171,7 @@ class _UpdateUserDialogState extends State<UpdateUserDialog> {
               Navigator.of(context).pop(updatedUser);
             }
           },
-          child: const Text('Güncelle'),
+          child: Text(ScreenElementConstants.updateButton),
         ),
       ],
     );

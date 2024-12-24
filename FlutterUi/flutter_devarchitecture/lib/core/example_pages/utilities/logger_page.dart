@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
-import 'package:flutter_devarchitecture/features/layouts/base_scaffold.dart';
+import '/core/di/core_initializer.dart';
+import '/features/layouts/base_scaffold.dart';
 
 import '../../utilities/logger/i_logger.dart';
 

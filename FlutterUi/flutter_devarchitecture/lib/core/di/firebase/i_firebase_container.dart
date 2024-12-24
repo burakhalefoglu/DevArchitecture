@@ -1,4 +1,4 @@
-import 'package:flutter_devarchitecture/core/utilities/remote_config/i_remote_config_service.dart';
+import '/core/utilities/remote_config/i_remote_config_service.dart';
 
 import '../../utilities/analytics/i_analytics_service.dart';
 import '../../utilities/crashlytics/i_crashlytics_service.dart';

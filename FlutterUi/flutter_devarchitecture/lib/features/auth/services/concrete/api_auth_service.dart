@@ -1,4 +1,4 @@
-import 'package:flutter_devarchitecture/features/auth/models/password_dto.dart';
+import '/features/auth/models/password_dto.dart';
 
 import '../../../../core/utilities/results.dart';
 import '../../../../core/di/core_initializer.dart';

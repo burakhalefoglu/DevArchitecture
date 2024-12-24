@@ -1,5 +1,5 @@
-import 'package:flutter_devarchitecture/core/services/i_service.dart';
-import 'package:flutter_devarchitecture/core/utilities/results.dart';
+import '/core/services/i_service.dart';
+import '/core/utilities/results.dart';
 
 import '../../lookups/models/lookup.dart';
 

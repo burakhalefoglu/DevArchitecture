@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '/core/constants/screen_element_constants.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
+import '../../../../core/constants/messages.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
@@ -68,8 +70,8 @@ class AdminLanguagePage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                "Diller Listesi",
-                subDirection: "Admin Panel",
+                ScreenElementConstants.languageList,
+                subDirection: ScreenElementConstants.adminPanel,
               ),
             ),
           ),
@@ -77,12 +79,12 @@ class AdminLanguagePage extends StatelessWidget {
             flex: 9,
             child: FilterTableWidget(
               datas: datas,
-              headers: const [
+              headers: [
                 {"id": "ID"},
-                {"code": "Kod"},
-                {"name": "Dil Adı"},
+                {"code": ScreenElementConstants.code},
+                {"name": ScreenElementConstants.name},
               ],
-              infoHover: getInfoHover(context, "Diller bu sayfada listelenir."),
+              infoHover: getInfoHover(context, Messages.languageInfoHover),
               utilityButton: DownloadButtons(
                       color: CustomColors.dark.getColor, data: datas)
                   .excelButton(context),

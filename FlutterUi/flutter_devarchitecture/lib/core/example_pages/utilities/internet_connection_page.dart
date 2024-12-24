@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
-import 'package:flutter_devarchitecture/core/utilities/internet_connection/i_internet_connection.dart';
+import '/core/di/core_initializer.dart';
+import '/core/utilities/internet_connection/i_internet_connection.dart';
 
 import '../../../features/layouts/base_scaffold.dart';
 

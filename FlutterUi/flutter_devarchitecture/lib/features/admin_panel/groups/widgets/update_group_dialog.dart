@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/core/constants/screen_element_constants.dart';
 
 import '../../../../core/widgets/inputs/text_input.dart';
 import '../models/group.dart';
@@ -31,13 +32,13 @@ class _UpdateGroupDialogState extends State<UpdateGroupDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Grubu Düzenle'),
+      title: Text(ScreenElementConstants.updateGroup),
       content: Form(
         key: _formKey,
         child: CustomTextInput(
           controller: _groupNameController,
-          labelText: 'Grup Adı',
-          hintText: 'örn: Yöneticiler',
+          labelText: ScreenElementConstants.groupName,
+          hintText: ScreenElementConstants.groupNameHint,
           min: 3,
           max: 50,
         ),
@@ -45,7 +46,7 @@ class _UpdateGroupDialogState extends State<UpdateGroupDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('İptal'),
+          child: Text(ScreenElementConstants.cancelButton),
         ),
         ElevatedButton(
           onPressed: () {
@@ -57,7 +58,7 @@ class _UpdateGroupDialogState extends State<UpdateGroupDialog> {
               Navigator.of(context).pop(updatedGroup);
             }
           },
-          child: const Text('Güncelle'),
+          child: Text(ScreenElementConstants.updateButton),
         ),
       ],
     );

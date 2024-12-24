@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/utilities/internet_connection/i_internet_connection.dart';
+import '/core/utilities/internet_connection/i_internet_connection.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import '../screen_message/i_screen_message.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_devarchitecture/core/constants/messages.dart';
+import '/core/constants/messages.dart';
 
 class SingleSplitInput extends StatefulWidget {
   final String format;

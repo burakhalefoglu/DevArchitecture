@@ -1,4 +1,4 @@
-import 'package:flutter_devarchitecture/core/models/i_entity.dart';
+import '/core/models/i_entity.dart';
 
 class Group implements IEntity {
   @override
