@@ -4,7 +4,7 @@ import '/core/theme/theme_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
-import 'core/constants/screen_element_constants.dart';
+import 'core/constants/temp/screen_element_constants.dart';
 import 'core/helpers/translation_provider.dart';
 import 'routes/app_route_module.dart';
 

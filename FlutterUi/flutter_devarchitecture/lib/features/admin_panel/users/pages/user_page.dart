@@ -4,7 +4,7 @@ import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
 import '../../../../core/constants/temp/messages.dart';
-import '../../../../core/constants/screen_element_constants.dart';
+import '../../../../core/constants/temp/screen_element_constants.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';

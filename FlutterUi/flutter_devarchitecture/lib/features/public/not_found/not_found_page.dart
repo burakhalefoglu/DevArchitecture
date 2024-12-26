@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../core/constants/temp/messages.dart';
-import '../../../core/constants/screen_element_constants.dart';
+import '../../../core/constants/temp/screen_element_constants.dart';
 import '../../../core/di/core_initializer.dart';
 import '../../../routes/routes_constants.dart';
 import '../../../layouts/base_scaffold.dart';

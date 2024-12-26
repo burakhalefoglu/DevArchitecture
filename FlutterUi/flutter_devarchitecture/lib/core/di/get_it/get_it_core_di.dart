@@ -1,5 +1,5 @@
 import 'package:dart_amqp/dart_amqp.dart';
-import '../../widgets/tables/syncfusion_flutter_datagrid/syncfusion_flutter_table.dart';
+import 'package:flutter_devarchitecture/core/widgets/tables/data_table/data_table_2.dart';
 import '/core/local_storage/shared_pref/shared_preferences.dart';
 import '/core/utilities/file_share/i_share.dart';
 import '/core/utilities/logger/i_logger.dart';
@@ -57,7 +57,6 @@ import '../../widgets/charts/geekyants/geekyants_gauges_chart.dart';
 import '../../widgets/charts/i_chart.dart';
 import '../../widgets/inputs/address_input/google_autocomplete.dart';
 import '../../widgets/inputs/address_input/i_address_input.dart';
-import '../../widgets/tables/data_table/data_table_2.dart';
 import '../../widgets/tables/i_tables.dart';
 import '../i_core_container.dart';
 
@@ -177,7 +176,7 @@ class GetItCoreContainer implements ICoreContainer {
   @override
   setUp() {
     checkIfUnRegistered<ITables>((() {
-      dataTable = _getIt.registerSingleton<ITables>(SyncfusionDataTable());
+      dataTable = _getIt.registerSingleton<ITables>(DataTables());
     }));
 
     checkIfUnRegistered<IAddressInput>((() {

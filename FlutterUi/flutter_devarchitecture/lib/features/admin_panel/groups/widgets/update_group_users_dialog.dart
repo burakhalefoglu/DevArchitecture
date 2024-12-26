@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/temp/messages.dart';
-import '/core/constants/screen_element_constants.dart';
+import '/core/constants/temp/screen_element_constants.dart';
 import '/core/di/core_initializer.dart';
 import '../../user_groups/bloc/user_group_cubit.dart';
 import '../../../../core/bloc/base_state.dart';

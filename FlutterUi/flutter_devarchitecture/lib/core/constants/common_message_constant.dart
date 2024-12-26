@@ -3,17 +3,15 @@ import 'package:flutter/material.dart';
 import 'base_constants.dart';
 
 class CommonMessageConstants extends MessageConstantsBase {
-  late String validationError;
-  late String internetConnectionError;
-  late String defaultSuccess;
+  static late String validationError;
+  static late String internetConnectionError;
+  static late String defaultSuccess;
 
-  CommonMessageConstants(BuildContext context) : super(context) {
-    init();
-  }
-
-  void init() {
-    validationError = translate("ValidationError");
-    internetConnectionError = translate("InternetConnectionError");
-    defaultSuccess = translate("DefaultSuccess");
+  static void init(BuildContext context) {
+    BaseConstants.init(context);
+    validationError = BaseConstants.translate("ValidationError");
+    internetConnectionError =
+        BaseConstants.translate("InternetConnectionError");
+    defaultSuccess = BaseConstants.translate("DefaultSuccess");
   }
 }

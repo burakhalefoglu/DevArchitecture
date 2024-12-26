@@ -26,9 +26,7 @@ dependencies:
   # data
   collection: 1.18.0 #: All platforms
   intl: 0.19.0 #: All platforms
-  # data_table_2: 2.5.18 #: All platforms
-  syncfusion_flutter_datagrid: 20.3.47
-  syncfusion_flutter_core: 20.3.47
+  data_table_2: 2.5.15 #: All platforms
 
   # state management
   flutter_bloc: 8.1.6 #: All platforms

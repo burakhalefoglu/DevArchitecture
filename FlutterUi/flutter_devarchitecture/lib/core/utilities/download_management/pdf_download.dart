@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import '/core/constants/screen_element_constants.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:file_picker/file_picker.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import "package:universal_html/html.dart" as html;
 
 import '../../constants/temp/messages.dart';
+import '../../constants/temp/screen_element_constants.dart';
 import '../../di/core_initializer.dart';
 import 'i_download.dart';
 

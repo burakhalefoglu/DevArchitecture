@@ -201,6 +201,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.1"
+  data_table_2:
+    dependency: "direct main"
+    description:
+      name: data_table_2
+      sha256: f02ec9b24f44420816a87370ff4f4e533e15b274f6267e4c9a88a585ad1a0473
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.15"
   dbus:
     dependency: transitive
     description:
@@ -1226,22 +1234,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  syncfusion_flutter_core:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_core
-      sha256: "9c5c436d3d93b5449109a49ce5e3a815a2f3afbb2efdfe8fbeb650839836a5f8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "20.3.47"
-  syncfusion_flutter_datagrid:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_datagrid
-      sha256: "38ab0b5f2b43198d33b4ce8c892dded9ee9ee56928a1211a3ee2852ace9da82e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "20.3.47"
   synchronized:
     dependency: transitive
     description:

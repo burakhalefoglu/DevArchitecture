@@ -1,4 +1,4 @@
-import '../../constants/screen_element_constants.dart';
+import '../../constants/temp/screen_element_constants.dart';
 import 'base/split_input.dart';
 
 /// Turkey Vehicle Registration Number Format

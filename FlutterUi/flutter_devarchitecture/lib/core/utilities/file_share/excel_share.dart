@@ -7,7 +7,7 @@ import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 
 import '../../constants/temp/messages.dart';
-import '../../constants/screen_element_constants.dart';
+import '../../constants/temp/screen_element_constants.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 

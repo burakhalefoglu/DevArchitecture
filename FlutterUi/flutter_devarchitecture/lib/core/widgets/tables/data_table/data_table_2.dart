@@ -1,6 +1,6 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import '../../../constants/screen_element_constants.dart';
+import '../../../constants/temp/screen_element_constants.dart';
 import '../../../theme/extensions.dart';
 import '../../../theme/custom_colors.dart';
 import '../i_tables.dart';

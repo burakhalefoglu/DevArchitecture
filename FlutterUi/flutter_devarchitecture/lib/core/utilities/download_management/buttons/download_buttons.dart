@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/core/constants/screen_element_constants.dart';
+import '../../../constants/temp/screen_element_constants.dart';
 
 import '../../../di/core_initializer.dart';
 import '../../../theme/custom_colors.dart';

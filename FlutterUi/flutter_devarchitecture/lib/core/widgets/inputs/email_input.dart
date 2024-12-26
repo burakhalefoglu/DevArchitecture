@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../constants/temp/messages.dart';
-import '../../constants/screen_element_constants.dart';
+import '../../constants/temp/screen_element_constants.dart';
 import '../../theme/custom_colors.dart';
 import '../../helpers/extensions.dart';
 
