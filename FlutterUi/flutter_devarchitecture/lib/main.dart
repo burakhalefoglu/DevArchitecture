@@ -25,7 +25,10 @@ Future<void> main() async {
   if (String.fromEnvironment('FIREBASE') == 'true') {
     //! IF Firebase Initializer  is FALSE  don't use -> 'FirebaseInitializer().firebaseContainer'
     //! The exception will be thrown not implemented
-
+    FirebaseFirestore.instance.settings = Settings(
+      persistenceEnabled: true,
+      cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
+    );
     //? Firebase Options will be used in FirebaseInitializer
     await Firebase.initializeApp(
         // options: DefaultFirebaseOptions.currentPlatform,

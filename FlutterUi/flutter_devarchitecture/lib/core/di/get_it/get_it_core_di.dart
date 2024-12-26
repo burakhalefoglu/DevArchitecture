@@ -1,4 +1,5 @@
 import 'package:dart_amqp/dart_amqp.dart';
+import '../../widgets/tables/syncfusion_flutter_datagrid/syncfusion_flutter_table.dart';
 import '/core/local_storage/shared_pref/shared_preferences.dart';
 import '/core/utilities/file_share/i_share.dart';
 import '/core/utilities/logger/i_logger.dart';
@@ -176,7 +177,7 @@ class GetItCoreContainer implements ICoreContainer {
   @override
   setUp() {
     checkIfUnRegistered<ITables>((() {
-      dataTable = _getIt.registerSingleton<ITables>(DataTables());
+      dataTable = _getIt.registerSingleton<ITables>(SyncfusionDataTable());
     }));
 
     checkIfUnRegistered<IAddressInput>((() {

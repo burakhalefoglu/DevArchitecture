@@ -516,7 +516,7 @@ namespace Business.Helpers
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "SendAgainButton", Value = "Send Again" });
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "ResendButton", Value = "Tekrar Gönder" });
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "ResendButton", Value = "Resend" });
-            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "ResendAgainButton", Value = "Tekrar Tekrar Gönder" });
+            await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "ResendAgainButton", Value = "Tekrar Gönder" });
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "ResendAgainButton", Value = "Resend Again" });
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "ResetButton", Value = "Şifreyi Sıfırla" });
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "ResetButton", Value = "Reset" });
@@ -914,7 +914,6 @@ namespace Business.Helpers
 
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 1, Code = "MobilePhones", Value = "Cep Telefonları" });
             await mediator.Send(new CreateTranslateInternalCommand { LangId = 2, Code = "MobilePhones", Value = "Mobile Phones" });
-            
             
             // Create default group
             await mediator.Send(new CreateGroupCommand

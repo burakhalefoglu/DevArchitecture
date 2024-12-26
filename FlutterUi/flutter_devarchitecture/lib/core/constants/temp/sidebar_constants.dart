@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../base_constants.dart';
 
-class SidebarConstants extends BaseConstants {
+class SidebarConstants extends SidebarConstantsBase {
   static late String homePageTitle;
 
   static late String adminPanelPageTitle;
@@ -54,64 +54,58 @@ class SidebarConstants extends BaseConstants {
   static late String widgetsPageTitle;
   static late String inputExamplesPageTitle;
 
-  static void init(BuildContext context) {
-    BaseConstants.context = context;
+  SidebarConstants(BuildContext context) : super(context) {
+    init();
+  }
+  void init() {
+    homePageTitle = translate("HomePageTitle");
 
-    homePageTitle = BaseConstants.translate("HomePageTitle");
-
-    adminPanelPageTitle = BaseConstants.translate("AdminPanelPageTitle");
-    adminPanelHomePageTitle =
-        BaseConstants.translate("AdminPanelHomePageTitle");
-    adminPanelPageUserTitle =
-        BaseConstants.translate("AdminPanelPageUserTitle");
-    adminPanelPageGroupTitle =
-        BaseConstants.translate("AdminPanelPageGroupTitle");
+    adminPanelPageTitle = translate("AdminPanelPageTitle");
+    adminPanelHomePageTitle = translate("AdminPanelHomePageTitle");
+    adminPanelPageUserTitle = translate("AdminPanelPageUserTitle");
+    adminPanelPageGroupTitle = translate("AdminPanelPageGroupTitle");
     adminPanelPageOperationClaimTitle =
-        BaseConstants.translate("AdminPanelPageOperationClaimTitle");
-    adminPanelPageLanguageTitle =
-        BaseConstants.translate("AdminPanelPageLanguageTitle");
-    adminPanelPageTranslateTitle =
-        BaseConstants.translate("AdminPanelPageTranslateTitle");
-    adminPanelPageLogTitle = BaseConstants.translate("AdminPanelPageLogTitle");
+        translate("AdminPanelPageOperationClaimTitle");
+    adminPanelPageLanguageTitle = translate("AdminPanelPageLanguageTitle");
+    adminPanelPageTranslateTitle = translate("AdminPanelPageTranslateTitle");
+    adminPanelPageLogTitle = translate("AdminPanelPageLogTitle");
 
-    appPanelPageTitle = BaseConstants.translate("AppPanelPageTitle");
+    appPanelPageTitle = translate("AppPanelPageTitle");
 
-    utilitiesPageTitle = BaseConstants.translate("UtilitiesPageTitle");
-    batteryStatusPageTitle = BaseConstants.translate("BatteryStatusPageTitle");
-    biometricAuthPageTitle = BaseConstants.translate("BiometricAuthPageTitle");
-    deviceInfoPageTitle = BaseConstants.translate("DeviceInfoPageTitle");
+    utilitiesPageTitle = translate("UtilitiesPageTitle");
+    batteryStatusPageTitle = translate("BatteryStatusPageTitle");
+    biometricAuthPageTitle = translate("BiometricAuthPageTitle");
+    deviceInfoPageTitle = translate("DeviceInfoPageTitle");
 
-    downloadPageTitle = BaseConstants.translate("DownloadPageTitle");
-    excelDownloadPageTitle = BaseConstants.translate("ExcelDownloadPageTitle");
-    pdfDownloadPageTitle = BaseConstants.translate("PdfDownloadPageTitle");
-    csvDownloadPageTitle = BaseConstants.translate("CsvDownloadPageTitle");
-    jsonDownloadPageTitle = BaseConstants.translate("JsonDownloadPageTitle");
-    xmlDownloadPageTitle = BaseConstants.translate("XmlDownloadPageTitle");
-    imageDownloadPageTitle = BaseConstants.translate("ImageDownloadPageTitle");
-    txtDownloadPageTitle = BaseConstants.translate("TxtDownloadPageTitle");
+    downloadPageTitle = translate("DownloadPageTitle");
+    excelDownloadPageTitle = translate("ExcelDownloadPageTitle");
+    pdfDownloadPageTitle = translate("PdfDownloadPageTitle");
+    csvDownloadPageTitle = translate("CsvDownloadPageTitle");
+    jsonDownloadPageTitle = translate("JsonDownloadPageTitle");
+    xmlDownloadPageTitle = translate("XmlDownloadPageTitle");
+    imageDownloadPageTitle = translate("ImageDownloadPageTitle");
+    txtDownloadPageTitle = translate("TxtDownloadPageTitle");
 
-    sharePageTitle = BaseConstants.translate("SharePageTitle");
-    excelSharePageTitle = BaseConstants.translate("ExcelSharePageTitle");
-    pdfSharePageTitle = BaseConstants.translate("PdfSharePageTitle");
-    csvSharePageTitle = BaseConstants.translate("CsvSharePageTitle");
-    jsonSharePageTitle = BaseConstants.translate("JsonSharePageTitle");
-    xmlSharePageTitle = BaseConstants.translate("XmlSharePageTitle");
-    imageSharePageTitle = BaseConstants.translate("ImageSharePageTitle");
-    txtSharePageTitle = BaseConstants.translate("TxtSharePageTitle");
+    sharePageTitle = translate("SharePageTitle");
+    excelSharePageTitle = translate("ExcelSharePageTitle");
+    pdfSharePageTitle = translate("PdfSharePageTitle");
+    csvSharePageTitle = translate("CsvSharePageTitle");
+    jsonSharePageTitle = translate("JsonSharePageTitle");
+    xmlSharePageTitle = translate("XmlSharePageTitle");
+    imageSharePageTitle = translate("ImageSharePageTitle");
+    txtSharePageTitle = translate("TxtSharePageTitle");
 
-    internetConnectionPageTitle =
-        BaseConstants.translate("InternetConnectionPageTitle");
-    localNotificationPageTitle =
-        BaseConstants.translate("LocalNotificationPageTitle");
-    screenMessagePageTitle = BaseConstants.translate("ScreenMessagePageTitle");
-    loggerPageTitle = BaseConstants.translate("LoggerPageTitle");
-    permissionPageTitle = BaseConstants.translate("PermissionPageTitle");
-    qrCodeScannerPageTitle = BaseConstants.translate("QrCodeScannerPageTitle");
+    internetConnectionPageTitle = translate("InternetConnectionPageTitle");
+    localNotificationPageTitle = translate("LocalNotificationPageTitle");
+    screenMessagePageTitle = translate("ScreenMessagePageTitle");
+    loggerPageTitle = translate("LoggerPageTitle");
+    permissionPageTitle = translate("PermissionPageTitle");
+    qrCodeScannerPageTitle = translate("QrCodeScannerPageTitle");
 
-    templatesPageTitle = BaseConstants.translate("TemplatesPageTitle");
-    colorPalettePageTitle = BaseConstants.translate("ColorPalettePageTitle");
+    templatesPageTitle = translate("TemplatesPageTitle");
+    colorPalettePageTitle = translate("ColorPalettePageTitle");
 
-    widgetsPageTitle = BaseConstants.translate("WidgetsPageTitle");
-    inputExamplesPageTitle = BaseConstants.translate("InputExamplesPageTitle");
+    widgetsPageTitle = translate("WidgetsPageTitle");
+    inputExamplesPageTitle = translate("InputExamplesPageTitle");
   }
 }
