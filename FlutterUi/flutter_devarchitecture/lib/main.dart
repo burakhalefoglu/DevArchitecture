@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -20,22 +19,12 @@ Future<void> main() async {
   //? Initializers
   WidgetsFlutterBinding.ensureInitialized();
   initializeDateFormatting();
+  await Firebase.initializeApp(
+      // options: DefaultFirebaseOptions.currentPlatform,
+      );
+  await injectFirebaseUtils();
   CoreInitializer();
   BusinessInitializer();
-
-  if (String.fromEnvironment('FIREBASE') == 'true') {
-    //! IF Firebase Initializer  is FALSE  don't use -> 'FirebaseInitializer().firebaseContainer'
-    //! The exception will be thrown not implemented
-    FirebaseFirestore.instance.settings = Settings(
-      persistenceEnabled: true,
-      cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
-    );
-    //? Firebase Options will be used in FirebaseInitializer
-    await Firebase.initializeApp(
-        // options: DefaultFirebaseOptions.currentPlatform,
-        );
-    FirebaseInitializer();
-  }
 
   runApp(
     MultiProvider(
@@ -52,6 +41,12 @@ Future<void> main() async {
       ),
     ),
   );
+}
+
+Future<void> injectFirebaseUtils() async {
+  if (bool.fromEnvironment('FIREBASE')) {
+    FirebaseInitializer();
+  }
 }
 
 class MyApp extends StatelessWidget {
