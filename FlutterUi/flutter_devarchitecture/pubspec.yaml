@@ -47,6 +47,8 @@ dependencies:
 
   # google places
   google_places_flutter: 2.0.8 #: All platforms
+  google_maps_flutter: 2.10.0 #* Android iOS web
+  google_maps_flutter_web: 0.5.10
 
   # messages toast
   oktoast: 3.4.0 #: All platforms
@@ -66,7 +68,7 @@ dependencies:
   platform_local_notifications: 1.0.2 #: All platforms
 
 
-  url_launcher: 6.3.0 #: All platforms 
+  url_launcher: 6.3.0 #: All platforms
   dart_amqp: 0.3.1 #* Android iOS Linux macOS Windows
   battery_plus: 5.0.2 #: All platforms
   device_info_plus: 10.0.1 #: All platforms
@@ -78,7 +80,6 @@ dependencies:
   image: 4.2.0 #: All platforms
   excel: 4.0.2 #: All platforms
   csv: 6.0.0 #: All platforms
-  google_maps_flutter: 2.7.0 #* Android iOS web
   share_plus: 10.0.2 #: All platforms
   local_auth: 2.2.0 #* Android iOS macOS Windows
   qr_code_scanner: 1.0.1 #* Android iOS

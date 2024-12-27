@@ -44,7 +44,8 @@ Future<void> main() async {
 }
 
 Future<void> injectFirebaseUtils() async {
-  if (bool.fromEnvironment('FIREBASE')) {
+  const isFirebaseEnabled = bool.fromEnvironment('FIREBASE');
+  if (isFirebaseEnabled) {
     FirebaseInitializer();
   }
 }
