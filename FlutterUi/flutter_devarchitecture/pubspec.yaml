@@ -45,10 +45,11 @@ dependencies:
   get_it: 8.0.0 #: All platforms
   provider: 6.1.2 #: All platforms
 
-  # google places
-  google_places_flutter: 2.0.8 #: All platforms
+  # google
+  google_search_place: 0.0.4 #: All platforms
   google_maps_flutter: 2.10.0 #* Android iOS web
-  google_maps_flutter_web: 0.5.10
+  google_maps_flutter_web: 0.5.10 #: All platforms
+  flutter_polyline_points: 2.1.0 #: All platforms
 
   # messages toast
   oktoast: 3.4.0 #: All platforms

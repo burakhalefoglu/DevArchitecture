@@ -17,7 +17,6 @@ import '../http/i_http.dart';
 import '../utilities/qr_code/i_qr_code_scanner_service.dart';
 import '../utilities/screen_message/i_screen_message.dart';
 import '../widgets/charts/i_chart.dart';
-import '../widgets/inputs/address_input/i_address_input.dart';
 import '../widgets/map/i_map.dart';
 import '../widgets/tables/i_tables.dart';
 
@@ -35,7 +34,6 @@ abstract class ICoreContainer {
   late IStatusAnimationAsset statusAnimationAsset;
 
   // widgets
-  late IAddressInput addressInput;
   late ITables dataTable;
   late IMap map;
 
