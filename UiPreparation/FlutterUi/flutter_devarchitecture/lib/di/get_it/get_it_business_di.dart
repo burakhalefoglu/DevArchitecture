@@ -1,3 +1,6 @@
+import '../../features/admin_panel/logs/services/api_log_service.dart';
+import '../../features/admin_panel/logs/services/i_service.dart';
+import '../../features/admin_panel/logs/services/in_memory_log_service.dart';
 import '/features/admin_panel/group_claims/services/i_group_claim_service.dart';
 import '/features/admin_panel/lookups/services/api_lookup_service.dart';
 import 'package:get_it/get_it.dart';
@@ -74,6 +77,9 @@ class GetItBusinessContainer implements IBusinessContainer {
   late IGroupClaimService groupClaimService;
 
   @override
+  late ILogService logService;
+
+  @override
   void setup() {
     //*? Services Binding For DEVELOPMENT
     if (appConfig.name == 'dev' || appConfig.name == '') {
@@ -126,6 +132,11 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<IGroupClaimService>((() {
         groupClaimService = _getIt
             .registerSingleton<IGroupClaimService>(InMemoryGroupClaimService());
+      }));
+
+      checkIfUnRegistered<ILogService>((() {
+        logService =
+            _getIt.registerSingleton<ILogService>(InMemoryLogService());
       }));
     }
 
@@ -181,6 +192,11 @@ class GetItBusinessContainer implements IBusinessContainer {
         groupClaimService = _getIt.registerSingleton<IGroupClaimService>(
             ApiGroupClaimService(method: "/group-claims"));
       }));
+
+      checkIfUnRegistered<ILogService>((() {
+        logService = _getIt
+            .registerSingleton<ILogService>(ApiLogService(method: "/Logs"));
+      }));
     }
 
     //*? Services Binding For PRODUCTION
@@ -234,6 +250,11 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<IGroupClaimService>((() {
         groupClaimService = _getIt.registerSingleton<IGroupClaimService>(
             ApiGroupClaimService(method: "/group-claims"));
+      }));
+
+      checkIfUnRegistered<ILogService>((() {
+        logService = _getIt
+            .registerSingleton<ILogService>(ApiLogService(method: "/Logs"));
       }));
     }
   }

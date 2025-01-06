@@ -19,9 +19,6 @@ Future<void> main() async {
   //? Initializers
   WidgetsFlutterBinding.ensureInitialized();
   initializeDateFormatting();
-  // await Firebase.initializeApp(
-  //     // options: DefaultFirebaseOptions.currentPlatform,
-  //     );
   await injectFirebaseUtils();
   CoreInitializer();
   BusinessInitializer();
@@ -46,6 +43,9 @@ Future<void> main() async {
 Future<void> injectFirebaseUtils() async {
   const isFirebaseEnabled = bool.fromEnvironment('FIREBASE');
   if (isFirebaseEnabled) {
+    // await Firebase.initializeApp(
+    //     // options: DefaultFirebaseOptions.currentPlatform,
+    //     );
     FirebaseInitializer();
   }
 }

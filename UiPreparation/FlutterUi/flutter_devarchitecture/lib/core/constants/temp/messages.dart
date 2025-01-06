@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '/core/helpers/translate_provider_extension.dart';
 
-class Messages1 {
+class Messages {
   static late BuildContext _context;
 
   // Info Messages

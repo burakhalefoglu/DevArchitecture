@@ -61,7 +61,6 @@ dependencies:
 
   # security
   jwt_decoder: 2.0.1 #: All platforms
-  flutter_secure_storage: 9.2.2 #: All platforms
 
   # utils
   internet_connection_checker_plus: 2.5.2 #: All platforms

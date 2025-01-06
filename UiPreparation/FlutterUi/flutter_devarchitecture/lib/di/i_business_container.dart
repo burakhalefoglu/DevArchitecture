@@ -1,3 +1,4 @@
+import '../features/admin_panel/logs/services/i_service.dart';
 import '/features/admin_panel/group_claims/services/i_group_claim_service.dart';
 import '/features/admin_panel/languages/services/i_language_service.dart';
 import '/features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
@@ -15,6 +16,8 @@ abstract class IBusinessContainer {
   late IAuthService authService;
 
   late IUserService userService;
+
+  late ILogService logService;
 
   late IUserClaimService userClaimService;
 

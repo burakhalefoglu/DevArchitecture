@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '/core/helpers/translate_provider_extension.dart';
 
-class ScreenElementConstants1 {
+class ScreenElementConstants {
   static late BuildContext _context;
 
   static late String appName;
