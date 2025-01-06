@@ -10,9 +10,6 @@ import '../../features/admin_panel/groups/services/api_group_service.dart';
 import '../../features/admin_panel/languages/services/api_language_service.dart';
 import '../../features/admin_panel/languages/services/i_language_service.dart';
 import '../../features/admin_panel/languages/services/in_memory_language_service.dart';
-import '../../features/admin_panel/logs/services/api_log_service.dart';
-import '../../features/admin_panel/logs/services/i_service.dart';
-import '../../features/admin_panel/logs/services/in_memory_log_service.dart';
 import '../../features/admin_panel/lookups/services/i_lookup_service.dart';
 import '../../features/admin_panel/lookups/services/in_memory_lookup_service.dart';
 import '../../features/admin_panel/operation_claims/services/api_operation_claim_service.dart';
@@ -59,9 +56,6 @@ class GetItBusinessContainer implements IBusinessContainer {
   late IUserGroupService userGroupService;
 
   @override
-  late ILogService logService;
-
-  @override
   late ITranslateService translateService;
 
   @override
@@ -101,11 +95,6 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<IUserGroupService>((() {
         userGroupService = _getIt
             .registerSingleton<IUserGroupService>(InMemoryUserGroupService());
-      }));
-
-      checkIfUnRegistered<ILogService>((() {
-        logService =
-            _getIt.registerSingleton<ILogService>(InMemoryLogService());
       }));
 
       checkIfUnRegistered<ITranslateService>((() {
@@ -162,11 +151,6 @@ class GetItBusinessContainer implements IBusinessContainer {
             ApiUserGroupService(method: "/user-groups"));
       }));
 
-      checkIfUnRegistered<ILogService>((() {
-        logService = _getIt
-            .registerSingleton<ILogService>(ApiLogService(method: "/Logs"));
-      }));
-
       checkIfUnRegistered<ITranslateService>((() {
         translateService = _getIt.registerSingleton<ITranslateService>(
             ApiTranslateService(method: "/Translates"));
@@ -219,11 +203,6 @@ class GetItBusinessContainer implements IBusinessContainer {
       checkIfUnRegistered<IUserGroupService>((() {
         userGroupService = _getIt.registerSingleton<IUserGroupService>(
             ApiUserGroupService(method: "/user-groups"));
-      }));
-
-      checkIfUnRegistered<ILogService>((() {
-        logService = _getIt
-            .registerSingleton<ILogService>(ApiLogService(method: "/Logs"));
       }));
 
       checkIfUnRegistered<ITranslateService>((() {

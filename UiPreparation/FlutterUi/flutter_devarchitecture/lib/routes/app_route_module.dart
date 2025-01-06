@@ -24,7 +24,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../core/guard/auth_guard.dart';
 import '../features/admin_panel/groups/pages/admin_group_page.dart';
-import '../features/admin_panel/logs/pages/log_page.dart';
 import '../features/admin_panel/operation_claims/pages/admin_operation_claim_page.dart';
 import '../features/admin_panel/translates/pages/admin_translate_page.dart';
 import '../features/app_panel/home/home_page.dart';
@@ -83,12 +82,6 @@ class AppRouteModule extends Module {
     //*? ADMIN TRANSLATE PAGE
     r.child(RoutesConstants.adminTranslatePage,
         child: (context) => const AdminTranslatePage(),
-        transition: transition,
-        guards: [AuthGuard()]);
-
-    //*? ADMIN LOG PAGE
-    r.child(RoutesConstants.adminLogPage,
-        child: (context) => const AdminLogPage(),
         transition: transition,
         guards: [AuthGuard()]);
 

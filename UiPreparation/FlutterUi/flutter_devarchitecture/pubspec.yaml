@@ -3,7 +3,7 @@ description: "A new Flutter project."
 publish_to: 'none'
 version: 0.1.0
 
-# The SDK version is 3.22.3
+# Tested with SDK version 3.22.3
 
 environment:
   sdk: '>=3.4.1 <4.0.0'
@@ -83,7 +83,6 @@ dependencies:
   qr_code_scanner: 1.0.1 #* Android iOS
   universal_html: 2.2.4 #* Android iOS Linux macOS Windows
 
-
 dependency_overrides:
   web: ^1.0.0
 
@@ -91,14 +90,14 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logo.png
-    - assets/403.json
-    - assets/404.json
-    - assets/loading.json
-    - assets/success.json
-    - assets/error.json
-    - assets/checking.json
-    - assets/sending.json
-    - assets/feedback.json
+    # - assets/403.json
+    # - assets/404.json
+    # - assets/loading.json
+    # - assets/success.json
+    # - assets/error.json
+    # - assets/checking.json
+    # - assets/sending.json
+    # - assets/feedback.json
   fonts:
     - family: nunito
       fonts:
