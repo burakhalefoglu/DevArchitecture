@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../features/admin_panel/languages/widgets/language_code_dropdown_button.dart';
 import '/core/constants/temp/screen_element_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +23,6 @@ buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {
                   buildThemeButton(context, themeProvider),
                   buildNotificationButton(context),
                   buildProfileButton(context),
-                  LanguageCodeDropdownButton(),
                   buildLogOutButton(context),
                 ],
       leading: Builder(
