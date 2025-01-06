@@ -91,14 +91,14 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logo.png
-    # - assets/403.json
-    # - assets/404.json
-    # - assets/loading.json
-    # - assets/success.json
-    # - assets/error.json
-    # - assets/checking.json
-    # - assets/sending.json
-    # - assets/feedback.json
+    - assets/403.json
+    - assets/404.json
+    - assets/loading.json
+    - assets/success.json
+    - assets/error.json
+    - assets/checking.json
+    - assets/sending.json
+    - assets/feedback.json
   fonts:
     - family: nunito
       fonts:
