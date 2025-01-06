@@ -12,8 +12,8 @@ import '../../../../core/utilities/download_management/buttons/download_buttons.
 import '../../../../core/widgets/base_widgets.dart';
 import '../../../../core/widgets/tables/filter_table_widget.dart';
 import '../../../../layouts/base_scaffold.dart';
-import '../bloc/log_cubit.dart';
-import '../models/log_dto.dart';
+import 'bloc/log_cubit.dart';
+import 'models/log_dto.dart';
 
 class AdminLogPage extends StatelessWidget {
   const AdminLogPage({super.key});

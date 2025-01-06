@@ -65,10 +65,7 @@ dependencies:
 
   # utils
   internet_connection_checker_plus: 2.5.2 #: All platforms
-
-  platform_local_notifications: 1.0.2 #: All platforms
-
-
+  in_app_notification: ^1.1.2 #: All platforms
   url_launcher: 6.3.0 #: All platforms
   dart_amqp: 0.3.1 #* Android iOS Linux macOS Windows
   battery_plus: 5.0.2 #: All platforms

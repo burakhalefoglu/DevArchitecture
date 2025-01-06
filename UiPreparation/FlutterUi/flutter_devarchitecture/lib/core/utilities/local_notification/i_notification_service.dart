@@ -1,8 +1,13 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 abstract class INotificationService {
-  void showNotification(String message, String title, BuildContext context);
+  void showNotification(BuildContext context, String message, String title);
   void showNotificationWithSound(
-      String message, String title, BuildContext context);
-  void requestPermission();
+      BuildContext context, String message, String title);
+  void showNotificationWithVibration(
+      BuildContext context, String message, String title);
+  void showNotificationWithSoundAndVibration(
+      BuildContext context, String message, String title);
+  void schedulePeriodicNotification(
+      BuildContext context, String message, String title, Duration interval);
 }

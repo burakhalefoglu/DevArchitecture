@@ -33,18 +33,18 @@ class _LocalNotificationPageState extends State<LocalNotificationPage> {
         children: [
           ElevatedButton(
             onPressed: () => _notificationService.showNotification(
+              context,
               "Bu bir bildirimdir.",
               "Bildirim Başlığı",
-              context,
             ),
             child: Text('Bildirim Gönder'),
           ),
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () => _notificationService.showNotificationWithSound(
+              context,
               "Bu bildirim ses içeriyor.",
               "Sesli Bildirim",
-              context,
             ),
             child: Text('Sesli Bildirim Gönder'),
           ),
