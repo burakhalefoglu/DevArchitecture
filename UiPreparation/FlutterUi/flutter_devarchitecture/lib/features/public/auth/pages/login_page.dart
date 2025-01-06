@@ -72,14 +72,6 @@ class LoginPage extends StatelessWidget {
                                 flex: 1,
                                 child: LanguageCodeDropdownButton(
                                   isShort: true,
-                                  getInitialValue: (selectedLanguage) {
-                                    _languageController.text =
-                                        selectedLanguage.id;
-                                  },
-                                  onChanged: (selectedLanguage) {
-                                    _languageController.text =
-                                        selectedLanguage.id;
-                                  },
                                 ),
                               ),
                             ],
@@ -119,14 +111,6 @@ class LoginPage extends StatelessWidget {
                                     flex: 2,
                                     child: LanguageCodeDropdownButton(
                                       isShort: false,
-                                      getInitialValue: (selectedLanguage) {
-                                        _languageController.text =
-                                            selectedLanguage.id;
-                                      },
-                                      onChanged: (selectedLanguage) {
-                                        _languageController.text =
-                                            selectedLanguage.id;
-                                      },
                                     ),
                                   )
                           ],

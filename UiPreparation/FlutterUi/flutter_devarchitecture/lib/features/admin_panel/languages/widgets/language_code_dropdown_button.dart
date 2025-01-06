@@ -11,15 +11,11 @@ import '../../../../core/bloc/base_state.dart';
 import '../../../../core/widgets/inputs/dropdown_button.dart';
 
 class LanguageCodeDropdownButton extends StatefulWidget {
-  final void Function(LookUp selectedLanguage) onChanged;
-  final void Function(LookUp selectedLanguage) getInitialValue;
   final bool isShort;
   final Key? key;
 
   const LanguageCodeDropdownButton({
     this.key,
-    required this.onChanged,
-    required this.getInitialValue,
     this.isShort = false,
   }) : super(key: key);
 
@@ -56,28 +52,25 @@ class _LanguageCodeDropdownButtonState
               key: widget.key,
               icon: Icons.language,
               getFirstValue: (value) {
-                print(languages
-                    .map((lang) => lang.id.toString())
-                    .toList()
-                    .toString());
                 _selectedLanguage = widget.isShort
                     ? languages.firstWhere(
                         (lang) => lang.id.toString() == value,
                         orElse: () => languages.first)
                     : languages.firstWhere((lang) => lang.label == value,
                         orElse: () => languages.first);
-                widget.getInitialValue(_selectedLanguage!);
               },
               options: options,
-              onChanged: (String? selectedValue) {
+              onChanged: (String? selectedValue) async {
                 if (selectedValue != null) {
-                  _selectedLanguage = widget.isShort
-                      ? languages.firstWhere(
-                          (lang) => lang.id.toString() == selectedValue)
-                      : languages
-                          .firstWhere((lang) => lang.label == selectedValue);
-                  widget.onChanged(_selectedLanguage!);
-                  _updateLanguage(_selectedLanguage!.id.toString());
+                  setState(() {
+                    _selectedLanguage = widget.isShort
+                        ? languages.firstWhere(
+                            (lang) => lang.id.toString() == selectedValue)
+                        : languages
+                            .firstWhere((lang) => lang.label == selectedValue);
+                  });
+                  await _updateLanguage(
+                      context, _selectedLanguage!.id.toString());
                 }
               },
             );
@@ -88,7 +81,8 @@ class _LanguageCodeDropdownButtonState
     );
   }
 
-  Future<void> _updateLanguage(String selectedLanguage) async {
+  Future<void> _updateLanguage(
+      BuildContext context, String selectedLanguage) async {
     await Provider.of<TranslationProvider>(context, listen: false)
         .changeLocale(selectedLanguage);
   }

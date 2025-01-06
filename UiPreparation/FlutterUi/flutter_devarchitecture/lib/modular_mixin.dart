@@ -44,9 +44,9 @@ mixin ModularMixin {
                 PointerDeviceKind.unknown,
               },
             ),
-            theme: themeProvider.lightTheme,
-            darkTheme: themeProvider.darkTheme,
-            themeMode: themeProvider.themeMode,
+            theme: ThemeProvider().lightTheme,
+            darkTheme: ThemeProvider().darkTheme,
+            themeMode: ThemeProvider().themeMode,
             routerConfig: Modular.routerConfig,
           ),
         );

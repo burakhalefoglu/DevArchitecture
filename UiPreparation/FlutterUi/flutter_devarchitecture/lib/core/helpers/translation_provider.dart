@@ -22,10 +22,9 @@ class TranslationProvider with ChangeNotifier {
       });
       notifyListeners();
     } else {
-      CoreInitializer()
-          .coreContainer
-          .screenMessage
-          .getErrorMessage(result.message);
+      _translations.clear();
+      notifyListeners();
+      throw Exception("Translation loading failed: ${result.message}");
     }
   }
 
@@ -40,6 +39,7 @@ class TranslationProvider with ChangeNotifier {
     _locale = Locale(languageCode);
     await localStorageService.save('current_language_code', languageCode);
     await loadTranslations(languageCode);
+    notifyListeners();
   }
 
   String translate(String key) {

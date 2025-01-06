@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+# TODO: https://pub.dev/packages/hive_local_storage
+
 # firebase
   cloud_firestore: 5.5.0 #* Android iOS macOS web Windows
   firebase_core: 3.8.1 #* Android iOS macOS web Windows

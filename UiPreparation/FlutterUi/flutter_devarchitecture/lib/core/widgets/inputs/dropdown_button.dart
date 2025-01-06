@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '/core/theme/extensions.dart';
-
 import '../../theme/custom_colors.dart';
 
 class CustomDropdownButton extends StatefulWidget {
@@ -23,16 +22,37 @@ class CustomDropdownButton extends StatefulWidget {
 
 class _VtDropdownButtonState extends State<CustomDropdownButton> {
   late String _firstValue;
+  List<DropdownMenuItem<String>>? _dropdownItems;
 
   @override
   void initState() {
     super.initState();
-    _firstValue = widget.options.first;
+    if (widget.options.isNotEmpty) {
+      _firstValue = widget.options.first;
+      widget.getFirstValue(_firstValue);
+    } else {
+      _firstValue = "";
+    }
+
+    // Dropdown öğelerini oluştur.
+    _dropdownItems = widget.options.isNotEmpty
+        ? widget.options.map((option) {
+            return DropdownMenuItem(
+              alignment: Alignment.topLeft,
+              value: option,
+              child: Text(option),
+            );
+          }).toList()
+        : [
+            const DropdownMenuItem(
+              value: "",
+              child: Text("Seçenek Yok"),
+            ),
+          ];
   }
 
   @override
   Widget build(BuildContext context) {
-    widget.getFirstValue(widget.options.first);
     return Padding(
       padding: context.lowVerticalPadding,
       child: DropdownButtonFormField<String>(
@@ -48,22 +68,15 @@ class _VtDropdownButtonState extends State<CustomDropdownButton> {
           fontWeight: FontWeight.w300,
         ),
         isExpanded: true,
-        items: [
-          ...List.generate(
-            widget.options.length,
-            (index) => DropdownMenuItem(
-              alignment: Alignment.topLeft,
-              value: widget.options[index],
-              child: Text(widget.options[index]),
-            ),
-          ),
-        ],
+        items: _dropdownItems,
         value: _firstValue,
         onChanged: (value) {
-          widget.onChanged(value);
-          setState(() {
-            _firstValue = value.toString();
-          });
+          if (value != null) {
+            setState(() {
+              _firstValue = value;
+            });
+            widget.onChanged(value);
+          }
         },
       ),
     );
