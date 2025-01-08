@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import '../../constants/temp/messages.dart';
+import '../../constants/core_messages.dart';
 import '../../helpers/extensions.dart';
 
 class CustomNumberInput extends TextFormField {
@@ -18,16 +18,16 @@ class CustomNumberInput extends TextFormField {
           validator: (value) {
             if (!enabled!) return null;
             if (value == null || value.isEmpty) {
-              return '$labelText ${Messages.cantBeEmpty}';
+              return '$labelText ${CoreMessages.cantBeEmpty}';
             }
             if (!value.isValidNumber) {
-              return Messages.invalidNumber;
+              return CoreMessages.invalidNumber;
             }
             if (double.parse(value) < double.parse(min.toString())) {
-              return "$labelText ${Messages.minimum} $min";
+              return "$labelText ${CoreMessages.minimum} $min";
             }
             if (double.parse(value) > double.parse(max.toString())) {
-              return "$labelText ${Messages.maximum} $max";
+              return "$labelText ${CoreMessages.maximum} $max";
             }
             return null;
           },

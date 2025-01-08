@@ -4,8 +4,7 @@ import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import "package:universal_html/html.dart" as html;
-
-import '../../constants/temp/messages.dart';
+import '../../constants/core_messages.dart';
 import 'i_download.dart';
 import '/core/di/core_initializer.dart';
 
@@ -37,7 +36,7 @@ class TxtDownload implements ITxtDownload {
         }
       }
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }
@@ -57,14 +56,14 @@ class TxtDownload implements ITxtDownload {
   Future<String?> _getSavePathForMobileApps() async {
     try {
       String? outputFilePath = await FilePicker.platform.saveFile(
-        dialogTitle: Messages.selectOutputFileMessage,
+        dialogTitle: CoreMessages.selectOutputFileMessage,
         fileName: 'data${Random().nextInt(10000000)}.txt',
         type: FileType.custom,
         allowedExtensions: ['txt'],
       );
       return outputFilePath;
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }
@@ -80,7 +79,7 @@ class TxtDownload implements ITxtDownload {
       }
       return null;
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }

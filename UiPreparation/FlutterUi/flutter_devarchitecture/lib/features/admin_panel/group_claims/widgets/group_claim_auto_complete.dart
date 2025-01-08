@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import '../group_constants/group_claim_screen_texts.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
@@ -54,8 +54,8 @@ class _GroupClaimAutocompleteState extends State<GroupClaimAutocomplete> {
             return LookupMultiSelectAutocomplete(
               options: options,
               valueKey: 'label',
-              labelText: ScreenElementConstants.groupClaims,
-              hintText: ScreenElementConstants.selectGroupClaim,
+              labelText: GroupClaimScreenTexts.groupClaims,
+              hintText: GroupClaimScreenTexts.selectGroupClaim,
               selectedIds: selectedIds,
               isAllSelected: widget.isAllSelected,
               controller: _controller,

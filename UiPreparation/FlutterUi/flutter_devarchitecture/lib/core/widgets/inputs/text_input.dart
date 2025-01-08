@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/temp/messages.dart';
+import '../../constants/core_messages.dart';
 
 class CustomTextInput extends TextFormField {
   CustomTextInput(
@@ -19,13 +19,13 @@ class CustomTextInput extends TextFormField {
           validator: (value) {
             if (!enabled!) return null;
             if (value == null || value.isEmpty) {
-              return '$labelText ${Messages.cantBeEmpty}';
+              return '$labelText ${CoreMessages.cantBeEmpty}';
             }
             if (value.length < min) {
-              return "$labelText ${Messages.minCharacter} ($min)";
+              return "$labelText ${CoreMessages.minCharacter} ($min)";
             }
             if (value.length > max) {
-              return "$labelText ${Messages.maxCharacter} ($max)";
+              return "$labelText ${CoreMessages.maxCharacter} ($max)";
             }
             return null;
           },

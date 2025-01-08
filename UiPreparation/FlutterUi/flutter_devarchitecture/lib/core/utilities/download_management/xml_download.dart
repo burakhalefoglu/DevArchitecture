@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
-import '../../constants/temp/messages.dart';
 import 'package:xml/xml.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import "package:universal_html/html.dart" as html;
 
+import '../../constants/core_messages.dart';
 import 'i_download.dart';
 import '/core/di/core_initializer.dart';
 
@@ -43,7 +43,7 @@ class XmlDownload implements IXmlDownload {
         }
       }
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }
@@ -63,14 +63,14 @@ class XmlDownload implements IXmlDownload {
   Future<String?> _getSavePathForMobileApps() async {
     try {
       String? outputFilePath = await FilePicker.platform.saveFile(
-        dialogTitle: Messages.selectOutputFileMessage,
+        dialogTitle: CoreMessages.selectOutputFileMessage,
         fileName: 'data${Random().nextInt(10000000)}.xml',
         type: FileType.custom,
         allowedExtensions: ['xml'],
       );
       return outputFilePath;
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }
@@ -86,7 +86,7 @@ class XmlDownload implements IXmlDownload {
       }
       return null;
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }

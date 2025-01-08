@@ -8,8 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import "package:universal_html/html.dart" as html;
 
-import '../../constants/temp/messages.dart';
-import '../../constants/temp/screen_element_constants.dart';
+import '../../constants/core_messages.dart';
+import '../../constants/core_screen_texts.dart';
 import '../../di/core_initializer.dart';
 import 'i_download.dart';
 
@@ -40,7 +40,7 @@ class PdfDownload implements IPdfDownload {
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: [
                 pw.Text(
-                  ScreenElementConstants.dataTableTitle,
+                  CoreScreenTexts.dataTableTitle,
                   style: pw.TextStyle(font: boldFont, fontSize: 24),
                 ),
                 pw.SizedBox(height: 20),
@@ -90,7 +90,7 @@ class PdfDownload implements IPdfDownload {
         }
       }
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }
@@ -109,14 +109,14 @@ class PdfDownload implements IPdfDownload {
   Future<String?> _getSavePathForMobileApps() async {
     try {
       String? outputFilePath = await FilePicker.platform.saveFile(
-        dialogTitle: Messages.selectOutputFileMessage,
+        dialogTitle: CoreMessages.selectOutputFileMessage,
         fileName: 'data${Random().nextInt(10000000)}.pdf',
         type: FileType.custom,
         allowedExtensions: ['pdf'],
       );
       return outputFilePath;
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }
@@ -132,7 +132,7 @@ class PdfDownload implements IPdfDownload {
       }
       return null;
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }

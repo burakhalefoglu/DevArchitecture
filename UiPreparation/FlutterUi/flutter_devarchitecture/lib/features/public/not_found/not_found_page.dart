@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../../core/constants/temp/messages.dart';
-import '../../../core/constants/temp/screen_element_constants.dart';
 import '../../../core/di/core_initializer.dart';
 import '../../../routes/routes_constants.dart';
 import '../../../layouts/base_scaffold.dart';
 import '../../../core/theme/extensions.dart';
+import '../constants/public_messages.dart';
 
 class NotFoundPage extends StatelessWidget {
   const NotFoundPage({super.key});
@@ -31,7 +30,7 @@ class NotFoundPage extends StatelessWidget {
                                 context.percent75Screen)),
                     Expanded(
                         child: Text(
-                      Messages.pageNotFound,
+                      PublicMessages.pageNotFound,
                       style: TextStyle(
                           fontSize: context.isMobile ? 18 : 22,
                           fontWeight: FontWeight.w500),
@@ -43,7 +42,7 @@ class NotFoundPage extends StatelessWidget {
                         onPressed: () {
                           Modular.to.navigate(RoutesConstants.appHomePage);
                         },
-                        child: Text(ScreenElementConstants.returnHomePage),
+                        child: Text(PublicMessages.returnHomePage),
                       ),
                     )
                   ],

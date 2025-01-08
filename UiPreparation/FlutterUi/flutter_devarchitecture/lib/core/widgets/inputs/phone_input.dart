@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../constants/temp/messages.dart';
-import '../../constants/temp/screen_element_constants.dart';
+import '../../constants/core_messages.dart';
+import '../../constants/core_screen_texts.dart';
 import '../../helpers/extensions.dart';
 
 class CustomPhoneInput extends TextFormField {
@@ -14,16 +14,16 @@ class CustomPhoneInput extends TextFormField {
           validator: (value) {
             if (!enabled!) return null;
             if (value == null || value.isEmpty) {
-              return ScreenElementConstants.phoneNumber + Messages.cantBeEmpty;
+              return CoreScreenTexts.phoneNumber + CoreMessages.cantBeEmpty;
             }
             if (!value.isValidPhone) {
-              return Messages.invalidPhone;
+              return CoreMessages.invalidPhone;
             }
             return null;
           },
           inputFormatters: <TextInputFormatter>[],
           decoration: InputDecoration(
-              labelText: ScreenElementConstants.phoneNumber,
+              labelText: CoreScreenTexts.phoneNumber,
               hintText: '+90 999 999 99 99',
               contentPadding: EdgeInsets.only(bottom: 20)),
         );

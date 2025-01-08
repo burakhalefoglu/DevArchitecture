@@ -72,9 +72,8 @@ class HomePageTablet extends StatelessWidget {
                                             .getBarChart(
                                                 context,
                                                 basicData,
-                                                ScreenElementConstants
-                                                    .categories,
-                                                ScreenElementConstants.sales,
+                                                CoreScreenTexts.categories,
+                                                CoreScreenTexts.sales,
                                                 headerTitle: 'BAR CHART',
                                                 CustomColors
                                                     .secondary.getColor)),
@@ -87,9 +86,8 @@ class HomePageTablet extends StatelessWidget {
                                             .getLineChart(
                                                 context,
                                                 basicData,
-                                                ScreenElementConstants
-                                                    .categories,
-                                                ScreenElementConstants.sales,
+                                                CoreScreenTexts.categories,
+                                                CoreScreenTexts.sales,
                                                 headerTitle: 'LINE CHART',
                                                 CustomColors.danger.getColor)),
                                   ],
@@ -110,8 +108,8 @@ class HomePageTablet extends StatelessWidget {
                                           context,
                                           basicData,
                                           headerTitle: 'PİE CHART',
-                                          ScreenElementConstants.categories,
-                                          ScreenElementConstants.sales,
+                                          CoreScreenTexts.categories,
+                                          CoreScreenTexts.sales,
                                         )),
                                 const Spacer(),
                                 Expanded(
@@ -140,8 +138,8 @@ class HomePageTablet extends StatelessWidget {
                                           .getLineAreaChart(
                                               context,
                                               basicData,
-                                              ScreenElementConstants.categories,
-                                              ScreenElementConstants.sales,
+                                              CoreScreenTexts.categories,
+                                              CoreScreenTexts.sales,
                                               headerTitle: 'LINE AREA CHART',
                                               CustomColors.secondary.getColor)),
                                   const Spacer(),
@@ -172,8 +170,8 @@ class HomePageTablet extends StatelessWidget {
                                             context,
                                             heatmapData,
                                             headerTitle: 'HEATMAP CHART',
-                                            ScreenElementConstants.name,
-                                            ScreenElementConstants.days,
+                                            CoreScreenTexts.name,
+                                            CoreScreenTexts.days,
                                           )),
                                   const Spacer(),
                                   Expanded(

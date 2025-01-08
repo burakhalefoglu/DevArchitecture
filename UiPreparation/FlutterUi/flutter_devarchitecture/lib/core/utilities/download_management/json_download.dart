@@ -6,7 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import "package:universal_html/html.dart" as html;
 
-import '../../constants/temp/messages.dart';
+import '../../constants/core_messages.dart';
 import 'i_download.dart';
 import '/core/di/core_initializer.dart';
 
@@ -31,7 +31,7 @@ class JsonDownload implements IJsonDownload {
         }
       }
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }
@@ -51,14 +51,14 @@ class JsonDownload implements IJsonDownload {
   Future<String?> _getSavePathForMobileApps() async {
     try {
       String? outputFilePath = await FilePicker.platform.saveFile(
-        dialogTitle: Messages.selectOutputFileMessage,
+        dialogTitle: CoreMessages.selectOutputFileMessage,
         fileName: 'data${Random().nextInt(10000000)}.json',
         type: FileType.custom,
         allowedExtensions: ['json'],
       );
       return outputFilePath;
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }
@@ -74,7 +74,7 @@ class JsonDownload implements IJsonDownload {
       }
       return null;
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }

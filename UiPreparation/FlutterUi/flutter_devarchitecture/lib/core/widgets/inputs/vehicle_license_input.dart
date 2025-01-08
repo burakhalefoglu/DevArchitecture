@@ -1,4 +1,4 @@
-import '../../constants/temp/screen_element_constants.dart';
+import '../../constants/core_screen_texts.dart';
 import 'base/split_input.dart';
 
 /// Turkey Vehicle Registration Number Format
@@ -13,6 +13,6 @@ class CustomVehicleLicenseInput extends SingleSplitInput {
       required super.confirmFocusNodes})
       : super(
             format: 's2 d6',
-            labelText: ScreenElementConstants.vehicleRegistrationNumber,
+            labelText: CoreScreenTexts.vehicleRegistrationNumber,
             hintTexts: ["XX", "000000"]);
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import '../../constants/public_messages.dart';
+import '../../constants/public_screen_texts.dart';
 import '/routes/routes_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
@@ -9,7 +10,6 @@ import '../../../../core/widgets/inputs/email_input.dart';
 import '../../../../core/widgets/inputs/password_input.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/bloc/base_state.dart';
-import '../../../../core/constants/temp/messages.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../../admin_panel/languages/widgets/language_code_dropdown_button.dart';
 import '../bloc/auth_cubit.dart';
@@ -80,7 +80,7 @@ class LoginPage extends StatelessWidget {
                       : Expanded(
                           flex: 2,
                           child: Text(
-                            ScreenElementConstants.loginTitle,
+                            PublicScreenTexts.loginTitle,
                             style: TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.bold),
                           ),
@@ -126,7 +126,7 @@ class LoginPage extends StatelessWidget {
                         BlocProvider.of<AuthCubit>(context).emitCheckingState();
                         if (!_form.currentState!.validate()) {
                           BlocProvider.of<AuthCubit>(context).emitFailState(
-                              Messages.formValidationErrorMessage);
+                              PublicMessages.formValidationErrorMessage);
                           return;
                         }
                         await BlocProvider.of<AuthCubit>(context)
@@ -136,7 +136,7 @@ class LoginPage extends StatelessWidget {
                           lang: _languageController.text,
                         ));
                       },
-                      child: Text(ScreenElementConstants.loginButton),
+                      child: Text(PublicScreenTexts.loginButton),
                     ),
                   ),
                   const Spacer(

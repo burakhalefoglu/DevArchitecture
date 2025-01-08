@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-
-import '../../constants/temp/messages.dart';
+import '../../constants/core_messages.dart';
 import '../../theme/custom_colors.dart';
 
 class CustomAutoComplete extends StatelessWidget {
@@ -39,7 +38,7 @@ class CustomAutoComplete extends StatelessWidget {
           validator: (value) {
             if (!enabled) return null;
             if ((value == null || value.isEmpty || value == "")) {
-              return '$labelText ${Messages.cantBeEmpty}';
+              return '$labelText ${CoreMessages.cantBeEmpty}';
             }
             for (var i = 0; i < options.length; i++) {
               if (options[i][valueKey].toString().toUpperCase() ==
@@ -47,7 +46,7 @@ class CustomAutoComplete extends StatelessWidget {
                 return null;
               }
             }
-            return '${Messages.invalid} $labelText';
+            return '${CoreMessages.invalid} $labelText';
           },
           controller: controller,
           focusNode: focusNode,

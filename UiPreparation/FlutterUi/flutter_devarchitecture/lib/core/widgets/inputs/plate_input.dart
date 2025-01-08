@@ -1,4 +1,4 @@
-import '../../constants/temp/screen_element_constants.dart';
+import '../../constants/core_screen_texts.dart';
 import 'base/split_input.dart';
 
 /// Turkey Vehicle License Plate Number Format
@@ -15,6 +15,6 @@ class CustomPlateInput extends SingleSplitInput {
     isSimple = false,
   }) : super(
             format: isSimple ? 's15' : 'd2 s3 d5',
-            labelText: ScreenElementConstants.vehicleLicensePlate,
+            labelText: CoreScreenTexts.vehicleLicensePlate,
             hintTexts: isSimple ? ["XXXXXXXX"] : ["00", "XXX", "00000"]);
 }

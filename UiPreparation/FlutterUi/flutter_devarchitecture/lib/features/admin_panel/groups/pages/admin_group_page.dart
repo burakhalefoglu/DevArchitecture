@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/core/constants/temp/screen_element_constants.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../../core/theme/extensions.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/constants/temp/messages.dart';
+import '../../../../core/constants/core_screen_texts.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
+import '../../group_claims/widgets/group_claim_button.dart';
+import '../../user_groups/widgets/user_group_button.dart';
+import '../group_constants/group_messages.dart';
+import '../group_constants/group_screen_texts.dart';
 import '../widgets/add_group_dialog.dart';
 import '../widgets/update_group_claims_dialog.dart';
 import '../widgets/update_group_dialog.dart';
@@ -72,22 +75,22 @@ class AdminGroupPage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                ScreenElementConstants.groupList,
-                subDirection: ScreenElementConstants.adminPanel,
+                GroupScreenTexts.groupList,
+                subDirection: CoreScreenTexts.adminPanel,
               ),
             ),
           ),
           Expanded(
             flex: 9,
             child: FilterTableWidget(
-              infoHover: getInfoHover(context, Messages.groupInfoHover),
+              infoHover: getInfoHover(context, GroupMessages.groupInfoHover),
               utilityButton: DownloadButtons(
                       color: CustomColors.dark.getColor, data: datas)
                   .excelButton(context),
               datas: datas,
               headers: [
                 {"id": "ID"},
-                {"groupName": ScreenElementConstants.groupName},
+                {"groupName": GroupScreenTexts.groupName},
               ],
               color: CustomColors.primary.getColor,
               customManipulationButton: const [

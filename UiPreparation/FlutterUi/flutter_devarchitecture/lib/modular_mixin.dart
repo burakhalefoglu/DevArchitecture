@@ -4,7 +4,7 @@ import '/core/theme/theme_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
-import 'core/constants/temp/screen_element_constants.dart';
+import 'core/constants/core_screen_texts.dart';
 import 'core/helpers/translation_provider.dart';
 import 'routes/app_route_module.dart';
 
@@ -15,7 +15,7 @@ mixin ModularMixin {
         return ModularApp(
           module: AppRouteModule(),
           child: MaterialApp.router(
-            title: ScreenElementConstants.appName,
+            title: CoreScreenTexts.appName,
             locale: translationProvider.locale,
             supportedLocales: const [
               Locale('en', 'US'),

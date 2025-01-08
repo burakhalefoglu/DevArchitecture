@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants/temp/screen_element_constants.dart';
+import '../../../constants/core_screen_texts.dart';
 import '../../../di/core_initializer.dart';
 
 class ShareButtons {
@@ -11,7 +10,7 @@ class ShareButtons {
   IconButton pdfButton(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.picture_as_pdf),
-      tooltip: ScreenElementConstants.pdfShareTooltip,
+      tooltip: CoreScreenTexts.pdfShareTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.pdfShare.share(data);
       },
@@ -21,7 +20,7 @@ class ShareButtons {
   IconButton excelButton(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.table_chart),
-      tooltip: ScreenElementConstants.excelShareTooltip,
+      tooltip: CoreScreenTexts.excelShareTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.excelShare.share(data);
       },
@@ -31,7 +30,7 @@ class ShareButtons {
   IconButton txtButton(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.description),
-      tooltip: ScreenElementConstants.txtShareTooltip,
+      tooltip: CoreScreenTexts.txtShareTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.txtShare.share(data);
       },
@@ -41,7 +40,7 @@ class ShareButtons {
   IconButton jsonButton(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.code),
-      tooltip: ScreenElementConstants.jsonShareTooltip,
+      tooltip: CoreScreenTexts.jsonShareTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.jsonShare.share(data);
       },
@@ -51,7 +50,7 @@ class ShareButtons {
   IconButton xmlButton(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.code),
-      tooltip: ScreenElementConstants.xmlShareTooltip,
+      tooltip: CoreScreenTexts.xmlShareTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.xmlShare.share(data);
       },
@@ -61,7 +60,7 @@ class ShareButtons {
   IconButton imageButton(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.image),
-      tooltip: ScreenElementConstants.imageShareTooltip,
+      tooltip: CoreScreenTexts.imageShareTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.imageShare.share(data);
       },
@@ -71,7 +70,7 @@ class ShareButtons {
   IconButton csvButton(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.table_chart),
-      tooltip: ScreenElementConstants.csvShareTooltip,
+      tooltip: CoreScreenTexts.csvShareTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.csvShare.share(data);
       },

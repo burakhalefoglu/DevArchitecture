@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import '../../constants/temp/messages.dart';
+import '../../constants/core_messages.dart';
 import '../../utilities/results.dart';
 import '../../../core/services/i_service.dart';
 import '../../models/i_entity.dart';
@@ -16,7 +16,8 @@ class InMemoryService<T extends IEntity> implements IService {
   @override
   Future<IResult> delete(id) {
     datas.removeWhere((element) => element["id"] == id.toString());
-    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
+    return Future.value(
+        SuccessResult(CoreMessages.customerDefaultSuccessMessage));
   }
 
   @override
@@ -35,7 +36,8 @@ class InMemoryService<T extends IEntity> implements IService {
   Future<IResult> update(id, Map<String, dynamic> body) {
     datas.removeWhere((element) => element["id"] == id.toString());
     datas.add(body);
-    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
+    return Future.value(
+        SuccessResult(CoreMessages.customerDefaultSuccessMessage));
   }
 
   @override
@@ -43,7 +45,8 @@ class InMemoryService<T extends IEntity> implements IService {
     for (var element in body) {
       this.datas.add(element);
     }
-    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
+    return Future.value(
+        SuccessResult(CoreMessages.customerDefaultSuccessMessage));
   }
 
   @override

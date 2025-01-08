@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/constants/temp/messages.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
 import '../bloc/language_cubit.dart';
+import '../language_constants/language_messages.dart';
+import '../language_constants/language_screen_texts.dart';
 import '../models/language.dart';
 import '../widgets/add_language_dialog.dart';
 import '../widgets/update_language_dialog.dart';
@@ -70,8 +71,8 @@ class AdminLanguagePage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                ScreenElementConstants.languageList,
-                subDirection: ScreenElementConstants.adminPanel,
+                LanguageScreenTexts.languageList,
+                subDirection: CoreScreenTexts.adminPanel,
               ),
             ),
           ),
@@ -81,10 +82,11 @@ class AdminLanguagePage extends StatelessWidget {
               datas: datas,
               headers: [
                 {"id": "ID"},
-                {"code": ScreenElementConstants.code},
-                {"name": ScreenElementConstants.name},
+                {"code": LanguageScreenTexts.code},
+                {"name": CoreScreenTexts.name},
               ],
-              infoHover: getInfoHover(context, Messages.languageInfoHover),
+              infoHover:
+                  getInfoHover(context, LanguageMessages.languageInfoHover),
               utilityButton: DownloadButtons(
                       color: CustomColors.dark.getColor, data: datas)
                   .excelButton(context),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/constants/temp/messages.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
+import '../../../../core/constants/core_messages.dart';
+import '../group_constants/group_screen_texts.dart';
 import '/core/di/core_initializer.dart';
 import '../../user_groups/bloc/user_group_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
@@ -33,7 +34,7 @@ class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
             return resultWidget;
           }
           return AlertDialog(
-            title: Text(ScreenElementConstants.updateGroupUsers),
+            title: Text(GroupScreenTexts.updateGroupUsers),
             content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
               child: GroupUsersAutocomplete(
@@ -48,7 +49,7 @@ class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: Text(ScreenElementConstants.cancelButton),
+                child: Text(CoreScreenTexts.cancelButton),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -60,10 +61,10 @@ class _UpdateGroupUsersDialogState extends State<UpdateGroupUsersDialog> {
                     CoreInitializer()
                         .coreContainer
                         .screenMessage
-                        .getInfoMessage(Messages.atLeastOneSelection);
+                        .getInfoMessage(CoreMessages.atLeastOneSelection);
                   }
                 },
-                child: Text(ScreenElementConstants.updateButton),
+                child: Text(CoreScreenTexts.updateButton),
               ),
             ],
           );

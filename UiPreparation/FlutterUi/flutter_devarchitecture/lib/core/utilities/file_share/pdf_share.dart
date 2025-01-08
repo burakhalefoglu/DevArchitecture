@@ -1,15 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import '/core/constants/temp/screen_element_constants.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
-
-import '../../constants/temp/messages.dart';
+import '../../constants/core_messages.dart';
+import '../../constants/core_screen_texts.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 
@@ -39,7 +38,7 @@ class PdfShare implements IPdfShare {
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: [
                 pw.Text(
-                  ScreenElementConstants.dataTableTitle,
+                  CoreScreenTexts.dataTableTitle,
                   style: pw.TextStyle(font: boldFont, fontSize: 24),
                 ),
                 pw.SizedBox(height: 20),
@@ -77,10 +76,10 @@ class PdfShare implements IPdfShare {
 
       await Share.shareXFiles(
         [XFile(path)],
-        text: ScreenElementConstants.shareTitle,
+        text: CoreScreenTexts.shareTitle,
       );
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }

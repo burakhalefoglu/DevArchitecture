@@ -4,9 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:xml/xml.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-
-import '../../constants/temp/messages.dart';
-import '../../constants/temp/screen_element_constants.dart';
+import '../../constants/core_messages.dart';
+import '../../constants/core_screen_texts.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 
@@ -36,10 +35,10 @@ class XmlShare implements IXmlShare {
       // Dosyayı paylaş
       await Share.shareXFiles(
         [XFile(path)],
-        text: ScreenElementConstants.shareTitle,
+        text: CoreScreenTexts.shareTitle,
       );
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }

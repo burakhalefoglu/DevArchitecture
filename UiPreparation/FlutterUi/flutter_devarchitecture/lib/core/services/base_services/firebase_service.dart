@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../constants/temp/messages.dart';
+import 'package:flutter_devarchitecture/core/constants/core_messages.dart';
 import '../../utilities/results.dart';
 import '../i_service.dart';
 
@@ -39,7 +39,8 @@ abstract class FirebaseService implements IService {
       element["id"] = Random().nextInt(999999999);
       await create(element);
     }
-    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
+    return Future.value(
+        SuccessResult(CoreMessages.customerDefaultSuccessMessage));
   }
 
   @override
@@ -128,7 +129,8 @@ abstract class FirebaseService implements IService {
       }
     }
     await _collectionRef.doc(documentID).update(body);
-    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
+    return Future.value(
+        SuccessResult(CoreMessages.customerDefaultSuccessMessage));
   }
 
   @override
@@ -144,6 +146,7 @@ abstract class FirebaseService implements IService {
       }
     }
     await _collectionRef.doc(documentID).delete();
-    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
+    return Future.value(
+        SuccessResult(CoreMessages.customerDefaultSuccessMessage));
   }
 }

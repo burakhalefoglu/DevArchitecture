@@ -1,66 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants/temp/messages.dart';
+import '../constants/core_messages.dart';
 import '../theme/custom_colors.dart';
-
-Widget updateGroupClaimButton(BuildContext context, VoidCallback onPressed) =>
-    Tooltip(
-      message: Messages.groupPermissionUpdate,
-      child: IconButton(
-          hoverColor: CustomColors.transparent.getColor,
-          onPressed: onPressed,
-          icon: Icon(
-            Icons.security_rounded,
-            color: CustomColors.primary.getColor,
-          )),
-    );
-
-Widget updateUserGroupButton(BuildContext context, VoidCallback onPressed) =>
-    Tooltip(
-      message: Messages.groupUpdate,
-      child: IconButton(
-          hoverColor: CustomColors.transparent.getColor,
-          onPressed: onPressed,
-          icon: Icon(
-            Icons.group_rounded,
-            color: CustomColors.secondary.getColor,
-          )),
-    );
-
-Widget getChangePasswordButton(BuildContext context, VoidCallback onPressed) =>
-    Tooltip(
-      message: Messages.passwordChange,
-      child: IconButton(
-          hoverColor: CustomColors.transparent.getColor,
-          onPressed: onPressed,
-          icon: Icon(
-            Icons.password,
-            color: CustomColors.primary.getColor,
-          )),
-    );
-
-Widget getChangePermissionButton(
-        BuildContext context, VoidCallback onPressed) =>
-    Tooltip(
-      message: Messages.permissionChange,
-      child: IconButton(
-          hoverColor: CustomColors.transparent.getColor,
-          onPressed: onPressed,
-          icon: Icon(
-            Icons.safety_check_rounded,
-            color: CustomColors.secondary.getColor,
-          )),
-    );
-
-Widget getChangeGroupButton(BuildContext context, VoidCallback onPressed) =>
-    Tooltip(
-        message: Messages.groupChange,
-        child: IconButton(
-            hoverColor: CustomColors.transparent.getColor,
-            onPressed: onPressed,
-            icon: Icon(
-              Icons.group,
-              color: CustomColors.success.getColor,
-            )));
 
 Widget getInfoHover(BuildContext context, String message, {Color? color}) =>
     Tooltip(
@@ -72,7 +12,7 @@ Widget getInfoHover(BuildContext context, String message, {Color? color}) =>
     );
 
 Widget getEditButton(BuildContext context, VoidCallback onPressed) => Tooltip(
-      message: Messages.editMessage,
+      message: CoreMessages.editMessage,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -84,7 +24,7 @@ Widget getEditButton(BuildContext context, VoidCallback onPressed) => Tooltip(
     );
 
 Widget getDeleteButton(BuildContext context, VoidCallback onPressed) => Tooltip(
-      message: Messages.deleteMessage,
+      message: CoreMessages.deleteMessage,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -98,7 +38,7 @@ Widget getDeleteButton(BuildContext context, VoidCallback onPressed) => Tooltip(
 Widget getDownloadButton(BuildContext context, VoidCallback onPressed,
         {Color? color}) =>
     Tooltip(
-      message: Messages.downloadMessage,
+      message: CoreMessages.downloadMessage,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -111,7 +51,7 @@ Widget getDownloadButton(BuildContext context, VoidCallback onPressed,
 Widget getAddButton(BuildContext context, VoidCallback onPressed,
         {Color? color}) =>
     Tooltip(
-      message: Messages.addMessage,
+      message: CoreMessages.addMessage,
       child: IconButton(
           onPressed: onPressed,
           hoverColor: CustomColors.transparent.getColor,
@@ -124,7 +64,7 @@ Widget getAddButton(BuildContext context, VoidCallback onPressed,
 Widget getNewPageOpenButton(
         BuildContext context, final VoidCallback onPressed) =>
     Tooltip(
-      message: Messages.detailedInformationMessage,
+      message: CoreMessages.detailedInformationMessage,
       child: IconButton(
           onPressed: onPressed,
           hoverColor: CustomColors.transparent.getColor,

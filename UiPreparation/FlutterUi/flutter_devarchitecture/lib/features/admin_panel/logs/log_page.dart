@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import '../../../core/constants/core_screen_texts.dart';
 import '/core/widgets/button_widgets.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/constants/temp/messages.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/theme/custom_colors.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
@@ -13,6 +12,8 @@ import '../../../../core/widgets/base_widgets.dart';
 import '../../../../core/widgets/tables/filter_table_widget.dart';
 import '../../../../layouts/base_scaffold.dart';
 import 'bloc/log_cubit.dart';
+import 'log_constants/log_Screen_texts.dart';
+import 'log_constants/log_messages.dart';
 import 'models/log_dto.dart';
 
 class AdminLogPage extends StatelessWidget {
@@ -66,8 +67,8 @@ class AdminLogPage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                ScreenElementConstants.logList,
-                subDirection: ScreenElementConstants.adminPanel,
+                LogScreenTexts.logList,
+                subDirection: CoreScreenTexts.adminPanel,
               ),
             ),
           ),
@@ -77,17 +78,17 @@ class AdminLogPage extends StatelessWidget {
               datas: datas,
               headers: [
                 {"id": "ID"},
-                {"level": ScreenElementConstants.level},
-                {"exceptionMessage": ScreenElementConstants.exceptionMessage},
-                {"timeStamp": ScreenElementConstants.timeStamp},
-                {"user": ScreenElementConstants.user},
-                {"value": ScreenElementConstants.value},
-                {"type": ScreenElementConstants.type},
+                {"level": LogScreenTexts.level},
+                {"exceptionMessage": LogScreenTexts.exceptionMessage},
+                {"timeStamp": LogScreenTexts.timeStamp},
+                {"user": LogScreenTexts.user},
+                {"value": LogScreenTexts.value},
+                {"type": LogScreenTexts.type},
               ],
               color: CustomColors.success.getColor,
               customManipulationButton: const [],
               customManipulationCallback: [],
-              infoHover: getInfoHover(context, Messages.logInfoHover),
+              infoHover: getInfoHover(context, LogMessages.logInfoHover),
               utilityButton: DownloadButtons(data: datas).excelButton(context),
             ),
           ),

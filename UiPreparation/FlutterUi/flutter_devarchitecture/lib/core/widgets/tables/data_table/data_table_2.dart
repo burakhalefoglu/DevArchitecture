@@ -1,6 +1,6 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import '../../../constants/temp/screen_element_constants.dart';
+import '../../../constants/core_messages.dart';
 import '../../../theme/extensions.dart';
 import '../../../theme/custom_colors.dart';
 import '../i_tables.dart';
@@ -168,7 +168,7 @@ class DataTables implements ITables {
           empty: Center(
               child: Container(
                   padding: const EdgeInsets.all(20),
-                  child: Text(ScreenElementConstants.noDataAvailable))),
+                  child: Text(CoreMessages.noDataAvailable))),
           border: isBordered
               ? TableBorder(
                   horizontalInside:

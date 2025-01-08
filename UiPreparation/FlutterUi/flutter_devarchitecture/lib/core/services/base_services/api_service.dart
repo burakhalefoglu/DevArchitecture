@@ -1,5 +1,5 @@
 import '../../configs/app_config.dart';
-import '../../constants/temp/messages.dart';
+import '../../constants/core_messages.dart';
 import '../../utilities/results.dart';
 import '../../di/core_initializer.dart';
 import '../i_service.dart';
@@ -23,7 +23,7 @@ abstract class ApiService<T> implements IService {
         return Future.value(FailureResult(result["message"] ?? ""));
       }
     }
-    return Future.value(SuccessResult(Messages.customerAddSuccessMessage));
+    return Future.value(SuccessResult(CoreMessages.customerAddSuccessMessage));
   }
 
   @override
@@ -37,7 +37,7 @@ abstract class ApiService<T> implements IService {
         }
       }
     }
-    return Future.value(SuccessResult(Messages.customerAddSuccessMessage));
+    return Future.value(SuccessResult(CoreMessages.customerAddSuccessMessage));
   }
 
   @override
@@ -48,7 +48,8 @@ abstract class ApiService<T> implements IService {
         return Future.value(FailureResult(result["message"] ?? ""));
       }
     }
-    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
+    return Future.value(
+        SuccessResult(CoreMessages.customerDefaultSuccessMessage));
   }
 
   @override
@@ -98,6 +99,7 @@ abstract class ApiService<T> implements IService {
         return Future.value(FailureResult(result["message"] ?? ""));
       }
     }
-    return Future.value(SuccessResult(Messages.customerDefaultSuccessMessage));
+    return Future.value(
+        SuccessResult(CoreMessages.customerDefaultSuccessMessage));
   }
 }

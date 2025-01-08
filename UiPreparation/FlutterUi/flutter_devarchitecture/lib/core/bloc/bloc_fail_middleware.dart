@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_devarchitecture/core/helpers/translate_provider_extension.dart';
 import '../../routes/routes_constants.dart';
-import '../constants/temp/messages.dart';
+import '../constants/core_messages.dart';
 import '../di/core_initializer.dart';
 import 'base_state.dart';
 
@@ -42,13 +42,13 @@ class BlocFailedMiddleware {
           CoreInitializer()
               .coreContainer
               .screenMessage
-              .getErrorMessage(Messages.customerDefaultErrorMessage);
+              .getErrorMessage(CoreMessages.customerDefaultErrorMessage);
           break;
         default:
           CoreInitializer()
               .coreContainer
               .screenMessage
-              .getErrorMessage(Messages.customerDefaultErrorMessage);
+              .getErrorMessage(CoreMessages.customerDefaultErrorMessage);
           break;
       }
     }

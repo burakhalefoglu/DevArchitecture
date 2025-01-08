@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/temp/messages.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import '../../../../core/constants/core_messages.dart';
+import '../../../../core/constants/core_screen_texts.dart';
+import '../language_constants/language_screen_texts.dart';
 import '/core/theme/extensions.dart';
 import '../models/language.dart';
 
@@ -19,7 +20,7 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(ScreenElementConstants.addLanguage),
+      title: Text(LanguageScreenTexts.addLanguage),
       content: Form(
         key: _formKey,
         child: Container(
@@ -33,10 +34,10 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
                 child: TextFormField(
                   controller: _codeController,
                   decoration:
-                      InputDecoration(labelText: ScreenElementConstants.code),
+                      InputDecoration(labelText: LanguageScreenTexts.code),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return Messages.cantBeEmpty;
+                      return CoreMessages.cantBeEmpty;
                     }
                     return null;
                   },
@@ -47,11 +48,10 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
                 flex: 5,
                 child: TextFormField(
                   controller: _nameController,
-                  decoration:
-                      InputDecoration(labelText: ScreenElementConstants.name),
+                  decoration: InputDecoration(labelText: CoreScreenTexts.name),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return Messages.cantBeEmpty;
+                      return CoreMessages.cantBeEmpty;
                     }
                     return null;
                   },
@@ -64,7 +64,7 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(ScreenElementConstants.cancel),
+          child: Text(CoreScreenTexts.cancel),
         ),
         ElevatedButton(
           onPressed: () {
@@ -77,7 +77,7 @@ class _AddLanguageDialogState extends State<AddLanguageDialog> {
               Navigator.of(context).pop(newLanguage);
             }
           },
-          child: Text(ScreenElementConstants.saveButton),
+          child: Text(CoreScreenTexts.saveButton),
         ),
       ],
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../constants/temp/messages.dart';
-import '../../constants/temp/screen_element_constants.dart';
+import '../../constants/core_messages.dart';
+import '../../constants/core_screen_texts.dart';
 import '../../theme/custom_colors.dart';
 import '../../helpers/extensions.dart';
 
@@ -22,7 +22,7 @@ class CustomPasswordInput extends StatefulWidget {
 
 class PasswordFieldState extends State<CustomPasswordInput> {
   final _textFieldFocusNode = FocusNode();
-  bool _obscured = false;
+  bool _obscured = true;
 
   void _toggleObscured() {
     setState(() {
@@ -41,10 +41,10 @@ class PasswordFieldState extends State<CustomPasswordInput> {
       validator: (value) {
         if (!widget.enabled) return null;
         if (value == null || value.isEmpty) {
-          return ScreenElementConstants.password + Messages.cantBeEmpty;
+          return CoreScreenTexts.password + CoreMessages.cantBeEmpty;
         }
         if (!value.isValidPassword) {
-          return Messages.invalidPassword;
+          return CoreMessages.invalidPassword;
         }
         return null;
       },
@@ -56,7 +56,7 @@ class PasswordFieldState extends State<CustomPasswordInput> {
       inputFormatters: <TextInputFormatter>[],
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.only(bottom: 20),
-        labelText: ScreenElementConstants.password,
+        labelText: CoreScreenTexts.password,
         hintText: "***********",
         filled: true,
         fillColor: Colors.transparent,

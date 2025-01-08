@@ -102,8 +102,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                   .getBarChart(
                                       context,
                                       basicData,
-                                      ScreenElementConstants.categories,
-                                      ScreenElementConstants.sales,
+                                      CoreScreenTexts.categories,
+                                      CoreScreenTexts.sales,
                                       headerTitle: 'BAR CHART',
                                       CustomColors.secondary.getColor)),
                           const Spacer(
@@ -117,8 +117,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                   .getLineChart(
                                       context,
                                       basicData,
-                                      ScreenElementConstants.categories,
-                                      ScreenElementConstants.sales,
+                                      CoreScreenTexts.categories,
+                                      CoreScreenTexts.sales,
                                       headerTitle: 'LINE CHART',
                                       CustomColors.danger.getColor)),
                           const Spacer(
@@ -133,8 +133,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                     context,
                                     basicData,
                                     headerTitle: 'PİE CHART',
-                                    ScreenElementConstants.categories,
-                                    ScreenElementConstants.sales,
+                                    CoreScreenTexts.categories,
+                                    CoreScreenTexts.sales,
                                   )),
                           const Spacer(
                             flex: 2,
@@ -160,8 +160,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                   .getLineAreaChart(
                                       context,
                                       basicData,
-                                      ScreenElementConstants.categories,
-                                      ScreenElementConstants.sales,
+                                      CoreScreenTexts.categories,
+                                      CoreScreenTexts.sales,
                                       headerTitle: 'LINE AREA CHART',
                                       CustomColors.secondary.getColor)),
                           const Spacer(
@@ -189,8 +189,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                     headerTitle: 'HEATMAP CHART',
                                     context,
                                     heatmapData,
-                                    ScreenElementConstants.name,
-                                    ScreenElementConstants.days,
+                                    CoreScreenTexts.name,
+                                    CoreScreenTexts.days,
                                   )),
                           const Spacer(
                             flex: 2,
@@ -216,8 +216,8 @@ class _HomePageMobileState extends State<HomePageMobile> {
                                 .getEventStreamChart(
                                     context,
                                     streamData,
-                                    ScreenElementConstants.categories,
-                                    ScreenElementConstants.sales,
+                                    CoreScreenTexts.categories,
+                                    CoreScreenTexts.sales,
                                     headerTitle: 'EVENT STREAM CHART',
                                     CustomColors.warning.getColor),
                           ),

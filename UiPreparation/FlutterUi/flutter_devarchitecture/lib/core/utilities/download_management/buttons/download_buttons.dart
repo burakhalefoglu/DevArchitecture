@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../constants/temp/screen_element_constants.dart';
-
+import '../../../constants/core_screen_texts.dart';
 import '../../../di/core_initializer.dart';
 import '../../../theme/custom_colors.dart';
 
@@ -19,7 +18,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.picture_as_pdf),
-      tooltip: ScreenElementConstants.pdfDownloadTooltip,
+      tooltip: CoreScreenTexts.pdfDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.pdfDownload.download(data);
       },
@@ -30,7 +29,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.table_chart),
-      tooltip: ScreenElementConstants.excelDownloadTooltip,
+      tooltip: CoreScreenTexts.excelDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.excelDownload.download(data);
       },
@@ -41,7 +40,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.description),
-      tooltip: ScreenElementConstants.txtDownloadTooltip,
+      tooltip: CoreScreenTexts.txtDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.txtDownload.download(data);
       },
@@ -52,7 +51,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.code),
-      tooltip: ScreenElementConstants.jsonDownloadTooltip,
+      tooltip: CoreScreenTexts.jsonDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.jsonDownload.download(data);
       },
@@ -63,7 +62,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.code),
-      tooltip: ScreenElementConstants.xmlDownloadTooltip,
+      tooltip: CoreScreenTexts.xmlDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.xmlDownload.download(data);
       },
@@ -74,7 +73,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.image),
-      tooltip: ScreenElementConstants.imageDownloadTooltip,
+      tooltip: CoreScreenTexts.imageDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.imageDownload.download(data);
       },
@@ -85,7 +84,7 @@ class DownloadButtons {
     return IconButton(
       color: color,
       icon: Icon(Icons.table_chart),
-      tooltip: ScreenElementConstants.csvDownloadTooltip,
+      tooltip: CoreScreenTexts.csvDownloadTooltip,
       onPressed: () {
         CoreInitializer().coreContainer.csvDownload.download(data);
       },

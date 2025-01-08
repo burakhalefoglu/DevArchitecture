@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../constants/temp/messages.dart';
+import 'package:flutter_devarchitecture/core/constants/core_messages.dart';
 
 class SingleSplitInput extends StatefulWidget {
   final String format;
@@ -75,10 +75,10 @@ class _SplitInputState extends State<SingleSplitInput> {
                 if (!widget.enabled) return null;
                 if (value == null || value.isEmpty) {}
                 if (value == "" || value == null) {
-                  return '${widget.labelText} ${Messages.cantBeEmpty}';
+                  return '${widget.labelText} ${CoreMessages.cantBeEmpty}';
                 }
                 if (value.length > flex) {
-                  return '${widget.labelText} ${Messages.maximum} $flex';
+                  return '${widget.labelText} ${CoreMessages.maximum} $flex';
                 }
                 return null;
               },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import '../../../../core/constants/core_screen_texts.dart';
+import '../group_constants/group_screen_texts.dart';
 import '../models/group.dart';
 import '../../../../core/widgets/inputs/text_input.dart';
 
@@ -29,13 +30,13 @@ class _AddGroupDialogState extends State<AddGroupDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(ScreenElementConstants.addGroup),
+      title: Text(GroupScreenTexts.addGroup),
       content: Form(
         key: _formKey,
         child: CustomTextInput(
           controller: _groupNameController,
-          labelText: ScreenElementConstants.groupName,
-          hintText: ScreenElementConstants.groupNameHint,
+          labelText: GroupScreenTexts.groupName,
+          hintText: GroupScreenTexts.groupNameHint,
           min: 3,
           max: 50,
         ),
@@ -43,7 +44,7 @@ class _AddGroupDialogState extends State<AddGroupDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(ScreenElementConstants.cancel),
+          child: Text(CoreScreenTexts.cancel),
         ),
         ElevatedButton(
           onPressed: () {
@@ -55,7 +56,7 @@ class _AddGroupDialogState extends State<AddGroupDialog> {
               Navigator.of(context).pop(newGroup);
             }
           },
-          child: Text(ScreenElementConstants.saveButton),
+          child: Text(CoreScreenTexts.saveButton),
         ),
       ],
     );

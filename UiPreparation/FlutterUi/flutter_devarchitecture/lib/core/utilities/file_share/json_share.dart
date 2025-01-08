@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import '/core/constants/core_messages.dart';
+import '/core/constants/core_screen_texts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:io';
-
-import '../../constants/temp/messages.dart';
 import '../../di/core_initializer.dart';
 import 'i_share.dart';
 
@@ -21,10 +20,10 @@ class JsonShare implements IJsonShare {
       await file.writeAsString(jsonString);
       await Share.shareXFiles(
         [XFile(path)],
-        text: ScreenElementConstants.shareTitle,
+        text: CoreScreenTexts.shareTitle,
       );
     } catch (e) {
-      _showErrorMessage(Messages.customerDefaultErrorMessage);
+      _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
         print(e);
       }

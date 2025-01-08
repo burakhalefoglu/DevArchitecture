@@ -1,6 +1,7 @@
+import 'package:flutter_devarchitecture/core/constants/core_messages.dart';
+import 'package:flutter_devarchitecture/core/utilities/results.dart';
 import '../../../../core/bloc/base_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
-import '../../../../core/constants/temp/messages.dart';
 import '../../../../di/business_initializer.dart';
 import '../../lookups/models/lookup.dart';
 import '../models/group_claim.dart';
@@ -57,7 +58,8 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
         return;
       }
       await getGroupClaimsByGroupId(groupId);
-      emit(BlocSuccess(Messages.customerDefaultSuccessMessage));
+      emit(BlocSuccess(
+          new SuccessResult(CoreMessages.customerDefaultSuccessMessage)));
     } on Exception catch (e) {
       emitFailState("", e: e);
     }

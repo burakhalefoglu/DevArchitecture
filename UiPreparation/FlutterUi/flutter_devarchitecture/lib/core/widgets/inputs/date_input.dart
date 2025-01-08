@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../constants/temp/messages.dart';
-import '../../constants/temp/screen_element_constants.dart';
+
+import '../../constants/core_messages.dart';
+import '../../constants/core_screen_texts.dart';
 
 class CustomDateInput extends StatefulWidget {
   final TextEditingController dateController;
@@ -25,7 +26,7 @@ class _CustomDateInputState extends State<CustomDateInput> {
       validator: (value) {
         if (!widget.enabled) return null;
         if (value == null || value.isEmpty) {
-          return Messages.dateCantBeEmpty;
+          return CoreMessages.dateCantBeEmpty;
         }
         return null;
       },
@@ -36,18 +37,18 @@ class _CustomDateInputState extends State<CustomDateInput> {
             child: Icon(Icons.calendar_month),
           ),
           contentPadding: EdgeInsets.only(bottom: 10),
-          labelText: ScreenElementConstants.dateHint,
-          hintText: ScreenElementConstants.dateTimeFormat),
+          labelText: CoreScreenTexts.dateHint,
+          hintText: CoreScreenTexts.dateTimeFormat),
       readOnly: true,
       onTap: () async {
         DateTime? pickedDate = await showDatePicker(
           keyboardType: TextInputType.datetime,
-          cancelText: ScreenElementConstants.cancel,
-          confirmText: ScreenElementConstants.ok,
-          errorFormatText: Messages.invalidDate,
-          errorInvalidText: Messages.invalidDate,
-          fieldHintText: ScreenElementConstants.dateHint,
-          helpText: ScreenElementConstants.dateHint,
+          cancelText: CoreScreenTexts.cancel,
+          confirmText: CoreScreenTexts.ok,
+          errorFormatText: CoreMessages.invalidDate,
+          errorInvalidText: CoreMessages.invalidDate,
+          fieldHintText: CoreScreenTexts.dateHint,
+          helpText: CoreScreenTexts.dateHint,
           context: context,
           currentDate: DateTime.now(),
           initialDate: DateTime.now(),

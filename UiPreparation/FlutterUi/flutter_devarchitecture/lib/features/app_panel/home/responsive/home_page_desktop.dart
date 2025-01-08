@@ -102,9 +102,8 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                             .getBarChart(
                                                 context,
                                                 basicData,
-                                                ScreenElementConstants
-                                                    .categories,
-                                                ScreenElementConstants.sales,
+                                                CoreScreenTexts.categories,
+                                                CoreScreenTexts.sales,
                                                 headerTitle: 'BAR CHART',
                                                 CustomColors
                                                     .secondary.getColor)),
@@ -118,9 +117,8 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                                 headerTitle: 'LINE CHART',
                                                 context,
                                                 basicData,
-                                                ScreenElementConstants
-                                                    .categories,
-                                                ScreenElementConstants.sales,
+                                                CoreScreenTexts.categories,
+                                                CoreScreenTexts.sales,
                                                 CustomColors.danger.getColor)),
                                     const Spacer(),
                                     Expanded(
@@ -132,8 +130,8 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                               headerTitle: 'PİE CHART',
                                               context,
                                               basicData,
-                                              ScreenElementConstants.categories,
-                                              ScreenElementConstants.sales,
+                                              CoreScreenTexts.categories,
+                                              CoreScreenTexts.sales,
                                             ))
                                   ],
                                 ),
@@ -166,9 +164,8 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                                 headerTitle: 'LINE AREA CHART',
                                                 context,
                                                 basicData,
-                                                ScreenElementConstants
-                                                    .categories,
-                                                ScreenElementConstants.sales,
+                                                CoreScreenTexts.categories,
+                                                CoreScreenTexts.sales,
                                                 CustomColors
                                                     .secondary.getColor)),
                                     const Spacer(),
@@ -203,8 +200,8 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                               context,
                                               headerTitle: 'HEATMAP CHART',
                                               heatmapData,
-                                              ScreenElementConstants.name,
-                                              ScreenElementConstants.days,
+                                              CoreScreenTexts.name,
+                                              CoreScreenTexts.days,
                                             )),
                                     const Spacer(),
                                     Expanded(
@@ -226,8 +223,8 @@ class _HomePageDesktopState extends State<HomePageDesktop> {
                                               headerTitle: 'EVENT STREAM CHART',
                                               context,
                                               streamData,
-                                              ScreenElementConstants.categories,
-                                              ScreenElementConstants.sales,
+                                              CoreScreenTexts.categories,
+                                              CoreScreenTexts.sales,
                                               CustomColors.warning.getColor),
                                     ),
                                   ],

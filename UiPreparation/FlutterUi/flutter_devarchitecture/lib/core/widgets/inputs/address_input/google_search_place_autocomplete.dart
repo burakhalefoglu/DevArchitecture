@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/constants/temp/screen_element_constants.dart';
 import 'package:google_search_place/google_search_place.dart';
 import 'package:google_search_place/model/prediction.dart';
+
+import '../../../constants/core_screen_texts.dart';
 
 class GoogleSearchPlaceAutoComplete {
   Widget getAddressInput({
@@ -11,8 +12,7 @@ class GoogleSearchPlaceAutoComplete {
         TextEditingController();
     return SearchPlaceAutoCompletedTextField(
       countries: ['tr'],
-      inputDecoration:
-          InputDecoration(labelText: ScreenElementConstants.address),
+      inputDecoration: InputDecoration(labelText: CoreScreenTexts.address),
       googleAPIKey: "//TODO: Add Api Key",
       controller: _searchPlaceController,
       itmOnTap: (Prediction prediction) {

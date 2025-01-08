@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '/core/constants/temp/screen_element_constants.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 
+import '../core/constants/core_messages.dart';
+import '../core/constants/core_screen_texts.dart';
 import '../core/theme/extensions.dart';
-import '../core/constants/temp/messages.dart';
 import '../core/theme/custom_colors.dart';
 import '../core/di/core_initializer.dart';
 import '../core/theme/theme_provider.dart';
@@ -45,7 +45,7 @@ buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {
 
 Widget buildThemeButton(BuildContext context, ThemeProvider themeProvider) {
   return Tooltip(
-    message: ScreenElementConstants.changeThemeButton,
+    message: CoreScreenTexts.changeThemeButton,
     child: IconButton(
       icon: Icon(
         themeProvider.themeMode == ThemeMode.dark
@@ -62,7 +62,7 @@ Widget buildThemeButton(BuildContext context, ThemeProvider themeProvider) {
 Widget buildNotificationButton(BuildContext context) {
   late bool isHasNotification = true;
   return Tooltip(
-    message: ScreenElementConstants.notificationsButton,
+    message: CoreScreenTexts.notificationsButton,
     child: Stack(
       children: [
         IconButton(
@@ -70,7 +70,7 @@ Widget buildNotificationButton(BuildContext context) {
             CoreInitializer()
                 .coreContainer
                 .screenMessage
-                .getInfoMessage(Messages.comingSoon);
+                .getInfoMessage(CoreMessages.comingSoon);
           },
           icon: const Icon(Icons.notifications_active_outlined),
         ),
@@ -89,13 +89,13 @@ Widget buildNotificationButton(BuildContext context) {
 
 Widget buildProfileButton(BuildContext context) {
   return Tooltip(
-    message: ScreenElementConstants.profileButton,
+    message: CoreScreenTexts.profileButton,
     child: IconButton(
       onPressed: () {
         CoreInitializer()
             .coreContainer
             .screenMessage
-            .getInfoMessage(Messages.comingSoon);
+            .getInfoMessage(CoreMessages.comingSoon);
         //TODO: Modular.to.navigate('/profile');
       },
       icon: const Icon(Icons.account_circle_outlined),
@@ -105,7 +105,7 @@ Widget buildProfileButton(BuildContext context) {
 
 Widget buildLogOutButton(BuildContext context) {
   return Tooltip(
-    message: ScreenElementConstants.logOutButton,
+    message: CoreScreenTexts.logOutButton,
     child: IconButton(
         onPressed: () {
           CoreInitializer().coreContainer.storage.delete("inputPersonId");

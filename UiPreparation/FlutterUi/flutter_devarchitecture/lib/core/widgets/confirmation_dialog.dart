@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
 import '../theme/custom_colors.dart';
 
 showConfirmationDialog(BuildContext c, void Function() onPressed) {
@@ -16,13 +16,13 @@ showConfirmationDialog(BuildContext c, void Function() onPressed) {
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           title: Text(
-            ScreenElementConstants.attention,
+            CoreScreenTexts.attention,
             style: TextStyle(
               color: CustomColors.danger.getColor,
               fontWeight: FontWeight.bold,
             ),
           ),
-          content: Text(ScreenElementConstants.thisActionCannotBeUndone),
+          content: Text(CoreScreenTexts.thisActionCannotBeUndone),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -31,7 +31,7 @@ showConfirmationDialog(BuildContext c, void Function() onPressed) {
               style: TextButton.styleFrom(
                 foregroundColor: CustomColors.gray.getColor,
               ),
-              child: Text(ScreenElementConstants.cancel),
+              child: Text(CoreScreenTexts.cancel),
             ),
             TextButton(
               onPressed: () {
@@ -41,7 +41,7 @@ showConfirmationDialog(BuildContext c, void Function() onPressed) {
               style: TextButton.styleFrom(
                 foregroundColor: CustomColors.danger.getColor,
               ),
-              child: Text(ScreenElementConstants.yes),
+              child: Text(CoreScreenTexts.yes),
             ),
           ],
         ),
