@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
+import 'package:flutter_devarchitecture/features/admin_panel/users/user_constants/user_messages.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/constants/temp/messages.dart';
-import '../../../../core/constants/temp/screen_element_constants.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
+import '../../user_claims/widgets/user_page_buttons.dart';
 import '../bloc/user_cubit.dart';
 import '../models/user.dart';
+import '../user_constants/user_screen_texts.dart';
 import '../widgets/add_user_dialog.dart';
 import '../widgets/change_password_dialog.dart';
 import '../widgets/change_user_claim_dialog.dart';
@@ -73,8 +75,8 @@ class AdminUserPage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                ScreenElementConstants.userList,
-                subDirection: ScreenElementConstants.adminPanel,
+                UserScreenTexts.userList,
+                subDirection: CoreScreenTexts.adminPanel,
               ),
             ),
           ),
@@ -84,12 +86,12 @@ class AdminUserPage extends StatelessWidget {
               datas: datas,
               headers: [
                 {"userId": "ID"},
-                {"email": ScreenElementConstants.email},
-                {"fullName": ScreenElementConstants.fullName},
-                {"status": ScreenElementConstants.status},
-                {"mobilePhones": ScreenElementConstants.mobilePhones},
-                {"address": ScreenElementConstants.address},
-                {"notes": ScreenElementConstants.notes},
+                {"email": CoreScreenTexts.email},
+                {"fullName": UserScreenTexts.fullName},
+                {"status": CoreScreenTexts.status},
+                {"mobilePhones": CoreScreenTexts.mobilePhones},
+                {"address": CoreScreenTexts.address},
+                {"notes": CoreScreenTexts.notes},
               ],
               color: CustomColors.primary.getColor,
               customManipulationButton: const [
@@ -126,7 +128,7 @@ class AdminUserPage extends StatelessWidget {
                 },
                 (userId) => _confirmDelete(context, userId)
               ],
-              infoHover: getInfoHover(context, Messages.userInfoHover),
+              infoHover: getInfoHover(context, UserMessages.userInfoHover),
               addButton: getAddButton(
                 context,
                 () => _addUser(context),

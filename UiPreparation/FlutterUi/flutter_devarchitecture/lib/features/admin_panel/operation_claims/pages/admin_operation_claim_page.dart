@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
+import '../operation_claims_constants/operation_claim_messages.dart';
+import '../operation_claims_constants/operation_claims_screen_texts.dart';
 import '/core/theme/extensions.dart';
 
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/constants/temp/messages.dart';
 import '../../../../core/theme/custom_colors.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/base_widgets.dart';
@@ -70,8 +71,8 @@ class AdminOperationClaimPage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                ScreenElementConstants.operationClaimList,
-                subDirection: ScreenElementConstants.adminPanel,
+                OperationClaimScreenTexts.operationClaimList,
+                subDirection: CoreScreenTexts.adminPanel,
               ),
             ),
           ),
@@ -81,9 +82,9 @@ class AdminOperationClaimPage extends StatelessWidget {
               datas: datas,
               headers: [
                 {"id": "ID"},
-                {"name": ScreenElementConstants.name},
-                {"alias": ScreenElementConstants.alias},
-                {"description": ScreenElementConstants.description},
+                {"name": CoreScreenTexts.name},
+                {"alias": CoreScreenTexts.alias},
+                {"description": CoreScreenTexts.description},
               ],
               color: CustomColors.warning.getColor,
               customManipulationButton: const [
@@ -100,7 +101,7 @@ class AdminOperationClaimPage extends StatelessWidget {
               infoHover: getInfoHover(
                 color: CustomColors.dark.getColor,
                 context,
-                Messages.operationClaimInfoHover,
+                OperationClaimMessages.operationClaimInfoHover,
               ),
               utilityButton: DownloadButtons(
                       color: CustomColors.dark.getColor, data: datas)

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
+import '../user_constants/user_screen_texts.dart';
 import '/core/theme/extensions.dart';
 import '../../../../core/widgets/inputs/date_input.dart';
 import '../../../../core/widgets/inputs/dropdown_button.dart';
@@ -52,7 +53,7 @@ class _AddUserDialogState extends State<AddUserDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(ScreenElementConstants.addUser),
+      title: Text(UserScreenTexts.addUser),
       content: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -74,8 +75,8 @@ class _AddUserDialogState extends State<AddUserDialog> {
                   flex: 5,
                   child: CustomTextInput(
                     controller: _fullNameController,
-                    labelText: ScreenElementConstants.fullName,
-                    hintText: ScreenElementConstants.fullNameHint,
+                    labelText: UserScreenTexts.fullName,
+                    hintText: UserScreenTexts.fullNameHint,
                     min: 3,
                     max: 50,
                   ),
@@ -84,17 +85,12 @@ class _AddUserDialogState extends State<AddUserDialog> {
                 Expanded(
                   flex: 5,
                   child: CustomDropdownButton(
-                    options: [
-                      ScreenElementConstants.active,
-                      ScreenElementConstants.inactive
-                    ],
+                    options: [UserScreenTexts.active, UserScreenTexts.inactive],
                     onChanged: (value) {
-                      _statusController.text =
-                          value ?? ScreenElementConstants.active;
+                      _statusController.text = value ?? UserScreenTexts.active;
                     },
                     getFirstValue: (value) {
-                      _statusController.text =
-                          value ?? ScreenElementConstants.active;
+                      _statusController.text = value ?? UserScreenTexts.active;
                     },
                     icon: Icons.list,
                   ),
@@ -111,8 +107,8 @@ class _AddUserDialogState extends State<AddUserDialog> {
                   flex: 5,
                   child: CustomTextInput(
                     controller: _addressController,
-                    labelText: ScreenElementConstants.address,
-                    hintText: ScreenElementConstants.addressHint,
+                    labelText: CoreScreenTexts.address,
+                    hintText: CoreScreenTexts.addressHint,
                     min: 10,
                     max: 100,
                   ),
@@ -122,8 +118,8 @@ class _AddUserDialogState extends State<AddUserDialog> {
                   flex: 5,
                   child: CustomTextInput(
                     controller: _notesController,
-                    labelText: ScreenElementConstants.notes,
-                    hintText: ScreenElementConstants.notesHint,
+                    labelText: CoreScreenTexts.notes,
+                    hintText: CoreScreenTexts.notesHint,
                     min: 0,
                     max: 200,
                   ),
@@ -146,7 +142,7 @@ class _AddUserDialogState extends State<AddUserDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(ScreenElementConstants.cancel),
+          child: Text(CoreScreenTexts.cancel),
         ),
         ElevatedButton(
           onPressed: () {
@@ -156,7 +152,7 @@ class _AddUserDialogState extends State<AddUserDialog> {
                 userId: 0,
                 email: _emailController.text,
                 fullName: _fullNameController.text,
-                status: _statusController.text == ScreenElementConstants.active
+                status: _statusController.text == UserScreenTexts.active
                     ? true
                     : false,
                 mobilePhones: _mobilePhonesController.text,
@@ -166,7 +162,7 @@ class _AddUserDialogState extends State<AddUserDialog> {
               Navigator.of(context).pop(newUser);
             }
           },
-          child: Text(ScreenElementConstants.saveButton),
+          child: Text(CoreScreenTexts.saveButton),
         ),
       ],
     );

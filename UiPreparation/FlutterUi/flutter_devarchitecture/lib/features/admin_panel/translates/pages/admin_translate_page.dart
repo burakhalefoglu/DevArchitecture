@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/constants/temp/messages.dart';
-import '/core/constants/temp/screen_element_constants.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
+import '../../../../core/constants/core_screen_texts.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
 import '../models/translate.dart';
+import '../translate_constants/translate_Screen_texts.dart';
+import '../translate_constants/translate_messages.dart';
 import '../widgets/add_translate_dialog.dart';
 import '../widgets/update_translate_dialog.dart';
 import '../../../../layouts/base_scaffold.dart';
@@ -71,8 +72,8 @@ class AdminTranslatePage extends StatelessWidget {
               padding: context.defaultHorizontalPadding,
               child: buildPageTitle(
                 context,
-                ScreenElementConstants.translateList,
-                subDirection: ScreenElementConstants.adminPanel,
+                TranslateScreenTexts.translateList,
+                subDirection: CoreScreenTexts.adminPanel,
               ),
             ),
           ),
@@ -82,9 +83,9 @@ class AdminTranslatePage extends StatelessWidget {
               datas: datas,
               headers: [
                 {"id": "ID"},
-                {"code": ScreenElementConstants.code},
-                {"language": ScreenElementConstants.language},
-                {"value": ScreenElementConstants.value},
+                {"code": TranslateScreenTexts.code},
+                {"language": TranslateScreenTexts.language},
+                {"value": TranslateScreenTexts.value},
               ],
               color: CustomColors.light.getColor,
               utilityButton: DownloadButtons(
@@ -102,7 +103,7 @@ class AdminTranslatePage extends StatelessWidget {
               ],
               infoHover: getInfoHover(
                 context,
-                Messages.translateInfoHover,
+                TranslateMessages.translateInfoHover,
                 color: CustomColors.gray.getColor,
               ),
               addButton: getAddButton(

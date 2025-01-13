@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../base_constants.dart';
+import 'base_constants.dart';
 
 class SidebarConstants extends SidebarConstantsBase {
   static late String homePageTitle;

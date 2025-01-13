@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '/core/constants/temp/screen_element_constants.dart';
-import '../../../../core/theme/extensions.dart';
+import 'package:flutter_devarchitecture/core/theme/extensions.dart';
+import '../../../../core/constants/core_screen_texts.dart';
 import '../../../../core/widgets/inputs/text_input.dart';
 import '../models/operation_claim_dto.dart';
 import '../models/operation_claim.dart';
+import '../operation_claims_constants/operation_claims_screen_texts.dart';
 
 class UpdateOperationClaimDialog extends StatefulWidget {
   final OperationClaim operationClaim;
@@ -40,7 +41,7 @@ class _UpdateOperationClaimDialogState
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(ScreenElementConstants.updateOperationClaim),
+      title: Text(OperationClaimScreenTexts.updateOperationClaim),
       content: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -55,14 +56,14 @@ class _UpdateOperationClaimDialogState
                 Expanded(
                     flex: 3,
                     child: Text(
-                        "${ScreenElementConstants.name}: ${widget.operationClaim.name}")),
+                        "${CoreScreenTexts.name}: ${widget.operationClaim.name}")),
                 const Spacer(),
                 Expanded(
                   flex: 5,
                   child: CustomTextInput(
                     controller: _aliasController,
-                    labelText: ScreenElementConstants.alias,
-                    hintText: ScreenElementConstants.aliasHint,
+                    labelText: CoreScreenTexts.alias,
+                    hintText: CoreScreenTexts.aliasHint,
                     min: 2,
                     max: 50,
                   ),
@@ -72,7 +73,7 @@ class _UpdateOperationClaimDialogState
                   flex: 5,
                   child: CustomTextInput(
                     controller: _descriptionController,
-                    labelText: ScreenElementConstants.description,
+                    labelText: CoreScreenTexts.description,
                     hintText: "",
                     min: 5,
                     max: 200,
@@ -86,7 +87,7 @@ class _UpdateOperationClaimDialogState
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(ScreenElementConstants.cancelButton),
+          child: Text(CoreScreenTexts.cancelButton),
         ),
         ElevatedButton(
           onPressed: () {
@@ -99,7 +100,7 @@ class _UpdateOperationClaimDialogState
               Navigator.of(context).pop(updatedOperationClaim);
             }
           },
-          child: Text(ScreenElementConstants.updateButton),
+          child: Text(CoreScreenTexts.updateButton),
         ),
       ],
     );

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/core/constants/temp/screen_element_constants.dart';
-
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/constants/temp/messages.dart';
+import '../../../../core/constants/core_messages.dart';
+import '../../../../core/constants/core_screen_texts.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../user_groups/bloc/user_group_cubit.dart';
 import '../../user_groups/widgets/user_group_auto_complete.dart';
+import '../user_constants/user_screen_texts.dart';
 
 class ChangeUserGroupsDialog extends StatefulWidget {
   final int userId;
@@ -36,7 +36,7 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
             return resultWidget;
           }
           return AlertDialog(
-            title: Text(ScreenElementConstants.updateUserGroups),
+            title: Text(UserScreenTexts.updateUserGroups),
             content: SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
               child: UserGroupAutocomplete(
@@ -51,7 +51,7 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: Text(ScreenElementConstants.cancelButton),
+                child: Text(CoreScreenTexts.cancelButton),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -64,10 +64,10 @@ class _ChangeUserGroupsDialogState extends State<ChangeUserGroupsDialog> {
                     CoreInitializer()
                         .coreContainer
                         .screenMessage
-                        .getErrorMessage(Messages.atLeastOneSelection);
+                        .getErrorMessage(CoreMessages.atLeastOneSelection);
                   }
                 },
-                child: Text(ScreenElementConstants.saveButton),
+                child: Text(CoreScreenTexts.saveButton),
               ),
             ],
           );

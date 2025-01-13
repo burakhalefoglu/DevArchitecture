@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/custom_colors.dart';
+import '../user_group_constants/user_group_messages.dart';
 
 Widget updateUserGroupButton(BuildContext context, VoidCallback onPressed) =>
     Tooltip(
-      message: Messages.groupUpdate,
+      message: UserGroupMessages.groupUpdate,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,

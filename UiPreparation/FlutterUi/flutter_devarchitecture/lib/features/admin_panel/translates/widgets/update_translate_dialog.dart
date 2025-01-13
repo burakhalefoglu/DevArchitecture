@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import '../../../../core/constants/core_screen_texts.dart';
+import '../translate_constants/translate_Screen_texts.dart';
 import '/core/theme/extensions.dart';
 import '../../lookups/models/lookup.dart';
 import '../../languages/widgets/languages_dropdown_button.dart';
@@ -43,7 +44,7 @@ class _UpdateTranslateDialogState extends State<UpdateTranslateDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(ScreenElementConstants.updateTranslate),
+      title: Text(TranslateScreenTexts.updateTranslate),
       content: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -69,8 +70,8 @@ class _UpdateTranslateDialogState extends State<UpdateTranslateDialog> {
                   flex: 5,
                   child: CustomTextInput(
                     controller: _codeController,
-                    labelText: ScreenElementConstants.code,
-                    hintText: ScreenElementConstants.codeHint,
+                    labelText: TranslateScreenTexts.code,
+                    hintText: TranslateScreenTexts.codeHint,
                     min: 1,
                     max: 50,
                   ),
@@ -80,8 +81,8 @@ class _UpdateTranslateDialogState extends State<UpdateTranslateDialog> {
                   flex: 5,
                   child: CustomTextInput(
                     controller: _valueController,
-                    labelText: ScreenElementConstants.value,
-                    hintText: ScreenElementConstants.valueHint,
+                    labelText: TranslateScreenTexts.value,
+                    hintText: TranslateScreenTexts.valueHint,
                     min: 1,
                     max: 100,
                   ),
@@ -94,7 +95,7 @@ class _UpdateTranslateDialogState extends State<UpdateTranslateDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(ScreenElementConstants.cancelButton),
+          child: Text(CoreScreenTexts.cancelButton),
         ),
         ElevatedButton(
           onPressed: () {
@@ -109,7 +110,7 @@ class _UpdateTranslateDialogState extends State<UpdateTranslateDialog> {
               Navigator.of(context).pop(updatedTranslate);
             }
           },
-          child: Text(ScreenElementConstants.updateButton),
+          child: Text(CoreScreenTexts.updateButton),
         ),
       ],
     );

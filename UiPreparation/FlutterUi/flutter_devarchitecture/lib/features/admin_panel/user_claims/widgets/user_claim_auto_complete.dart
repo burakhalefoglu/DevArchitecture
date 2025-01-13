@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_devarchitecture/features/admin_panel/user_claims/user_claim_constants/user_claim_screen_texts.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/constants/temp/screen_element_constants.dart';
 import '../../lookups/widgets/lookup_multi_select_auto_complete.dart';
 import '../bloc/user_claim_cubit.dart';
 import '../../lookups/models/lookup.dart';
@@ -56,8 +56,8 @@ class _UserClaimAutocompleteState extends State<UserClaimAutocomplete> {
               valueKey: "label",
               selectedIds: selectedIds,
               options: options,
-              labelText: ScreenElementConstants.userClaims,
-              hintText: ScreenElementConstants.selectUserClaims,
+              labelText: UserClaimScreenTexts.userClaims,
+              hintText: UserClaimScreenTexts.selectUserClaims,
               onChanged: widget.onChanged,
               controller: _controller,
               focusNode: _focusNode,

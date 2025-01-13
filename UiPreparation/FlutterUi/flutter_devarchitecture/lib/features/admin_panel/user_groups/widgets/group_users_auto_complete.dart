@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/constants/temp/screen_element_constants.dart';
 import '../../lookups/widgets/lookup_multi_select_auto_complete.dart';
 import '../../lookups/models/lookup.dart';
 import '../bloc/user_group_cubit.dart';
+import '../user_group_constants/user_group_screen_texts.dart';
 
 class GroupUsersAutocomplete extends StatefulWidget {
   final int groupId;
@@ -56,8 +56,8 @@ class _GroupUsersAutocompleteState extends State<GroupUsersAutocomplete> {
               selectedIds: selectedIds,
               valueKey: "label",
               options: options,
-              labelText: ScreenElementConstants.users,
-              hintText: ScreenElementConstants.selectUsers,
+              labelText: UserGroupScreenTexts.users,
+              hintText: UserGroupScreenTexts.selectUsers,
               onChanged: widget.onChanged,
               controller: _controller,
               focusNode: _focusNode,

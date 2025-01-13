@@ -80,9 +80,16 @@ class CoreScreenTexts extends ScreenConstantsBase {
   static late String email;
   static late String password;
   static late String phoneNumber;
+  static late String status;
+  static late String mobilePhones;
   static late String thisActionCannotBeUndone;
   static late String vehicleRegistrationNumber;
   static late String vehicleLicensePlate;
+  static late String notes;
+  static late String notesHint;
+  static late String alias;
+  static late String aliasHint;
+  static late String description;
 
   static void init(BuildContext context) {
     BaseConstants.init(context);
@@ -166,5 +173,12 @@ class CoreScreenTexts extends ScreenConstantsBase {
     updateButton = BaseConstants.translate("UpdateButton");
     adminPanel = BaseConstants.translate("AdminPanel");
     returnHomePage = BaseConstants.translate("ReturnHomePage");
+    status = BaseConstants.translate("Status");
+    mobilePhones = BaseConstants.translate("MobilePhones");
+    notes = BaseConstants.translate("Notes");
+    notesHint = BaseConstants.translate("NotesHint");
+    aliasHint = BaseConstants.translate("AliasHint");
+    alias = BaseConstants.translate("Alias");
+    description = BaseConstants.translate("Description");
   }
 }

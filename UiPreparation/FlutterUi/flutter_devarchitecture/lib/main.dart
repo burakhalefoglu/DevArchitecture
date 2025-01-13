@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/constants/core_messages.dart';
-import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
+import 'package:flutter_devarchitecture/di/constants_initializer.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +8,6 @@ import 'core/di/core_initializer.dart';
 import 'core/di/firebase/firebase_initializer.dart';
 import 'core/helpers/translation_provider.dart';
 import 'core/theme/theme_provider.dart';
-import 'core/constants/temp/sidebar_constants.dart';
 import 'modular_mixin.dart';
 import 'core/mixins/ok_toast_mixin.dart';
 import 'di/business_initializer.dart';
@@ -98,10 +96,7 @@ class _AppState extends State<App> with OKToastMixin<App>, ModularMixin {
         }
 
         // Dil başarıyla yüklendiğinde asıl uygulamayı başlat
-        CoreMessages.init(context);
-        SidebarConstants.init(context);
-        CoreScreenTexts.init(context);
-
+        ConstantsInitializer(context);
         return buildChild(context);
       },
     );

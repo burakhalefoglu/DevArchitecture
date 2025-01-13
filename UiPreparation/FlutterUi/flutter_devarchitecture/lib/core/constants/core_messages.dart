@@ -37,6 +37,7 @@ class CoreMessages extends MessageConstantsBase {
   static late String noDataFound;
   static late String error;
   static late String atLeastOneSelection;
+  static late String passwordsDoNotMatch;
 
   static void init(BuildContext context) {
     BaseConstants.init(context);
@@ -80,5 +81,6 @@ class CoreMessages extends MessageConstantsBase {
     noDataFound = BaseConstants.translate("NoDataFound");
     error = BaseConstants.translate("Error");
     atLeastOneSelection = BaseConstants.translate("AtLeastOneSelection");
+    passwordsDoNotMatch = BaseConstants.translate("PasswordsDoNotMatch");
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '/core/constants/temp/screen_element_constants.dart';
+import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
+import '../../../../core/constants/core_messages.dart';
+import '../user_constants/user_screen_texts.dart';
 import '/core/theme/extensions.dart';
-
-import '../../../../core/constants/temp/messages.dart';
 
 class ChangeUserPasswordDialog extends StatefulWidget {
   final int userId;
@@ -36,7 +36,7 @@ class _ChangeUserPasswordDialogState extends State<ChangeUserPasswordDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(ScreenElementConstants.changePassword),
+      title: Text(UserScreenTexts.changePassword),
       content: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -51,11 +51,11 @@ class _ChangeUserPasswordDialogState extends State<ChangeUserPasswordDialog> {
                   child: TextFormField(
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: InputDecoration(
-                        labelText: ScreenElementConstants.newPassword),
+                    decoration:
+                        InputDecoration(labelText: UserScreenTexts.newPassword),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return Messages.cantBeEmpty;
+                        return CoreMessages.cantBeEmpty;
                       }
                       return null;
                     },
@@ -68,10 +68,10 @@ class _ChangeUserPasswordDialogState extends State<ChangeUserPasswordDialog> {
                     controller: _confirmPasswordController,
                     obscureText: true,
                     decoration: InputDecoration(
-                        labelText: ScreenElementConstants.confirmPassword),
+                        labelText: UserScreenTexts.confirmPassword),
                     validator: (value) {
                       if (value == null || value != _passwordController.text) {
-                        return Messages.passwordsDoNotMatch;
+                        return CoreMessages.passwordsDoNotMatch;
                       }
                       return null;
                     },
@@ -85,7 +85,7 @@ class _ChangeUserPasswordDialogState extends State<ChangeUserPasswordDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(ScreenElementConstants.cancelButton),
+          child: Text(CoreScreenTexts.cancelButton),
         ),
         ElevatedButton(
           onPressed: () {
@@ -93,7 +93,7 @@ class _ChangeUserPasswordDialogState extends State<ChangeUserPasswordDialog> {
               Navigator.of(context).pop(_passwordController.text);
             }
           },
-          child: Text(ScreenElementConstants.saveButton),
+          child: Text(CoreScreenTexts.saveButton),
         ),
       ],
     );

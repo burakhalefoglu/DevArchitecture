@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/core_screen_texts.dart';
-import '../../../core/constants/temp/sidebar_constants.dart';
+import '../../../core/constants/sidebar_constants.dart';
 import '../../../core/theme/responsive.dart';
 import 'dart:async';
 import 'dart:math';

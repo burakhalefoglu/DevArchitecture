@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/custom_colors.dart';
+import '../user_claim_constants/user_claim_messages.dart';
 
 Widget getChangePasswordButton(BuildContext context, VoidCallback onPressed) =>
     Tooltip(
-      message: CoreMessages.passwordChange,
+      message: UserClaimMessages.passwordChange,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -17,7 +18,7 @@ Widget getChangePasswordButton(BuildContext context, VoidCallback onPressed) =>
 Widget getChangePermissionButton(
         BuildContext context, VoidCallback onPressed) =>
     Tooltip(
-      message: Messages.permissionChange,
+      message: UserClaimMessages.permissionChange,
       child: IconButton(
           hoverColor: CustomColors.transparent.getColor,
           onPressed: onPressed,
@@ -29,7 +30,7 @@ Widget getChangePermissionButton(
 
 Widget getChangeGroupButton(BuildContext context, VoidCallback onPressed) =>
     Tooltip(
-        message: Messages.groupChange,
+        message: UserClaimMessages.groupChange,
         child: IconButton(
             hoverColor: CustomColors.transparent.getColor,
             onPressed: onPressed,
