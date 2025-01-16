@@ -57,7 +57,6 @@ class AuthCubit extends BaseCubit<AuthRequestBasic> {
           .coreContainer
           .storage
           .save("claims", result.data!.claims.toString());
-
       emit(BlocSuccess(
           '${decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"].toString()}'));
     } on Exception catch (e) {

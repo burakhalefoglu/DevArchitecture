@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/extentions/translate_provider_extension.dart';
+import 'package:flutter_devarchitecture/extensions/translate_provider_extension.dart';
 import '../../routes/routes_constants.dart';
 import '../constants/core_messages.dart';
 import '../di/core_initializer.dart';

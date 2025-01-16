@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../core/constants/core_screen_texts.dart';
 import '../../../core/constants/sidebar_constants.dart';
 import '../../../core/theme/responsive.dart';
 import 'dart:async';
 import 'dart:math';
+import '../../../extensions/claim_provider.dart';
 import '/core/theme/extensions.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../../core/theme/custom_colors.dart';
@@ -21,9 +23,43 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ResponsiveWidget(
-        mobile: HomePageMobile(),
-        tablet: HomePageTablet(),
-        desktop: HomePageDesktop());
+    return FutureBuilder(
+      future: Provider.of<ClaimProvider>(context, listen: false)
+          .loadClaims(context),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Scaffold(
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Bir hata oluştu.'),
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      Provider.of<ClaimProvider>(context, listen: false)
+                          .loadClaims(context);
+                    },
+                    child: const Text('Tekrar Dene'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
+        return const ResponsiveWidget(
+          mobile: HomePageMobile(),
+          tablet: HomePageTablet(),
+          desktop: HomePageDesktop(),
+        );
+      },
+    );
   }
 }

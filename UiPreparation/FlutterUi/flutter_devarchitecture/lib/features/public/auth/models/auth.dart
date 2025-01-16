@@ -3,7 +3,7 @@ import '../../../../core/models/i_entity.dart';
 class AuthResponse {
   late String token;
   late String refreshToken;
-  late List<dynamic> claims;
+  late List<String> claims;
   late DateTime expiration;
 
   AuthResponse(

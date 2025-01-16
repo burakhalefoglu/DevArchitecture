@@ -1,3 +1,5 @@
+import 'package:flutter/src/widgets/framework.dart';
+
 import '../../../../../core/utilities/results.dart';
 import '../../../../../core/services/base_services/in_memory_service.dart';
 import '../../models/auth.dart';
@@ -46,5 +48,36 @@ class InMemoryAuthService extends InMemoryService<AuthRequestBasic>
   Future<IResult> saveUserPassword(PasswordDto passwordDto) async {
     _authList[0]['password'] = passwordDto.password;
     return SuccessResult("");
+  }
+
+  @override
+  Future<bool> claimGuard(
+      {required BuildContext context, required String claim}) {
+    // TODO: implement claimGuard
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<int> getCurrentUserId() {
+    // TODO: implement getCurrentUserId
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> getUsername() {
+    // TODO: implement getUsername
+    throw UnimplementedError();
+  }
+
+  @override
+  bool loggedIn() {
+    // TODO: implement loggedIn
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<IResult> setClaims() {
+    // TODO: implement setClaims
+    throw UnimplementedError();
   }
 }
