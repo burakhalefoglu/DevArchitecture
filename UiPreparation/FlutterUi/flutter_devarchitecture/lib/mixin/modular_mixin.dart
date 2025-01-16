@@ -4,9 +4,9 @@ import '/core/theme/theme_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
-import 'core/constants/core_screen_texts.dart';
-import 'extentions/translation_provider.dart';
-import 'routes/app_route_module.dart';
+import '../core/constants/core_screen_texts.dart';
+import '../extentions/translation_provider.dart';
+import '../routes/app_route_module.dart';
 
 mixin ModularMixin {
   Widget buildModular(BuildContext context) {
