@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'core/di/core_initializer.dart';
 import 'core/di/firebase/firebase_initializer.dart';
+import 'extensions/claim_provider.dart';
 import 'extensions/translation_provider.dart';
 import 'core/theme/theme_provider.dart';
 import 'mixin/modular_mixin.dart';
@@ -27,6 +28,9 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => TranslationProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ClaimProvider(),
         ),
       ],
       child: OKToast(
