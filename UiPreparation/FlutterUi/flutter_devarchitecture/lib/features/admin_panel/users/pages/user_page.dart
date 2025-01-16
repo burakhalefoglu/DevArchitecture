@@ -8,6 +8,7 @@ import '../../../../core/bloc/bloc_helper.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
+import '../../../../extensions/claimed_widget.dart';
 import '../../user_claims/widgets/user_page_buttons.dart';
 import '../bloc/user_cubit.dart';
 import '../models/user.dart';
@@ -129,10 +130,13 @@ class AdminUserPage extends StatelessWidget {
                 (userId) => _confirmDelete(context, userId)
               ],
               infoHover: getInfoHover(context, UserMessages.userInfoHover),
-              addButton: getAddButton(
-                context,
-                () => _addUser(context),
-                color: CustomColors.white.getColor,
+              addButton: ClaimedWidget(
+                claimText: "CreateUserCommand",
+                child: getAddButton(
+                  context,
+                  () => _addUser(context),
+                  color: CustomColors.white.getColor,
+                ),
               ),
               utilityButton: DownloadButtons(
                 data: datas,
