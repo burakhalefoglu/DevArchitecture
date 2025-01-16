@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/core/helpers/translate_provider_extension.dart';
+import '../../extentions/translate_provider_extension.dart';
 
 abstract class BaseConstants {
   static late BuildContext _context;

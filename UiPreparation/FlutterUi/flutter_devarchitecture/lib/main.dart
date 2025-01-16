@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'core/di/core_initializer.dart';
 import 'core/di/firebase/firebase_initializer.dart';
-import 'core/helpers/translation_provider.dart';
+import 'extentions/translation_provider.dart';
 import 'core/theme/theme_provider.dart';
 import 'modular_mixin.dart';
 import 'core/mixins/ok_toast_mixin.dart';

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
-import '../../../../core/helpers/translation_provider.dart';
+import '../../../../extentions/translation_provider.dart';
 import '../bloc/language_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/widgets/inputs/dropdown_button.dart';
