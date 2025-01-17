@@ -1,12 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
 import '../theme/custom_colors.dart';
 
-showConfirmationDialog(BuildContext c, void Function() onPressed) {
-  return showDialog(
-    context: c,
-    builder: (BuildContext context) {
+Future<void> showConfirmationDialog(
+    BuildContext context, Future<void> Function() onConfirm) async {
+  await showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext dialogContext) {
       return BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: AlertDialog(
@@ -16,33 +17,27 @@ showConfirmationDialog(BuildContext c, void Function() onPressed) {
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           title: Text(
-            CoreScreenTexts.attention,
+            "Dikkat!",
             style: TextStyle(
               color: CustomColors.danger.getColor,
               fontWeight: FontWeight.bold,
             ),
           ),
-          content: Text(CoreScreenTexts.thisActionCannotBeUndone),
+          content: const Text(
+              "Bu işlem geri alınamaz. Devam etmek istiyor musunuz?"),
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(dialogContext).pop(); // Dialog'u kapat.
               },
-              style: TextButton.styleFrom(
-                foregroundColor: CustomColors.gray.getColor,
-              ),
-              child: Text(CoreScreenTexts.cancel),
+              child: const Text("Vazgeç"),
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                onPressed();
-              },
-              style: TextButton.styleFrom(
-                foregroundColor: CustomColors.danger.getColor,
-              ),
-              child: Text(CoreScreenTexts.yes),
-            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  onConfirm();
+                },
+                child: const Text("Evet")),
           ],
         ),
       );
