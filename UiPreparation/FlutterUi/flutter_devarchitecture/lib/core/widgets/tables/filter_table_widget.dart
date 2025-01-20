@@ -41,6 +41,16 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
     super.initState();
   }
 
+  @override
+  void didUpdateWidget(covariant FilterTableWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.datas != widget.datas) {
+      setState(() {
+        filteredData = widget.datas;
+      });
+    }
+  }
+
   void _reformatNullToEmptyString() {
     for (var data in widget.datas) {
       for (var header in widget.headers) {
