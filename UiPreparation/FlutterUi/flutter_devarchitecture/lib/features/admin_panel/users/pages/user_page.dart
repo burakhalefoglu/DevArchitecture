@@ -95,12 +95,12 @@ class AdminUserPage extends StatelessWidget {
                 {"notes": CoreScreenTexts.notes},
               ],
               color: CustomColors.primary.getColor,
-              customManipulationButton: const [
+              customManipulationButton: [
                 getChangePasswordButton,
                 getChangePermissionButton,
                 getChangeGroupButton,
-                getEditButton,
-                getDeleteButton
+                updateUserButton,
+                deleteUserButton
               ],
               customManipulationCallback: [
                 (userId) {
@@ -147,6 +147,16 @@ class AdminUserPage extends StatelessWidget {
       ),
     );
   }
+
+  Widget updateUserButton(BuildContext context, VoidCallback onPressed) =>
+      ClaimedWidget(
+          claimText: "UpdateUserCommand",
+          child: getEditButton(context, onPressed));
+
+  Widget deleteUserButton(BuildContext context, VoidCallback onPressed) =>
+      ClaimedWidget(
+          claimText: "DeleteUserCommand",
+          child: getDeleteButton(context, onPressed));
 
   void _addUser(BuildContext context) async {
     final newUser = await showDialog<User>(

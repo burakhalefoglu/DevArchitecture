@@ -7,6 +7,7 @@ import '../../../../core/constants/core_screen_texts.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
+import '../../../../extensions/claimed_widget.dart';
 import '../models/translate.dart';
 import '../translate_constants/translate_Screen_texts.dart';
 import '../translate_constants/translate_messages.dart';
@@ -80,43 +81,60 @@ class AdminTranslatePage extends StatelessWidget {
           Expanded(
             flex: 9,
             child: FilterTableWidget(
-              datas: datas,
-              headers: [
-                {"id": "ID"},
-                {"code": TranslateScreenTexts.code},
-                {"language": TranslateScreenTexts.language},
-                {"value": TranslateScreenTexts.value},
-              ],
-              color: CustomColors.light.getColor,
-              utilityButton: DownloadButtons(
-                      color: CustomColors.dark.getColor, data: datas)
-                  .excelButton(context),
-              customManipulationButton: const [getEditButton, getDeleteButton],
-              customManipulationCallback: [
-                (translateId) {
-                  var translate = datas.firstWhere(
-                    (element) => element['id'] == translateId,
-                  );
-                  _editTranslate(context, translate);
-                },
-                (translateId) => _confirmDelete(context, translateId)
-              ],
-              infoHover: getInfoHover(
-                context,
-                TranslateMessages.translateInfoHover,
-                color: CustomColors.gray.getColor,
-              ),
-              addButton: getAddButton(
-                context,
-                () => _addTranslate(context),
-                color: CustomColors.dark.getColor,
-              ),
-            ),
+                datas: datas,
+                headers: [
+                  {"id": "ID"},
+                  {"code": TranslateScreenTexts.code},
+                  {"language": TranslateScreenTexts.language},
+                  {"value": TranslateScreenTexts.value},
+                ],
+                color: CustomColors.light.getColor,
+                utilityButton: DownloadButtons(
+                        color: CustomColors.dark.getColor, data: datas)
+                    .excelButton(context),
+                customManipulationButton: [
+                  updateTranslateButton,
+                  deleteTranslateButton,
+                ],
+                customManipulationCallback: [
+                  (translateId) {
+                    var translate = datas.firstWhere(
+                      (element) => element['id'] == translateId,
+                    );
+                    _editTranslate(context, translate);
+                  },
+                  (translateId) => _confirmDelete(context, translateId)
+                ],
+                infoHover: getInfoHover(
+                  context,
+                  TranslateMessages.translateInfoHover,
+                  color: CustomColors.gray.getColor,
+                ),
+                addButton: ClaimedWidget(
+                  claimText: "CreateTranslateCommand",
+                  child: getAddButton(
+                    context,
+                    () => _addTranslate(context),
+                    color: CustomColors.dark.getColor,
+                  ),
+                )),
           ),
         ],
       ),
     );
   }
+
+  Widget updateTranslateButton(BuildContext context, VoidCallback onPressed) =>
+      ClaimedWidget(
+        claimText: "UpdateTranslateCommand",
+        child: getEditButton(context, onPressed),
+      );
+
+  Widget deleteTranslateButton(BuildContext context, VoidCallback onPressed) =>
+      ClaimedWidget(
+        claimText: "DeleteTranslateCommand",
+        child: getDeleteButton(context, onPressed),
+      );
 
   void _addTranslate(BuildContext context) async {
     final newTranslate = await showDialog<Translate>(

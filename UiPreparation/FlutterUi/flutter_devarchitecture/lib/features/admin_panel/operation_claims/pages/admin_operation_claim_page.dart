@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
+import '../../../../extensions/claimed_widget.dart';
 import '../operation_claims_constants/operation_claim_messages.dart';
 import '../operation_claims_constants/operation_claims_screen_texts.dart';
 import '/core/theme/extensions.dart';
@@ -87,8 +88,8 @@ class AdminOperationClaimPage extends StatelessWidget {
                 {"description": CoreScreenTexts.description},
               ],
               color: CustomColors.warning.getColor,
-              customManipulationButton: const [
-                getEditButton,
+              customManipulationButton: [
+                updateOperationClaimButton,
               ],
               customManipulationCallback: [
                 (index) {
@@ -112,6 +113,12 @@ class AdminOperationClaimPage extends StatelessWidget {
       ),
     );
   }
+
+  Widget updateOperationClaimButton(
+          BuildContext context, VoidCallback onPressed) =>
+      ClaimedWidget(
+          claimText: "UpdateOperationClaimCommand",
+          child: getEditButton(context, onPressed));
 
   void _editOperationClaim(
       BuildContext context, Map<String, dynamic> operationClaimData) async {

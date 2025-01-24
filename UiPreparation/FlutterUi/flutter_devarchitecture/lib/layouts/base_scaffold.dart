@@ -21,8 +21,8 @@ buildBaseScaffold(BuildContext context, Widget body, {bool isDrawer = true}) {
               ? [buildThemeButton(context, themeProvider)]
               : [
                   buildThemeButton(context, themeProvider),
-                  buildNotificationButton(context),
-                  buildProfileButton(context),
+                  // buildNotificationButton(context),
+                  // buildProfileButton(context),
                   buildLogOutButton(context),
                 ],
       leading: Builder(

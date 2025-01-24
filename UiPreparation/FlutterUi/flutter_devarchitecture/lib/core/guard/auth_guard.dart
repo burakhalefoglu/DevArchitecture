@@ -6,8 +6,8 @@ import '../../routes/routes_constants.dart';
 import '../configs/app_config.dart';
 import '../di/core_initializer.dart';
 
-class AuthGuard extends RouteGuard {
-  AuthGuard() : super(redirectTo: RoutesConstants.loginPage);
+class ModularAuthGuard extends RouteGuard {
+  ModularAuthGuard() : super(redirectTo: RoutesConstants.loginPage);
 
   @override
   Future<bool> canActivate(String path, ModularRoute router) {

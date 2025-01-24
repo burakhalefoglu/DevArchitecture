@@ -6,6 +6,7 @@ import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
 import '../../../../core/constants/core_screen_texts.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
+import '../../../../extensions/claimed_widget.dart';
 import '../../group_claims/widgets/group_claim_button.dart';
 import '../../user_groups/widgets/user_group_button.dart';
 import '../group_constants/group_messages.dart';
@@ -93,11 +94,11 @@ class AdminGroupPage extends StatelessWidget {
                 {"groupName": GroupScreenTexts.groupName},
               ],
               color: CustomColors.primary.getColor,
-              customManipulationButton: const [
+              customManipulationButton: [
                 updateGroupClaimButton,
                 updateUserGroupButton,
-                getEditButton,
-                getDeleteButton
+                updateGroupButton,
+                deleteGroupButton
               ],
               customManipulationCallback: [
                 (index) {
@@ -120,17 +121,29 @@ class AdminGroupPage extends StatelessWidget {
                 },
                 (index) => _confirmDelete(context, index)
               ],
-              addButton: getAddButton(
-                context,
-                () => _addGroup(context),
-                color: CustomColors.white.getColor,
-              ),
+              addButton: ClaimedWidget(
+                  claimText: "CreateGroupCommand",
+                  child: getAddButton(
+                    context,
+                    () => _addGroup(context),
+                    color: CustomColors.white.getColor,
+                  )),
             ),
           ),
         ],
       ),
     );
   }
+
+  Widget updateGroupButton(BuildContext context, VoidCallback onPressed) =>
+      ClaimedWidget(
+          claimText: "UpdateGroupCommand",
+          child: getEditButton(context, onPressed));
+
+  Widget deleteGroupButton(BuildContext context, VoidCallback onPressed) =>
+      ClaimedWidget(
+          claimText: "DeleteGroupCommand",
+          child: getDeleteButton(context, onPressed));
 
   void _addGroup(BuildContext context) async {
     final newGroup = await showDialog<Group>(

@@ -7,6 +7,7 @@ import '../../../../core/bloc/bloc_helper.dart';
 import '../../../../core/theme/extensions.dart';
 import '../../../../core/utilities/download_management/buttons/download_buttons.dart';
 import '../../../../core/widgets/confirmation_dialog.dart';
+import '../../../../extensions/claimed_widget.dart';
 import '../bloc/language_cubit.dart';
 import '../language_constants/language_messages.dart';
 import '../language_constants/language_screen_texts.dart';
@@ -91,7 +92,10 @@ class AdminLanguagePage extends StatelessWidget {
                       color: CustomColors.dark.getColor, data: datas)
                   .excelButton(context),
               color: CustomColors.danger.getColor,
-              customManipulationButton: const [getEditButton, getDeleteButton],
+              customManipulationButton: [
+                updateLanguageButton,
+                deleteLanguageButton,
+              ],
               customManipulationCallback: [
                 (id) {
                   var language = datas.firstWhere(
@@ -101,10 +105,13 @@ class AdminLanguagePage extends StatelessWidget {
                 },
                 (id) => _confirmDelete(context, id)
               ],
-              addButton: getAddButton(
-                context,
-                () => _addLanguage(context),
-                color: CustomColors.white.getColor,
+              addButton: ClaimedWidget(
+                claimText: "CreateLanguageCommand",
+                child: getAddButton(
+                  context,
+                  () => _addLanguage(context),
+                  color: CustomColors.white.getColor,
+                ),
               ),
             ),
           ),
@@ -112,6 +119,16 @@ class AdminLanguagePage extends StatelessWidget {
       ),
     );
   }
+
+  Widget updateLanguageButton(BuildContext context, VoidCallback onPressed) =>
+      ClaimedWidget(
+          claimText: "UpdateLanguageCommand",
+          child: getEditButton(context, onPressed));
+
+  Widget deleteLanguageButton(BuildContext context, VoidCallback onPressed) =>
+      ClaimedWidget(
+          claimText: "DeleteLanguageCommand",
+          child: getDeleteButton(context, onPressed));
 
   void _addLanguage(BuildContext context) async {
     final newLanguage = await showDialog<Language>(
