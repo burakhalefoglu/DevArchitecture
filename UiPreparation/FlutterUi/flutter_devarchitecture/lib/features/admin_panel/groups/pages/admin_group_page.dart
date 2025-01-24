@@ -182,8 +182,7 @@ class AdminGroupPage extends StatelessWidget {
   }
 
   void _confirmDelete(BuildContext context, int groupId) {
-    showConfirmationDialog(context, () {
-      BlocProvider.of<GroupCubit>(context).delete(groupId);
-    });
+    showConfirmationDialog(
+        context, () => BlocProvider.of<GroupCubit>(context).delete(groupId));
   }
 }

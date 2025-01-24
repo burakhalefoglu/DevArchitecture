@@ -163,8 +163,7 @@ class AdminTranslatePage extends StatelessWidget {
   }
 
   void _confirmDelete(BuildContext context, int translateId) {
-    showConfirmationDialog(context, () {
-      BlocProvider.of<TranslateCubit>(context).delete(translateId);
-    });
+    showConfirmationDialog(context,
+        () => BlocProvider.of<TranslateCubit>(context).delete(translateId));
   }
 }

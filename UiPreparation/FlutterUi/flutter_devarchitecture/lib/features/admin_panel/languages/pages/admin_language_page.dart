@@ -153,8 +153,7 @@ class AdminLanguagePage extends StatelessWidget {
   }
 
   void _confirmDelete(BuildContext context, int languageId) {
-    showConfirmationDialog(context, () {
-      BlocProvider.of<LanguageCubit>(context).delete(languageId);
-    });
+    showConfirmationDialog(context,
+        () => BlocProvider.of<LanguageCubit>(context).delete(languageId));
   }
 }
