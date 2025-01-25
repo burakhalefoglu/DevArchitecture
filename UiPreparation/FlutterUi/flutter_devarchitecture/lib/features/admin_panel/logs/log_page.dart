@@ -12,8 +12,8 @@ import '../../../../core/widgets/base_widgets.dart';
 import '../../../../core/widgets/tables/filter_table_widget.dart';
 import '../../../../layouts/base_scaffold.dart';
 import 'bloc/log_cubit.dart';
-import 'log_constants/log_Screen_texts.dart';
-import 'log_constants/log_messages.dart';
+import 'constants/log_messages.dart';
+import 'constants/log_screen_texts.dart';
 import 'models/log_dto.dart';
 
 class AdminLogPage extends StatelessWidget {
