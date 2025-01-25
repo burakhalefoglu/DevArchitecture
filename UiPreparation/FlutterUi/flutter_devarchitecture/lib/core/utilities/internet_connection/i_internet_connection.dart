@@ -1,7 +1,7 @@
-import '../screen_message/i_screen_message.dart';
+import 'package:flutter/material.dart';
 
 abstract class IInternetConnection {
   Future<bool> isConnected();
-  Future<void> listenConnection(IScreenMessage _screenMessage);
+  Future<void> listenConnection(BuildContext context);
   Future<void> stopListening();
 }

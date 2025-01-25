@@ -1,42 +1,71 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '/core/utilities/internet_connection/i_internet_connection.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import '../screen_message/i_screen_message.dart';
+
+import 'i_internet_connection.dart';
 
 class InternetConnectionWithChecker implements IInternetConnection {
   late final StreamSubscription<InternetStatus> _subscription;
-  late final AppLifecycleListener _listener;
+  BuildContext? _popupContext;
+  bool _isPopupVisible = false;
 
-  @override
   Future<bool> isConnected() async {
-    final bool isConnected = await InternetConnection().hasInternetAccess;
-    return isConnected;
+    return await InternetConnection().hasInternetAccess;
   }
 
-  @override
-  Future<void> listenConnection(IScreenMessage _screenMessage) async {
+  Future<void> listenConnection(BuildContext context) async {
     _subscription =
         InternetConnection().onStatusChange.listen((InternetStatus status) {
       switch (status) {
         case InternetStatus.connected:
-          // The internet is now connected
+          _dismissPopup();
           break;
         case InternetStatus.disconnected:
-          // The internet is now disconnected
+          _showPopup(context);
           break;
       }
     });
-    _listener = AppLifecycleListener(
-      onResume: _subscription.resume,
-      onHide: _subscription.pause,
-      onPause: _subscription.pause,
+  }
+
+  Future<void> stopListening() async {
+    await _subscription.cancel();
+  }
+
+  void _showPopup(BuildContext context) {
+    if (_isPopupVisible) return;
+
+    _isPopupVisible = true;
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) {
+        _popupContext = ctx;
+        return AlertDialog(
+          title: const Text("İnternet Bağlantısı Yok"),
+          content: const Text(
+            "İnternet bağlantınız kesildi. Lütfen tekrar bağlanmayı deneyin.",
+          ),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                final isConnected = await this.isConnected();
+                if (isConnected) {
+                  _dismissPopup();
+                }
+              },
+              child: const Text("Tekrar Bağlan"),
+            ),
+          ],
+        );
+      },
     );
   }
 
-  @override
-  Future<void> stopListening() async {
-    _subscription.cancel();
-    _listener.dispose();
+  void _dismissPopup() {
+    if (_isPopupVisible && _popupContext != null) {
+      Navigator.of(_popupContext!).pop();
+      _popupContext = null;
+      _isPopupVisible = false;
+    }
   }
 }

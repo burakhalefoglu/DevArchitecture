@@ -51,7 +51,9 @@ Future<void> injectFirebaseUtils() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return App();
+    return MaterialApp(
+      home: App(),
+    );
   }
 }
 
@@ -71,6 +73,19 @@ class _AppState extends State<App> with OKToastMixin<App>, ModularMixin {
     _initializeTranslations =
         Provider.of<TranslationProvider>(context, listen: false)
             .loadTranslations("tr-TR");
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      CoreInitializer()
+          .coreContainer
+          .internetConnection
+          .listenConnection(context);
+    });
+  }
+
+  @override
+  void dispose() {
+    CoreInitializer().coreContainer.internetConnection.stopListening();
+    super.dispose();
   }
 
   @override
@@ -92,7 +107,7 @@ class _AppState extends State<App> with OKToastMixin<App>, ModularMixin {
           return MaterialApp(
             home: Scaffold(
               body: Center(
-                child: Text(CoreMessages.internetConnectionError),
+                child: Text(CoreMessages.customerDefaultErrorMessage),
               ),
             ),
           );

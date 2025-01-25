@@ -18,8 +18,7 @@ class _InternetConnectionPageState extends State<InternetConnectionPage> {
     _internetConnection = CoreInitializer().coreContainer.internetConnection;
 
     // İnternet bağlantısını dinlemeye başla
-    _internetConnection
-        .listenConnection(CoreInitializer().coreContainer.screenMessage);
+    _internetConnection.listenConnection(context);
   }
 
   @override
