@@ -96,7 +96,6 @@ class _FilterTableWidgetState extends State<FilterTableWidget> {
                         key = key + element.toString().toLowerCase() + " ";
                       }
                       if (key.contains(value.toLowerCase())) {
-                        print(widget.datas[i]);
                         filteredData.add(widget.datas[i]);
                       }
                     }

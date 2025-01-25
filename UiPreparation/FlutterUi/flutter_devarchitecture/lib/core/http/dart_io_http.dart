@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import '../di/core_initializer.dart';
 import '/core/helpers/exceptions.dart';
 
 import 'http_interceptor.dart';
@@ -34,8 +35,10 @@ class HttpDartIo implements IHttp {
       HttpClientResponse response = await request.close();
 
       if (kDebugMode) {
-        print(url);
-        print(response.statusCode);
+        CoreInitializer()
+            .coreContainer
+            .logger
+            .logDebug(response.statusCode.toString());
       }
 
       String reply = await response.transform(utf8.decoder).join();
@@ -77,8 +80,10 @@ class HttpDartIo implements IHttp {
       HttpClientResponse response = await request.close();
 
       if (kDebugMode) {
-        print(url);
-        print(response.statusCode);
+        CoreInitializer()
+            .coreContainer
+            .logger
+            .logDebug(response.statusCode.toString());
       }
 
       String reply = await response.transform(utf8.decoder).join();
@@ -117,8 +122,10 @@ class HttpDartIo implements IHttp {
       HttpClientResponse response = await request.close();
 
       if (kDebugMode) {
-        print(url);
-        print(response.statusCode);
+        CoreInitializer()
+            .coreContainer
+            .logger
+            .logDebug(response.statusCode.toString());
       }
 
       String reply = await response.transform(utf8.decoder).join();
@@ -159,8 +166,10 @@ class HttpDartIo implements IHttp {
       HttpClientResponse response = await request.close();
 
       if (kDebugMode) {
-        print(url);
-        print(response.statusCode);
+        CoreInitializer()
+            .coreContainer
+            .logger
+            .logDebug(response.statusCode.toString());
       }
 
       String reply = await response.transform(utf8.decoder).join();

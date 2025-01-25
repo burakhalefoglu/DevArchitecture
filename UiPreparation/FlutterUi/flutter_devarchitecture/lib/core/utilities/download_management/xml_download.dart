@@ -45,7 +45,7 @@ class XmlDownload implements IXmlDownload {
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
-        print(e);
+        CoreInitializer().coreContainer.logger.logDebug(e.toString());
       }
     }
   }
@@ -72,7 +72,7 @@ class XmlDownload implements IXmlDownload {
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
-        print(e);
+        CoreInitializer().coreContainer.logger.logDebug(e.toString());
       }
       return null;
     }
@@ -88,7 +88,7 @@ class XmlDownload implements IXmlDownload {
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
-        print(e);
+        CoreInitializer().coreContainer.logger.logDebug(e.toString());
       }
       return null;
     }

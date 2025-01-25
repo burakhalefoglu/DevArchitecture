@@ -28,7 +28,7 @@ class FirebaseRemoteConfigService implements IRemoteConfigService {
           .screenMessage
           .getErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
-        print(e);
+        CoreInitializer().coreContainer.logger.logDebug(e.toString());
       }
     }
   }

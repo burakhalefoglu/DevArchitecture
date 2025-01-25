@@ -92,7 +92,7 @@ class PdfDownload implements IPdfDownload {
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
-        print(e);
+        CoreInitializer().coreContainer.logger.logDebug(e.toString());
       }
     }
   }
@@ -118,7 +118,7 @@ class PdfDownload implements IPdfDownload {
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
-        print(e);
+        CoreInitializer().coreContainer.logger.logDebug(e.toString());
       }
       return null;
     }
@@ -134,7 +134,7 @@ class PdfDownload implements IPdfDownload {
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
-        print(e);
+        CoreInitializer().coreContainer.logger.logDebug(e.toString());
       }
       return null;
     }

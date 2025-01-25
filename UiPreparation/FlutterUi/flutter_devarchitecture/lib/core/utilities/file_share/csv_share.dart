@@ -39,7 +39,7 @@ class CsvShare implements ICsvShare {
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
-        print(e);
+        CoreInitializer().coreContainer.logger.logDebug(e.toString());
       }
     }
   }

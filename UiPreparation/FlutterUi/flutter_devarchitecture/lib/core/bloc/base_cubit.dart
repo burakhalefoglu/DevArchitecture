@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../di/core_initializer.dart';
 import '../helpers/exceptions.dart';
 import 'base_state.dart';
 import '../models/i_entity.dart';
@@ -21,7 +22,7 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
       var result = await service.getAll();
       if (!result.isSuccess) {
         if (kDebugMode) {
-          print(result.message);
+          CoreInitializer().coreContainer.logger.logDebug(result.message);
         }
         emitFailState(result.message);
         return null;
@@ -39,7 +40,7 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
       var result = await service.create(body.toMap());
       if (!result.isSuccess) {
         if (kDebugMode) {
-          print(result.message);
+          CoreInitializer().coreContainer.logger.logDebug(result.message);
         }
         emitFailState(result.message);
         return;
@@ -57,7 +58,7 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
       var result = await service.update(body.id, body.toMap());
       if (!result.isSuccess) {
         if (kDebugMode) {
-          print(result.message);
+          CoreInitializer().coreContainer.logger.logDebug(result.message);
         }
         emitFailState(
           result.message,
@@ -77,7 +78,7 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
       var result = await service.delete(id);
       if (!result.isSuccess) {
         if (kDebugMode) {
-          print(result.message);
+          CoreInitializer().coreContainer.logger.logDebug(result.message);
         }
         emitFailState(
           result.message,
@@ -101,12 +102,12 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
 
   void emitFailState(String message, {Exception? e}) {
     if (kDebugMode) {
-      print(message);
+      CoreInitializer().coreContainer.logger.logDebug(message);
     }
 
     if (e != null) {
       if (kDebugMode) {
-        print(e);
+        CoreInitializer().coreContainer.logger.logDebug(e.toString());
       }
       if (e is BadRequestException) {
         emit(BlocFailed(400, message));

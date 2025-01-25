@@ -1,6 +1,7 @@
 import 'package:dart_amqp/dart_amqp.dart';
 import 'dart:convert';
 
+import '../../di/core_initializer.dart';
 import 'i_message_broker.dart';
 
 class RabbitMQMessageBroker implements IMessageBroker {
@@ -23,11 +24,14 @@ class RabbitMQMessageBroker implements IMessageBroker {
       Consumer consumer = await _queue.consume();
 
       consumer.listen((AmqpMessage message) {
-        print("Received message: ${message.payloadAsString}");
+        CoreInitializer()
+            .coreContainer
+            .logger
+            .logDebug("Received message: ${message.payloadAsString}");
         message.ack();
       });
     } catch (e) {
-      print("Error: $e");
+      CoreInitializer().coreContainer.logger.logDebug("Error: $e");
     }
   }
 
@@ -42,7 +46,7 @@ class RabbitMQMessageBroker implements IMessageBroker {
       final jsonString = jsonEncode(messageModel);
       _queue.publish(jsonString);
     } catch (e) {
-      print("Error: $e");
+      CoreInitializer().coreContainer.logger.logDebug("Error: $e");
     }
   }
 
@@ -52,7 +56,7 @@ class RabbitMQMessageBroker implements IMessageBroker {
       final jsonString = jsonEncode(messageModel);
       _queue.publish(jsonString);
     } catch (e) {
-      print("Error: $e");
+      CoreInitializer().coreContainer.logger.logDebug("Error: $e");
     }
   }
 

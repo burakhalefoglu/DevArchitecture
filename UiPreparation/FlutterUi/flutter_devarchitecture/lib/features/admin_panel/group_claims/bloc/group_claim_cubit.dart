@@ -1,7 +1,7 @@
-import 'package:flutter_devarchitecture/core/constants/core_messages.dart';
-import 'package:flutter_devarchitecture/core/utilities/results.dart';
 import '../../../../core/bloc/base_cubit.dart';
 import '../../../../core/bloc/base_state.dart';
+import '../../../../core/constants/core_messages.dart';
+import '../../../../core/utilities/results.dart';
 import '../../../../di/business_initializer.dart';
 import '../../lookups/models/lookup.dart';
 import '../models/group_claim.dart';
@@ -18,9 +18,6 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
           .businessContainer
           .lookupService
           .getOperationClaimLookUp();
-
-      print("groupClaims: " +
-          groupClaims.map((claim) => claim.toMap()).toList().toString());
 
       final selectedGroupClaimResult = await BusinessInitializer()
           .businessContainer

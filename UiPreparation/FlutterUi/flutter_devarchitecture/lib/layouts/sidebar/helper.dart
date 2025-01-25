@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
 import 'package:flutter_devarchitecture/extensions/claim_provider_extentions.dart';
+import '../../core/di/core_initializer.dart';
 import '../../core/theme/extensions.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../core/theme/custom_colors.dart';
@@ -33,7 +33,10 @@ Future<PopupMenuButton> buildNavWithSubMenuItemElement(BuildContext context,
           .logDebug(option['guard'].toString());
       var isClaimed = await context.claimProvider
           .hasClaim(context, option['guard'].toString());
-      debugPrint('Claim kontrol ediliyor: ${option['guard']} -> $isClaimed');
+      CoreInitializer()
+          .coreContainer
+          .logger
+          .logDebug('Claim kontrol ediliyor: ${option['guard']} -> $isClaimed');
 
       if (isClaimed) {
         filteredOptions.add(option);

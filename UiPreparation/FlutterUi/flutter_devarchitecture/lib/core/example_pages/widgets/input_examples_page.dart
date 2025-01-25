@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../di/core_initializer.dart';
 import '/core/theme/extensions.dart';
 import '../../../layouts/base_scaffold.dart';
 import '../../widgets/inputs/auto_complete.dart';
@@ -68,7 +69,10 @@ class _InputExamplesPageState extends State<InputExamplesPage> {
                         labelText: 'Otomatik Tamamlama',
                         hintText: 'Bir seçenek giriniz',
                         onChanged: (id) {
-                          print('Selected option ID: $id');
+                          CoreInitializer()
+                              .coreContainer
+                              .logger
+                              .logDebug('Selected option ID: $id');
                         },
                         controller: _autoCompleteController,
                         focusNode: _autoCompleteFocusNode,
@@ -82,7 +86,10 @@ class _InputExamplesPageState extends State<InputExamplesPage> {
                         options: ['Seçenek 1', 'Seçenek 2', 'Seçenek 3'],
                         icon: Icons.arrow_drop_down,
                         onChanged: (value) {
-                          print('Selected dropdown value: $value');
+                          CoreInitializer()
+                              .coreContainer
+                              .logger
+                              .logDebug('Selected dropdown value: $value');
                         },
                         getFirstValue: (value) {},
                       ),
@@ -101,7 +108,10 @@ class _InputExamplesPageState extends State<InputExamplesPage> {
                       child: CustomDateInput(
                         dateController: _dateController,
                         onDateChanged: (value) {
-                          print('Selected date: $value');
+                          CoreInitializer()
+                              .coreContainer
+                              .logger
+                              .logDebug('Selected date: $value');
                         },
                       ),
                     ),
@@ -170,7 +180,10 @@ class _InputExamplesPageState extends State<InputExamplesPage> {
               child: CustomPlateInput(
                 controllers: _plateControllers,
                 onChange: (value) {
-                  print('Plate input changed: $value');
+                  CoreInitializer()
+                      .coreContainer
+                      .logger
+                      .logDebug('Plate input changed: $value');
                 },
                 confirmFocusNodes: _plateFocusNodes,
               ),
@@ -183,7 +196,10 @@ class _InputExamplesPageState extends State<InputExamplesPage> {
               child: CustomVehicleLicenseInput(
                 controllers: _vehicleLicenseControllers,
                 onChange: (value) {
-                  print('Vehicle license input changed: $value');
+                  CoreInitializer()
+                      .coreContainer
+                      .logger
+                      .logDebug('Vehicle license input changed: $value');
                 },
                 confirmFocusNodes: _vehicleLicenseFocusNodes,
               ),

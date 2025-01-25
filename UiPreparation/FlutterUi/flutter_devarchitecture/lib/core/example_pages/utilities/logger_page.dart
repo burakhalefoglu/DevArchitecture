@@ -79,7 +79,10 @@ class _LoggerPageState extends State<LoggerPage> {
                     _logger.logTrace('İzleme mesajı', () {
                       // Burada izlenecek işlem gerçekleşir
                       sleep(Duration(seconds: 5));
-                      print('İzlenecek işlem çalışıyor...');
+                      CoreInitializer()
+                          .coreContainer
+                          .logger
+                          .logDebug('İzlenecek işlem çalışıyor...');
                     });
                   },
                   child: Text('İzleme Mesajı Gönder'),

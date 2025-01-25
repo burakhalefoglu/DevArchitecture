@@ -38,7 +38,6 @@ class UserGroupCubit extends BaseCubit<UserGroup> {
         );
       }).toList();
       emit(BlocSuccess<List<LookUp>>(updatedGroups));
-      print(updatedGroups.map((e) => e.toMap()).toList());
     } on Exception catch (e) {
       emitFailState("", e: e);
     }
