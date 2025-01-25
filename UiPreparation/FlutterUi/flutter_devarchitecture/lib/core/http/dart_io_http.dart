@@ -38,7 +38,7 @@ class HttpDartIo implements IHttp {
         CoreInitializer()
             .coreContainer
             .logger
-            .logDebug(response.statusCode.toString());
+            .logDebug(url.toString() + "-> " + response.statusCode.toString());
       }
 
       String reply = await response.transform(utf8.decoder).join();
@@ -83,7 +83,7 @@ class HttpDartIo implements IHttp {
         CoreInitializer()
             .coreContainer
             .logger
-            .logDebug(response.statusCode.toString());
+            .logDebug(url.toString() + "-> " + response.statusCode.toString());
       }
 
       String reply = await response.transform(utf8.decoder).join();
@@ -125,7 +125,7 @@ class HttpDartIo implements IHttp {
         CoreInitializer()
             .coreContainer
             .logger
-            .logDebug(response.statusCode.toString());
+            .logDebug(url.toString() + "-> " + response.statusCode.toString());
       }
 
       String reply = await response.transform(utf8.decoder).join();
@@ -169,7 +169,7 @@ class HttpDartIo implements IHttp {
         CoreInitializer()
             .coreContainer
             .logger
-            .logDebug(response.statusCode.toString());
+            .logDebug(url.toString() + "-> " + response.statusCode.toString());
       }
 
       String reply = await response.transform(utf8.decoder).join();

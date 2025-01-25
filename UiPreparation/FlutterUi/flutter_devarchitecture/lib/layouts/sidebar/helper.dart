@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/extensions/claim_provider_extentions.dart';
-import '../../core/di/core_initializer.dart';
 import '../../core/theme/extensions.dart';
+import '../../core/services/claim_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
 import '../../core/theme/custom_colors.dart';
 
 ListTile buildNavElement(IconData icon, String text, String route,
@@ -20,31 +20,9 @@ ListTile buildNavElement(IconData icon, String text, String route,
   );
 }
 
-Future<PopupMenuButton> buildNavWithSubMenuItemElement(BuildContext context,
+Future<Widget> buildNavWithSubMenuItemElement(BuildContext context,
     IconData icon, String text, List<Map<String, dynamic>> options) async {
-  // Claim kontrolüne göre filtreleme yapıyoruz
-  final filteredOptions = <Map<String, dynamic>>[];
-
-  for (var option in options) {
-    if (option.containsKey('guard') && option['guard'] != null) {
-      CoreInitializer()
-          .coreContainer
-          .logger
-          .logDebug(option['guard'].toString());
-      var isClaimed = await context.claimProvider
-          .hasClaim(context, option['guard'].toString());
-      CoreInitializer()
-          .coreContainer
-          .logger
-          .logDebug('Claim kontrol ediliyor: ${option['guard']} -> $isClaimed');
-
-      if (isClaimed) {
-        filteredOptions.add(option);
-      }
-    } else {
-      filteredOptions.add(option);
-    }
-  }
+  final filteredOptions = await filterMenuOptions(context, options);
 
   return PopupMenuButton(
     color: CustomColors.white.getColor,
@@ -56,7 +34,7 @@ Future<PopupMenuButton> buildNavWithSubMenuItemElement(BuildContext context,
             filteredOptions[index]['subMenu'] != null) {
           return PopupMenuItem(
             value: Text(filteredOptions[index]["name"]),
-            child: FutureBuilder<PopupMenuButton>(
+            child: FutureBuilder<Widget>(
               future: buildNavWithSubMenuItemElement(
                 context,
                 filteredOptions[index]["icon"],
@@ -66,10 +44,10 @@ Future<PopupMenuButton> buildNavWithSubMenuItemElement(BuildContext context,
               ),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator(); // Loading göstergesi
+                  return const CircularProgressIndicator();
                 }
                 if (snapshot.hasError) {
-                  return const SizedBox.shrink(); // Hata durumunda boş döner
+                  return const SizedBox.shrink();
                 }
                 return snapshot.data ?? const SizedBox.shrink();
               },
@@ -108,6 +86,25 @@ Future<PopupMenuButton> buildNavWithSubMenuItemElement(BuildContext context,
       ),
     ),
   );
+}
+
+Future<List<Map<String, dynamic>>> filterMenuOptions(
+    BuildContext context, List<Map<String, dynamic>> options) async {
+  final filteredOptions = <Map<String, dynamic>>[];
+  final claimService = ClaimService();
+
+  for (var option in options) {
+    if (option.containsKey('guard') && option['guard'] != null) {
+      final isClaimed = await claimService.hasClaim(option['guard']);
+      if (isClaimed) {
+        filteredOptions.add(option);
+      }
+    } else {
+      filteredOptions.add(option);
+    }
+  }
+
+  return filteredOptions;
 }
 
 DrawerHeader buildLogoWidget() {

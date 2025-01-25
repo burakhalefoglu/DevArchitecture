@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/di/constants_initializer.dart';
+import '/core/constants/core_messages.dart';
+import '/di/constants_initializer.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
@@ -78,7 +79,6 @@ class _AppState extends State<App> with OKToastMixin<App>, ModularMixin {
       future: _initializeTranslations,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          // Dil yüklenirken gösterilecek bir yüklenme ekranı
           return MaterialApp(
             home: Scaffold(
               body: Center(
@@ -89,17 +89,15 @@ class _AppState extends State<App> with OKToastMixin<App>, ModularMixin {
         }
 
         if (snapshot.hasError) {
-          // Dil yüklenirken hata oluştuysa bir hata ekranı gösterebiliriz
           return MaterialApp(
             home: Scaffold(
               body: Center(
-                child: Text("Error loading translations!"),
+                child: Text(CoreMessages.internetConnectionError),
               ),
             ),
           );
         }
 
-        // Dil başarıyla yüklendiğinde asıl uygulamayı başlat
         ConstantsInitializer(context);
         return buildChild(context);
       },
