@@ -104,10 +104,18 @@ class _AppState extends State<App> with OKToastMixin<App>, ModularMixin {
         }
 
         if (snapshot.hasError) {
+          print(snapshot.error);
+          print(snapshot.stackTrace);
           return MaterialApp(
             home: Scaffold(
               body: Center(
-                child: Text("Bir hata oluştu: ${snapshot.error}"),
+                child: Text(
+                  "Bir hata oluştu: ${snapshot.error}",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red),
+                ),
               ),
             ),
           );

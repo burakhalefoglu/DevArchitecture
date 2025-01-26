@@ -49,7 +49,7 @@ import 'package:get_it/get_it.dart';
 import '../../utilities/internet_connection/i_internet_connection.dart';
 import '../../utilities/message_broker/rabbitmq_broker.dart';
 import '../../utilities/screen_message/ok_toast_screen_message.dart';
-import '../../http/dart_io_http.dart';
+import '../../http/http_dart.dart';
 import '../../http/http_interceptor.dart';
 import '../../http/i_http.dart';
 import '../../local_storage/i_local_storage.dart';
@@ -190,7 +190,7 @@ class GetItCoreContainer implements ICoreContainer {
     }));
 
     checkIfUnRegistered<IHttp>((() {
-      http = _getIt.registerSingleton<IHttp>(HttpDartIo(httpInterceptor));
+      http = _getIt.registerSingleton<IHttp>(HttpDart(httpInterceptor));
     }));
 
     //! charts
