@@ -90,6 +90,7 @@ class _AppState extends State<App> with OKToastMixin<App>, ModularMixin {
 
   @override
   Widget build(BuildContext context) {
+    ConstantsInitializer(context);
     return FutureBuilder<void>(
       future: _initializeTranslations,
       builder: (context, snapshot) {
@@ -112,8 +113,6 @@ class _AppState extends State<App> with OKToastMixin<App>, ModularMixin {
             ),
           );
         }
-
-        ConstantsInitializer(context);
         return buildChild(context);
       },
     );
