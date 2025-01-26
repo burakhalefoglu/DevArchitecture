@@ -1,38 +1,27 @@
 import '../../features/admin_panel/logs/services/api_log_service.dart';
 import '../../features/admin_panel/logs/services/i_service.dart';
-import '../../features/admin_panel/logs/services/in_memory_log_service.dart';
 import '/features/admin_panel/group_claims/services/i_group_claim_service.dart';
 import '/features/admin_panel/lookups/services/api_lookup_service.dart';
 import 'package:get_it/get_it.dart';
 import '../../features/admin_panel/group_claims/services/api_group_claim_service.dart';
-import '../../features/admin_panel/group_claims/services/in_memory_group_claim_service.dart';
 import '../../features/admin_panel/groups/services/i_group.dart';
-import '../../features/admin_panel/groups/services/in_memory_group_service.dart';
 import '../../../core/configs/app_config.dart';
 import '../../features/admin_panel/groups/services/api_group_service.dart';
 import '../../features/admin_panel/languages/services/api_language_service.dart';
 import '../../features/admin_panel/languages/services/i_language_service.dart';
-import '../../features/admin_panel/languages/services/in_memory_language_service.dart';
 import '../../features/admin_panel/lookups/services/i_lookup_service.dart';
-import '../../features/admin_panel/lookups/services/in_memory_lookup_service.dart';
 import '../../features/admin_panel/operation_claims/services/api_operation_claim_service.dart';
 import '../../features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
-import '../../features/admin_panel/operation_claims/services/in_memory_operation_claim_service.dart';
 import '../../features/admin_panel/translates/services/api_translate_service.dart';
 import '../../features/admin_panel/translates/services/i_translate_service.dart';
-import '../../features/admin_panel/translates/services/in_memory_translate_service.dart';
 import '../../features/admin_panel/user_claims/services/i_user_claim_service.dart';
 import '../../features/admin_panel/user_groups/services/api_user_group_service.dart';
 import '../../features/admin_panel/user_groups/services/i_user_group_service.dart';
-import '../../features/admin_panel/user_groups/services/in_memory_user_group_Service.dart';
 import '../../features/admin_panel/user_claims/services/api_user_claim.service.dart';
-import '../../features/admin_panel/user_claims/services/in_memory_user_claim.dart';
 import '../../features/admin_panel/users/services/api_user_service.dart';
 import '../../features/admin_panel/users/services/i_user_service.dart';
-import '../../features/admin_panel/users/services/in_memory_user_service.dart';
 import '../../features/public/auth/services/abstract/i_auth_service.dart';
 import '../../features/public/auth/services/concrete/api_auth_service.dart';
-import '../../features/public/auth/services/concrete/in_memory_auth_service.dart';
 import '../i_business_container.dart';
 
 class GetItBusinessContainer implements IBusinessContainer {
@@ -84,59 +73,59 @@ class GetItBusinessContainer implements IBusinessContainer {
     //*? Services Binding For DEVELOPMENT
     if (appConfig.name == 'dev' || appConfig.name == '') {
       checkIfUnRegistered<IAuthService>((() {
-        authService =
-            _getIt.registerSingleton<IAuthService>(InMemoryAuthService());
+        authService = _getIt
+            .registerSingleton<IAuthService>(ApiAuthService(method: "/Auth"));
       }));
 
       checkIfUnRegistered<IUserService>((() {
-        userService =
-            _getIt.registerSingleton<IUserService>(InMemoryUserService());
+        userService = _getIt
+            .registerSingleton<IUserService>(ApiUserService(method: "/Users"));
       }));
 
       checkIfUnRegistered<IUserClaimService>((() {
-        userClaimService = _getIt
-            .registerSingleton<IUserClaimService>(InMemoryUserClaimService());
+        userClaimService = _getIt.registerSingleton<IUserClaimService>(
+            ApiUserClaimService(method: "/user-claims"));
       }));
 
       checkIfUnRegistered<IUserGroupService>((() {
-        userGroupService = _getIt
-            .registerSingleton<IUserGroupService>(InMemoryUserGroupService());
+        userGroupService = _getIt.registerSingleton<IUserGroupService>(
+            ApiUserGroupService(method: "/user-groups"));
       }));
 
       checkIfUnRegistered<ITranslateService>((() {
-        translateService = _getIt
-            .registerSingleton<ITranslateService>(InMemoryTranslateService());
+        translateService = _getIt.registerSingleton<ITranslateService>(
+            ApiTranslateService(method: "/Translates"));
       }));
 
       checkIfUnRegistered<ILanguageService>((() {
-        languageService = _getIt
-            .registerSingleton<ILanguageService>(InMemoryLanguageService());
+        languageService = _getIt.registerSingleton<ILanguageService>(
+            ApiLanguageService(method: "/Languages"));
       }));
 
       checkIfUnRegistered<IOperationClaimService>((() {
         operationClaimService =
             _getIt.registerSingleton<IOperationClaimService>(
-                InMemoryOperationClaimService());
+                ApiOperationClaimService(method: "/operation-claims"));
       }));
 
       checkIfUnRegistered<IGroupService>((() {
-        groupService =
-            _getIt.registerSingleton<IGroupService>(InMemoryGroupService());
+        groupService = _getIt.registerSingleton<IGroupService>(
+            ApiGroupService(method: "/Groups"));
       }));
 
       checkIfUnRegistered<ILookupService>((() {
         lookupService =
-            _getIt.registerSingleton<ILookupService>(InMemoryLookupService());
+            _getIt.registerSingleton<ILookupService>(ApiLookupService());
       }));
 
       checkIfUnRegistered<IGroupClaimService>((() {
-        groupClaimService = _getIt
-            .registerSingleton<IGroupClaimService>(InMemoryGroupClaimService());
+        groupClaimService = _getIt.registerSingleton<IGroupClaimService>(
+            ApiGroupClaimService(method: "/group-claims"));
       }));
 
       checkIfUnRegistered<ILogService>((() {
-        logService =
-            _getIt.registerSingleton<ILogService>(InMemoryLogService());
+        logService = _getIt
+            .registerSingleton<ILogService>(ApiLogService(method: "/Logs"));
       }));
     }
 

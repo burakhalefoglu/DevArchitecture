@@ -49,17 +49,18 @@ dependencies:
 
   # google
   google_search_place: 0.0.4 #: All platforms
-  google_maps_flutter: 2.10.0 #* Android iOS web
+  google_maps_flutter: 2.4.0 #: All platforms
   google_maps_flutter_web: 0.5.10 #: All platforms
   flutter_polyline_points: 2.1.0 #: All platforms
 
   # messages toast
   oktoast: 3.4.0 #: All platforms
 
-  # database
+  # database & storage
   shared_preferences: 2.2.3 #: All platforms
-  sqflite: 2.3.3+1 #* Android iOS macOS
+  sqlite3: 2.4.7 #: All platforms
   path: 1.9.0 #: All platforms
+  path_provider: 2.1.4 #* Android iOS Linux macOS Windows
 
   # security
   jwt_decoder: 2.0.1 #: All platforms
@@ -74,7 +75,6 @@ dependencies:
   permission_handler: 11.3.1 #* Android iOS web Windows
   logger: 2.4.0 #: All platforms
   file_picker: 8.1.0 #: All platforms
-  path_provider: 2.1.4 #* Android iOS Linux macOS Windows
   pdf: 3.11.0 #: All platforms
   image: 4.2.0 #: All platforms
   excel: 4.0.2 #: All platforms
