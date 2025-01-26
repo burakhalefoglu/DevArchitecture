@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '/core/constants/core_messages.dart';
 import '/di/constants_initializer.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:oktoast/oktoast.dart';
@@ -108,7 +107,7 @@ class _AppState extends State<App> with OKToastMixin<App>, ModularMixin {
           return MaterialApp(
             home: Scaffold(
               body: Center(
-                child: Text(CoreMessages.customerDefaultErrorMessage),
+                child: Text("Bir hata oluştu: ${snapshot.error}"),
               ),
             ),
           );
