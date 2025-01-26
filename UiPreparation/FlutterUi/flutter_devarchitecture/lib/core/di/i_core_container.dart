@@ -12,7 +12,7 @@ import '../utilities/logger/i_logger.dart';
 import '../utilities/message_broker/i_message_broker.dart';
 import '../utilities/local_notification/i_notification_service.dart';
 import '../utilities/permission_handler/i_permission_handler.dart';
-import '../local_storage/i_local_storage.dart';
+import '../key_value_storage/i_key_value_storage.dart';
 import '../http/i_http.dart';
 import '../utilities/qr_code/i_qr_code_scanner_service.dart';
 import '../utilities/screen_message/i_screen_message.dart';
@@ -22,7 +22,7 @@ import '../widgets/tables/i_tables.dart';
 
 abstract class ICoreContainer {
   // Storage
-  late ILocalStorage storage;
+  late IKeyValueStorage storage;
 
   // http
   late IHttp http;

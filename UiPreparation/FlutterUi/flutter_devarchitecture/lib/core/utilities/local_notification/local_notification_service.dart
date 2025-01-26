@@ -1,24 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:in_app_notification/in_app_notification.dart';
-
 import 'i_notification_service.dart';
 
 class LocalNotificationService implements INotificationService {
   LocalNotificationService();
 
+  /// Bildirimi manuel olarak bir `OverlayEntry` ile göster
   void _showNotificationWidget(
-      BuildContext context, String message, String title,
-      {bool playSound = false, bool enableVibration = false}) {
-    InAppNotification.show(
-      context: context,
-      child: NotificationCard(
-        title: title,
-        message: message,
-        playSound: playSound,
-        enableVibration: enableVibration,
+    BuildContext context,
+    String message,
+    String title, {
+    bool playSound = false,
+    bool enableVibration = false,
+  }) {
+    final overlay = Overlay.of(context);
+    final overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: 50.0,
+        left: MediaQuery.of(context).size.width * 0.1,
+        width: MediaQuery.of(context).size.width * 0.8,
+        child: Material(
+          color: Colors.transparent,
+          child: NotificationCard(
+            title: title,
+            message: message,
+            playSound: playSound,
+            enableVibration: enableVibration,
+          ),
+        ),
       ),
-      duration: Duration(seconds: 5),
     );
+
+    overlay.insert(overlayEntry);
+
+    // Bildirimi belirli bir süre sonra kaldır
+    Future.delayed(Duration(seconds: 5), () {
+      overlayEntry.remove();
+    });
   }
 
   @override
@@ -71,45 +88,48 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Ses ve titreşim özelliklerini burada uygulayabilirsiniz
     if (playSound) {
-      // Özel ses çalma mantığını buraya ekleyin
+      // Ses çalma işlemi buraya eklenebilir
     }
     if (enableVibration) {
-      // Titreşim mantığını buraya ekleyin
+      // Titreşim işlemi buraya eklenebilir
     }
 
-    return Material(
-      color: Colors.transparent,
-      child: Container(
-        margin: const EdgeInsets.all(16.0),
-        padding: const EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          color: Colors.blueAccent,
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+    return Container(
+      margin: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.blueAccent,
+        borderRadius: BorderRadius.circular(12.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 8.0,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
-            const SizedBox(height: 8.0),
-            Text(
-              message,
-              style: const TextStyle(
-                fontSize: 14.0,
-                color: Colors.white,
-              ),
+          ),
+          const SizedBox(height: 8.0),
+          Text(
+            message,
+            style: const TextStyle(
+              fontSize: 14.0,
+              color: Colors.white,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

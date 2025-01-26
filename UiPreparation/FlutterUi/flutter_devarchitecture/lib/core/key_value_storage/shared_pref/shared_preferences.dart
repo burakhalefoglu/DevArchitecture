@@ -1,8 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../core/local_storage/i_local_storage.dart';
+import '../i_key_value_storage.dart';
 
-class SharedPreferencesLocalStorage implements ILocalStorage {
+class SharedPreferencesLocalStorage implements IKeyValueStorage {
   SharedPreferencesLocalStorage() {
     init();
   }

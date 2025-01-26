@@ -1,6 +1,6 @@
 import 'package:dart_amqp/dart_amqp.dart';
 import 'package:flutter_devarchitecture/core/widgets/tables/data_table/data_table_2.dart';
-import '/core/local_storage/shared_pref/shared_preferences.dart';
+import '../../key_value_storage/shared_pref/shared_preferences.dart';
 import '/core/utilities/file_share/i_share.dart';
 import '/core/utilities/logger/i_logger.dart';
 import '/core/utilities/permission_handler/i_permission_handler.dart';
@@ -52,7 +52,7 @@ import '../../utilities/screen_message/ok_toast_screen_message.dart';
 import '../../http/http_dart.dart';
 import '../../http/http_interceptor.dart';
 import '../../http/i_http.dart';
-import '../../local_storage/i_local_storage.dart';
+import '../../key_value_storage/i_key_value_storage.dart';
 import '../../widgets/charts/geekyants/geekyants_gauges_chart.dart';
 import '../../widgets/charts/i_chart.dart';
 import '../../widgets/tables/i_tables.dart';
@@ -76,7 +76,7 @@ class GetItCoreContainer implements ICoreContainer {
   late IScreenMessage screenMessage;
 
   @override
-  late ILocalStorage storage;
+  late IKeyValueStorage storage;
 
   @override
   late IHttpInterceptor httpInterceptor;
@@ -179,9 +179,9 @@ class GetItCoreContainer implements ICoreContainer {
           _getIt.registerSingleton<IScreenMessage>(OkToastScreenMessage());
     }));
 
-    checkIfUnRegistered<ILocalStorage>((() {
+    checkIfUnRegistered<IKeyValueStorage>((() {
       storage = _getIt
-          .registerSingleton<ILocalStorage>(SharedPreferencesLocalStorage());
+          .registerSingleton<IKeyValueStorage>(SharedPreferencesLocalStorage());
     }));
 
     checkIfUnRegistered<IHttpInterceptor>((() {
