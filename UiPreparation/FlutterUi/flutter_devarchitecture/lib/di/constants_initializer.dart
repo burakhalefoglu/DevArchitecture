@@ -9,8 +9,8 @@ import '../core/features/admin_panel/groups/group_constants/group_messages.dart'
 import '../core/features/admin_panel/groups/group_constants/group_screen_texts.dart';
 import '../core/features/admin_panel/languages/language_constants/language_messages.dart';
 import '../core/features/admin_panel/languages/language_constants/language_screen_texts.dart';
-import '../core/features/admin_panel/log/log_messages.dart';
-import '../core/features/admin_panel/log/log_screen_texts.dart';
+import '../core/features/admin_panel/log_f/log_messages.dart';
+import '../core/features/admin_panel/log_f/log_screen_texts.dart';
 import '../core/features/admin_panel/operation_claims/operation_claims_constants/operation_claim_messages.dart';
 import '../core/features/admin_panel/operation_claims/operation_claims_constants/operation_claims_screen_texts.dart';
 import '../core/features/admin_panel/translates/translate_constants/translate_Screen_texts.dart';

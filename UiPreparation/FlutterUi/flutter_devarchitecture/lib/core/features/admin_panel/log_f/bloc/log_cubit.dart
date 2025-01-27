@@ -13,15 +13,19 @@ class LogCubit extends BaseCubit<Log> {
   Future<void> getLogs() async {
     emit(BlocLoading());
     try {
-      final logs =
+      final logResult =
           await BusinessInitializer().businessContainer.logService.getLogs();
 
-      if (!logs.isSuccess) {
-        emitFailState(logs.message);
+      if (!logResult.isSuccess) {
+        emitFailState(logResult.message);
+        return;
+      }
+      if (logResult.data == null) {
+        emit(BlocSuccess<List<LogDto>>([]));
         return;
       }
       emit(BlocSuccess<List<LogDto>>(
-        logs.data!,
+        logResult.data!,
       ));
     } on Exception catch (e) {
       emitFailState("", e: e);
