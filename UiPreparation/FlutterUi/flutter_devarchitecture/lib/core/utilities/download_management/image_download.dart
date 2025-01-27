@@ -88,13 +88,17 @@ class ImageDownload implements IImageDownload {
 
   Future<String?> _getSavePathForMobileApps() async {
     try {
-      String? outputFilePath = await FilePicker.platform.saveFile(
+      String? selectedDirectory = await FilePicker.platform.getDirectoryPath(
         dialogTitle: CoreMessages.selectOutputFileMessage,
-        fileName: 'data${Random().nextInt(10000000)}.png',
-        type: FileType.custom,
-        allowedExtensions: ['png'],
       );
-      return outputFilePath;
+
+      if (selectedDirectory != null) {
+        String outputFilePath =
+            '$selectedDirectory/data${Random().nextInt(10000000)}.png';
+        return outputFilePath;
+      } else {
+        return null;
+      }
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {

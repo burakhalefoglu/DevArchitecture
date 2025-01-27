@@ -62,13 +62,17 @@ class XmlDownload implements IXmlDownload {
 
   Future<String?> _getSavePathForMobileApps() async {
     try {
-      String? outputFilePath = await FilePicker.platform.saveFile(
+      String? selectedDirectory = await FilePicker.platform.getDirectoryPath(
         dialogTitle: CoreMessages.selectOutputFileMessage,
-        fileName: 'data${Random().nextInt(10000000)}.xml',
-        type: FileType.custom,
-        allowedExtensions: ['xml'],
       );
-      return outputFilePath;
+
+      if (selectedDirectory != null) {
+        String outputFilePath =
+            '$selectedDirectory/data${Random().nextInt(10000000)}.xml';
+        return outputFilePath;
+      } else {
+        return null;
+      }
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {

@@ -75,13 +75,17 @@ class ExcelDownload implements IExcelDownload {
 
   Future<String?> _getSavePathForMobileApps() async {
     try {
-      String? outputFilePath = await FilePicker.platform.saveFile(
+      String? selectedDirectory = await FilePicker.platform.getDirectoryPath(
         dialogTitle: CoreMessages.selectOutputFileMessage,
-        fileName: 'data${Random().nextInt(10000000)}.xlsx',
-        type: FileType.custom,
-        allowedExtensions: ['xlsx'],
       );
-      return outputFilePath;
+
+      if (selectedDirectory != null) {
+        String outputFilePath =
+            '$selectedDirectory/data${Random().nextInt(10000000)}.xlsx';
+        return outputFilePath;
+      } else {
+        return null;
+      }
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {

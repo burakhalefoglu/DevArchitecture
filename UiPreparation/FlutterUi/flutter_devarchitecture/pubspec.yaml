@@ -83,7 +83,7 @@ dependencies:
   local_auth: 2.2.0 #* Android iOS macOS Windows
   qr_code_scanner: 1.0.1 #* Android iOS
   universal_html: 2.2.4 #* Android iOS Linux macOS Windows
-  file_picker: 6.2.1 #: All platforms
+  file_picker: 8.1.7 #: All platforms
   
 flutter:
   uses-material-design: true

@@ -55,13 +55,17 @@ class TxtDownload implements ITxtDownload {
 
   Future<String?> _getSavePathForMobileApps() async {
     try {
-      String? outputFilePath = await FilePicker.platform.saveFile(
+      String? selectedDirectory = await FilePicker.platform.getDirectoryPath(
         dialogTitle: CoreMessages.selectOutputFileMessage,
-        fileName: 'data${Random().nextInt(10000000)}.txt',
-        type: FileType.custom,
-        allowedExtensions: ['txt'],
       );
-      return outputFilePath;
+
+      if (selectedDirectory != null) {
+        String outputFilePath =
+            '$selectedDirectory/data${Random().nextInt(10000000)}.txt';
+        return outputFilePath;
+      } else {
+        return null;
+      }
     } catch (e) {
       _showErrorMessage(CoreMessages.customerDefaultErrorMessage);
       if (kDebugMode) {
