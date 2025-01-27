@@ -92,7 +92,7 @@ abstract class ApiService<T> implements IService {
   }
 
   @override
-  Future<IResult> update(id, Map<String, dynamic> body) async {
+  Future<IResult> update(Map<String, dynamic> body) async {
     var result = await CoreInitializer().coreContainer.http.put(url, body);
     if (result["success"] != null) {
       if (result["success"] == false) {

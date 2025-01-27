@@ -43,11 +43,10 @@ class UserClaimCubit extends BaseCubit<UserClaim> {
     }
   }
 
-  Future<void> saveUserClaimsByUserId(int userId, List<int> claims) async {
+  Future<void> saveUserClaims(int userId, List<int> claims) async {
     emit(BlocLoading());
     try {
-      var result =
-          await service.update(userId, {"UserId": userId, "ClaimIds": claims});
+      var result = await service.update({"UserId": userId, "ClaimIds": claims});
 
       if (!result.isSuccess) {
         emitFailState(result.message);

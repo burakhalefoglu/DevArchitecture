@@ -14,4 +14,5 @@ abstract class IAuthService implements IService {
   bool loggedIn();
   Future<bool> claimGuard(
       {required BuildContext context, required String claim});
+  Future<void> refreshToken();
 }

@@ -40,6 +40,7 @@ class ApiLookupService implements ILookupService {
         .coreContainer
         .http
         .get(url + "/operation-claims/lookups");
+
     var data =
         (result["data"] as List).map((e) => e as Map<String, dynamic>).toList();
     return Future.value(data.map((e) => LookUp.fromMap(e)).toList());

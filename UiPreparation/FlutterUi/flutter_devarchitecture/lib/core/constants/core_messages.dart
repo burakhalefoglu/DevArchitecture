@@ -24,6 +24,7 @@ class CoreMessages extends MessageConstantsBase {
   static late String invalidDate;
   static late String dateCantBeEmpty;
   static late String downloadSuccessMessage;
+  static late String unauthorizedErrorMessage;
 
   static late String editMessage;
   static late String deleteMessage;
@@ -82,5 +83,7 @@ class CoreMessages extends MessageConstantsBase {
     error = BaseConstants.translate("Error");
     atLeastOneSelection = BaseConstants.translate("AtLeastOneSelection");
     passwordsDoNotMatch = BaseConstants.translate("PasswordsDoNotMatch");
+    unauthorizedErrorMessage =
+        BaseConstants.translate("UnauthorizedErrorMessage");
   }
 }

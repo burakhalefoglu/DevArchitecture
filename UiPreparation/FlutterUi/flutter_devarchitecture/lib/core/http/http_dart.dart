@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
+import '../constants/core_messages.dart';
 import '../di/core_initializer.dart';
 import '/core/helpers/exceptions.dart';
 import 'http_interceptor.dart';
@@ -16,6 +17,8 @@ class HttpDart implements IHttp {
   }
 
   HttpDart._internal();
+
+  bool _retrying = false; // Retry kontrolü
 
   @override
   Future<Map<String, dynamic>> get(String url) async {
@@ -33,7 +36,7 @@ class HttpDart implements IHttp {
             .logDebug("$url -> ${response.statusCode}");
       }
 
-      await _handleError(response.statusCode, response.body);
+      await _handleError(response.statusCode, response.body, url, headers);
 
       return _processResponse(response.body);
     } catch (e) {
@@ -65,7 +68,7 @@ class HttpDart implements IHttp {
             .logDebug("$url -> ${response.statusCode}");
       }
 
-      await _handleError(response.statusCode, response.body);
+      await _handleError(response.statusCode, response.body, url, headers);
 
       return _processResponse(response.body);
     } catch (e) {
@@ -89,7 +92,7 @@ class HttpDart implements IHttp {
             .logDebug("$url -> ${response.statusCode}");
       }
 
-      await _handleError(response.statusCode, response.body);
+      await _handleError(response.statusCode, response.body, url, headers);
 
       return _processResponse(response.body);
     } catch (e) {
@@ -121,7 +124,7 @@ class HttpDart implements IHttp {
             .logDebug("$url -> ${response.statusCode}");
       }
 
-      await _handleError(response.statusCode, response.body);
+      await _handleError(response.statusCode, response.body, url, headers);
 
       return _processResponse(response.body);
     } catch (e) {
@@ -129,16 +132,38 @@ class HttpDart implements IHttp {
     }
   }
 
-  Future<void> _handleError(int statusCode, String reply) async {
+  Future<void> _handleError(int statusCode, String reply, String url,
+      Map<String, dynamic> headers) async {
     if (statusCode == 400) {
       throw BadRequestException(reply);
     }
+
     if (statusCode == 401) {
-      throw UnauthorizedException(reply);
+      if (_retrying) {
+        throw UnauthorizedException(
+          CoreMessages.unauthorizedErrorMessage,
+        );
+      }
+
+      _retrying = true;
+
+      try {
+        await interceptor.handle401(url, headers);
+      } catch (e) {
+        _retrying = false;
+        throw UnauthorizedException(
+          CoreMessages.unauthorizedErrorMessage,
+        );
+      }
+
+      _retrying = false;
+      return;
     }
+
     if (statusCode == 403) {
       throw ForbiddenException(reply);
     }
+
     if (statusCode == 500) {
       throw InternalServerErrorException(reply);
     }

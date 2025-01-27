@@ -13,8 +13,7 @@ class OperationClaimCubit extends BaseCubit<OperationClaim> {
   Future<void> updateOperationClaim(OperationClaimDto operationClaimDto) async {
     emit(BlocLoading());
     try {
-      var result =
-          await service.update(operationClaimDto.id, operationClaimDto.toMap());
+      var result = await service.update(operationClaimDto.toMap());
       if (!result.isSuccess) {
         emitFailState(result.message);
         return;

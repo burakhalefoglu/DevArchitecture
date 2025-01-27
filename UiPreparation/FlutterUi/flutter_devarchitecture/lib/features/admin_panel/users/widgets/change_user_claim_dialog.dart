@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_devarchitecture/core/constants/core_screen_texts.dart';
 
+import '../../../../core/constants/core_screen_texts.dart';
 import '../../../../core/bloc/base_state.dart';
 import '../../../../core/bloc/bloc_consumer_extension.dart';
 import '../../../../core/bloc/bloc_helper.dart';
@@ -64,7 +64,7 @@ class _ChangeUserClaimsDialogState extends State<ChangeUserClaimsDialog> {
                 onPressed: () {
                   if (_selectedClaims.isNotEmpty) {
                     BlocProvider.of<UserClaimCubit>(context)
-                        .saveUserClaimsByUserId(widget.userId, _selectedClaims);
+                        .saveUserClaims(widget.userId, _selectedClaims);
                     Navigator.of(context).pop();
                   } else {
                     CoreInitializer()

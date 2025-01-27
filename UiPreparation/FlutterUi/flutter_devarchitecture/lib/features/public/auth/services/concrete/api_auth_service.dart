@@ -116,4 +116,28 @@ class ApiAuthService extends ApiService<AuthRequestBasic>
         await CoreInitializer().coreContainer.storage.read("inputPersonName");
     return username!;
   }
+
+  @override
+  Future<void> refreshToken() async {
+    var _refreshToken =
+        await CoreInitializer().coreContainer.storage.read("refreshToken");
+    if (_refreshToken != null) {
+      var result = await CoreInitializer()
+          .coreContainer
+          .http
+          .post("$url/Auth/refresh-token", {"refreshToken": _refreshToken});
+
+      if (result["success"] != null && result["success"] == false) {
+        return;
+      }
+      await CoreInitializer()
+          .coreContainer
+          .storage
+          .save("token", result["data"]["token"]);
+      await CoreInitializer()
+          .coreContainer
+          .storage
+          .save("refreshToken", result["data"]["refreshToken"]);
+    }
+  }
 }

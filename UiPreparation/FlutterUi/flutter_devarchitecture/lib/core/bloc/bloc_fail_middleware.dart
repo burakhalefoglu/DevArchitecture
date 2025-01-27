@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_devarchitecture/extensions/translate_provider_extension.dart';
+import '/extensions/translate_provider_extension.dart';
 import '../../routes/routes_constants.dart';
 import '../constants/core_messages.dart';
 import '../di/core_initializer.dart';
@@ -8,7 +8,8 @@ import 'base_state.dart';
 class BlocFailedMiddleware {
   static void handleBlocFailed(BuildContext context, BaseState state) {
     if (state is BlocFailed) {
-      var message = context.translationProvider.translate(state.message);
+      var message = "";
+      // context.translationProvider.translate(state.message);
 
       switch (state.statusCode) {
         case 400:

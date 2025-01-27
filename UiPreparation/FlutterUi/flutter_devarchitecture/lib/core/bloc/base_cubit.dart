@@ -55,7 +55,7 @@ class BaseCubit<T extends IEntity> extends Cubit<BaseState> {
   Future<void> update(T body) async {
     try {
       emit(BlocSending());
-      var result = await service.update(body.id, body.toMap());
+      var result = await service.update(body.toMap());
       if (!result.isSuccess) {
         if (kDebugMode) {
           CoreInitializer().coreContainer.logger.logDebug(result.message);

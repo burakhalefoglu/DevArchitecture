@@ -49,7 +49,7 @@ class GroupClaimCubit extends BaseCubit<GroupClaim> {
       var result = await BusinessInitializer()
           .businessContainer
           .groupClaimService
-          .update(groupId, {'GroupId': groupId, 'ClaimIds': claims});
+          .update({'GroupId': groupId, 'ClaimIds': claims});
       if (result.isSuccess == false) {
         emitFailState(result.message);
         return;

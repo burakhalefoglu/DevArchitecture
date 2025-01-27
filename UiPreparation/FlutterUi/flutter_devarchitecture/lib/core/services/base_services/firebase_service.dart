@@ -117,14 +117,14 @@ abstract class FirebaseService implements IService {
   }
 
   @override
-  Future<IResult> update(int id, Map<String, dynamic> body) async {
+  Future<IResult> update(Map<String, dynamic> body) async {
     var documentID = "";
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
         await _collectionRef.get();
     var ids = querySnapshot.docs.map((doc) => doc.id).toList();
     var datas = querySnapshot.docs.map((doc) => doc.data()).toList();
     for (var i = 0; i < ids.length; i++) {
-      if (datas[i]["id"] == id) {
+      if (datas[i]["id"] == body["id"]) {
         documentID = ids[i];
       }
     }

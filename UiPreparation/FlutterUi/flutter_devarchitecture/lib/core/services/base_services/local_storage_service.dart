@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_devarchitecture/core/constants/core_messages.dart';
-import 'package:flutter_devarchitecture/core/di/core_initializer.dart';
+import '/core/constants/core_messages.dart';
+import '/core/di/core_initializer.dart';
 import 'package:sqlite3/sqlite3.dart';
 import '../../utilities/results.dart';
 import '../../../core/services/i_service.dart';
@@ -147,7 +147,7 @@ class LocalStorageService<T extends IEntity> implements IService {
   }
 
   @override
-  Future<IResult> update(int id, Map<String, dynamic> body) async {
+  Future<IResult> update(Map<String, dynamic> body) async {
     try {
       final updates =
           body.entries.map((entry) => '${entry.key} = ?').join(', ');
@@ -156,7 +156,7 @@ class LocalStorageService<T extends IEntity> implements IService {
         UPDATE $tableName SET $updates WHERE id = ?
       ''';
 
-      _database.execute(query, [...body.values, id]);
+      _database.execute(query, [...body.values, body["id"]]);
       return SuccessResult(CoreMessages.customerDefaultSuccessMessage);
     } catch (e) {
       if (kDebugMode) {
