@@ -37,14 +37,16 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
             Text('Device Information',
                 style: Theme.of(context).textTheme.headlineLarge),
             SizedBox(height: 16),
-            ..._deviceData.entries.map((entry) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: Row(
-                    children: [
-                      Text('${entry.key}: ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      Expanded(child: Text('${entry.value}')),
-                    ],
+            ..._deviceData.entries.map((entry) => Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4.0),
+                    child: Row(
+                      children: [
+                        Text('${entry.key}: ',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        Expanded(child: Text('${entry.value}')),
+                      ],
+                    ),
                   ),
                 )),
           ],

@@ -120,6 +120,8 @@ class CoreScreenTexts extends ScreenConstantsBase {
     jsonShareTooltip = BaseConstants.translate("JsonShareTooltip");
     xmlShareTooltip = BaseConstants.translate("XmlShareTooltip");
 
+    shareTitle = BaseConstants.translate("ShareTitle");
+
     dateFormat = BaseConstants.translate("DateFormat");
     timeFormat = BaseConstants.translate("TimeFormat");
     dateTimeFormat = BaseConstants.translate("DateTimeFormat");

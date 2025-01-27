@@ -10,8 +10,9 @@ import '../data/users.dart';
 class PdfDownloadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final downloadButtons =
-        DownloadButtons(data: users.map((e) => e.toMap()).toList());
+    final downloadButtons = DownloadButtons(
+        color: CustomColors.dark.getColor,
+        data: users.map((e) => e.toMap()).toList());
 
     return buildBaseScaffold(
       context,

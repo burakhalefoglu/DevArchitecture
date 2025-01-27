@@ -75,7 +75,6 @@ dependencies:
   device_info_plus: 9.0.2 #: All platforms
   permission_handler: 11.3.1 #* Android iOS web Windows
   logger: 2.4.0 #: All platforms
-  file_picker: 7.0.2  #: All platforms
   pdf: 3.11.0 #: All platforms
   image: 4.2.0 #: All platforms
   excel: 4.0.2 #: All platforms
@@ -84,6 +83,7 @@ dependencies:
   local_auth: 2.2.0 #* Android iOS macOS Windows
   qr_code_scanner: 1.0.1 #* Android iOS
   universal_html: 2.2.4 #* Android iOS Linux macOS Windows
+  file_picker: 6.2.1 #: All platforms
   
 flutter:
   uses-material-design: true
