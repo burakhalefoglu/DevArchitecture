@@ -1,4 +1,4 @@
-import 'package:flutter_devarchitecture/features/admin_panel/logs/log_page.dart';
+import 'package:flutter_devarchitecture/core/features/admin_panel/logs/log_page.dart';
 
 import '../core/example_pages/theme/color_palette_page.dart';
 import '../core/example_pages/utilities/logger_page.dart';
@@ -16,8 +16,8 @@ import '../core/example_pages/utilities/internet_connection_page.dart';
 import '../core/example_pages/utilities/local_notification_page.dart';
 import '../core/example_pages/widgets/input_examples_page.dart';
 import '../core/guard/claim_guard.dart';
-import '../features/admin_panel/languages/pages/admin_language_page.dart';
-import '../features/admin_panel/users/pages/user_page.dart';
+import '../core/features/admin_panel/languages/pages/admin_language_page.dart';
+import '../core/features/admin_panel/users/pages/user_page.dart';
 import '../core/example_pages/utilities/download/csv_download_button_page.dart';
 import '../core/example_pages/utilities/download/excel_download_button_page.dart';
 import '../core/example_pages/utilities/download/image_download_button_page.dart';
@@ -26,12 +26,12 @@ import '../core/example_pages/utilities/download/json_download_button_page.dart'
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../core/guard/auth_guard.dart';
-import '../features/admin_panel/groups/pages/admin_group_page.dart';
-import '../features/admin_panel/operation_claims/pages/admin_operation_claim_page.dart';
-import '../features/admin_panel/translates/pages/admin_translate_page.dart';
+import '../core/features/admin_panel/groups/pages/admin_group_page.dart';
+import '../core/features/admin_panel/operation_claims/pages/admin_operation_claim_page.dart';
+import '../core/features/admin_panel/translates/pages/admin_translate_page.dart';
 import '../features/app_panel/home/home_page.dart';
-import '../features/public/auth/pages/login_page.dart';
-import '../features/public/not_found/not_found_page.dart';
+import '../core/features/public/auth/pages/login_page.dart';
+import '../core/features/public/not_found/not_found_page.dart';
 import '../core/example_pages/utilities/download/pdf_download_button_page.dart';
 import '../core/example_pages/utilities/download/txt_download_button_page.dart';
 import '../core/example_pages/utilities/download/xml_download_button_page.dart';

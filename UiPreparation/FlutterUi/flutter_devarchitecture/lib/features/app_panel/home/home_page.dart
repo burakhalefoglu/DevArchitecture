@@ -5,7 +5,7 @@ import '../../../core/constants/sidebar_constants.dart';
 import '../../../core/theme/responsive.dart';
 import 'dart:async';
 import 'dart:math';
-import '../../../extensions/claim_provider.dart';
+import '../../../core/extensions/claim_provider.dart';
 import '/core/theme/extensions.dart';
 import '../../../../core/di/core_initializer.dart';
 import '../../../core/theme/custom_colors.dart';

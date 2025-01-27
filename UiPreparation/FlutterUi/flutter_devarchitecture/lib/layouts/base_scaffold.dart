@@ -108,8 +108,8 @@ Widget buildLogOutButton(BuildContext context) {
     message: CoreScreenTexts.logOutButton,
     child: IconButton(
         onPressed: () {
-          CoreInitializer().coreContainer.storage.delete("inputPersonId");
-          CoreInitializer().coreContainer.storage.delete("inputPersonName");
+          CoreInitializer().coreContainer.storage.delete("userId");
+          CoreInitializer().coreContainer.storage.delete("userName");
           CoreInitializer().coreContainer.storage.delete("token");
           Modular.to.navigate(RoutesConstants.loginPage);
         },

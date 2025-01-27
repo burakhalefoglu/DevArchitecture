@@ -1,16 +1,16 @@
-import '../features/admin_panel/logs/services/i_service.dart';
-import '/features/admin_panel/group_claims/services/i_group_claim_service.dart';
-import '/features/admin_panel/languages/services/i_language_service.dart';
-import '/features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
-import '/features/admin_panel/translates/services/i_translate_service.dart';
+import '../core/features/admin_panel/logs/services/i_service.dart';
+import '../core/features/admin_panel/group_claims/services/i_group_claim_service.dart';
+import '../core/features/admin_panel/languages/services/i_language_service.dart';
+import '../core/features/admin_panel/operation_claims/services/i_operation_claim_service.dart';
+import '../core/features/admin_panel/translates/services/i_translate_service.dart';
 
-import '../features/admin_panel/groups/services/i_group.dart';
-import '../features/admin_panel/lookups/services/i_lookup_service.dart';
-import '../features/admin_panel/user_groups/services/i_user_group_service.dart';
-import '../features/admin_panel/user_claims/services/i_user_claim_service.dart';
-import '../features/admin_panel/users/services/i_user_service.dart';
+import '../core/features/admin_panel/groups/services/i_group.dart';
+import '../core/features/admin_panel/lookups/services/i_lookup_service.dart';
+import '../core/features/admin_panel/user_groups/services/i_user_group_service.dart';
+import '../core/features/admin_panel/user_claims/services/i_user_claim_service.dart';
+import '../core/features/admin_panel/users/services/i_user_service.dart';
 
-import '../features/public/auth/services/abstract/i_auth_service.dart';
+import '../core/features/public/auth/services/abstract/i_auth_service.dart';
 
 abstract class IBusinessContainer {
   late IAuthService authService;

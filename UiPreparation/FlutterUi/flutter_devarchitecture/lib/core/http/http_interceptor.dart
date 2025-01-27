@@ -13,12 +13,16 @@ abstract class IHttpInterceptor {
 class HttpInterceptor implements IHttpInterceptor {
   @override
   Future<Map<String, dynamic>> interceptJson() async {
-    return {
-      "content-type": "application/json",
-      "Accept": "application/json",
-      "Authorization":
-          "Bearer ${await CoreInitializer().coreContainer.storage.read("token")}"
-    };
+    try {
+      return {
+        "content-type": "application/json",
+        "Accept": "application/json",
+        "Authorization":
+            "Bearer ${await CoreInitializer().coreContainer.storage.read("token")}"
+      };
+    } catch (e) {
+      return {};
+    }
   }
 
   @override

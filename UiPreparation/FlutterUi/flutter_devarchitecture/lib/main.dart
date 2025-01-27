@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 import 'core/di/core_initializer.dart';
 import 'core/di/firebase/firebase_initializer.dart';
-import 'extensions/claim_provider.dart';
-import 'extensions/translation_provider.dart';
+import 'core/extensions/claim_provider.dart';
+import 'core/extensions/translation_provider.dart';
 import 'core/theme/theme_provider.dart';
 import 'mixin/modular_mixin.dart';
 import 'core/mixins/ok_toast_mixin.dart';
@@ -47,23 +47,14 @@ Future<void> injectFirebaseUtils() async {
   }
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: App(),
-    );
-  }
-}
-
-class App extends StatefulWidget {
-  App({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
 
   @override
-  State<App> createState() => _AppState();
+  State<MyApp> createState() => _AppState();
 }
 
-class _AppState extends State<App> with OKToastMixin<App>, ModularMixin {
+class _AppState extends State<MyApp> with OKToastMixin<MyApp>, ModularMixin {
   late Future<void> _initializeTranslations;
 
   @override

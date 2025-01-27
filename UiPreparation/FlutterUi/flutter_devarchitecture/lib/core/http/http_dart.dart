@@ -18,7 +18,7 @@ class HttpDart implements IHttp {
 
   HttpDart._internal();
 
-  bool _retrying = false; // Retry kontrolü
+  bool _retrying = false;
 
   @override
   Future<Map<String, dynamic>> get(String url) async {
@@ -28,7 +28,6 @@ class HttpDart implements IHttp {
           intercepts.map((key, value) => MapEntry(key, value.toString()));
 
       final response = await http.get(Uri.parse(url), headers: headers);
-
       if (kDebugMode) {
         CoreInitializer()
             .coreContainer
@@ -56,7 +55,6 @@ class HttpDart implements IHttp {
         Uri.parse(url),
         headers: {
           ...headers,
-          'Content-Type': 'application/json',
         },
         body: jsonEncode(body),
       );
@@ -112,7 +110,6 @@ class HttpDart implements IHttp {
         Uri.parse(url),
         headers: {
           ...headers,
-          'Content-Type': 'application/json',
         },
         body: jsonEncode(body),
       );
