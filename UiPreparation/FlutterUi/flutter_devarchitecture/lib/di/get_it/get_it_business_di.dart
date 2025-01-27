@@ -1,5 +1,5 @@
-import '../../core/features/admin_panel/logs/services/api_log_service.dart';
-import '../../core/features/admin_panel/logs/services/i_service.dart';
+import '../../core/features/admin_panel/log/services/api_log_service.dart';
+import '../../core/features/admin_panel/log/services/i_service.dart';
 import '../../core/features/admin_panel/group_claims/services/i_group_claim_service.dart';
 import '../../core/features/admin_panel/lookups/services/api_lookup_service.dart';
 import 'package:get_it/get_it.dart';

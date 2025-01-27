@@ -1,4 +1,4 @@
-import 'package:flutter_devarchitecture/core/features/admin_panel/logs/log_page.dart';
+import 'package:flutter_devarchitecture/core/features/admin_panel/log/log_page.dart';
 
 import '../core/example_pages/theme/color_palette_page.dart';
 import '../core/example_pages/utilities/logger_page.dart';
